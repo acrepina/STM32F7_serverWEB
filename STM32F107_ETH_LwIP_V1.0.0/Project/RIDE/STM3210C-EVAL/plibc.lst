@@ -1,0 +1,151 @@
+
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\plibc.o:     file format elf32-littlearm
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\plibc.o
+
+Disassembly of section .text.strMatch:
+
+00000000 <strMatch>:
+strMatch():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/plibc.c:44
+ * unsigned short strMatch(char* bufa, char*bufb, unsigned long n)
+ * Description: Compares bufa and bufb for a length of n bytes.
+ * Return value: Returns the number of character NOT matching.
+*/
+euint16 strMatch(eint8* bufa, eint8*bufb,euint32 n)
+{
+   0:	f04f 0c00 	mov.w	ip, #0	; 0x0
+   4:	b530      	push	{r4, r5, lr}
+   6:	4605      	mov	r5, r0
+   8:	460c      	mov	r4, r1
+   a:	4660      	mov	r0, ip
+   c:	4611      	mov	r1, r2
+   e:	e009      	b.n	24 <strMatch+0x24>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/plibc.c:47
+	euint32 c;
+	euint16 res=0;
+	for(c=0;c<n;c++)if(bufa[c]!=bufb[c])res++;
+  10:	f915 200c 	ldrsb.w	r2, [r5, ip]
+  14:	f914 300c 	ldrsb.w	r3, [r4, ip]
+  18:	429a      	cmp	r2, r3
+  1a:	d001      	beq.n	20 <strMatch+0x20>
+  1c:	1c43      	adds	r3, r0, #1
+  1e:	b298      	uxth	r0, r3
+  20:	f10c 0c01 	add.w	ip, ip, #1	; 0x1
+  24:	458c      	cmp	ip, r1
+  26:	d3f3      	bcc.n	10 <strMatch+0x10>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/plibc.c:49
+	return(res);
+}
+  28:	bd30      	pop	{r4, r5, pc}
+  2a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.memCpy:
+
+00000000 <memCpy>:
+memCpy():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/plibc.c:59
+ * void memCpy(void* psrc, void* pdest, unsigned long size)
+ * Description: Copies the contents of psrc into pdest on a byte per byte basis.
+ * The total number of bytes copies is size.
+*/
+void memCpy(void* psrc, void* pdest, euint32 size)
+{
+   0:	b530      	push	{r4, r5, lr}
+   2:	f04f 0c00 	mov.w	ip, #0	; 0x0
+   6:	4605      	mov	r5, r0
+   8:	460c      	mov	r4, r1
+   a:	4610      	mov	r0, r2
+   c:	4611      	mov	r1, r2
+   e:	e006      	b.n	1e <memCpy+0x1e>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/plibc.c:61
+	while(size>0){
+		*((eint8*)pdest+size-1)=*((eint8*)psrc+size-1);
+  10:	182a      	adds	r2, r5, r0
+  12:	f812 200c 	ldrb.w	r2, [r2, ip]
+  16:	1823      	adds	r3, r4, r0
+  18:	f803 200c 	strb.w	r2, [r3, ip]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/plibc.c:62
+		size--;
+  1c:	3901      	subs	r1, #1
+  1e:	f10c 3cff 	add.w	ip, ip, #4294967295	; 0xffffffff
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/plibc.c:60
+ * Description: Copies the contents of psrc into pdest on a byte per byte basis.
+ * The total number of bytes copies is size.
+*/
+void memCpy(void* psrc, void* pdest, euint32 size)
+{
+	while(size>0){
+  22:	2900      	cmp	r1, #0
+  24:	d1f4      	bne.n	10 <memCpy+0x10>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/plibc.c:64
+		*((eint8*)pdest+size-1)=*((eint8*)psrc+size-1);
+		size--;
+	}
+}
+  26:	bd30      	pop	{r4, r5, pc}
+Disassembly of section .text.memClr:
+
+00000000 <memClr>:
+memClr():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/plibc.c:68
+/*****************************************************************************/ 
+
+void memClr(void *pdest,euint32 size)
+{
+   0:	1840      	adds	r0, r0, r1
+   2:	e003      	b.n	c <memClr+0xc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/plibc.c:70
+	while(size>0){
+		*(((eint8*)pdest)+size-1)=0x00;
+   4:	2300      	movs	r3, #0
+   6:	f800 3d01 	strb.w	r3, [r0, #-1]!
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/plibc.c:71
+		size--;
+   a:	3901      	subs	r1, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/plibc.c:69
+}
+/*****************************************************************************/ 
+
+void memClr(void *pdest,euint32 size)
+{
+	while(size>0){
+   c:	2900      	cmp	r1, #0
+   e:	d1f9      	bne.n	4 <memClr+0x4>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/plibc.c:73
+		*(((eint8*)pdest)+size-1)=0x00;
+		size--;
+	}
+}
+  10:	4770      	bx	lr
+  12:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.memSet:
+
+00000000 <memSet>:
+memSet():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/plibc.c:76
+
+void memSet(void *pdest,euint32 size,euint8 data)
+{
+   0:	1840      	adds	r0, r0, r1
+   2:	e002      	b.n	a <memSet+0xa>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/plibc.c:78
+	while(size>0){
+		*(((eint8*)pdest)+size-1)=data;
+   4:	f800 2d01 	strb.w	r2, [r0, #-1]!
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/plibc.c:79
+		size--;
+   8:	3901      	subs	r1, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/plibc.c:77
+	}
+}
+
+void memSet(void *pdest,euint32 size,euint8 data)
+{
+	while(size>0){
+   a:	2900      	cmp	r1, #0
+   c:	d1fa      	bne.n	4 <memSet+0x4>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/plibc.c:81
+		*(((eint8*)pdest)+size-1)=data;
+		size--;
+	}
+}
+   e:	4770      	bx	lr

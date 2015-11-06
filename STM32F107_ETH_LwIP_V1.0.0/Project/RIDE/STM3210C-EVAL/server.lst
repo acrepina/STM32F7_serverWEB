@@ -1,0 +1,396 @@
+
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\server.o:     file format elf32-littlearm
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\server.o
+
+Disassembly of section .text.tcp_server_accept:
+
+00000000 <tcp_server_accept>:
+tcp_server_accept():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:151
+  * @retval ERR_OK
+  */
+err_t tcp_server_accept(void *arg, struct tcp_pcb *pcb, err_t err)
+{ 
+  /* Specify the function that should be called when the TCP connection receives data */
+  tcp_recv(pcb, tcp_server_recv);
+   0:	4608      	mov	r0, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:149
+  * @param  pcb	the tcp_pcb which accepted the connection
+  * @param  err error value
+  * @retval ERR_OK
+  */
+err_t tcp_server_accept(void *arg, struct tcp_pcb *pcb, err_t err)
+{ 
+   2:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:151
+  /* Specify the function that should be called when the TCP connection receives data */
+  tcp_recv(pcb, tcp_server_recv);
+   4:	4902      	ldr	r1, [pc, #8]	(10 <tcp_server_accept+0x10>)
+   6:	f7ff fffe 	bl	0 <tcp_recv>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:154
+
+  return ERR_OK;  
+}
+   a:	2000      	movs	r0, #0
+   c:	bd10      	pop	{r4, pc}
+   e:	46c0      	nop			(mov r8, r8)
+  10:	0000      	.short	0x0000
+	...
+Disassembly of section .text.tcp_server_recv:
+
+00000000 <tcp_server_recv>:
+tcp_server_recv():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:166
+  * @param  p the packet buffer that was received
+  * @param  err error value
+  * @retval ERR_OK
+  */
+static err_t tcp_server_recv(void *arg, struct tcp_pcb *pcb, struct pbuf *p, err_t err)
+{
+   0:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:173
+
+  /* Read the led number */
+  data = *(((char *)p->payload));  
+
+  /* Toggle the specified led */
+  switch (data)
+   2:	6853      	ldr	r3, [r2, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:166
+  * @param  p the packet buffer that was received
+  * @param  err error value
+  * @retval ERR_OK
+  */
+static err_t tcp_server_recv(void *arg, struct tcp_pcb *pcb, struct pbuf *p, err_t err)
+{
+   4:	4614      	mov	r4, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:173
+
+  /* Read the led number */
+  data = *(((char *)p->payload));  
+
+  /* Toggle the specified led */
+  switch (data)
+   6:	f993 3000 	ldrsb.w	r3, [r3]
+   a:	2b03      	cmp	r3, #3
+   c:	d80c      	bhi.n	28 <tcp_server_recv+0x28>
+   e:	e8df f003 	tbb	[pc, r3]
+  12:	0402      	.short	0x0402
+  14:	0806      	.short	0x0806
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:176
+  {
+  	case LED1:
+	    STM_EVAL_LEDToggle(LED1);
+  16:	2000      	movs	r0, #0
+  18:	e004      	b.n	24 <tcp_server_recv+0x24>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:180
+		break;
+	
+	case LED2:
+	    STM_EVAL_LEDToggle(LED2);
+  1a:	2001      	movs	r0, #1
+  1c:	e002      	b.n	24 <tcp_server_recv+0x24>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:184
+		break;
+	
+	case LED3:
+	    STM_EVAL_LEDToggle(LED3);
+  1e:	2002      	movs	r0, #2
+  20:	e000      	b.n	24 <tcp_server_recv+0x24>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:188
+		break;
+	
+	case LED4:
+	    STM_EVAL_LEDToggle(LED4);
+  22:	2003      	movs	r0, #3
+  24:	f7ff fffe 	bl	0 <STM_EVAL_LEDToggle>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:196
+	default:
+		break;
+  }
+
+  /* Free the p buffer */
+  pbuf_free(p);
+  28:	4620      	mov	r0, r4
+  2a:	f7ff fffe 	bl	0 <pbuf_free>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:199
+
+  return ERR_OK;
+}
+  2e:	2000      	movs	r0, #0
+  30:	bd10      	pop	{r4, pc}
+  32:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.udp_server_callback:
+
+00000000 <udp_server_callback>:
+udp_server_callback():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:75
+  * @param addr the remote IP address from which the packet was received
+  * @param port the remote port from which the packet was received
+  * @retval None
+  */
+void udp_server_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, struct ip_addr *addr, u16_t port)
+{
+   0:	b5f0      	push	{r4, r5, r6, r7, lr}
+   2:	461e      	mov	r6, r3
+   4:	4617      	mov	r7, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:82
+  __IO uint8_t iptab[4];
+  uint8_t iptxt[20];
+  
+  /* We have received the UDP Echo from a client */
+  /* read its IP address */
+  iptab[0] = (uint8_t)((uint32_t)(addr->addr) >> 24);
+   6:	781b      	ldrb	r3, [r3, #0]
+   8:	7872      	ldrb	r2, [r6, #1]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:75
+  * @param addr the remote IP address from which the packet was received
+  * @param port the remote port from which the packet was received
+  * @retval None
+  */
+void udp_server_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, struct ip_addr *addr, u16_t port)
+{
+   a:	b089      	sub	sp, #36
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:82
+  __IO uint8_t iptab[4];
+  uint8_t iptxt[20];
+  
+  /* We have received the UDP Echo from a client */
+  /* read its IP address */
+  iptab[0] = (uint8_t)((uint32_t)(addr->addr) >> 24);
+   c:	ea43 2302 	orr.w	r3, r3, r2, lsl #8
+  10:	78b2      	ldrb	r2, [r6, #2]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:75
+  * @param addr the remote IP address from which the packet was received
+  * @param port the remote port from which the packet was received
+  * @retval None
+  */
+void udp_server_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, struct ip_addr *addr, u16_t port)
+{
+  12:	460d      	mov	r5, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:82
+  __IO uint8_t iptab[4];
+  uint8_t iptxt[20];
+  
+  /* We have received the UDP Echo from a client */
+  /* read its IP address */
+  iptab[0] = (uint8_t)((uint32_t)(addr->addr) >> 24);
+  14:	ea43 4302 	orr.w	r3, r3, r2, lsl #16
+  18:	78f2      	ldrb	r2, [r6, #3]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:87
+  iptab[1] = (uint8_t)((uint32_t)(addr->addr) >> 16);
+  iptab[2] = (uint8_t)((uint32_t)(addr->addr) >> 8);
+  iptab[3] = (uint8_t)((uint32_t)(addr->addr));
+
+  sprintf((char*)iptxt, "is: %d.%d.%d.%d     ", iptab[3], iptab[2], iptab[1], iptab[0]);	                           	                             
+  1a:	ac02      	add	r4, sp, #8
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:82
+  __IO uint8_t iptab[4];
+  uint8_t iptxt[20];
+  
+  /* We have received the UDP Echo from a client */
+  /* read its IP address */
+  iptab[0] = (uint8_t)((uint32_t)(addr->addr) >> 24);
+  1c:	ea43 6302 	orr.w	r3, r3, r2, lsl #24
+  20:	0e1a      	lsrs	r2, r3, #24
+  22:	f88d 201c 	strb.w	r2, [sp, #28]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:83
+  iptab[1] = (uint8_t)((uint32_t)(addr->addr) >> 16);
+  26:	f3c3 4207 	ubfx	r2, r3, #16, #8
+  2a:	f88d 201d 	strb.w	r2, [sp, #29]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:84
+  iptab[2] = (uint8_t)((uint32_t)(addr->addr) >> 8);
+  2e:	f3c3 2207 	ubfx	r2, r3, #8, #8
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:85
+  iptab[3] = (uint8_t)((uint32_t)(addr->addr));
+  32:	b2db      	uxtb	r3, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:84
+  
+  /* We have received the UDP Echo from a client */
+  /* read its IP address */
+  iptab[0] = (uint8_t)((uint32_t)(addr->addr) >> 24);
+  iptab[1] = (uint8_t)((uint32_t)(addr->addr) >> 16);
+  iptab[2] = (uint8_t)((uint32_t)(addr->addr) >> 8);
+  34:	f88d 201e 	strb.w	r2, [sp, #30]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:85
+  iptab[3] = (uint8_t)((uint32_t)(addr->addr));
+  38:	f88d 301f 	strb.w	r3, [sp, #31]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:87
+
+  sprintf((char*)iptxt, "is: %d.%d.%d.%d     ", iptab[3], iptab[2], iptab[1], iptab[0]);	                           	                             
+  3c:	f89d 201f 	ldrb.w	r2, [sp, #31]
+  40:	f89d 301e 	ldrb.w	r3, [sp, #30]
+  44:	f89d 101d 	ldrb.w	r1, [sp, #29]
+  48:	f89d 001c 	ldrb.w	r0, [sp, #28]
+  4c:	9100      	str	r1, [sp, #0]
+  4e:	9001      	str	r0, [sp, #4]
+  50:	491e      	ldr	r1, [pc, #120]	(cc <udp_server_callback+0xcc>)
+  52:	4620      	mov	r0, r4
+  54:	f7ff fffe 	bl	0 <sprintf>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:91
+	
+  /* Display the client's IP address */
+  /* If there is more than one client connected, the IP address of the last one connected will be displayed */
+  LCD_DisplayStringLine(Line4, "Client's IP address");
+  58:	2060      	movs	r0, #96
+  5a:	491d      	ldr	r1, [pc, #116]	(d0 <udp_server_callback+0xd0>)
+  5c:	f7ff fffe 	bl	0 <LCD_DisplayStringLine>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:92
+  LCD_DisplayStringLine(Line5, iptxt);
+  60:	4621      	mov	r1, r4
+  62:	2078      	movs	r0, #120
+  64:	f7ff fffe 	bl	0 <LCD_DisplayStringLine>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:95
+ 
+  /* Connect to the remote client */
+  udp_connect(upcb, addr, UDP_CLIENT_PORT);
+  68:	2204      	movs	r2, #4
+  6a:	4631      	mov	r1, r6
+  6c:	4628      	mov	r0, r5
+  6e:	f7ff fffe 	bl	0 <udp_connect>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:98
+    
+  /* Tell the client that we have accepted it */
+  udp_send(upcb, p);
+  72:	4639      	mov	r1, r7
+  74:	4628      	mov	r0, r5
+  76:	f7ff fffe 	bl	0 <udp_send>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:101
+
+  /* free the UDP connection, so we can accept new clients */
+  udp_disconnect(upcb);
+  7a:	4628      	mov	r0, r5
+  7c:	f7ff fffe 	bl	0 <udp_disconnect>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:105
+	
+  /* Bind the upcb to IP_ADDR_ANY address and the UDP_PORT port*/
+  /* Be ready to get a new request from another client */  
+  udp_bind(upcb, IP_ADDR_ANY, UDP_SERVER_PORT);
+  80:	4914      	ldr	r1, [pc, #80]	(d4 <udp_server_callback+0xd4>)
+  82:	2207      	movs	r2, #7
+  84:	4628      	mov	r0, r5
+  86:	f7ff fffe 	bl	0 <udp_bind>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:108
+	
+  /* Set a receive callback for the upcb */
+  udp_recv(upcb, udp_server_callback, NULL);    	
+  8a:	4628      	mov	r0, r5
+  8c:	4912      	ldr	r1, [pc, #72]	(d8 <udp_server_callback+0xd8>)
+  8e:	2200      	movs	r2, #0
+  90:	f7ff fffe 	bl	0 <udp_recv>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:111
+	
+  /* Create a new TCP control block  */
+  pcb = tcp_new();
+  94:	f7ff fffe 	bl	0 <tcp_new>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:113
+	
+  if(pcb !=NULL)
+  98:	4604      	mov	r4, r0
+  9a:	b190      	cbz	r0, c2 <udp_server_callback+0xc2>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:118
+  {
+    err_t err;	  
+	      
+    /* Assign to the new pcb a local IP address and a port number */
+    err = tcp_bind(pcb, addr, TCP_PORT);
+  9c:	2204      	movs	r2, #4
+  9e:	4631      	mov	r1, r6
+  a0:	f7ff fffe 	bl	0 <tcp_bind>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:120
+	  
+	if(err != ERR_USE)
+  a4:	b240      	sxtb	r0, r0
+  a6:	f110 0f0b 	cmn.w	r0, #11	; 0xb
+  aa:	d007      	beq.n	bc <udp_server_callback+0xbc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:123
+	{
+	  /* Set the connection to the LISTEN state */
+      pcb = tcp_listen(pcb);
+  ac:	21ff      	movs	r1, #255
+  ae:	4620      	mov	r0, r4
+  b0:	f7ff fffe 	bl	0 <tcp_listen_with_backlog>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:126
+    
+      /* Specify the function to be called when a connection is established */
+      tcp_accept(pcb, tcp_server_accept);
+  b4:	4909      	ldr	r1, [pc, #36]	(28 <tcp_accept+0x28>)
+  b6:	f7ff fffe 	bl	0 <tcp_accept>
+  ba:	e002      	b.n	c2 <udp_server_callback+0xc2>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:132
+	}
+	else
+	{
+	  /* We enter here if a conection to the addr IP address already exists */
+	  /* so we don't need to establish a new one */
+	  tcp_close(pcb);
+  bc:	4620      	mov	r0, r4
+  be:	f7ff fffe 	bl	0 <tcp_close>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:137
+	}            
+  }
+
+  /* Free the p buffer */
+  pbuf_free(p);
+  c2:	4638      	mov	r0, r7
+  c4:	f7ff fffe 	bl	0 <pbuf_free>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:139
+   
+}
+  c8:	b009      	add	sp, #36
+  ca:	bdf0      	pop	{r4, r5, r6, r7, pc}
+  cc:	00000000 	.word	0x00000000
+  d0:	00000015 	.word	0x00000015
+	...
+Disassembly of section .text.server_init:
+
+00000000 <server_init>:
+server_init():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:50
+  * @brief  Initialize the server application.
+  * @param  None
+  * @retval None
+  */
+void server_init(void)
+{
+   0:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:54
+   struct udp_pcb *upcb;                                 
+   
+   /* Create a new UDP control block  */
+   upcb = udp_new();
+   2:	f7ff fffe 	bl	0 <udp_new>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:58
+   
+   /* Bind the upcb to the UDP_PORT port */
+   /* Using IP_ADDR_ANY allow the upcb to be used by any local interface */
+   udp_bind(upcb, IP_ADDR_ANY, UDP_SERVER_PORT);
+   6:	2207      	movs	r2, #7
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:54
+void server_init(void)
+{
+   struct udp_pcb *upcb;                                 
+   
+   /* Create a new UDP control block  */
+   upcb = udp_new();
+   8:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:58
+   
+   /* Bind the upcb to the UDP_PORT port */
+   /* Using IP_ADDR_ANY allow the upcb to be used by any local interface */
+   udp_bind(upcb, IP_ADDR_ANY, UDP_SERVER_PORT);
+   a:	4904      	ldr	r1, [pc, #16]	(1c <server_init+0x1c>)
+   c:	f7ff fffe 	bl	0 <udp_bind>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:61
+   
+   /* Set a receive callback for the upcb */
+   udp_recv(upcb, udp_server_callback, NULL);
+  10:	4620      	mov	r0, r4
+  12:	4903      	ldr	r1, [pc, #12]	(20 <server_init+0x20>)
+  14:	2200      	movs	r2, #0
+  16:	f7ff fffe 	bl	0 <udp_recv>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/server.c:63
+  
+}
+  1a:	bd10      	pop	{r4, pc}
+	...

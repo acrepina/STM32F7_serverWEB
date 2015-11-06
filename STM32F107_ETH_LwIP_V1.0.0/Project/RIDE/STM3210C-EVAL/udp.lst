@@ -1,0 +1,1262 @@
+
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\udp.o:     file format elf32-littlearm
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\udp.o
+
+Disassembly of section .text.udp_bind:
+
+00000000 <udp_bind>:
+udp_bind():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:589
+  ip_addr_debug_print(UDP_DEBUG, ipaddr);
+  LWIP_DEBUGF(UDP_DEBUG | LWIP_DBG_TRACE | 3, (", port = %"U16_F")\n", port));
+
+  rebind = 0;
+  /* Check for double bind and rebind of the same pcb */
+  for (ipcb = udp_pcbs; ipcb != NULL; ipcb = ipcb->next) {
+   0:	4b1b      	ldr	r3, [pc, #108]	(70 <udp_bind+0x70>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:579
+ *
+ * @see udp_disconnect()
+ */
+err_t
+udp_bind(struct udp_pcb *pcb, struct ip_addr *ipaddr, u16_t port)
+{
+   2:	b570      	push	{r4, r5, r6, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:589
+  ip_addr_debug_print(UDP_DEBUG, ipaddr);
+  LWIP_DEBUGF(UDP_DEBUG | LWIP_DBG_TRACE | 3, (", port = %"U16_F")\n", port));
+
+  rebind = 0;
+  /* Check for double bind and rebind of the same pcb */
+  for (ipcb = udp_pcbs; ipcb != NULL; ipcb = ipcb->next) {
+   4:	681d      	ldr	r5, [r3, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:579
+ *
+ * @see udp_disconnect()
+ */
+err_t
+udp_bind(struct udp_pcb *pcb, struct ip_addr *ipaddr, u16_t port)
+{
+   6:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:589
+  ip_addr_debug_print(UDP_DEBUG, ipaddr);
+  LWIP_DEBUGF(UDP_DEBUG | LWIP_DBG_TRACE | 3, (", port = %"U16_F")\n", port));
+
+  rebind = 0;
+  /* Check for double bind and rebind of the same pcb */
+  for (ipcb = udp_pcbs; ipcb != NULL; ipcb = ipcb->next) {
+   8:	462b      	mov	r3, r5
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:579
+ *
+ * @see udp_disconnect()
+ */
+err_t
+udp_bind(struct udp_pcb *pcb, struct ip_addr *ipaddr, u16_t port)
+{
+   a:	4610      	mov	r0, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:589
+  ip_addr_debug_print(UDP_DEBUG, ipaddr);
+  LWIP_DEBUGF(UDP_DEBUG | LWIP_DBG_TRACE | 3, (", port = %"U16_F")\n", port));
+
+  rebind = 0;
+  /* Check for double bind and rebind of the same pcb */
+  for (ipcb = udp_pcbs; ipcb != NULL; ipcb = ipcb->next) {
+   c:	2600      	movs	r6, #0
+   e:	e003      	b.n	18 <udp_bind+0x18>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:591
+    /* is this UDP PCB already on active list? */
+    if (pcb == ipcb) {
+  10:	429c      	cmp	r4, r3
+  12:	bf08      	it	eq
+  14:	2601      	moveq	r6, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:589
+  ip_addr_debug_print(UDP_DEBUG, ipaddr);
+  LWIP_DEBUGF(UDP_DEBUG | LWIP_DBG_TRACE | 3, (", port = %"U16_F")\n", port));
+
+  rebind = 0;
+  /* Check for double bind and rebind of the same pcb */
+  for (ipcb = udp_pcbs; ipcb != NULL; ipcb = ipcb->next) {
+  16:	68db      	ldr	r3, [r3, #12]
+  18:	2b00      	cmp	r3, #0
+  1a:	d1f9      	bne.n	10 <udp_bind+0x10>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:618
+        return ERR_USE;
+      }
+#endif
+  }
+
+  ip_addr_set(&pcb->local_ip, ipaddr);
+  1c:	b149      	cbz	r1, 32 <udp_bind+0x32>
+  1e:	784a      	ldrb	r2, [r1, #1]
+  20:	780b      	ldrb	r3, [r1, #0]
+  22:	ea43 2302 	orr.w	r3, r3, r2, lsl #8
+  26:	788a      	ldrb	r2, [r1, #2]
+  28:	ea43 4302 	orr.w	r3, r3, r2, lsl #16
+  2c:	78ca      	ldrb	r2, [r1, #3]
+  2e:	ea43 6102 	orr.w	r1, r3, r2, lsl #24
+  32:	6021      	str	r1, [r4, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:621
+
+  /* no port specified? */
+  if (port == 0) {
+  34:	b990      	cbnz	r0, 5c <udp_bind+0x5c>
+  36:	462a      	mov	r2, r5
+  38:	f500 5080 	add.w	r0, r0, #4096	; 0x1000
+  3c:	e007      	b.n	4e <udp_bind+0x4e>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:629
+#define UDP_LOCAL_PORT_RANGE_END   0x7fff
+#endif
+    port = UDP_LOCAL_PORT_RANGE_START;
+    ipcb = udp_pcbs;
+    while ((ipcb != NULL) && (port != UDP_LOCAL_PORT_RANGE_END)) {
+      if (ipcb->local_port == port) {
+  3e:	8a53      	ldrh	r3, [r2, #18]
+  40:	4283      	cmp	r3, r0
+  42:	d103      	bne.n	4c <udp_bind+0x4c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:631
+        /* port is already used by another udp_pcb */
+        port++;
+  44:	1c43      	adds	r3, r0, #1
+  46:	b298      	uxth	r0, r3
+  48:	462a      	mov	r2, r5
+  4a:	e000      	b.n	4e <udp_bind+0x4e>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:636
+        /* restart scanning all udp pcbs */
+        ipcb = udp_pcbs;
+      } else
+        /* go on with next udp pcb */
+        ipcb = ipcb->next;
+  4c:	68d2      	ldr	r2, [r2, #12]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:628
+#define UDP_LOCAL_PORT_RANGE_START 4096
+#define UDP_LOCAL_PORT_RANGE_END   0x7fff
+#endif
+    port = UDP_LOCAL_PORT_RANGE_START;
+    ipcb = udp_pcbs;
+    while ((ipcb != NULL) && (port != UDP_LOCAL_PORT_RANGE_END)) {
+  4e:	b12a      	cbz	r2, 5c <udp_bind+0x5c>
+  50:	f647 73ff 	movw	r3, #32767	; 0x7fff
+  54:	4298      	cmp	r0, r3
+  56:	d1f2      	bne.n	3e <udp_bind+0x3e>
+  58:	20f5      	movs	r0, #245
+  5a:	e007      	b.n	6c <udp_bind+0x6c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:644
+      /* no more ports available in local range */
+      LWIP_DEBUGF(UDP_DEBUG, ("udp_bind: out of free UDP ports\n"));
+      return ERR_USE;
+    }
+  }
+  pcb->local_port = port;
+  5c:	8260      	strh	r0, [r4, #18]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:647
+  snmp_insert_udpidx_tree(pcb);
+  /* pcb not active yet? */
+  if (rebind == 0) {
+  5e:	b10e      	cbz	r6, 64 <udp_bind+0x64>
+  60:	2000      	movs	r0, #0
+  62:	e003      	b.n	6c <udp_bind+0x6c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:650
+    /* place the PCB on the active list if not already there */
+    pcb->next = udp_pcbs;
+    udp_pcbs = pcb;
+  64:	4b02      	ldr	r3, [pc, #8]	(70 <udp_bind+0x70>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:649
+  pcb->local_port = port;
+  snmp_insert_udpidx_tree(pcb);
+  /* pcb not active yet? */
+  if (rebind == 0) {
+    /* place the PCB on the active list if not already there */
+    pcb->next = udp_pcbs;
+  66:	60e5      	str	r5, [r4, #12]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:650
+    udp_pcbs = pcb;
+  68:	4630      	mov	r0, r6
+  6a:	601c      	str	r4, [r3, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:659
+               (u16_t)((ntohl(pcb->local_ip.addr) >> 24) & 0xff),
+               (u16_t)((ntohl(pcb->local_ip.addr) >> 16) & 0xff),
+               (u16_t)((ntohl(pcb->local_ip.addr) >> 8) & 0xff),
+               (u16_t)(ntohl(pcb->local_ip.addr) & 0xff), pcb->local_port));
+  return ERR_OK;
+}
+  6c:	b240      	sxtb	r0, r0
+  6e:	bd70      	pop	{r4, r5, r6, pc}
+  70:	00000000 	.word	0x00000000
+Disassembly of section .text.udp_connect:
+
+00000000 <udp_connect>:
+udp_connect():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:679
+ *
+ * @see udp_disconnect()
+ */
+err_t
+udp_connect(struct udp_pcb *pcb, struct ip_addr *ipaddr, u16_t port)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4616      	mov	r6, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:682
+  struct udp_pcb *ipcb;
+
+  if (pcb->local_port == 0) {
+   4:	8a42      	ldrh	r2, [r0, #18]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:679
+ *
+ * @see udp_disconnect()
+ */
+err_t
+udp_connect(struct udp_pcb *pcb, struct ip_addr *ipaddr, u16_t port)
+{
+   6:	4604      	mov	r4, r0
+   8:	460d      	mov	r5, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:682
+  struct udp_pcb *ipcb;
+
+  if (pcb->local_port == 0) {
+   a:	b922      	cbnz	r2, 16 <udp_connect+0x16>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:683
+    err_t err = udp_bind(pcb, &pcb->local_ip, pcb->local_port);
+   c:	4601      	mov	r1, r0
+   e:	f7ff fffe 	bl	0 <udp_connect>
+  12:	b2c0      	uxtb	r0, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:684
+    if (err != ERR_OK)
+  14:	bb00      	cbnz	r0, 58 <udp_connect+0x58>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:688
+      return err;
+  }
+
+  ip_addr_set(&pcb->remote_ip, ipaddr);
+  16:	b90d      	cbnz	r5, 1c <udp_connect+0x1c>
+  18:	4629      	mov	r1, r5
+  1a:	e009      	b.n	30 <udp_connect+0x30>
+  1c:	786a      	ldrb	r2, [r5, #1]
+  1e:	782b      	ldrb	r3, [r5, #0]
+  20:	ea43 2302 	orr.w	r3, r3, r2, lsl #8
+  24:	78aa      	ldrb	r2, [r5, #2]
+  26:	ea43 4302 	orr.w	r3, r3, r2, lsl #16
+  2a:	78ea      	ldrb	r2, [r5, #3]
+  2c:	ea43 6102 	orr.w	r1, r3, r2, lsl #24
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:690
+  pcb->remote_port = port;
+  pcb->flags |= UDP_FLAGS_CONNECTED;
+  30:	7c23      	ldrb	r3, [r4, #16]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:688
+    err_t err = udp_bind(pcb, &pcb->local_ip, pcb->local_port);
+    if (err != ERR_OK)
+      return err;
+  }
+
+  ip_addr_set(&pcb->remote_ip, ipaddr);
+  32:	6061      	str	r1, [r4, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:690
+  pcb->remote_port = port;
+  pcb->flags |= UDP_FLAGS_CONNECTED;
+  34:	f043 0304 	orr.w	r3, r3, #4	; 0x4
+  38:	7423      	strb	r3, [r4, #16]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:718
+               (u16_t)((ntohl(pcb->remote_ip.addr) >> 16) & 0xff),
+               (u16_t)((ntohl(pcb->remote_ip.addr) >> 8) & 0xff),
+               (u16_t)(ntohl(pcb->remote_ip.addr) & 0xff), pcb->remote_port));
+
+  /* Insert UDP PCB into the list of active UDP PCBs. */
+  for (ipcb = udp_pcbs; ipcb != NULL; ipcb = ipcb->next) {
+  3a:	4b08      	ldr	r3, [pc, #32]	(5c <udp_connect+0x5c>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:689
+    if (err != ERR_OK)
+      return err;
+  }
+
+  ip_addr_set(&pcb->remote_ip, ipaddr);
+  pcb->remote_port = port;
+  3c:	82a6      	strh	r6, [r4, #20]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:718
+               (u16_t)((ntohl(pcb->remote_ip.addr) >> 16) & 0xff),
+               (u16_t)((ntohl(pcb->remote_ip.addr) >> 8) & 0xff),
+               (u16_t)(ntohl(pcb->remote_ip.addr) & 0xff), pcb->remote_port));
+
+  /* Insert UDP PCB into the list of active UDP PCBs. */
+  for (ipcb = udp_pcbs; ipcb != NULL; ipcb = ipcb->next) {
+  3e:	681b      	ldr	r3, [r3, #0]
+  40:	4618      	mov	r0, r3
+  42:	e004      	b.n	4e <udp_connect+0x4e>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:719
+    if (pcb == ipcb) {
+  44:	4284      	cmp	r4, r0
+  46:	d101      	bne.n	4c <udp_connect+0x4c>
+  48:	2000      	movs	r0, #0
+  4a:	e005      	b.n	58 <udp_connect+0x58>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:718
+               (u16_t)((ntohl(pcb->remote_ip.addr) >> 16) & 0xff),
+               (u16_t)((ntohl(pcb->remote_ip.addr) >> 8) & 0xff),
+               (u16_t)(ntohl(pcb->remote_ip.addr) & 0xff), pcb->remote_port));
+
+  /* Insert UDP PCB into the list of active UDP PCBs. */
+  for (ipcb = udp_pcbs; ipcb != NULL; ipcb = ipcb->next) {
+  4c:	68c0      	ldr	r0, [r0, #12]
+  4e:	2800      	cmp	r0, #0
+  50:	d1f8      	bne.n	44 <udp_connect+0x44>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:725
+      /* already on the list, just return */
+      return ERR_OK;
+    }
+  }
+  /* PCB not yet on the list, add PCB now */
+  pcb->next = udp_pcbs;
+  52:	60e3      	str	r3, [r4, #12]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:726
+  udp_pcbs = pcb;
+  54:	4b01      	ldr	r3, [pc, #4]	(5c <udp_connect+0x5c>)
+  56:	601c      	str	r4, [r3, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:728
+  return ERR_OK;
+}
+  58:	b240      	sxtb	r0, r0
+  5a:	bd70      	pop	{r4, r5, r6, pc}
+  5c:	00000000 	.word	0x00000000
+Disassembly of section .text.udp_disconnect:
+
+00000000 <udp_disconnect>:
+udp_disconnect():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:739
+ */
+void
+udp_disconnect(struct udp_pcb *pcb)
+{
+  /* reset remote address association */
+  ip_addr_set(&pcb->remote_ip, IP_ADDR_ANY);
+   0:	4909      	ldr	r1, [pc, #36]	(28 <udp_disconnect+0x28>)
+   2:	784a      	ldrb	r2, [r1, #1]
+   4:	780b      	ldrb	r3, [r1, #0]
+   6:	ea43 2302 	orr.w	r3, r3, r2, lsl #8
+   a:	788a      	ldrb	r2, [r1, #2]
+   c:	ea43 4302 	orr.w	r3, r3, r2, lsl #16
+  10:	78ca      	ldrb	r2, [r1, #3]
+  12:	ea43 6302 	orr.w	r3, r3, r2, lsl #24
+  16:	6043      	str	r3, [r0, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:740
+  pcb->remote_port = 0;
+  18:	f04f 0300 	mov.w	r3, #0	; 0x0
+  1c:	8283      	strh	r3, [r0, #20]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:742
+  /* mark PCB as unconnected */
+  pcb->flags &= ~UDP_FLAGS_CONNECTED;
+  1e:	7c03      	ldrb	r3, [r0, #16]
+  20:	f023 0304 	bic.w	r3, r3, #4	; 0x4
+  24:	7403      	strb	r3, [r0, #16]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:743
+}
+  26:	4770      	bx	lr
+  28:	00000000 	.word	0x00000000
+Disassembly of section .text.udp_recv:
+
+00000000 <udp_recv>:
+udp_recv():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:761
+         void (* recv)(void *arg, struct udp_pcb *upcb, struct pbuf *p,
+                       struct ip_addr *addr, u16_t port),
+         void *recv_arg)
+{
+  /* remember recv() callback and user data */
+  pcb->recv = recv;
+   0:	6181      	str	r1, [r0, #24]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:762
+  pcb->recv_arg = recv_arg;
+   2:	61c2      	str	r2, [r0, #28]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:763
+}
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.udp_new:
+
+00000000 <udp_new>:
+udp_new():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:805
+ *
+ * @see udp_remove()
+ */
+struct udp_pcb *
+udp_new(void)
+{
+   0:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:807
+  struct udp_pcb *pcb;
+  pcb = memp_malloc(MEMP_UDP_PCB);
+   2:	2001      	movs	r0, #1
+   4:	f7ff fffe 	bl	0 <memp_malloc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:809
+  /* could allocate UDP PCB? */
+  if (pcb != NULL) {
+   8:	4604      	mov	r4, r0
+   a:	b130      	cbz	r0, 1a <udp_new+0x1a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:814
+    /* UDP Lite: by initializing to all zeroes, chksum_len is set to 0
+     * which means checksum is generated over the whole datagram per default
+     * (recommended as default by RFC 3828). */
+    /* initialize PCB to all zeroes */
+    memset(pcb, 0, sizeof(struct udp_pcb));
+   c:	2100      	movs	r1, #0
+   e:	2220      	movs	r2, #32
+  10:	f7ff fffe 	bl	0 <memset>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:815
+    pcb->ttl = UDP_TTL;
+  14:	f04f 33ff 	mov.w	r3, #4294967295	; 0xffffffff
+  18:	72e3      	strb	r3, [r4, #11]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:818
+  }
+  return pcb;
+}
+  1a:	4620      	mov	r0, r4
+  1c:	bd10      	pop	{r4, pc}
+  1e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.udp_remove:
+
+00000000 <udp_remove>:
+udp_remove():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:775
+ *
+ * @see udp_new()
+ */
+void
+udp_remove(struct udp_pcb *pcb)
+{
+   0:	4601      	mov	r1, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:780
+  struct udp_pcb *pcb2;
+
+  snmp_delete_udpidx_tree(pcb);
+  /* pcb to be removed is first in list? */
+  if (udp_pcbs == pcb) {
+   2:	480a      	ldr	r0, [pc, #40]	(2c <udp_remove+0x2c>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:775
+ *
+ * @see udp_new()
+ */
+void
+udp_remove(struct udp_pcb *pcb)
+{
+   4:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:780
+  struct udp_pcb *pcb2;
+
+  snmp_delete_udpidx_tree(pcb);
+  /* pcb to be removed is first in list? */
+  if (udp_pcbs == pcb) {
+   6:	6802      	ldr	r2, [r0, #0]
+   8:	428a      	cmp	r2, r1
+   a:	d109      	bne.n	20 <udp_remove+0x20>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:782
+    /* make list start at 2nd pcb */
+    udp_pcbs = udp_pcbs->next;
+   c:	68cb      	ldr	r3, [r1, #12]
+   e:	6003      	str	r3, [r0, #0]
+  10:	e008      	b.n	24 <udp_remove+0x24>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:787
+    /* pcb not 1st in list */
+  } else
+    for (pcb2 = udp_pcbs; pcb2 != NULL; pcb2 = pcb2->next) {
+      /* find pcb in udp_pcbs list */
+      if (pcb2->next != NULL && pcb2->next == pcb) {
+  12:	68d3      	ldr	r3, [r2, #12]
+  14:	b11b      	cbz	r3, 1e <udp_remove+0x1e>
+  16:	428b      	cmp	r3, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:789
+        /* remove pcb from list */
+        pcb2->next = pcb->next;
+  18:	bf04      	itt	eq
+  1a:	68cb      	ldreq	r3, [r1, #12]
+  1c:	60d3      	streq	r3, [r2, #12]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:785
+  if (udp_pcbs == pcb) {
+    /* make list start at 2nd pcb */
+    udp_pcbs = udp_pcbs->next;
+    /* pcb not 1st in list */
+  } else
+    for (pcb2 = udp_pcbs; pcb2 != NULL; pcb2 = pcb2->next) {
+  1e:	68d2      	ldr	r2, [r2, #12]
+  20:	2a00      	cmp	r2, #0
+  22:	d1f6      	bne.n	12 <udp_remove+0x12>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:792
+      if (pcb2->next != NULL && pcb2->next == pcb) {
+        /* remove pcb from list */
+        pcb2->next = pcb->next;
+      }
+    }
+  memp_free(MEMP_UDP_PCB, pcb);
+  24:	2001      	movs	r0, #1
+  26:	f7ff fffe 	bl	0 <memp_free>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:793
+}
+  2a:	bd10      	pop	{r4, pc}
+  2c:	00000000 	.word	0x00000000
+Disassembly of section .text.udp_sendto_if:
+
+00000000 <udp_sendto_if>:
+udp_sendto_if():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:405
+ * @see udp_disconnect() udp_send()
+ */
+err_t
+udp_sendto_if(struct udp_pcb *pcb, struct pbuf *p,
+  struct ip_addr *dst_ip, u16_t dst_port, struct netif *netif)
+{
+   0:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+   4:	4693      	mov	fp, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:420
+    return ERR_VAL;
+  }
+#endif /* IP_SOF_BROADCAST */
+
+  /* if the PCB is not yet bound to a port, bind it here */
+  if (pcb->local_port == 0) {
+   6:	8a42      	ldrh	r2, [r0, #18]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:405
+ * @see udp_disconnect() udp_send()
+ */
+err_t
+udp_sendto_if(struct udp_pcb *pcb, struct pbuf *p,
+  struct ip_addr *dst_ip, u16_t dst_port, struct netif *netif)
+{
+   8:	b085      	sub	sp, #20
+   a:	4607      	mov	r7, r0
+   c:	4688      	mov	r8, r1
+   e:	469a      	mov	sl, r3
+  10:	f8dd 9038 	ldr.w	r9, [sp, #56]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:420
+    return ERR_VAL;
+  }
+#endif /* IP_SOF_BROADCAST */
+
+  /* if the PCB is not yet bound to a port, bind it here */
+  if (pcb->local_port == 0) {
+  14:	b92a      	cbnz	r2, 22 <udp_sendto_if+0x22>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:422
+    LWIP_DEBUGF(UDP_DEBUG | LWIP_DBG_TRACE | 2, ("udp_send: not yet bound to a port, binding now\n"));
+    err = udp_bind(pcb, &pcb->local_ip, pcb->local_port);
+  16:	4601      	mov	r1, r0
+  18:	f7ff fffe 	bl	0 <udp_sendto_if>
+  1c:	b2c4      	uxtb	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:423
+    if (err != ERR_OK) {
+  1e:	2c00      	cmp	r4, #0
+  20:	d14e      	bne.n	c0 <udp_sendto_if+0xc0>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:430
+      return err;
+    }
+  }
+
+  /* not enough space to add an UDP header to first pbuf in given p chain? */
+  if (pbuf_header(p, UDP_HLEN)) {
+  22:	4640      	mov	r0, r8
+  24:	2108      	movs	r1, #8
+  26:	f7ff fffe 	bl	0 <pbuf_header>
+  2a:	b908      	cbnz	r0, 30 <udp_sendto_if+0x30>
+  2c:	4646      	mov	r6, r8
+  2e:	e00b      	b.n	48 <udp_sendto_if+0x48>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:432
+    /* allocate header in a separate new pbuf */
+    q = pbuf_alloc(PBUF_IP, UDP_HLEN, PBUF_RAM);
+  30:	2001      	movs	r0, #1
+  32:	2108      	movs	r1, #8
+  34:	2200      	movs	r2, #0
+  36:	f7ff fffe 	bl	0 <pbuf_alloc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:434
+    /* new header pbuf could not be allocated? */
+    if (q == NULL) {
+  3a:	4606      	mov	r6, r0
+  3c:	b908      	cbnz	r0, 42 <udp_sendto_if+0x42>
+  3e:	24ff      	movs	r4, #255
+  40:	e03e      	b.n	c0 <udp_sendto_if+0xc0>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:439
+      LWIP_DEBUGF(UDP_DEBUG | LWIP_DBG_TRACE | 2, ("udp_send: could not allocate header\n"));
+      return ERR_MEM;
+    }
+    /* chain header q in front of given pbuf p */
+    pbuf_chain(q, p);
+  42:	4641      	mov	r1, r8
+  44:	f7ff fffe 	bl	0 <pbuf_chain>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:453
+  }
+  LWIP_ASSERT("check that first pbuf can hold struct udp_hdr",
+              (q->len >= sizeof(struct udp_hdr)));
+  /* q now represents the packet to be sent */
+  udphdr = q->payload;
+  udphdr->src = htons(pcb->local_port);
+  48:	8a78      	ldrh	r0, [r7, #18]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:452
+    LWIP_DEBUGF(UDP_DEBUG, ("udp_send: added header in given pbuf %p\n", (void *)p));
+  }
+  LWIP_ASSERT("check that first pbuf can hold struct udp_hdr",
+              (q->len >= sizeof(struct udp_hdr)));
+  /* q now represents the packet to be sent */
+  udphdr = q->payload;
+  4a:	6875      	ldr	r5, [r6, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:453
+  udphdr->src = htons(pcb->local_port);
+  4c:	f7ff fffe 	bl	0 <htons>
+  50:	7028      	strb	r0, [r5, #0]
+  52:	f3c0 200f 	ubfx	r0, r0, #8, #16
+  56:	7068      	strb	r0, [r5, #1]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:454
+  udphdr->dest = htons(dst_port);
+  58:	4650      	mov	r0, sl
+  5a:	f7ff fffe 	bl	0 <htons>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:453
+  }
+  LWIP_ASSERT("check that first pbuf can hold struct udp_hdr",
+              (q->len >= sizeof(struct udp_hdr)));
+  /* q now represents the packet to be sent */
+  udphdr = q->payload;
+  udphdr->src = htons(pcb->local_port);
+  5e:	2400      	movs	r4, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:454
+  udphdr->dest = htons(dst_port);
+  60:	70a8      	strb	r0, [r5, #2]
+  62:	f3c0 200f 	ubfx	r0, r0, #8, #16
+  66:	70e8      	strb	r0, [r5, #3]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:456
+  /* in UDP, 0 checksum means 'no checksum' */
+  udphdr->chksum = 0x0000; 
+  68:	71ac      	strb	r4, [r5, #6]
+  6a:	71ec      	strb	r4, [r5, #7]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:459
+
+  /* PCB local address is IP_ANY_ADDR? */
+  if (ip_addr_isany(&pcb->local_ip)) {
+  6c:	683a      	ldr	r2, [r7, #0]
+  6e:	b912      	cbnz	r2, 76 <udp_sendto_if+0x76>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:461
+    /* use outgoing network interface IP address as source address */
+    src_ip = &(netif->ip_addr);
+  70:	f109 0404 	add.w	r4, r9, #4	; 0x4
+  74:	e00b      	b.n	8e <udp_sendto_if+0x8e>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:465
+  } else {
+    /* check if UDP PCB local IP address is correct
+     * this could be an old address if netif->ip_addr has changed */
+    if (!ip_addr_cmp(&(pcb->local_ip), &(netif->ip_addr))) {
+  76:	f8d9 3004 	ldr.w	r3, [r9, #4]
+  7a:	429a      	cmp	r2, r3
+  7c:	d006      	beq.n	8c <udp_sendto_if+0x8c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:467
+      /* local_ip doesn't match, drop the packet */
+      if (q != p) {
+  7e:	4546      	cmp	r6, r8
+  80:	d002      	beq.n	88 <udp_sendto_if+0x88>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:469
+        /* free the header pbuf */
+        pbuf_free(q);
+  82:	4630      	mov	r0, r6
+  84:	f7ff fffe 	bl	0 <pbuf_free>
+  88:	24f7      	movs	r4, #247
+  8a:	e019      	b.n	c0 <udp_sendto_if+0xc0>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:459
+  udphdr->dest = htons(dst_port);
+  /* in UDP, 0 checksum means 'no checksum' */
+  udphdr->chksum = 0x0000; 
+
+  /* PCB local address is IP_ANY_ADDR? */
+  if (ip_addr_isany(&pcb->local_ip)) {
+  8c:	463c      	mov	r4, r7
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:523
+#endif /* LWIP_NETIF_HWADDRHINT*/
+  } else
+#endif /* LWIP_UDPLITE */
+  {      /* UDP */
+    LWIP_DEBUGF(UDP_DEBUG, ("udp_send: UDP packet length %"U16_F"\n", q->tot_len));
+    udphdr->len = htons(q->tot_len);
+  8e:	8930      	ldrh	r0, [r6, #8]
+  90:	f7ff fffe 	bl	0 <htons>
+  94:	7128      	strb	r0, [r5, #4]
+  96:	f3c0 200f 	ubfx	r0, r0, #8, #16
+  9a:	7168      	strb	r0, [r5, #5]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:538
+    LWIP_DEBUGF(UDP_DEBUG, ("udp_send: ip_output_if (,,,,IP_PROTO_UDP,)\n"));
+    /* output to IP */
+#if LWIP_NETIF_HWADDRHINT
+    netif->addr_hint = &(pcb->addr_hint);
+#endif /* LWIP_NETIF_HWADDRHINT*/
+    err = ip_output_if(q, src_ip, dst_ip, pcb->ttl, pcb->tos, IP_PROTO_UDP, netif);
+  9c:	7aba      	ldrb	r2, [r7, #10]
+  9e:	7afb      	ldrb	r3, [r7, #11]
+  a0:	9200      	str	r2, [sp, #0]
+  a2:	2211      	movs	r2, #17
+  a4:	9201      	str	r2, [sp, #4]
+  a6:	4621      	mov	r1, r4
+  a8:	4630      	mov	r0, r6
+  aa:	465a      	mov	r2, fp
+  ac:	f8cd 9008 	str.w	r9, [sp, #8]
+  b0:	f7ff fffe 	bl	0 <ip_output_if>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:547
+  }
+  /* TODO: must this be increased even if error occured? */
+  snmp_inc_udpoutdatagrams();
+
+  /* did we chain a separate header pbuf earlier? */
+  if (q != p) {
+  b4:	4546      	cmp	r6, r8
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:538
+    LWIP_DEBUGF(UDP_DEBUG, ("udp_send: ip_output_if (,,,,IP_PROTO_UDP,)\n"));
+    /* output to IP */
+#if LWIP_NETIF_HWADDRHINT
+    netif->addr_hint = &(pcb->addr_hint);
+#endif /* LWIP_NETIF_HWADDRHINT*/
+    err = ip_output_if(q, src_ip, dst_ip, pcb->ttl, pcb->tos, IP_PROTO_UDP, netif);
+  b6:	b2c4      	uxtb	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:547
+  }
+  /* TODO: must this be increased even if error occured? */
+  snmp_inc_udpoutdatagrams();
+
+  /* did we chain a separate header pbuf earlier? */
+  if (q != p) {
+  b8:	d002      	beq.n	c0 <udp_sendto_if+0xc0>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:549
+    /* free the header pbuf */
+    pbuf_free(q);
+  ba:	4630      	mov	r0, r6
+  bc:	f7ff fffe 	bl	0 <pbuf_free>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:556
+    /* p is still referenced by the caller, and will live on */
+  }
+
+  UDP_STATS_INC(udp.xmit);
+  return err;
+}
+  c0:	b260      	sxtb	r0, r4
+  c2:	b005      	add	sp, #20
+  c4:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
+Disassembly of section .text.udp_sendto:
+
+00000000 <udp_sendto>:
+udp_sendto():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:362
+ * @see udp_disconnect() udp_send()
+ */
+err_t
+udp_sendto(struct udp_pcb *pcb, struct pbuf *p,
+  struct ip_addr *dst_ip, u16_t dst_port)
+{
+   0:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}
+   2:	4605      	mov	r5, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:371
+
+  /* find the outgoing network interface for this packet */
+#if LWIP_IGMP
+  netif = ip_route((ip_addr_ismulticast(dst_ip))?(&(pcb->multicast_ip)):(dst_ip));
+#else
+  netif = ip_route(dst_ip);
+   4:	4610      	mov	r0, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:362
+ * @see udp_disconnect() udp_send()
+ */
+err_t
+udp_sendto(struct udp_pcb *pcb, struct pbuf *p,
+  struct ip_addr *dst_ip, u16_t dst_port)
+{
+   6:	460e      	mov	r6, r1
+   8:	4614      	mov	r4, r2
+   a:	461f      	mov	r7, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:371
+
+  /* find the outgoing network interface for this packet */
+#if LWIP_IGMP
+  netif = ip_route((ip_addr_ismulticast(dst_ip))?(&(pcb->multicast_ip)):(dst_ip));
+#else
+  netif = ip_route(dst_ip);
+   c:	f7ff fffe 	bl	0 <ip_route>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:375
+#endif /* LWIP_IGMP */
+
+  /* no outgoing network interface could be found? */
+  if (netif == NULL) {
+  10:	b908      	cbnz	r0, 16 <udp_sendto+0x16>
+  12:	30fc      	adds	r0, #252
+  14:	e007      	b.n	26 <udp_sendto+0x26>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:380
+    LWIP_DEBUGF(UDP_DEBUG | 1, ("udp_send: No route to 0x%"X32_F"\n", dst_ip->addr));
+    UDP_STATS_INC(udp.rterr);
+    return ERR_RTE;
+  }
+  return udp_sendto_if(pcb, p, dst_ip, dst_port, netif);
+  16:	9000      	str	r0, [sp, #0]
+  18:	4631      	mov	r1, r6
+  1a:	4628      	mov	r0, r5
+  1c:	4622      	mov	r2, r4
+  1e:	463b      	mov	r3, r7
+  20:	f7ff fffe 	bl	0 <udp_sendto>
+  24:	b2c0      	uxtb	r0, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:381
+}
+  26:	b240      	sxtb	r0, r0
+  28:	bdfe      	pop	{r1, r2, r3, r4, r5, r6, r7, pc}
+  2a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.udp_send:
+
+00000000 <udp_send>:
+udp_send():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:337
+ *
+ * @see udp_disconnect() udp_sendto()
+ */
+err_t
+udp_send(struct udp_pcb *pcb, struct pbuf *p)
+{
+   0:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:339
+  /* send to the packet using remote ip and port stored in the pcb */
+  return udp_sendto(pcb, p, &pcb->remote_ip, pcb->remote_port);
+   2:	1d02      	adds	r2, r0, #4
+   4:	8a83      	ldrh	r3, [r0, #20]
+   6:	f7ff fffe 	bl	0 <udp_send>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:340
+}
+   a:	b240      	sxtb	r0, r0
+   c:	bd10      	pop	{r4, pc}
+   e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.udp_input:
+
+00000000 <udp_input>:
+udp_input():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:86
+ * @param inp network interface on which the datagram was received.
+ *
+ */
+void
+udp_input(struct pbuf *p, struct netif *inp)
+{
+   0:	e92d 47f3 	stmdb	sp!, {r0, r1, r4, r5, r6, r7, r8, r9, sl, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:99
+
+  PERF_START;
+
+  UDP_STATS_INC(udp.recv);
+
+  iphdr = p->payload;
+   4:	6846      	ldr	r6, [r0, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:103
+
+  /* Check minimum length (IP header + UDP header)
+   * and move payload pointer to UDP header */
+  if (p->tot_len < (IPH_HL(iphdr) * 4 + UDP_HLEN) || pbuf_header(p, -(s16_t)(IPH_HL(iphdr) * 4))) {
+   6:	8904      	ldrh	r4, [r0, #8]
+   8:	7833      	ldrb	r3, [r6, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:86
+ * @param inp network interface on which the datagram was received.
+ *
+ */
+void
+udp_input(struct pbuf *p, struct netif *inp)
+{
+   a:	4607      	mov	r7, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:103
+
+  iphdr = p->payload;
+
+  /* Check minimum length (IP header + UDP header)
+   * and move payload pointer to UDP header */
+  if (p->tot_len < (IPH_HL(iphdr) * 4 + UDP_HLEN) || pbuf_header(p, -(s16_t)(IPH_HL(iphdr) * 4))) {
+   c:	7870      	ldrb	r0, [r6, #1]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:86
+ * @param inp network interface on which the datagram was received.
+ *
+ */
+void
+udp_input(struct pbuf *p, struct netif *inp)
+{
+   e:	468a      	mov	sl, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:103
+
+  iphdr = p->payload;
+
+  /* Check minimum length (IP header + UDP header)
+   * and move payload pointer to UDP header */
+  if (p->tot_len < (IPH_HL(iphdr) * 4 + UDP_HLEN) || pbuf_header(p, -(s16_t)(IPH_HL(iphdr) * 4))) {
+  10:	ea43 2000 	orr.w	r0, r3, r0, lsl #8
+  14:	f7ff fffe 	bl	0 <ntohs>
+  18:	f3c0 2003 	ubfx	r0, r0, #8, #4
+  1c:	3002      	adds	r0, #2
+  1e:	ebb4 0f80 	cmp.w	r4, r0, lsl #2
+  22:	f2c0 80d7 	blt.w	1d4 <udp_input+0x1d4>
+  26:	7873      	ldrb	r3, [r6, #1]
+  28:	7830      	ldrb	r0, [r6, #0]
+  2a:	ea40 2003 	orr.w	r0, r0, r3, lsl #8
+  2e:	f7ff fffe 	bl	0 <ntohs>
+  32:	f3c0 2103 	ubfx	r1, r0, #8, #4
+  36:	0089      	lsls	r1, r1, #2
+  38:	4638      	mov	r0, r7
+  3a:	4249      	negs	r1, r1
+  3c:	f7ff fffe 	bl	0 <pbuf_header>
+  40:	4605      	mov	r5, r0
+  42:	2800      	cmp	r0, #0
+  44:	f040 80c6 	bne.w	1d4 <udp_input+0x1d4>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:117
+  }
+
+  udphdr = (struct udp_hdr *)p->payload;
+
+  /* is broadcast packet ? */
+  broadcast = ip_addr_isbroadcast(&(iphdr->dest), inp);
+  48:	4651      	mov	r1, sl
+  4a:	f106 0010 	add.w	r0, r6, #16	; 0x10
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:114
+    snmp_inc_udpinerrors();
+    pbuf_free(p);
+    goto end;
+  }
+
+  udphdr = (struct udp_hdr *)p->payload;
+  4e:	687c      	ldr	r4, [r7, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:117
+
+  /* is broadcast packet ? */
+  broadcast = ip_addr_isbroadcast(&(iphdr->dest), inp);
+  50:	f7ff fffe 	bl	0 <ip_addr_isbroadcast>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:122
+
+  LWIP_DEBUGF(UDP_DEBUG, ("udp_input: received datagram of length %"U16_F"\n", p->tot_len));
+
+  /* convert src and dest ports to host byte order */
+  src = ntohs(udphdr->src);
+  54:	7823      	ldrb	r3, [r4, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:117
+  }
+
+  udphdr = (struct udp_hdr *)p->payload;
+
+  /* is broadcast packet ? */
+  broadcast = ip_addr_isbroadcast(&(iphdr->dest), inp);
+  56:	4681      	mov	r9, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:122
+
+  LWIP_DEBUGF(UDP_DEBUG, ("udp_input: received datagram of length %"U16_F"\n", p->tot_len));
+
+  /* convert src and dest ports to host byte order */
+  src = ntohs(udphdr->src);
+  58:	7860      	ldrb	r0, [r4, #1]
+  5a:	ea43 2000 	orr.w	r0, r3, r0, lsl #8
+  5e:	f7ff fffe 	bl	0 <ntohs>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:123
+  dest = ntohs(udphdr->dest);
+  62:	78a3      	ldrb	r3, [r4, #2]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:122
+  broadcast = ip_addr_isbroadcast(&(iphdr->dest), inp);
+
+  LWIP_DEBUGF(UDP_DEBUG, ("udp_input: received datagram of length %"U16_F"\n", p->tot_len));
+
+  /* convert src and dest ports to host byte order */
+  src = ntohs(udphdr->src);
+  64:	4680      	mov	r8, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:123
+  dest = ntohs(udphdr->dest);
+  66:	78e0      	ldrb	r0, [r4, #3]
+  68:	ea43 2000 	orr.w	r0, r3, r0, lsl #8
+  6c:	f7ff fffe 	bl	0 <ntohs>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:140
+
+#if LWIP_DHCP
+  pcb = NULL;
+  /* when LWIP_DHCP is active, packets to DHCP_CLIENT_PORT may only be processed by
+     the dhcp module, no other UDP pcb may use the local UDP port DHCP_CLIENT_PORT */
+  if (dest == DHCP_CLIENT_PORT) {
+  70:	2844      	cmp	r0, #68
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:123
+
+  LWIP_DEBUGF(UDP_DEBUG, ("udp_input: received datagram of length %"U16_F"\n", p->tot_len));
+
+  /* convert src and dest ports to host byte order */
+  src = ntohs(udphdr->src);
+  dest = ntohs(udphdr->dest);
+  72:	4686      	mov	lr, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:140
+
+#if LWIP_DHCP
+  pcb = NULL;
+  /* when LWIP_DHCP is active, packets to DHCP_CLIENT_PORT may only be processed by
+     the dhcp module, no other UDP pcb may use the local UDP port DHCP_CLIENT_PORT */
+  if (dest == DHCP_CLIENT_PORT) {
+  74:	d119      	bne.n	aa <udp_input+0xaa>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:142
+    /* all packets for DHCP_CLIENT_PORT not coming from DHCP_SERVER_PORT are dropped! */
+    if (src == DHCP_SERVER_PORT) {
+  76:	f1b8 0f43 	cmp.w	r8, #67	; 0x43
+  7a:	d15e      	bne.n	13a <udp_input+0x13a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:143
+      if ((inp->dhcp != NULL) && (inp->dhcp->pcb != NULL)) {
+  7c:	f8da 1020 	ldr.w	r1, [sl, #32]
+  80:	2900      	cmp	r1, #0
+  82:	d05a      	beq.n	13a <udp_input+0x13a>
+  84:	688d      	ldr	r5, [r1, #8]
+  86:	2d00      	cmp	r5, #0
+  88:	d058      	beq.n	13c <udp_input+0x13c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:147
+        /* accept the packe if 
+           (- broadcast or directed to us) -> DHCP is link-layer-addressed, local ip is always ANY!
+           - inp->dhcp->pcb->remote == ANY or iphdr->src */
+        if ((ip_addr_isany(&inp->dhcp->pcb->remote_ip) ||
+  8a:	6869      	ldr	r1, [r5, #4]
+  8c:	2900      	cmp	r1, #0
+  8e:	d063      	beq.n	158 <udp_input+0x158>
+  90:	7b72      	ldrb	r2, [r6, #13]
+  92:	7b33      	ldrb	r3, [r6, #12]
+  94:	ea43 2302 	orr.w	r3, r3, r2, lsl #8
+  98:	7bb2      	ldrb	r2, [r6, #14]
+  9a:	ea43 4302 	orr.w	r3, r3, r2, lsl #16
+  9e:	7bf2      	ldrb	r2, [r6, #15]
+  a0:	ea43 6302 	orr.w	r3, r3, r2, lsl #24
+  a4:	4299      	cmp	r1, r3
+  a6:	d148      	bne.n	13a <udp_input+0x13a>
+  a8:	e056      	b.n	158 <udp_input+0x158>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:163
+    uncon_pcb = NULL;
+    /* Iterate through the UDP pcb list for a matching pcb.
+     * 'Perfect match' pcbs (connected to the remote port & ip address) are
+     * preferred. If no perfect match is found, the first unconnected pcb that
+     * matches the local port and ip address gets the datagram. */
+    for (pcb = udp_pcbs; pcb != NULL; pcb = pcb->next) {
+  aa:	4b4f      	ldr	r3, [pc, #316]	(1e8 <udp_input+0x1e8>)
+  ac:	4628      	mov	r0, r5
+  ae:	f8d3 c000 	ldr.w	ip, [r3]
+  b2:	4629      	mov	r1, r5
+  b4:	4664      	mov	r4, ip
+  b6:	e039      	b.n	12c <udp_input+0x12c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:175
+                   ip4_addr3(&pcb->local_ip), ip4_addr4(&pcb->local_ip), pcb->local_port,
+                   ip4_addr1(&pcb->remote_ip), ip4_addr2(&pcb->remote_ip),
+                   ip4_addr3(&pcb->remote_ip), ip4_addr4(&pcb->remote_ip), pcb->remote_port));
+
+      /* compare PCB local addr+port to UDP destination addr+port */
+      if ((pcb->local_port == dest) &&
+  b8:	8a63      	ldrh	r3, [r4, #18]
+  ba:	4573      	cmp	r3, lr
+  bc:	d134      	bne.n	128 <udp_input+0x128>
+  be:	f1b9 0f00 	cmp.w	r9, #0	; 0x0
+  c2:	d101      	bne.n	c8 <udp_input+0xc8>
+  c4:	6823      	ldr	r3, [r4, #0]
+  c6:	b17b      	cbz	r3, e8 <udp_input+0xe8>
+  c8:	7c72      	ldrb	r2, [r6, #17]
+  ca:	7c33      	ldrb	r3, [r6, #16]
+  cc:	ea43 2302 	orr.w	r3, r3, r2, lsl #8
+  d0:	7cb2      	ldrb	r2, [r6, #18]
+  d2:	ea43 4302 	orr.w	r3, r3, r2, lsl #16
+  d6:	7cf2      	ldrb	r2, [r6, #19]
+  d8:	ea43 6302 	orr.w	r3, r3, r2, lsl #24
+  dc:	6822      	ldr	r2, [r4, #0]
+  de:	429a      	cmp	r2, r3
+  e0:	d002      	beq.n	e8 <udp_input+0xe8>
+  e2:	f1b9 0f00 	cmp.w	r9, #0	; 0x0
+  e6:	d01f      	beq.n	128 <udp_input+0x128>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:187
+           (broadcast && (pcb->so_options & SOF_BROADCAST)))) {
+#else  /* IP_SOF_BROADCAST_RECV */
+           (broadcast))) {
+#endif /* IP_SOF_BROADCAST_RECV */
+        local_match = 1;
+        if ((uncon_pcb == NULL) && 
+  e8:	2900      	cmp	r1, #0
+  ea:	d177      	bne.n	1dc <udp_input+0x1dc>
+  ec:	7c23      	ldrb	r3, [r4, #16]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:315
+  } else {
+    pbuf_free(p);
+  }
+end:
+  PERF_STOP("udp_input");
+}
+  ee:	f013 0f04 	tst.w	r3, #4	; 0x4
+  f2:	bf14      	ite	ne
+  f4:	2100      	movne	r1, #0
+  f6:	4621      	moveq	r1, r4
+  f8:	e070      	b.n	1dc <udp_input+0x1dc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:194
+          /* the first unconnected matching PCB */
+          uncon_pcb = pcb;
+        }
+      }
+      /* compare PCB remote addr+port to UDP source addr+port */
+      if ((local_match != 0) &&
+  fa:	6865      	ldr	r5, [r4, #4]
+  fc:	b15d      	cbz	r5, 116 <udp_input+0x116>
+  fe:	7b72      	ldrb	r2, [r6, #13]
+ 100:	7b33      	ldrb	r3, [r6, #12]
+ 102:	ea43 2302 	orr.w	r3, r3, r2, lsl #8
+ 106:	7bb2      	ldrb	r2, [r6, #14]
+ 108:	ea43 4302 	orr.w	r3, r3, r2, lsl #16
+ 10c:	7bf2      	ldrb	r2, [r6, #15]
+ 10e:	ea43 6302 	orr.w	r3, r3, r2, lsl #24
+ 112:	429d      	cmp	r5, r3
+ 114:	d108      	bne.n	128 <udp_input+0x128>
+ 116:	4625      	mov	r5, r4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:199
+          (pcb->remote_port == src) &&
+          (ip_addr_isany(&pcb->remote_ip) ||
+           ip_addr_cmp(&(pcb->remote_ip), &(iphdr->src)))) {
+        /* the first fully matching PCB */
+        if (prev != NULL) {
+ 118:	b1f0      	cbz	r0, 158 <udp_input+0x158>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:202
+          /* move the pcb to the front of udp_pcbs so that is
+             found faster next time */
+          prev->next = pcb->next;
+ 11a:	68e3      	ldr	r3, [r4, #12]
+ 11c:	60c3      	str	r3, [r0, #12]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:204
+          pcb->next = udp_pcbs;
+          udp_pcbs = pcb;
+ 11e:	4b32      	ldr	r3, [pc, #200]	(1e8 <udp_input+0x1e8>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:203
+        /* the first fully matching PCB */
+        if (prev != NULL) {
+          /* move the pcb to the front of udp_pcbs so that is
+             found faster next time */
+          prev->next = pcb->next;
+          pcb->next = udp_pcbs;
+ 120:	f8c4 c00c 	str.w	ip, [r4, #12]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:204
+          udp_pcbs = pcb;
+ 124:	601c      	str	r4, [r3, #0]
+ 126:	e017      	b.n	158 <udp_input+0x158>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:163
+    uncon_pcb = NULL;
+    /* Iterate through the UDP pcb list for a matching pcb.
+     * 'Perfect match' pcbs (connected to the remote port & ip address) are
+     * preferred. If no perfect match is found, the first unconnected pcb that
+     * matches the local port and ip address gets the datagram. */
+    for (pcb = udp_pcbs; pcb != NULL; pcb = pcb->next) {
+ 128:	4620      	mov	r0, r4
+ 12a:	68e4      	ldr	r4, [r4, #12]
+ 12c:	2c00      	cmp	r4, #0
+ 12e:	d1c3      	bne.n	b8 <udp_input+0xb8>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:219
+      pcb = uncon_pcb;
+    }
+  }
+
+  /* Check checksum if this is a match or if it was directed at us. */
+  if (pcb != NULL || ip_addr_cmp(&inp->ip_addr, &iphdr->dest)) {
+ 130:	b109      	cbz	r1, 136 <udp_input+0x136>
+ 132:	460d      	mov	r5, r1
+ 134:	e010      	b.n	158 <udp_input+0x158>
+ 136:	460d      	mov	r5, r1
+ 138:	e000      	b.n	13c <udp_input+0x13c>
+ 13a:	2500      	movs	r5, #0
+ 13c:	7c72      	ldrb	r2, [r6, #17]
+ 13e:	7c33      	ldrb	r3, [r6, #16]
+ 140:	ea43 2302 	orr.w	r3, r3, r2, lsl #8
+ 144:	7cb2      	ldrb	r2, [r6, #18]
+ 146:	ea43 4302 	orr.w	r3, r3, r2, lsl #16
+ 14a:	7cf2      	ldrb	r2, [r6, #19]
+ 14c:	ea43 6302 	orr.w	r3, r3, r2, lsl #24
+ 150:	f8da 2004 	ldr.w	r2, [sl, #4]
+ 154:	429a      	cmp	r2, r3
+ 156:	d13d      	bne.n	1d4 <udp_input+0x1d4>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:272
+          goto end;
+        }
+      }
+#endif /* CHECKSUM_CHECK_UDP */
+    }
+    if(pbuf_header(p, -UDP_HLEN)) {
+ 158:	4638      	mov	r0, r7
+ 15a:	f06f 0107 	mvn.w	r1, #7	; 0x7
+ 15e:	f7ff fffe 	bl	0 <pbuf_header>
+ 162:	2800      	cmp	r0, #0
+ 164:	d136      	bne.n	1d4 <udp_input+0x1d4>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:280
+      UDP_STATS_INC(udp.drop);
+      snmp_inc_udpinerrors();
+      pbuf_free(p);
+      goto end;
+    }
+    if (pcb != NULL) {
+ 166:	b15d      	cbz	r5, 180 <udp_input+0x180>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:283
+      snmp_inc_udpindatagrams();
+      /* callback */
+      if (pcb->recv != NULL) {
+ 168:	69ac      	ldr	r4, [r5, #24]
+ 16a:	2c00      	cmp	r4, #0
+ 16c:	d032      	beq.n	1d4 <udp_input+0x1d4>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:285
+        /* now the recv function is responsible for freeing p */
+        pcb->recv(pcb->recv_arg, pcb, p, &(iphdr->src), src);
+ 16e:	f8cd 8000 	str.w	r8, [sp]
+ 172:	69e8      	ldr	r0, [r5, #28]
+ 174:	4629      	mov	r1, r5
+ 176:	463a      	mov	r2, r7
+ 178:	f106 030c 	add.w	r3, r6, #12	; 0xc
+ 17c:	47a0      	blx	r4
+ 17e:	e031      	b.n	1e4 <udp_input+0x1e4>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:297
+      LWIP_DEBUGF(UDP_DEBUG | LWIP_DBG_TRACE, ("udp_input: not for us.\n"));
+
+#if LWIP_ICMP
+      /* No match was found, send ICMP destination port unreachable unless
+         destination address was broadcast/multicast. */
+      if (!broadcast &&
+ 180:	f1b9 0f00 	cmp.w	r9, #0	; 0x0
+ 184:	d126      	bne.n	1d4 <udp_input+0x1d4>
+ 186:	7c73      	ldrb	r3, [r6, #17]
+ 188:	7c34      	ldrb	r4, [r6, #16]
+ 18a:	f04f 4070 	mov.w	r0, #4026531840	; 0xf0000000
+ 18e:	ea44 2403 	orr.w	r4, r4, r3, lsl #8
+ 192:	7cb3      	ldrb	r3, [r6, #18]
+ 194:	ea44 4403 	orr.w	r4, r4, r3, lsl #16
+ 198:	7cf3      	ldrb	r3, [r6, #19]
+ 19a:	ea44 6403 	orr.w	r4, r4, r3, lsl #24
+ 19e:	f7ff fffe 	bl	0 <ntohl>
+ 1a2:	4605      	mov	r5, r0
+ 1a4:	f04f 4060 	mov.w	r0, #3758096384	; 0xe0000000
+ 1a8:	f7ff fffe 	bl	0 <ntohl>
+ 1ac:	4025      	ands	r5, r4
+ 1ae:	4285      	cmp	r5, r0
+ 1b0:	d010      	beq.n	1d4 <udp_input+0x1d4>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:300
+          !ip_addr_ismulticast(&iphdr->dest)) {
+        /* move payload pointer back to ip header */
+        pbuf_header(p, (IPH_HL(iphdr) * 4) + UDP_HLEN);
+ 1b2:	7873      	ldrb	r3, [r6, #1]
+ 1b4:	7830      	ldrb	r0, [r6, #0]
+ 1b6:	ea40 2003 	orr.w	r0, r0, r3, lsl #8
+ 1ba:	f7ff fffe 	bl	0 <ntohs>
+ 1be:	f3c0 2103 	ubfx	r1, r0, #8, #4
+ 1c2:	3102      	adds	r1, #2
+ 1c4:	0089      	lsls	r1, r1, #2
+ 1c6:	4638      	mov	r0, r7
+ 1c8:	f7ff fffe 	bl	0 <pbuf_header>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:302
+        LWIP_ASSERT("p->payload == iphdr", (p->payload == iphdr));
+        icmp_dest_unreach(p, ICMP_DUR_PORT);
+ 1cc:	4638      	mov	r0, r7
+ 1ce:	2103      	movs	r1, #3
+ 1d0:	f7ff fffe 	bl	0 <icmp_dest_unreach>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:311
+      UDP_STATS_INC(udp.drop);
+      snmp_inc_udpnoports();
+      pbuf_free(p);
+    }
+  } else {
+    pbuf_free(p);
+ 1d4:	4638      	mov	r0, r7
+ 1d6:	f7ff fffe 	bl	0 <pbuf_free>
+ 1da:	e003      	b.n	1e4 <udp_input+0x1e4>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:194
+          /* the first unconnected matching PCB */
+          uncon_pcb = pcb;
+        }
+      }
+      /* compare PCB remote addr+port to UDP source addr+port */
+      if ((local_match != 0) &&
+ 1dc:	8aa3      	ldrh	r3, [r4, #20]
+ 1de:	4543      	cmp	r3, r8
+ 1e0:	d1a2      	bne.n	128 <udp_input+0x128>
+ 1e2:	e78a      	b.n	fa <udp_input+0xfa>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/udp.c:315
+  } else {
+    pbuf_free(p);
+  }
+end:
+  PERF_STOP("udp_input");
+}
+ 1e4:	e8bd 87fc 	ldmia.w	sp!, {r2, r3, r4, r5, r6, r7, r8, r9, sl, pc}
+ 1e8:	00000000 	.word	0x00000000

@@ -1,0 +1,625 @@
+
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\stm32_eval.o:     file format elf32-littlearm
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\stm32_eval.o
+
+Disassembly of section .text.STM_EVAL_LEDOn:
+
+00000000 <STM_EVAL_LEDOn>:
+STM_EVAL_LEDOn():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:221
+  *     @arg LED4  
+  * @retval None
+  */
+void STM_EVAL_LEDOn(Led_TypeDef Led)
+{
+  GPIO_PORT[Led]->BSRR = GPIO_PIN[Led]; 
+   0:	4b03      	ldr	r3, [pc, #12]	(10 <STM_EVAL_LEDOn+0x10>)
+   2:	f853 2020 	ldr.w	r2, [r3, r0, lsl #2]
+   6:	4b03      	ldr	r3, [pc, #12]	(14 <STM_EVAL_LEDOn+0x14>)
+   8:	f833 3010 	ldrh.w	r3, [r3, r0, lsl #1]
+   c:	6113      	str	r3, [r2, #16]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:222
+}
+   e:	4770      	bx	lr
+	...
+Disassembly of section .text.STM_EVAL_LEDOff:
+
+00000000 <STM_EVAL_LEDOff>:
+STM_EVAL_LEDOff():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:236
+  *     @arg LED4 
+  * @retval None
+  */
+void STM_EVAL_LEDOff(Led_TypeDef Led)
+{
+  GPIO_PORT[Led]->BRR = GPIO_PIN[Led];
+   0:	4b03      	ldr	r3, [pc, #12]	(10 <STM_EVAL_LEDOff+0x10>)
+   2:	f853 2020 	ldr.w	r2, [r3, r0, lsl #2]
+   6:	4b03      	ldr	r3, [pc, #12]	(14 <STM_EVAL_LEDOff+0x14>)
+   8:	f833 3010 	ldrh.w	r3, [r3, r0, lsl #1]
+   c:	6153      	str	r3, [r2, #20]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:237
+}
+   e:	4770      	bx	lr
+	...
+Disassembly of section .text.STM_EVAL_LEDToggle:
+
+00000000 <STM_EVAL_LEDToggle>:
+STM_EVAL_LEDToggle():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:251
+  *     @arg LED4  
+  * @retval None
+  */
+void STM_EVAL_LEDToggle(Led_TypeDef Led)
+{
+  GPIO_PORT[Led]->ODR ^= GPIO_PIN[Led];
+   0:	4b04      	ldr	r3, [pc, #16]	(14 <STM_EVAL_LEDToggle+0x14>)
+   2:	f853 1020 	ldr.w	r1, [r3, r0, lsl #2]
+   6:	4b04      	ldr	r3, [pc, #16]	(18 <STM_EVAL_LEDToggle+0x18>)
+   8:	68ca      	ldr	r2, [r1, #12]
+   a:	f833 3010 	ldrh.w	r3, [r3, r0, lsl #1]
+   e:	4053      	eors	r3, r2
+  10:	60cb      	str	r3, [r1, #12]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:252
+}
+  12:	4770      	bx	lr
+	...
+Disassembly of section .text.STM_EVAL_LEDInit:
+
+00000000 <STM_EVAL_LEDInit>:
+STM_EVAL_LEDInit():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:195
+  *     @arg LED3
+  *     @arg LED4
+  * @retval None
+  */
+void STM_EVAL_LEDInit(Led_TypeDef Led)
+{
+   0:	b537      	push	{r0, r1, r2, r4, r5, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:199
+  GPIO_InitTypeDef  GPIO_InitStructure;
+  
+  /* Enable the GPIO_LED Clock */
+  RCC_APB2PeriphClockCmd(GPIO_CLK[Led], ENABLE);
+   2:	4d0c      	ldr	r5, [pc, #48]	(34 <STM_EVAL_LEDInit+0x34>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:195
+  *     @arg LED3
+  *     @arg LED4
+  * @retval None
+  */
+void STM_EVAL_LEDInit(Led_TypeDef Led)
+{
+   4:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:199
+  GPIO_InitTypeDef  GPIO_InitStructure;
+  
+  /* Enable the GPIO_LED Clock */
+  RCC_APB2PeriphClockCmd(GPIO_CLK[Led], ENABLE);
+   6:	eb05 0380 	add.w	r3, r5, r0, lsl #2
+   a:	6898      	ldr	r0, [r3, #8]
+   c:	2101      	movs	r1, #1
+   e:	f7ff fffe 	bl	0 <RCC_APB2PeriphClockCmd>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:203
+
+  /* Configure the GPIO_LED pin */
+  GPIO_InitStructure.GPIO_Pin = GPIO_PIN[Led];
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 
+  12:	2310      	movs	r3, #16
+  14:	f88d 3007 	strb.w	r3, [sp, #7]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:204
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  18:	2303      	movs	r3, #3
+  1a:	f88d 3006 	strb.w	r3, [sp, #6]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:206
+
+  GPIO_Init(GPIO_PORT[Led], &GPIO_InitStructure);
+  1e:	4b06      	ldr	r3, [pc, #24]	(38 <STM_EVAL_LEDInit+0x38>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:202
+  
+  /* Enable the GPIO_LED Clock */
+  RCC_APB2PeriphClockCmd(GPIO_CLK[Led], ENABLE);
+
+  /* Configure the GPIO_LED pin */
+  GPIO_InitStructure.GPIO_Pin = GPIO_PIN[Led];
+  20:	f835 5014 	ldrh.w	r5, [r5, r4, lsl #1]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:206
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+
+  GPIO_Init(GPIO_PORT[Led], &GPIO_InitStructure);
+  24:	f853 0024 	ldr.w	r0, [r3, r4, lsl #2]
+  28:	a901      	add	r1, sp, #4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:202
+  
+  /* Enable the GPIO_LED Clock */
+  RCC_APB2PeriphClockCmd(GPIO_CLK[Led], ENABLE);
+
+  /* Configure the GPIO_LED pin */
+  GPIO_InitStructure.GPIO_Pin = GPIO_PIN[Led];
+  2a:	f8ad 5004 	strh.w	r5, [sp, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:206
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+
+  GPIO_Init(GPIO_PORT[Led], &GPIO_InitStructure);
+  2e:	f7ff fffe 	bl	0 <GPIO_Init>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:207
+}
+  32:	bd3e      	pop	{r1, r2, r3, r4, r5, pc}
+	...
+Disassembly of section .text.STM_EVAL_COMInit:
+
+00000000 <STM_EVAL_COMInit>:
+STM_EVAL_COMInit():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:352
+void STM_EVAL_COMInit(COM_TypeDef COM, USART_InitTypeDef* USART_InitStruct)
+{
+  GPIO_InitTypeDef GPIO_InitStructure;
+
+  /* Enable GPIO clock */
+  RCC_APB2PeriphClockCmd(COM_POR_CLK[COM] | RCC_APB2Periph_AFIO, ENABLE);
+   0:	4b1d      	ldr	r3, [pc, #116]	(78 <STM_EVAL_COMInit+0x78>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:348
+  * @param  USART_InitStruct: pointer to a USART_InitTypeDef structure that
+  *   contains the configuration information for the specified USART peripheral.
+  * @retval None
+  */
+void STM_EVAL_COMInit(COM_TypeDef COM, USART_InitTypeDef* USART_InitStruct)
+{
+   2:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:352
+  GPIO_InitTypeDef GPIO_InitStructure;
+
+  /* Enable GPIO clock */
+  RCC_APB2PeriphClockCmd(COM_POR_CLK[COM] | RCC_APB2Periph_AFIO, ENABLE);
+   4:	eb03 0480 	add.w	r4, r3, r0, lsl #2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:348
+  * @param  USART_InitStruct: pointer to a USART_InitTypeDef structure that
+  *   contains the configuration information for the specified USART peripheral.
+  * @retval None
+  */
+void STM_EVAL_COMInit(COM_TypeDef COM, USART_InitTypeDef* USART_InitStruct)
+{
+   8:	4606      	mov	r6, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:352
+  GPIO_InitTypeDef GPIO_InitStructure;
+
+  /* Enable GPIO clock */
+  RCC_APB2PeriphClockCmd(COM_POR_CLK[COM] | RCC_APB2Periph_AFIO, ENABLE);
+   a:	69a0      	ldr	r0, [r4, #24]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:348
+  * @param  USART_InitStruct: pointer to a USART_InitTypeDef structure that
+  *   contains the configuration information for the specified USART peripheral.
+  * @retval None
+  */
+void STM_EVAL_COMInit(COM_TypeDef COM, USART_InitTypeDef* USART_InitStruct)
+{
+   c:	460f      	mov	r7, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:352
+  GPIO_InitTypeDef GPIO_InitStructure;
+
+  /* Enable GPIO clock */
+  RCC_APB2PeriphClockCmd(COM_POR_CLK[COM] | RCC_APB2Periph_AFIO, ENABLE);
+   e:	f040 0001 	orr.w	r0, r0, #1	; 0x1
+  12:	2101      	movs	r1, #1
+  14:	f7ff fffe 	bl	0 <RCC_APB2PeriphClockCmd>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:376
+    /* Enable the USART2 Pins Software Remapping */
+    GPIO_PinRemapConfig(GPIO_Remap_USART2, ENABLE);
+    RCC_APB1PeriphClockCmd(COM_USART_CLK[COM], ENABLE);
+  }
+#elif defined (USE_STM3210C_EVAL)
+  if (COM == COM1)
+  18:	b93e      	cbnz	r6, 2a <STM_EVAL_COMInit+0x2a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:379
+  {
+    /* Enable the USART2 Pins Software Remapping */
+    GPIO_PinRemapConfig(GPIO_Remap_USART2, ENABLE);
+  1a:	2008      	movs	r0, #8
+  1c:	2101      	movs	r1, #1
+  1e:	f7ff fffe 	bl	0 <GPIO_PinRemapConfig>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:380
+    RCC_APB1PeriphClockCmd(COM_USART_CLK[COM], ENABLE);
+  22:	69e0      	ldr	r0, [r4, #28]
+  24:	2101      	movs	r1, #1
+  26:	f7ff fffe 	bl	0 <RCC_APB1PeriphClockCmd>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:385
+  }
+#endif
+
+  /* Configure USART Tx as alternate function push-pull */
+  GPIO_InitStructure.GPIO_Pin = COM_TX_PIN[COM];
+  2a:	4d13      	ldr	r5, [pc, #76]	(78 <STM_EVAL_COMInit+0x78>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:388
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_Init(COM_PORT[COM], &GPIO_InitStructure);
+  2c:	4c13      	ldr	r4, [pc, #76]	(7c <STM_EVAL_COMInit+0x7c>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:385
+    RCC_APB1PeriphClockCmd(COM_USART_CLK[COM], ENABLE);
+  }
+#endif
+
+  /* Configure USART Tx as alternate function push-pull */
+  GPIO_InitStructure.GPIO_Pin = COM_TX_PIN[COM];
+  2e:	eb05 0546 	add.w	r5, r5, r6, lsl #1
+  32:	8c2b      	ldrh	r3, [r5, #32]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:388
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_Init(COM_PORT[COM], &GPIO_InitStructure);
+  34:	eb04 0486 	add.w	r4, r4, r6, lsl #2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:385
+    RCC_APB1PeriphClockCmd(COM_USART_CLK[COM], ENABLE);
+  }
+#endif
+
+  /* Configure USART Tx as alternate function push-pull */
+  GPIO_InitStructure.GPIO_Pin = COM_TX_PIN[COM];
+  38:	f8ad 3004 	strh.w	r3, [sp, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:388
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_Init(COM_PORT[COM], &GPIO_InitStructure);
+  3c:	ae01      	add	r6, sp, #4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:386
+  }
+#endif
+
+  /* Configure USART Tx as alternate function push-pull */
+  GPIO_InitStructure.GPIO_Pin = COM_TX_PIN[COM];
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  3e:	2318      	movs	r3, #24
+  40:	f88d 3007 	strb.w	r3, [sp, #7]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:388
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_Init(COM_PORT[COM], &GPIO_InitStructure);
+  44:	6920      	ldr	r0, [r4, #16]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:387
+#endif
+
+  /* Configure USART Tx as alternate function push-pull */
+  GPIO_InitStructure.GPIO_Pin = COM_TX_PIN[COM];
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  46:	2303      	movs	r3, #3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:388
+  GPIO_Init(COM_PORT[COM], &GPIO_InitStructure);
+  48:	4631      	mov	r1, r6
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:387
+#endif
+
+  /* Configure USART Tx as alternate function push-pull */
+  GPIO_InitStructure.GPIO_Pin = COM_TX_PIN[COM];
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  4a:	f88d 3006 	strb.w	r3, [sp, #6]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:388
+  GPIO_Init(COM_PORT[COM], &GPIO_InitStructure);
+  4e:	f7ff fffe 	bl	0 <GPIO_Init>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:391
+    
+  /* Configure USART Rx as input floating */
+  GPIO_InitStructure.GPIO_Pin = COM_RX_PIN[COM];
+  52:	8c6d      	ldrh	r5, [r5, #34]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:392
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  54:	2304      	movs	r3, #4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:393
+  GPIO_Init(COM_PORT[COM], &GPIO_InitStructure);
+  56:	6920      	ldr	r0, [r4, #16]
+  58:	4631      	mov	r1, r6
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:392
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_Init(COM_PORT[COM], &GPIO_InitStructure);
+    
+  /* Configure USART Rx as input floating */
+  GPIO_InitStructure.GPIO_Pin = COM_RX_PIN[COM];
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  5a:	f88d 3007 	strb.w	r3, [sp, #7]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:391
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_Init(COM_PORT[COM], &GPIO_InitStructure);
+    
+  /* Configure USART Rx as input floating */
+  GPIO_InitStructure.GPIO_Pin = COM_RX_PIN[COM];
+  5e:	f8ad 5004 	strh.w	r5, [sp, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:393
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  GPIO_Init(COM_PORT[COM], &GPIO_InitStructure);
+  62:	f7ff fffe 	bl	0 <GPIO_Init>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:396
+
+  /* USART configuration */
+  USART_Init(COM_USART[COM], USART_InitStruct);
+  66:	6960      	ldr	r0, [r4, #20]
+  68:	4639      	mov	r1, r7
+  6a:	f7ff fffe 	bl	0 <USART_Init>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:399
+    
+  /* Enable USART */
+  USART_Cmd(COM_USART[COM], ENABLE);
+  6e:	6960      	ldr	r0, [r4, #20]
+  70:	2101      	movs	r1, #1
+  72:	f7ff fffe 	bl	0 <USART_Cmd>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:400
+}
+  76:	bdfe      	pop	{r1, r2, r3, r4, r5, r6, r7, pc}
+	...
+Disassembly of section .text.STM_EVAL_PBGetState:
+
+00000000 <STM_EVAL_PBGetState>:
+STM_EVAL_PBGetState():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:333
+  *     @arg Button_SEL: Joystick Sel Push Button    
+  * @retval The Button GPIO pin value.
+  */
+uint32_t STM_EVAL_PBGetState(Button_TypeDef Button)
+{
+  return GPIO_ReadInputDataBit(BUTTON_PORT[Button], BUTTON_PIN[Button]);
+   0:	4a05      	ldr	r2, [pc, #20]	(18 <STM_EVAL_PBGetState+0x18>)
+   2:	4b06      	ldr	r3, [pc, #24]	(1c <STM_EVAL_PBGetState+0x1c>)
+   4:	eb02 0280 	add.w	r2, r2, r0, lsl #2
+   8:	eb03 0340 	add.w	r3, r3, r0, lsl #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:332
+  *     @arg Button_DOWN: Joystick Down Push Button
+  *     @arg Button_SEL: Joystick Sel Push Button    
+  * @retval The Button GPIO pin value.
+  */
+uint32_t STM_EVAL_PBGetState(Button_TypeDef Button)
+{
+   c:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:333
+  return GPIO_ReadInputDataBit(BUTTON_PORT[Button], BUTTON_PIN[Button]);
+   e:	6990      	ldr	r0, [r2, #24]
+  10:	8c99      	ldrh	r1, [r3, #36]
+  12:	f7ff fffe 	bl	0 <GPIO_ReadInputDataBit>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:334
+}
+  16:	bd10      	pop	{r4, pc}
+	...
+Disassembly of section .text.STM_EVAL_PBInit:
+
+00000000 <STM_EVAL_PBInit>:
+STM_EVAL_PBInit():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:274
+  *     @arg Mode_EXTI: Button will be connected to EXTI line with interrupt
+  *                     generation capability  
+  * @retval None
+  */
+void STM_EVAL_PBInit(Button_TypeDef Button, Button_Mode_TypeDef Button_Mode)
+{
+   0:	b5f0      	push	{r4, r5, r6, r7, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:280
+  GPIO_InitTypeDef GPIO_InitStructure;
+  EXTI_InitTypeDef EXTI_InitStructure;
+  NVIC_InitTypeDef NVIC_InitStructure;
+
+  /* Enable Button GPIO clock */
+  RCC_APB2PeriphClockCmd(BUTTON_CLK[Button] | RCC_APB2Periph_AFIO, ENABLE);
+   2:	4c24      	ldr	r4, [pc, #144]	(94 <STM_EVAL_PBInit+0x94>)
+   4:	0085      	lsls	r5, r0, #2
+   6:	1963      	adds	r3, r4, r5
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:274
+  *     @arg Mode_EXTI: Button will be connected to EXTI line with interrupt
+  *                     generation capability  
+  * @retval None
+  */
+void STM_EVAL_PBInit(Button_TypeDef Button, Button_Mode_TypeDef Button_Mode)
+{
+   8:	4607      	mov	r7, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:280
+  GPIO_InitTypeDef GPIO_InitStructure;
+  EXTI_InitTypeDef EXTI_InitStructure;
+  NVIC_InitTypeDef NVIC_InitStructure;
+
+  /* Enable Button GPIO clock */
+  RCC_APB2PeriphClockCmd(BUTTON_CLK[Button] | RCC_APB2Periph_AFIO, ENABLE);
+   a:	6ad8      	ldr	r0, [r3, #44]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:274
+  *     @arg Mode_EXTI: Button will be connected to EXTI line with interrupt
+  *                     generation capability  
+  * @retval None
+  */
+void STM_EVAL_PBInit(Button_TypeDef Button, Button_Mode_TypeDef Button_Mode)
+{
+   c:	b085      	sub	sp, #20
+   e:	460e      	mov	r6, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:280
+  GPIO_InitTypeDef GPIO_InitStructure;
+  EXTI_InitTypeDef EXTI_InitStructure;
+  NVIC_InitTypeDef NVIC_InitStructure;
+
+  /* Enable Button GPIO clock */
+  RCC_APB2PeriphClockCmd(BUTTON_CLK[Button] | RCC_APB2Periph_AFIO, ENABLE);
+  10:	f040 0001 	orr.w	r0, r0, #1	; 0x1
+  14:	2101      	movs	r1, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:283
+  
+  /* Configure Button pin as input floating */
+  GPIO_InitStructure.GPIO_Pin = BUTTON_PIN[Button];
+  16:	eb04 0447 	add.w	r4, r4, r7, lsl #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:280
+  GPIO_InitTypeDef GPIO_InitStructure;
+  EXTI_InitTypeDef EXTI_InitStructure;
+  NVIC_InitTypeDef NVIC_InitStructure;
+
+  /* Enable Button GPIO clock */
+  RCC_APB2PeriphClockCmd(BUTTON_CLK[Button] | RCC_APB2Periph_AFIO, ENABLE);
+  1a:	f7ff fffe 	bl	0 <RCC_APB2PeriphClockCmd>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:283
+  
+  /* Configure Button pin as input floating */
+  GPIO_InitStructure.GPIO_Pin = BUTTON_PIN[Button];
+  1e:	8ca3      	ldrh	r3, [r4, #36]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:285
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  GPIO_Init(BUTTON_PORT[Button], &GPIO_InitStructure);
+  20:	a903      	add	r1, sp, #12
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:283
+
+  /* Enable Button GPIO clock */
+  RCC_APB2PeriphClockCmd(BUTTON_CLK[Button] | RCC_APB2Periph_AFIO, ENABLE);
+  
+  /* Configure Button pin as input floating */
+  GPIO_InitStructure.GPIO_Pin = BUTTON_PIN[Button];
+  22:	f8ad 300c 	strh.w	r3, [sp, #12]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:284
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  26:	2304      	movs	r3, #4
+  28:	f88d 300f 	strb.w	r3, [sp, #15]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:285
+  GPIO_Init(BUTTON_PORT[Button], &GPIO_InitStructure);
+  2c:	4b1a      	ldr	r3, [pc, #104]	(98 <STM_EVAL_PBInit+0x98>)
+  2e:	195b      	adds	r3, r3, r5
+  30:	6998      	ldr	r0, [r3, #24]
+  32:	f7ff fffe 	bl	0 <GPIO_Init>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:287
+
+  if (Button_Mode == Mode_EXTI)
+  36:	2e01      	cmp	r6, #1
+  38:	d12a      	bne.n	90 <STM_EVAL_PBInit+0x90>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:290
+  {
+    /* Connect Button EXTI Line to Button GPIO Pin */
+    GPIO_EXTILineConfig(BUTTON_PORT_SOURCE[Button], BUTTON_PIN_SOURCE[Button]);  
+  3a:	f894 0038 	ldrb.w	r0, [r4, #56]
+  3e:	f894 103e 	ldrb.w	r1, [r4, #62]
+  42:	f7ff fffe 	bl	0 <GPIO_EXTILineConfig>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:293
+
+    /* Configure Button EXTI line */
+    EXTI_InitStructure.EXTI_Line = BUTTON_EXTI_LINE[Button];
+  46:	f8b4 2044 	ldrh.w	r2, [r4, #68]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:296
+    EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+
+    if(Button != Button_WAKEUP)
+  4a:	b10f      	cbz	r7, 50 <STM_EVAL_PBInit+0x50>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:298
+    {
+      EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;  
+  4c:	230c      	movs	r3, #12
+  4e:	e000      	b.n	52 <STM_EVAL_PBInit+0x52>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:302
+    }
+    else
+    {
+      EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;  
+  50:	2308      	movs	r3, #8
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:293
+  {
+    /* Connect Button EXTI Line to Button GPIO Pin */
+    GPIO_EXTILineConfig(BUTTON_PORT_SOURCE[Button], BUTTON_PIN_SOURCE[Button]);  
+
+    /* Configure Button EXTI line */
+    EXTI_InitStructure.EXTI_Line = BUTTON_EXTI_LINE[Button];
+  52:	a804      	add	r0, sp, #16
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:302
+    {
+      EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;  
+    }
+    else
+    {
+      EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;  
+  54:	f88d 3005 	strb.w	r3, [sp, #5]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:304
+    }
+    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+  58:	2401      	movs	r4, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:294
+    /* Connect Button EXTI Line to Button GPIO Pin */
+    GPIO_EXTILineConfig(BUTTON_PORT_SOURCE[Button], BUTTON_PIN_SOURCE[Button]);  
+
+    /* Configure Button EXTI line */
+    EXTI_InitStructure.EXTI_Line = BUTTON_EXTI_LINE[Button];
+    EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+  5a:	2300      	movs	r3, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:293
+  {
+    /* Connect Button EXTI Line to Button GPIO Pin */
+    GPIO_EXTILineConfig(BUTTON_PORT_SOURCE[Button], BUTTON_PIN_SOURCE[Button]);  
+
+    /* Configure Button EXTI line */
+    EXTI_InitStructure.EXTI_Line = BUTTON_EXTI_LINE[Button];
+  5c:	f840 2d10 	str.w	r2, [r0, #-16]!
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:305
+    else
+    {
+      EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;  
+    }
+    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+    EXTI_Init(&EXTI_InitStructure);
+  60:	4668      	mov	r0, sp
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:294
+    /* Connect Button EXTI Line to Button GPIO Pin */
+    GPIO_EXTILineConfig(BUTTON_PORT_SOURCE[Button], BUTTON_PIN_SOURCE[Button]);  
+
+    /* Configure Button EXTI line */
+    EXTI_InitStructure.EXTI_Line = BUTTON_EXTI_LINE[Button];
+    EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+  62:	f88d 3004 	strb.w	r3, [sp, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:304
+    }
+    else
+    {
+      EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;  
+    }
+    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+  66:	f88d 4006 	strb.w	r4, [sp, #6]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:305
+    EXTI_Init(&EXTI_InitStructure);
+  6a:	f7ff fffe 	bl	0 <EXTI_Init>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:308
+
+    /* Enable and set Button EXTI Interrupt to the lowest priority */
+    NVIC_InitStructure.NVIC_IRQChannel = BUTTON_IRQn[Button];
+  6e:	4b09      	ldr	r3, [pc, #36]	(94 <STM_EVAL_PBInit+0x94>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:313
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+
+    NVIC_Init(&NVIC_InitStructure); 
+  70:	a802      	add	r0, sp, #8
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:308
+    }
+    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+    EXTI_Init(&EXTI_InitStructure);
+
+    /* Enable and set Button EXTI Interrupt to the lowest priority */
+    NVIC_InitStructure.NVIC_IRQChannel = BUTTON_IRQn[Button];
+  72:	eb03 0347 	add.w	r3, r3, r7, lsl #1
+  76:	f8b3 304a 	ldrh.w	r3, [r3, #74]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:311
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+  7a:	f88d 400b 	strb.w	r4, [sp, #11]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:308
+    }
+    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+    EXTI_Init(&EXTI_InitStructure);
+
+    /* Enable and set Button EXTI Interrupt to the lowest priority */
+    NVIC_InitStructure.NVIC_IRQChannel = BUTTON_IRQn[Button];
+  7e:	f88d 3008 	strb.w	r3, [sp, #8]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:309
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F;
+  82:	230f      	movs	r3, #15
+  84:	f88d 3009 	strb.w	r3, [sp, #9]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:310
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;
+  88:	f88d 300a 	strb.w	r3, [sp, #10]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:313
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+
+    NVIC_Init(&NVIC_InitStructure); 
+  8c:	f7ff fffe 	bl	0 <NVIC_Init>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL/stm32_eval.c:315
+  }
+}
+  90:	b005      	add	sp, #20
+  92:	bdf0      	pop	{r4, r5, r6, r7, pc}
+	...

@@ -1,0 +1,398 @@
+
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\mkfs.o:     file format elf32-littlearm
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\mkfs.o
+
+Disassembly of section .text.mkfs_makevfat:
+
+00000000 <mkfs_makevfat>:
+mkfs_makevfat():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:38
+/*****************************************************************************/
+#include "mkfs.h"
+/*****************************************************************************/
+
+signed short mkfs_makevfat(Partition *part)
+{
+   0:	e92d 43f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:43
+	unsigned long c,cc,ret;
+	unsigned long ns,fs,ds,dc;
+	unsigned char buf[512];
+	
+	ns=part->disc->partitions[part->activePartition].numSectors;
+   4:	6803      	ldr	r3, [r0, #0]
+   6:	f990 2004 	ldrsb.w	r2, [r0, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:38
+/*****************************************************************************/
+#include "mkfs.h"
+/*****************************************************************************/
+
+signed short mkfs_makevfat(Partition *part)
+{
+   a:	f5ad 7d01 	sub.w	sp, sp, #516	; 0x204
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:43
+	unsigned long c,cc,ret;
+	unsigned long ns,fs,ds,dc;
+	unsigned char buf[512];
+	
+	ns=part->disc->partitions[part->activePartition].numSectors;
+   e:	eb03 1302 	add.w	r3, r3, r2, lsl #4
+  12:	695f      	ldr	r7, [r3, #20]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:45
+	
+	if( ns < 66581 ){
+  14:	4b4e      	ldr	r3, [pc, #312]	(150 <mkfs_makevfat+0x150>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:38
+/*****************************************************************************/
+#include "mkfs.h"
+/*****************************************************************************/
+
+signed short mkfs_makevfat(Partition *part)
+{
+  16:	4680      	mov	r8, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:45
+	unsigned long ns,fs,ds,dc;
+	unsigned char buf[512];
+	
+	ns=part->disc->partitions[part->activePartition].numSectors;
+	
+	if( ns < 66581 ){
+  18:	429f      	cmp	r7, r3
+  1a:	d801      	bhi.n	20 <mkfs_makevfat+0x20>
+  1c:	2001      	movs	r0, #1
+  1e:	e092      	b.n	146 <mkfs_makevfat+0x146>
+  20:	2640      	movs	r6, #64
+  22:	2100      	movs	r1, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:55
+	ret=0;
+	
+	for(c=1<<6;c>=1;c>>=1){
+		
+		/* First guess */
+		ds = ns - 32;
+  24:	f1a7 0320 	sub.w	r3, r7, #32	; 0x20
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:62
+		/* ds was guess too large, so fs is too large now too. */
+		
+		for(cc=0;cc<2;cc++){
+		
+			/* Round 2, error round */
+			ds = ns - 32 - 2*fs;
+  28:	fbb3 f2f6 	udiv	r2, r3, r6
+  2c:	327f      	adds	r2, #127
+  2e:	09d2      	lsrs	r2, r2, #7
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:63
+			fs = ((ds/c)+127)/128; 
+  30:	eba3 0242 	sub.w	r2, r3, r2, lsl #1
+  34:	fbb2 f2f6 	udiv	r2, r2, r6
+  38:	327f      	adds	r2, #127
+  3a:	09d2      	lsrs	r2, r2, #7
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:68
+			/* Since fs was too large, ds became too small. So the fs for this small ds is too small as well. */
+			
+			/* Round 3, correction round */
+			ds = ns - 32 - 2*fs;
+			fs = ((ds/c)+127)/128; 
+  3c:	eba3 0242 	sub.w	r2, r3, r2, lsl #1
+  40:	fbb2 f2f6 	udiv	r2, r2, r6
+  44:	327f      	adds	r2, #127
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:63
+		
+		for(cc=0;cc<2;cc++){
+		
+			/* Round 2, error round */
+			ds = ns - 32 - 2*fs;
+			fs = ((ds/c)+127)/128; 
+  46:	09d2      	lsrs	r2, r2, #7
+  48:	eba3 0242 	sub.w	r2, r3, r2, lsl #1
+  4c:	fbb2 f2f6 	udiv	r2, r2, r6
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:67
+			/* Since fs was too large, ds became too small. So the fs for this small ds is too small as well. */
+			
+			/* Round 3, correction round */
+			ds = ns - 32 - 2*fs;
+  50:	327f      	adds	r2, #127
+  52:	09d2      	lsrs	r2, r2, #7
+  54:	eba3 0242 	sub.w	r2, r3, r2, lsl #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:68
+			fs = ((ds/c)+127)/128; 
+  58:	fbb2 f2f6 	udiv	r2, r2, r6
+  5c:	327f      	adds	r2, #127
+  5e:	ea4f 19d2 	mov.w	r9, r2, lsr #7
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:81
+		dc = ds / c;
+		if(ret<(fs*128-dc)/128)ret=(fs*128-dc)/128;
+		
+		/* Check if with current setting we have a valid fat ? */
+		
+		if(dc >= 65525 + 16){
+  62:	eba3 0349 	sub.w	r3, r3, r9, lsl #1
+  66:	4a3b      	ldr	r2, [pc, #236]	(154 <mkfs_makevfat+0x154>)
+  68:	fbb3 f3f6 	udiv	r3, r3, r6
+  6c:	4293      	cmp	r3, r2
+  6e:	d803      	bhi.n	78 <mkfs_makevfat+0x78>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:52
+		return(MKFS_ERR_TOOLITTLESECTORS);
+	}
+	
+	ret=0;
+	
+	for(c=1<<6;c>=1;c>>=1){
+  70:	3101      	adds	r1, #1
+  72:	0876      	lsrs	r6, r6, #1
+  74:	2907      	cmp	r1, #7
+  76:	d1d5      	bne.n	24 <mkfs_makevfat+0x24>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:87
+			break;
+		}
+	}
+
+	/* Generate BPB */
+	memClr(buf,512);
+  78:	4668      	mov	r0, sp
+  7a:	f44f 7100 	mov.w	r1, #512	; 0x200
+  7e:	466c      	mov	r4, sp
+  80:	f7ff fffe 	bl	0 <memClr>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:90
+	
+	/* Boot code */
+	*(buf+0)=0xE9;	*(buf+1)=0x00;	*(buf+2)=0x00; /* RESET */
+  84:	2500      	movs	r5, #0
+  86:	f06f 0316 	mvn.w	r3, #22	; 0x16
+  8a:	7023      	strb	r3, [r4, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:93
+	
+	/* OEM name */
+	memCpy("DSCOSMSH",buf+3,8);
+  8c:	1ce1      	adds	r1, r4, #3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:90
+
+	/* Generate BPB */
+	memClr(buf,512);
+	
+	/* Boot code */
+	*(buf+0)=0xE9;	*(buf+1)=0x00;	*(buf+2)=0x00; /* RESET */
+  8e:	7065      	strb	r5, [r4, #1]
+  90:	70a5      	strb	r5, [r4, #2]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:93
+	
+	/* OEM name */
+	memCpy("DSCOSMSH",buf+3,8);
+  92:	4831      	ldr	r0, [pc, #196]	(158 <mkfs_makevfat+0x158>)
+  94:	2208      	movs	r2, #8
+  96:	f7ff fffe 	bl	0 <memCpy>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:96
+	
+	/* Bytes/Sector */
+	*((unsigned short*)(buf+11)) = 512;
+  9a:	f44f 7300 	mov.w	r3, #512	; 0x200
+  9e:	f8a4 300b 	strh.w	r3, [r4, #11]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:102
+	
+	/* Sectors/Cluster */
+	*(buf+13) = c;
+	
+	/* Reserved Sectors */
+	*((unsigned short*)(buf+14)) = 32;
+  a2:	f04f 0320 	mov.w	r3, #32	; 0x20
+  a6:	81e3      	strh	r3, [r4, #14]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:114
+	
+	/* Total Sector Count __16 */
+	*((unsigned short*)(buf+19)) = 0;
+	
+	/* Media (crap) */
+	*(buf+21) = 0xF8;
+  a8:	f06f 0307 	mvn.w	r3, #7	; 0x7
+  ac:	7563      	strb	r3, [r4, #21]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:129
+	
+	/* First Cluster Root Dir */
+	*((unsigned long*)(buf+44)) = 2;
+	
+	/* VolumeID */
+	*((unsigned long*)(buf+67)) = 0x13371337;
+  ae:	4b2b      	ldr	r3, [pc, #172]	(15c <mkfs_makevfat+0x15c>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:105
+	
+	/* Reserved Sectors */
+	*((unsigned short*)(buf+14)) = 32;
+	
+	/* Number of FAT Tables */
+	*(buf+16) = 2;
+  b0:	2202      	movs	r2, #2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:129
+	
+	/* First Cluster Root Dir */
+	*((unsigned long*)(buf+44)) = 2;
+	
+	/* VolumeID */
+	*((unsigned long*)(buf+67)) = 0x13371337;
+  b2:	f8c4 3043 	str.w	r3, [r4, #67]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:99
+	
+	/* Bytes/Sector */
+	*((unsigned short*)(buf+11)) = 512;
+	
+	/* Sectors/Cluster */
+	*(buf+13) = c;
+  b6:	7366      	strb	r6, [r4, #13]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:105
+	
+	/* Reserved Sectors */
+	*((unsigned short*)(buf+14)) = 32;
+	
+	/* Number of FAT Tables */
+	*(buf+16) = 2;
+  b8:	7422      	strb	r2, [r4, #16]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:126
+	
+	/* Fat Size 32 */
+	*((unsigned long*)(buf+36)) = fs;
+	
+	/* First Cluster Root Dir */
+	*((unsigned long*)(buf+44)) = 2;
+  ba:	62e2      	str	r2, [r4, #44]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:108
+	
+	/* Number of FAT Tables */
+	*(buf+16) = 2;
+	
+	/* RootEntryCount */
+	*((unsigned short*)(buf+17)) = 0;
+  bc:	f8a4 5011 	strh.w	r5, [r4, #17]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:111
+	
+	/* Total Sector Count __16 */
+	*((unsigned short*)(buf+19)) = 0;
+  c0:	f8a4 5013 	strh.w	r5, [r4, #19]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:117
+	
+	/* Media (crap) */
+	*(buf+21) = 0xF8;
+	
+	/* FAT size 16 */
+	*((unsigned short*)(buf+22)) = 0;
+  c4:	82e5      	strh	r5, [r4, #22]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:120
+	
+	/* Total Sector Count __32 */
+	*((unsigned long*)(buf+32)) = ns;
+  c6:	6227      	str	r7, [r4, #32]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:123
+	
+	/* Fat Size 32 */
+	*((unsigned long*)(buf+36)) = fs;
+  c8:	f8c4 9024 	str.w	r9, [r4, #36]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:132
+	
+	/* VolumeID */
+	*((unsigned long*)(buf+67)) = 0x13371337;
+	
+	/* Volume Label */
+	memCpy("DISCOSMASH!",buf+71,11);
+  cc:	4824      	ldr	r0, [pc, #144]	(160 <mkfs_makevfat+0x160>)
+  ce:	f10d 0147 	add.w	r1, sp, #71	; 0x47
+  d2:	3209      	adds	r2, #9
+  d4:	f7ff fffe 	bl	0 <memCpy>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:135
+	
+	/* Filesystemtype */
+	memCpy("FAT32   ",buf+82,8);
+  d8:	4822      	ldr	r0, [pc, #136]	(164 <mkfs_makevfat+0x164>)
+  da:	f10d 0152 	add.w	r1, sp, #82	; 0x52
+  de:	2208      	movs	r2, #8
+  e0:	f7ff fffe 	bl	0 <memCpy>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:138
+	
+	/* Magic */
+	*(buf+510) = 0x55; *(buf+511) = 0xAA;
+  e4:	2355      	movs	r3, #85
+  e6:	f88d 31fe 	strb.w	r3, [sp, #510]
+  ea:	f06f 0355 	mvn.w	r3, #85	; 0x55
+  ee:	f884 31ff 	strb.w	r3, [r4, #511]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:140
+	
+	part_writeBuf(part,0,buf);
+  f2:	4629      	mov	r1, r5
+  f4:	466a      	mov	r2, sp
+  f6:	4640      	mov	r0, r8
+  f8:	f7ff fffe 	bl	0 <part_writeBuf>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:142
+	
+	memClr(buf,512);
+  fc:	4668      	mov	r0, sp
+  fe:	f44f 7100 	mov.w	r1, #512	; 0x200
+ 102:	f7ff fffe 	bl	0 <memClr>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:143
+	for(c=32;c<(32+2*fs);c++){
+ 106:	f109 0310 	add.w	r3, r9, #16	; 0x10
+ 10a:	005e      	lsls	r6, r3, #1
+ 10c:	2420      	movs	r4, #32
+ 10e:	e005      	b.n	11c <mkfs_makevfat+0x11c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:144
+		part_writeBuf(part,c,buf);
+ 110:	4621      	mov	r1, r4
+ 112:	4640      	mov	r0, r8
+ 114:	466a      	mov	r2, sp
+ 116:	f7ff fffe 	bl	0 <part_writeBuf>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:143
+	*(buf+510) = 0x55; *(buf+511) = 0xAA;
+	
+	part_writeBuf(part,0,buf);
+	
+	memClr(buf,512);
+	for(c=32;c<(32+2*fs);c++){
+ 11a:	3401      	adds	r4, #1
+ 11c:	42b4      	cmp	r4, r6
+ 11e:	466d      	mov	r5, sp
+ 120:	d3f6      	bcc.n	110 <mkfs_makevfat+0x110>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:146
+		part_writeBuf(part,c,buf);
+	}
+	*(((unsigned long*)buf)  )=0x0FFFFFF8;
+ 122:	4a11      	ldr	r2, [pc, #68]	(168 <mkfs_makevfat+0x168>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:147
+	*(((unsigned long*)buf)+1)=0x0FFFFFFF;
+ 124:	f06f 4370 	mvn.w	r3, #4026531840	; 0xf0000000
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:146
+	
+	memClr(buf,512);
+	for(c=32;c<(32+2*fs);c++){
+		part_writeBuf(part,c,buf);
+	}
+	*(((unsigned long*)buf)  )=0x0FFFFFF8;
+ 128:	602a      	str	r2, [r5, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:147
+	*(((unsigned long*)buf)+1)=0x0FFFFFFF;
+ 12a:	606b      	str	r3, [r5, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:148
+	*(((unsigned long*)buf)+2)=0x0FFFFFF8;
+ 12c:	60aa      	str	r2, [r5, #8]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:149
+	part_writeBuf(part,32,buf);
+ 12e:	2120      	movs	r1, #32
+ 130:	466a      	mov	r2, sp
+ 132:	4640      	mov	r0, r8
+ 134:	f7ff fffe 	bl	0 <part_writeBuf>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:150
+	part_writeBuf(part,32+fs,buf);
+ 138:	4640      	mov	r0, r8
+ 13a:	f109 0120 	add.w	r1, r9, #32	; 0x20
+ 13e:	466a      	mov	r2, sp
+ 140:	f7ff fffe 	bl	0 <part_writeBuf>
+ 144:	2000      	movs	r0, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/mkfs.c:153
+	
+	return(0);
+}
+ 146:	f50d 7d01 	add.w	sp, sp, #516	; 0x204
+ 14a:	e8bd 83f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, pc}
+ 14e:	46c0      	nop			(mov r8, r8)
+ 150:	00010414 	.word	0x00010414
+ 154:	00010004 	.word	0x00010004
+ 158:	00000000 	.word	0x00000000
+ 15c:	13371337 	.word	0x13371337
+ 160:	00000009 	.word	0x00000009
+ 164:	00000015 	.word	0x00000015
+ 168:	0ffffff8 	.word	0x0ffffff8

@@ -1,0 +1,1993 @@
+
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\ioman.o:     file format elf32-littlearm
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\ioman.o
+
+Disassembly of section .text.ioman_getBuffer:
+
+00000000 <ioman_getBuffer>:
+ioman_getBuffer():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:81
+#ifdef IOMAN_DO_MEMALLOC
+	return(ioman->cache_mem);
+#else
+	return(bufferarea);
+#endif
+}
+   0:	3020      	adds	r0, #32
+   2:	4770      	bx	lr
+Disassembly of section .text.ioman_setAttr:
+
+00000000 <ioman_setAttr>:
+ioman_setAttr():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:85
+/*****************************************************************************/
+
+void ioman_setAttr(IOManager *ioman,euint16 bufplace,euint8 attribute,euint8 val)
+{
+   0:	4694      	mov	ip, r2
+   2:	461a      	mov	r2, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:86
+	if(bufplace>=ioman->numbuf){
+   4:	8903      	ldrh	r3, [r0, #8]
+   6:	428b      	cmp	r3, r1
+   8:	d802      	bhi.n	10 <ioman_setAttr+0x10>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:87
+		ioman_setError(ioman,IOMAN_ERR_SETATTROUTOFBOUNDS);
+   a:	2301      	movs	r3, #1
+   c:	7303      	strb	r3, [r0, #12]
+   e:	e00e      	b.n	2e <ioman_setAttr+0x2e>
+  10:	1840      	adds	r0, r0, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:91
+		return; /* Out of bounds */
+	}
+	
+	if(val){
+  12:	b12a      	cbz	r2, 20 <ioman_setAttr+0x20>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:92
+		ioman->status[bufplace]|=1<<attribute;
+  14:	2301      	movs	r3, #1
+  16:	fa03 f30c 	lsl.w	r3, r3, ip
+  1a:	7f02      	ldrb	r2, [r0, #28]
+  1c:	4313      	orrs	r3, r2
+  1e:	e005      	b.n	2c <ioman_setAttr+0x2c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:94
+	}else{
+		ioman->status[bufplace]&=~(1<<attribute);
+  20:	2201      	movs	r2, #1
+  22:	fa02 f20c 	lsl.w	r2, r2, ip
+  26:	7f03      	ldrb	r3, [r0, #28]
+  28:	ea23 0302 	bic.w	r3, r3, r2
+  2c:	7703      	strb	r3, [r0, #28]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:96
+	}
+}
+  2e:	4770      	bx	lr
+Disassembly of section .text.ioman_getAttr:
+
+00000000 <ioman_getAttr>:
+ioman_getAttr():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:101
+/*****************************************************************************/
+
+euint8 ioman_getAttr(IOManager *ioman,euint16 bufplace,euint8 attribute)
+{
+	if(bufplace>=ioman->numbuf){
+   0:	8903      	ldrh	r3, [r0, #8]
+   2:	428b      	cmp	r3, r1
+   4:	d803      	bhi.n	e <ioman_getAttr+0xe>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:102
+		ioman_setError(ioman,IOMAN_ERR_GETATTROUTOFBOUNDS);
+   6:	2302      	movs	r3, #2
+   8:	7303      	strb	r3, [r0, #12]
+   a:	20ff      	movs	r0, #255
+   c:	e005      	b.n	1a <ioman_getAttr+0x1a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:106
+		return(0xFF); /* Out of bounds */
+	}
+
+	return(ioman->status[bufplace]&(1<<attribute));
+   e:	2301      	movs	r3, #1
+  10:	4093      	lsls	r3, r2
+  12:	1842      	adds	r2, r0, r1
+  14:	7f12      	ldrb	r2, [r2, #28]
+  16:	ea03 0002 	and.w	r0, r3, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:107
+}
+  1a:	4770      	bx	lr
+Disassembly of section .text.ioman_getUseCnt:
+
+00000000 <ioman_getUseCnt>:
+ioman_getUseCnt():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:112
+/*****************************************************************************/
+
+euint8 ioman_getUseCnt(IOManager *ioman,euint16 bufplace)
+{
+	if(bufplace>=ioman->numbuf){
+   0:	8903      	ldrh	r3, [r0, #8]
+   2:	428b      	cmp	r3, r1
+   4:	d803      	bhi.n	e <ioman_getUseCnt+0xe>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:113
+		ioman_setError(ioman,IOMAN_ERR_OPOUTOFBOUNDS);
+   6:	2305      	movs	r3, #5
+   8:	7303      	strb	r3, [r0, #12]
+   a:	2000      	movs	r0, #0
+   c:	e001      	b.n	12 <ioman_getUseCnt+0x12>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:116
+		return(0x00);
+	}
+	return(ioman->usage[bufplace]);
+   e:	1843      	adds	r3, r0, r1
+  10:	7f58      	ldrb	r0, [r3, #29]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:117
+}
+  12:	4770      	bx	lr
+Disassembly of section .text.ioman_incUseCnt:
+
+00000000 <ioman_incUseCnt>:
+ioman_incUseCnt():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:123
+/*****************************************************************************/
+
+
+void ioman_incUseCnt(IOManager *ioman,euint16 bufplace)
+{
+	if(bufplace>=ioman->numbuf){
+   0:	8903      	ldrh	r3, [r0, #8]
+   2:	428b      	cmp	r3, r1
+   4:	d802      	bhi.n	c <ioman_incUseCnt+0xc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:124
+		ioman_setError(ioman,IOMAN_ERR_OPOUTOFBOUNDS);
+   6:	2305      	movs	r3, #5
+   8:	7303      	strb	r3, [r0, #12]
+   a:	e005      	b.n	18 <ioman_incUseCnt+0x18>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:127
+		return;
+	}
+	if(ioman->usage[bufplace]==0xFF)return;
+   c:	1840      	adds	r0, r0, r1
+   e:	7f43      	ldrb	r3, [r0, #29]
+  10:	2bff      	cmp	r3, #255
+  12:	d001      	beq.n	18 <ioman_incUseCnt+0x18>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:128
+	else ioman->usage[bufplace]++;
+  14:	3301      	adds	r3, #1
+  16:	7743      	strb	r3, [r0, #29]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:129
+}
+  18:	4770      	bx	lr
+  1a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.ioman_decUseCnt:
+
+00000000 <ioman_decUseCnt>:
+ioman_decUseCnt():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:134
+/*****************************************************************************/
+
+void ioman_decUseCnt(IOManager *ioman,euint16 bufplace)
+{
+	if(bufplace>=ioman->numbuf){
+   0:	8903      	ldrh	r3, [r0, #8]
+   2:	428b      	cmp	r3, r1
+   4:	d802      	bhi.n	c <ioman_decUseCnt+0xc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:135
+		ioman_setError(ioman,IOMAN_ERR_OPOUTOFBOUNDS);
+   6:	2305      	movs	r3, #5
+   8:	7303      	strb	r3, [r0, #12]
+   a:	e004      	b.n	16 <ioman_decUseCnt+0x16>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:138
+		return;
+	}
+	if(ioman->usage[bufplace]==0x0)return;
+   c:	1840      	adds	r0, r0, r1
+   e:	7f43      	ldrb	r3, [r0, #29]
+  10:	b10b      	cbz	r3, 16 <ioman_decUseCnt+0x16>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:139
+	else ioman->usage[bufplace]--;
+  12:	3b01      	subs	r3, #1
+  14:	7743      	strb	r3, [r0, #29]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:140
+}
+  16:	4770      	bx	lr
+Disassembly of section .text.ioman_resetUseCnt:
+
+00000000 <ioman_resetUseCnt>:
+ioman_resetUseCnt():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:145
+/*****************************************************************************/
+
+void ioman_resetUseCnt(IOManager *ioman,euint16 bufplace)
+{
+	if(bufplace>=ioman->numbuf){
+   0:	8903      	ldrh	r3, [r0, #8]
+   2:	428b      	cmp	r3, r1
+   4:	d802      	bhi.n	c <ioman_resetUseCnt+0xc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:146
+		ioman_setError(ioman,IOMAN_ERR_OPOUTOFBOUNDS);
+   6:	2305      	movs	r3, #5
+   8:	7303      	strb	r3, [r0, #12]
+   a:	e002      	b.n	12 <ioman_resetUseCnt+0x12>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:149
+		return;
+	}
+	ioman->usage[bufplace]=0x00;
+   c:	1842      	adds	r2, r0, r1
+   e:	2300      	movs	r3, #0
+  10:	7753      	strb	r3, [r2, #29]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:150
+}
+  12:	4770      	bx	lr
+Disassembly of section .text.ioman_getRefCnt:
+
+00000000 <ioman_getRefCnt>:
+ioman_getRefCnt():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:155
+/*****************************************************************************/
+
+euint8 ioman_getRefCnt(IOManager *ioman,euint16 bufplace)
+{
+	if(bufplace>=ioman->numbuf){
+   0:	8903      	ldrh	r3, [r0, #8]
+   2:	428b      	cmp	r3, r1
+   4:	d803      	bhi.n	e <ioman_getRefCnt+0xe>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:156
+		ioman_setError(ioman,IOMAN_ERR_OPOUTOFBOUNDS);
+   6:	2305      	movs	r3, #5
+   8:	7303      	strb	r3, [r0, #12]
+   a:	2000      	movs	r0, #0
+   c:	e001      	b.n	12 <ioman_getRefCnt+0x12>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:159
+		return(0x00);
+	}
+	return(ioman->reference[bufplace]);
+   e:	1843      	adds	r3, r0, r1
+  10:	7f98      	ldrb	r0, [r3, #30]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:160
+}
+  12:	4770      	bx	lr
+Disassembly of section .text.ioman_incRefCnt:
+
+00000000 <ioman_incRefCnt>:
+ioman_incRefCnt():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:165
+/*****************************************************************************/
+
+void ioman_incRefCnt(IOManager *ioman,euint16 bufplace)
+{
+	if(bufplace>=ioman->numbuf){
+   0:	8903      	ldrh	r3, [r0, #8]
+   2:	428b      	cmp	r3, r1
+   4:	d802      	bhi.n	c <ioman_incRefCnt+0xc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:166
+		ioman_setError(ioman,IOMAN_ERR_OPOUTOFBOUNDS);
+   6:	2305      	movs	r3, #5
+   8:	7303      	strb	r3, [r0, #12]
+   a:	e005      	b.n	18 <ioman_incRefCnt+0x18>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:169
+		return;
+	}
+	if(ioman->reference[bufplace]==0xFF)return;
+   c:	1840      	adds	r0, r0, r1
+   e:	7f83      	ldrb	r3, [r0, #30]
+  10:	2bff      	cmp	r3, #255
+  12:	d001      	beq.n	18 <ioman_incRefCnt+0x18>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:170
+	else ioman->reference[bufplace]++;
+  14:	3301      	adds	r3, #1
+  16:	7783      	strb	r3, [r0, #30]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:171
+}
+  18:	4770      	bx	lr
+  1a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.ioman_decRefCnt:
+
+00000000 <ioman_decRefCnt>:
+ioman_decRefCnt():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:176
+/*****************************************************************************/
+
+void ioman_decRefCnt(IOManager *ioman,euint16 bufplace)
+{
+	if(bufplace>=ioman->numbuf){
+   0:	8903      	ldrh	r3, [r0, #8]
+   2:	428b      	cmp	r3, r1
+   4:	d802      	bhi.n	c <ioman_decRefCnt+0xc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:177
+		ioman_setError(ioman,IOMAN_ERR_OPOUTOFBOUNDS);
+   6:	2305      	movs	r3, #5
+   8:	7303      	strb	r3, [r0, #12]
+   a:	e004      	b.n	16 <ioman_decRefCnt+0x16>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:180
+		return;
+	}
+	if(ioman->reference[bufplace]==0x00)return;
+   c:	1840      	adds	r0, r0, r1
+   e:	7f83      	ldrb	r3, [r0, #30]
+  10:	b10b      	cbz	r3, 16 <ioman_decRefCnt+0x16>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:181
+	else ioman->reference[bufplace]--;
+  12:	3b01      	subs	r3, #1
+  14:	7783      	strb	r3, [r0, #30]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:182
+}
+  16:	4770      	bx	lr
+Disassembly of section .text.ioman_resetRefCnt:
+
+00000000 <ioman_resetRefCnt>:
+ioman_resetRefCnt():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:187
+/*****************************************************************************/
+
+void ioman_resetRefCnt(IOManager *ioman,euint16 bufplace)
+{
+	if(bufplace>=ioman->numbuf){
+   0:	8903      	ldrh	r3, [r0, #8]
+   2:	428b      	cmp	r3, r1
+   4:	d802      	bhi.n	c <ioman_resetRefCnt+0xc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:188
+		ioman_setError(ioman,IOMAN_ERR_OPOUTOFBOUNDS);
+   6:	2305      	movs	r3, #5
+   8:	7303      	strb	r3, [r0, #12]
+   a:	e002      	b.n	12 <ioman_resetRefCnt+0x12>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:191
+		return;
+	}
+	ioman->reference[bufplace]=0x00;
+   c:	1842      	adds	r2, r0, r1
+   e:	2300      	movs	r3, #0
+  10:	7793      	strb	r3, [r2, #30]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:192
+}
+  12:	4770      	bx	lr
+Disassembly of section .text.ioman_pop:
+
+00000000 <ioman_pop>:
+ioman_pop():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:197
+/*****************************************************************************/
+
+esint8 ioman_pop(IOManager *ioman,euint16 bufplace)
+{
+	if(bufplace>=ioman->numbuf){
+   0:	8903      	ldrh	r3, [r0, #8]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:196
+	ioman->reference[bufplace]=0x00;
+}
+/*****************************************************************************/
+
+esint8 ioman_pop(IOManager *ioman,euint16 bufplace)
+{
+   2:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:197
+	if(bufplace>=ioman->numbuf){
+   4:	428b      	cmp	r3, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:196
+	ioman->reference[bufplace]=0x00;
+}
+/*****************************************************************************/
+
+esint8 ioman_pop(IOManager *ioman,euint16 bufplace)
+{
+   6:	460a      	mov	r2, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:197
+	if(bufplace>=ioman->numbuf){
+   8:	d803      	bhi.n	12 <ioman_pop+0x12>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:198
+		ioman_setError(ioman,IOMAN_ERR_POPEMPTYSTACK);
+   a:	2307      	movs	r3, #7
+   c:	7303      	strb	r3, [r0, #12]
+   e:	33f8      	adds	r3, #248
+  10:	e013      	b.n	3a <ioman_pop+0x3a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:201
+		return(-1);
+	}
+	if(ioman->itptr[bufplace]==0 || ioman->itptr[bufplace]>IOMAN_NUMITERATIONS)return(-1);
+  12:	1844      	adds	r4, r0, r1
+  14:	7fe3      	ldrb	r3, [r4, #31]
+  16:	2b01      	cmp	r3, #1
+  18:	d001      	beq.n	1e <ioman_pop+0x1e>
+  1a:	23ff      	movs	r3, #255
+  1c:	e00d      	b.n	3a <ioman_pop+0x3a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:202
+	ioman->sector[bufplace] = ioman->stack[bufplace][ioman->itptr[bufplace]].sector;
+  1e:	1cd3      	adds	r3, r2, #3
+  20:	f850 2033 	ldr.w	r2, [r0, r3, lsl #3]
+  24:	3106      	adds	r1, #6
+  26:	f840 2021 	str.w	r2, [r0, r1, lsl #2]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:203
+	ioman->status[bufplace] = ioman->stack[bufplace][ioman->itptr[bufplace]].status;
+  2a:	eb00 03c3 	add.w	r3, r0, r3, lsl #3
+  2e:	791a      	ldrb	r2, [r3, #4]
+  30:	7722      	strb	r2, [r4, #28]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:204
+	ioman->usage[bufplace]  = ioman->stack[bufplace][ioman->itptr[bufplace]].usage; 
+  32:	795b      	ldrb	r3, [r3, #5]
+  34:	7763      	strb	r3, [r4, #29]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:205
+	ioman->itptr[bufplace]--;
+  36:	2300      	movs	r3, #0
+  38:	77e3      	strb	r3, [r4, #31]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:207
+	return(0);
+}
+  3a:	b258      	sxtb	r0, r3
+  3c:	bd10      	pop	{r4, pc}
+  3e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.ioman_push:
+
+00000000 <ioman_push>:
+ioman_push():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:212
+/*****************************************************************************/
+
+esint8 ioman_push(IOManager *ioman,euint16 bufplace)
+{
+	if(bufplace>=ioman->numbuf){
+   0:	8903      	ldrh	r3, [r0, #8]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:211
+	return(0);
+}
+/*****************************************************************************/
+
+esint8 ioman_push(IOManager *ioman,euint16 bufplace)
+{
+   2:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:212
+	if(bufplace>=ioman->numbuf){
+   4:	428b      	cmp	r3, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:211
+	return(0);
+}
+/*****************************************************************************/
+
+esint8 ioman_push(IOManager *ioman,euint16 bufplace)
+{
+   6:	468c      	mov	ip, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:212
+	if(bufplace>=ioman->numbuf){
+   8:	d801      	bhi.n	e <ioman_push+0xe>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:213
+		ioman_setError(ioman,IOMAN_ERR_OPOUTOFBOUNDS);
+   a:	2305      	movs	r3, #5
+   c:	e003      	b.n	16 <ioman_push+0x16>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:216
+		return(-1);
+	}
+	if(ioman->itptr[bufplace]>=IOMAN_NUMITERATIONS){
+   e:	4401      	add	r1, r0
+  10:	7fcc      	ldrb	r4, [r1, #31]
+  12:	b11c      	cbz	r4, 1c <ioman_push+0x1c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:217
+		ioman_setError(ioman,IOMAN_ERR_PUSHBEYONDSTACK);	
+  14:	2306      	movs	r3, #6
+  16:	7303      	strb	r3, [r0, #12]
+  18:	20ff      	movs	r0, #255
+  1a:	e016      	b.n	4a <ioman_push+0x4a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:220
+		return(-1);
+	}
+	ioman->itptr[bufplace]++;
+  1c:	2301      	movs	r3, #1
+  1e:	77cb      	strb	r3, [r1, #31]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:221
+	ioman->stack[bufplace][ioman->itptr[bufplace]].sector = ioman->sector[bufplace];
+  20:	f10c 0306 	add.w	r3, ip, #6	; 0x6
+  24:	f850 3023 	ldr.w	r3, [r0, r3, lsl #2]
+  28:	f10c 0203 	add.w	r2, ip, #3	; 0x3
+  2c:	f840 3032 	str.w	r3, [r0, r2, lsl #3]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:222
+	ioman->stack[bufplace][ioman->itptr[bufplace]].status = ioman->status[bufplace];
+  30:	7fcb      	ldrb	r3, [r1, #31]
+  32:	7f0a      	ldrb	r2, [r1, #28]
+  34:	4463      	add	r3, ip
+  36:	eb00 03c3 	add.w	r3, r0, r3, lsl #3
+  3a:	751a      	strb	r2, [r3, #20]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:223
+	ioman->stack[bufplace][ioman->itptr[bufplace]].usage  = ioman->usage[bufplace];
+  3c:	7fcb      	ldrb	r3, [r1, #31]
+  3e:	7f4a      	ldrb	r2, [r1, #29]
+  40:	4463      	add	r3, ip
+  42:	eb00 03c3 	add.w	r3, r0, r3, lsl #3
+  46:	755a      	strb	r2, [r3, #21]
+  48:	4620      	mov	r0, r4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:225
+	return(0);
+}
+  4a:	b240      	sxtb	r0, r0
+  4c:	bd10      	pop	{r4, pc}
+  4e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.ioman_getPtr:
+
+00000000 <ioman_getPtr>:
+ioman_getPtr():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:230
+/*****************************************************************************/
+
+euint8* ioman_getPtr(IOManager *ioman,euint16 bufplace)
+{
+	if(bufplace>=ioman->numbuf){
+   0:	8903      	ldrh	r3, [r0, #8]
+   2:	428b      	cmp	r3, r1
+   4:	d803      	bhi.n	e <ioman_getPtr+0xe>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:231
+		ioman_setError(ioman,IOMAN_ERR_OPOUTOFBOUNDS);
+   6:	2305      	movs	r3, #5
+   8:	7303      	strb	r3, [r0, #12]
+   a:	2000      	movs	r0, #0
+   c:	e002      	b.n	14 <ioman_getPtr+0x14>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:234
+		return(0);
+	}
+	return(ioman->bufptr+bufplace*512);
+   e:	6843      	ldr	r3, [r0, #4]
+  10:	eb03 2041 	add.w	r0, r3, r1, lsl #9
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:235
+}
+  14:	4770      	bx	lr
+  16:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.ioman_getBp:
+
+00000000 <ioman_getBp>:
+ioman_getBp():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:239
+/*****************************************************************************/
+
+esint16 ioman_getBp(IOManager *ioman,euint8* buf)
+{
+   0:	460a      	mov	r2, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:240
+	if(buf<(ioman->bufptr) || buf>=( ioman->bufptr+(ioman->numbuf*512) )){
+   2:	6841      	ldr	r1, [r0, #4]
+   4:	428a      	cmp	r2, r1
+   6:	d304      	bcc.n	12 <ioman_getBp+0x12>
+   8:	8903      	ldrh	r3, [r0, #8]
+   a:	eb01 2343 	add.w	r3, r1, r3, lsl #9
+   e:	429a      	cmp	r2, r3
+  10:	d304      	bcc.n	1c <ioman_getBp+0x1c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:241
+		ioman_setError(ioman,IOMAN_ERR_CACHEPTROUTOFRANGE);
+  12:	2308      	movs	r3, #8
+  14:	7303      	strb	r3, [r0, #12]
+  16:	f64f 70ff 	movw	r0, #65535	; 0xffff
+  1a:	e005      	b.n	28 <ioman_getBp+0x28>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:244
+		return(-1);
+	}
+	return((buf-(ioman->bufptr))/512);
+  1c:	1a53      	subs	r3, r2, r1
+  1e:	f44f 7200 	mov.w	r2, #512	; 0x200
+  22:	fb93 f3f2 	sdiv	r3, r3, r2
+  26:	b298      	uxth	r0, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:245
+}
+  28:	b200      	sxth	r0, r0
+  2a:	4770      	bx	lr
+Disassembly of section .text.ioman_resetCacheItem:
+
+00000000 <ioman_resetCacheItem>:
+ioman_resetCacheItem():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:284
+}
+/*****************************************************************************/
+
+void ioman_resetCacheItem(IOManager *ioman,euint16 bufplace)
+{
+	if(bufplace>=ioman->numbuf){
+   0:	8903      	ldrh	r3, [r0, #8]
+   2:	428b      	cmp	r3, r1
+   4:	d802      	bhi.n	c <ioman_resetCacheItem+0xc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:285
+		ioman_setError(ioman,IOMAN_ERR_OPOUTOFBOUNDS);
+   6:	2305      	movs	r3, #5
+   8:	7303      	strb	r3, [r0, #12]
+   a:	e007      	b.n	1c <ioman_resetCacheItem+0x1c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:288
+		return;
+	}
+	ioman->sector[bufplace]    = 0;
+   c:	2200      	movs	r2, #0
+   e:	1d8b      	adds	r3, r1, #6
+  10:	f840 2023 	str.w	r2, [r0, r3, lsl #2]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:289
+	ioman->status[bufplace]    = 0;
+  14:	1843      	adds	r3, r0, r1
+  16:	771a      	strb	r2, [r3, #28]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:290
+	ioman->usage[bufplace]     = 0;
+  18:	775a      	strb	r2, [r3, #29]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:291
+	ioman->reference[bufplace] = 0;
+  1a:	779a      	strb	r2, [r3, #30]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:292
+}
+  1c:	4770      	bx	lr
+  1e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.ioman_findSectorInCache:
+
+00000000 <ioman_findSectorInCache>:
+ioman_findSectorInCache():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:296
+/*****************************************************************************/
+
+esint32 ioman_findSectorInCache(IOManager *ioman, euint32 address)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4605      	mov	r5, r0
+   4:	460e      	mov	r6, r1
+   6:	2400      	movs	r4, #0
+   8:	e00e      	b.n	28 <ioman_findSectorInCache+0x28>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:300
+	euint16 c;
+	
+	for(c=0;c<ioman->numbuf;c++){
+		if(ioman_isValid(c) && ioman->sector[c] == address)return(c);
+   a:	4628      	mov	r0, r5
+   c:	4621      	mov	r1, r4
+   e:	2200      	movs	r2, #0
+  10:	f7ff fffe 	bl	0 <ioman_findSectorInCache>
+  14:	b130      	cbz	r0, 24 <ioman_findSectorInCache+0x24>
+  16:	1da3      	adds	r3, r4, #6
+  18:	f855 3023 	ldr.w	r3, [r5, r3, lsl #2]
+  1c:	42b3      	cmp	r3, r6
+  1e:	d101      	bne.n	24 <ioman_findSectorInCache+0x24>
+  20:	4620      	mov	r0, r4
+  22:	e006      	b.n	32 <ioman_findSectorInCache+0x32>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:299
+
+esint32 ioman_findSectorInCache(IOManager *ioman, euint32 address)
+{
+	euint16 c;
+	
+	for(c=0;c<ioman->numbuf;c++){
+  24:	1c63      	adds	r3, r4, #1
+  26:	b29c      	uxth	r4, r3
+  28:	892b      	ldrh	r3, [r5, #8]
+  2a:	42a3      	cmp	r3, r4
+  2c:	d8ed      	bhi.n	a <ioman_findSectorInCache+0xa>
+  2e:	f04f 30ff 	mov.w	r0, #4294967295	; 0xffffffff
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:303
+		if(ioman_isValid(c) && ioman->sector[c] == address)return(c);
+	}
+	return(-1);
+}
+  32:	bd70      	pop	{r4, r5, r6, pc}
+Disassembly of section .text.ioman_findFreeSpot:
+
+00000000 <ioman_findFreeSpot>:
+ioman_findFreeSpot():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:307
+/*****************************************************************************/
+
+esint32 ioman_findFreeSpot(IOManager *ioman)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4605      	mov	r5, r0
+   4:	2400      	movs	r4, #0
+   6:	e009      	b.n	1c <ioman_findFreeSpot+0x1c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:311
+	euint16 c;
+	
+	for(c=0;c<ioman->numbuf;c++){
+		if(!ioman_isValid(c))return(c);
+   8:	4628      	mov	r0, r5
+   a:	4621      	mov	r1, r4
+   c:	2200      	movs	r2, #0
+   e:	f7ff fffe 	bl	0 <ioman_findFreeSpot>
+  12:	b908      	cbnz	r0, 18 <ioman_findFreeSpot+0x18>
+  14:	4620      	mov	r0, r4
+  16:	e006      	b.n	26 <ioman_findFreeSpot+0x26>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:310
+
+esint32 ioman_findFreeSpot(IOManager *ioman)
+{
+	euint16 c;
+	
+	for(c=0;c<ioman->numbuf;c++){
+  18:	1c63      	adds	r3, r4, #1
+  1a:	b29c      	uxth	r4, r3
+  1c:	892b      	ldrh	r3, [r5, #8]
+  1e:	42a3      	cmp	r3, r4
+  20:	d8f2      	bhi.n	8 <ioman_findFreeSpot+0x8>
+  22:	f04f 30ff 	mov.w	r0, #4294967295	; 0xffffffff
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:314
+		if(!ioman_isValid(c))return(c);
+	}
+	return(-1);
+}
+  26:	bd70      	pop	{r4, r5, r6, pc}
+Disassembly of section .text.ioman_findUnusedSpot:
+
+00000000 <ioman_findUnusedSpot>:
+ioman_findUnusedSpot():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:318
+/*****************************************************************************/
+
+esint32 ioman_findUnusedSpot(IOManager *ioman)
+{
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   4:	2400      	movs	r4, #0
+   6:	4605      	mov	r5, r0
+   8:	f04f 38ff 	mov.w	r8, #4294967295	; 0xffffffff
+   c:	4627      	mov	r7, r4
+   e:	26ff      	movs	r6, #255
+  10:	e02c      	b.n	6c <ioman_findUnusedSpot+0x6c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:324
+	esint32 r=-1;
+	euint16 c;
+	euint8 fr=0,lr=0xFF;
+	
+	for(c=0;c<ioman->numbuf;c++){
+		if(ioman_getUseCnt(ioman,c)==0){
+  12:	4628      	mov	r0, r5
+  14:	4621      	mov	r1, r4
+  16:	f7ff fffe 	bl	0 <ioman_findUnusedSpot>
+  1a:	bb28      	cbnz	r0, 68 <ioman_findUnusedSpot+0x68>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:325
+			if(!ioman_isWritable(c) && !fr){
+  1c:	4628      	mov	r0, r5
+  1e:	4621      	mov	r1, r4
+  20:	2202      	movs	r2, #2
+  22:	f7ff fffe 	bl	0 <ioman_findUnusedSpot>
+  26:	b920      	cbnz	r0, 32 <ioman_findUnusedSpot+0x32>
+  28:	b91f      	cbnz	r7, 32 <ioman_findUnusedSpot+0x32>
+  2a:	f04f 38ff 	mov.w	r8, #4294967295	; 0xffffffff
+  2e:	3701      	adds	r7, #1
+  30:	26ff      	movs	r6, #255
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:330
+				fr=1;
+				lr=0xFF;
+				r=-1;
+			}
+			if(ioman_isWritable(c) && !fr){
+  32:	4628      	mov	r0, r5
+  34:	4621      	mov	r1, r4
+  36:	2202      	movs	r2, #2
+  38:	f7ff fffe 	bl	0 <ioman_findUnusedSpot>
+  3c:	b108      	cbz	r0, 42 <ioman_findUnusedSpot+0x42>
+  3e:	b90f      	cbnz	r7, 44 <ioman_findUnusedSpot+0x44>
+  40:	e006      	b.n	50 <ioman_findUnusedSpot+0x50>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:336
+				if(ioman_getRefCnt(ioman,c)<=lr){
+					r=c;
+					lr=ioman_getRefCnt(ioman,c);
+				}
+			}
+			if(fr && !ioman_isWritable(c)){
+  42:	b18f      	cbz	r7, 68 <ioman_findUnusedSpot+0x68>
+  44:	4628      	mov	r0, r5
+  46:	4621      	mov	r1, r4
+  48:	2202      	movs	r2, #2
+  4a:	f7ff fffe 	bl	0 <ioman_findUnusedSpot>
+  4e:	b958      	cbnz	r0, 68 <ioman_findUnusedSpot+0x68>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:337
+				if(ioman_getRefCnt(ioman,c)<=lr){
+  50:	4628      	mov	r0, r5
+  52:	4621      	mov	r1, r4
+  54:	f7ff fffe 	bl	0 <ioman_findUnusedSpot>
+  58:	42b0      	cmp	r0, r6
+  5a:	d805      	bhi.n	68 <ioman_findUnusedSpot+0x68>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:339
+					r=c;
+					lr=ioman_getRefCnt(ioman,c);
+  5c:	4628      	mov	r0, r5
+  5e:	4621      	mov	r1, r4
+  60:	f7ff fffe 	bl	0 <ioman_findUnusedSpot>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:338
+					lr=ioman_getRefCnt(ioman,c);
+				}
+			}
+			if(fr && !ioman_isWritable(c)){
+				if(ioman_getRefCnt(ioman,c)<=lr){
+					r=c;
+  64:	46a0      	mov	r8, r4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:339
+					lr=ioman_getRefCnt(ioman,c);
+  66:	4606      	mov	r6, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:323
+{
+	esint32 r=-1;
+	euint16 c;
+	euint8 fr=0,lr=0xFF;
+	
+	for(c=0;c<ioman->numbuf;c++){
+  68:	1c63      	adds	r3, r4, #1
+  6a:	b29c      	uxth	r4, r3
+  6c:	892b      	ldrh	r3, [r5, #8]
+  6e:	42a3      	cmp	r3, r4
+  70:	d8cf      	bhi.n	12 <ioman_findUnusedSpot+0x12>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:345
+				}
+			}
+		}
+	}
+	return(r);
+}
+  72:	4640      	mov	r0, r8
+  74:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+Disassembly of section .text.ioman_findOverallocableSpot:
+
+00000000 <ioman_findOverallocableSpot>:
+ioman_findOverallocableSpot():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:349
+/*****************************************************************************/
+
+esint32 ioman_findOverallocableSpot(IOManager *ioman)
+{
+   0:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
+   4:	4607      	mov	r7, r0
+   6:	f04f 0aff 	mov.w	sl, #255	; 0xff
+   a:	2600      	movs	r6, #0
+   c:	f04f 38ff 	mov.w	r8, #4294967295	; 0xffffffff
+  10:	e02a      	b.n	68 <ioman_findOverallocableSpot+0x68>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:355
+	euint8 points,lp=0xFF;
+	euint16 c;
+	esint32 r=-1;
+	
+	for(c=0;c<ioman->numbuf;c++){
+		if(ioman->itptr[c]<ioman->numit){
+  12:	19bc      	adds	r4, r7, r6
+  14:	7fe2      	ldrb	r2, [r4, #31]
+  16:	897b      	ldrh	r3, [r7, #10]
+  18:	46b1      	mov	r9, r6
+  1a:	429a      	cmp	r2, r3
+  1c:	d220      	bcs.n	60 <ioman_findOverallocableSpot+0x60>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:357
+			points = 0;
+			if(ioman_isWritable(c))points+=0x7F;
+  1e:	2202      	movs	r2, #2
+  20:	4631      	mov	r1, r6
+  22:	4638      	mov	r0, r7
+  24:	f7ff fffe 	bl	0 <ioman_findOverallocableSpot>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:358
+			points += ((euint16)(ioman->itptr[c]*0x4D))/(ioman->numit);
+  28:	7fe3      	ldrb	r3, [r4, #31]
+  2a:	244d      	movs	r4, #77
+  2c:	435c      	muls	r4, r3
+  2e:	897b      	ldrh	r3, [r7, #10]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:357
+	esint32 r=-1;
+	
+	for(c=0;c<ioman->numbuf;c++){
+		if(ioman->itptr[c]<ioman->numit){
+			points = 0;
+			if(ioman_isWritable(c))points+=0x7F;
+  30:	2800      	cmp	r0, #0
+  32:	bf14      	ite	ne
+  34:	257f      	movne	r5, #127
+  36:	2500      	moveq	r5, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:359
+			points += ((euint16)(ioman->itptr[c]*0x4D))/(ioman->numit);
+			points += ((euint16)(ioman_getRefCnt(ioman,c)*0x33))/0xFF;
+  38:	4631      	mov	r1, r6
+  3a:	4638      	mov	r0, r7
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:358
+	
+	for(c=0;c<ioman->numbuf;c++){
+		if(ioman->itptr[c]<ioman->numit){
+			points = 0;
+			if(ioman_isWritable(c))points+=0x7F;
+			points += ((euint16)(ioman->itptr[c]*0x4D))/(ioman->numit);
+  3c:	fbb4 f4f3 	udiv	r4, r4, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:359
+			points += ((euint16)(ioman_getRefCnt(ioman,c)*0x33))/0xFF;
+  40:	f7ff fffe 	bl	0 <ioman_findOverallocableSpot>
+  44:	2333      	movs	r3, #51
+  46:	4343      	muls	r3, r0
+  48:	22ff      	movs	r2, #255
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:358
+	
+	for(c=0;c<ioman->numbuf;c++){
+		if(ioman->itptr[c]<ioman->numit){
+			points = 0;
+			if(ioman_isWritable(c))points+=0x7F;
+			points += ((euint16)(ioman->itptr[c]*0x4D))/(ioman->numit);
+  4a:	b2e4      	uxtb	r4, r4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:359
+			points += ((euint16)(ioman_getRefCnt(ioman,c)*0x33))/0xFF;
+  4c:	b29b      	uxth	r3, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:358
+	
+	for(c=0;c<ioman->numbuf;c++){
+		if(ioman->itptr[c]<ioman->numit){
+			points = 0;
+			if(ioman_isWritable(c))points+=0x7F;
+			points += ((euint16)(ioman->itptr[c]*0x4D))/(ioman->numit);
+  4e:	192d      	adds	r5, r5, r4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:359
+			points += ((euint16)(ioman_getRefCnt(ioman,c)*0x33))/0xFF;
+  50:	fbb3 f3f2 	udiv	r3, r3, r2
+  54:	18ed      	adds	r5, r5, r3
+  56:	4015      	ands	r5, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:360
+			if(points<lp){
+  58:	4555      	cmp	r5, sl
+  5a:	d201      	bcs.n	60 <ioman_findOverallocableSpot+0x60>
+  5c:	46aa      	mov	sl, r5
+  5e:	e000      	b.n	62 <ioman_findOverallocableSpot+0x62>
+  60:	46c1      	mov	r9, r8
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:354
+{
+	euint8 points,lp=0xFF;
+	euint16 c;
+	esint32 r=-1;
+	
+	for(c=0;c<ioman->numbuf;c++){
+  62:	1c73      	adds	r3, r6, #1
+  64:	b29e      	uxth	r6, r3
+  66:	46c8      	mov	r8, r9
+  68:	893b      	ldrh	r3, [r7, #8]
+  6a:	42b3      	cmp	r3, r6
+  6c:	d8d1      	bhi.n	12 <ioman_findOverallocableSpot+0x12>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:367
+				r=c;
+			}
+		}
+	}
+	return(r);
+}
+  6e:	4640      	mov	r0, r8
+  70:	e8bd 87f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, pc}
+Disassembly of section .text.ioman_printStatus:
+
+00000000 <ioman_printStatus>:
+ioman_printStatus():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:578
+	return(0);
+}
+/*****************************************************************************/
+
+void ioman_printStatus(IOManager *ioman)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4605      	mov	r5, r0
+   4:	2400      	movs	r4, #0
+   6:	e006      	b.n	16 <ioman_printStatus+0x16>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:585
+	
+	//DBG((TXT("IO-Manager -- Report\n====================\n")));
+	//DBG((TXT("Buffer is %i sectors, from %p to %p\n"),
+	          //ioman->numbuf,ioman->bufptr,ioman->bufptr+(ioman->numbuf*512)));
+	for(c=0;c<ioman->numbuf;c++){
+		if(ioman_isValid(c)){
+   8:	4621      	mov	r1, r4
+   a:	4628      	mov	r0, r5
+   c:	2200      	movs	r2, #0
+   e:	f7ff fffe 	bl	0 <ioman_printStatus>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:584
+	euint16 c;
+	
+	//DBG((TXT("IO-Manager -- Report\n====================\n")));
+	//DBG((TXT("Buffer is %i sectors, from %p to %p\n"),
+	          //ioman->numbuf,ioman->bufptr,ioman->bufptr+(ioman->numbuf*512)));
+	for(c=0;c<ioman->numbuf;c++){
+  12:	1c63      	adds	r3, r4, #1
+  14:	b29c      	uxth	r4, r3
+  16:	892b      	ldrh	r3, [r5, #8]
+  18:	42a3      	cmp	r3, r4
+  1a:	d8f5      	bhi.n	8 <ioman_printStatus+0x8>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:592
+				//c,ioman->sector[c],ioman_getUseCnt(ioman,c),ioman_getRefCnt(ioman,c),
+				//ioman_isUserBuf(c) ? "USRBUF" : "      ",
+				//ioman_isWritable(c) ? "WRITABLE" : "READONLY"));
+		}
+	}
+}
+  1c:	bd70      	pop	{r4, r5, r6, pc}
+  1e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.ioman_writeSector:
+
+00000000 <ioman_writeSector>:
+ioman_writeSector():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:267
+	return(0);
+}
+/*****************************************************************************/
+
+esint8 ioman_writeSector(IOManager *ioman, euint32 address, euint8* buf)
+{
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:270
+	esint8 r;
+
+	if(buf==0)return(-1);
+   4:	b14a      	cbz	r2, 1a <ioman_writeSector+0x1a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:272
+	
+	r=if_writeBuf(ioman->iface,address,buf);
+   6:	6800      	ldr	r0, [r0, #0]
+   8:	f7ff fffe 	bl	0 <if_writeBuf>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:274
+
+	if(r<=0){
+   c:	b240      	sxtb	r0, r0
+   e:	2800      	cmp	r0, #0
+  10:	dd01      	ble.n	16 <if_writeBuf+0x16>
+  12:	2000      	movs	r0, #0
+  14:	e002      	b.n	1c <if_writeBuf+0x1c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:275
+		ioman_setError(ioman,IOMAN_ERR_WRITEFAIL);
+  16:	2304      	movs	r3, #4
+  18:	7323      	strb	r3, [r4, #12]
+  1a:	20ff      	movs	r0, #255
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:279
+		return(-1);
+	}
+	return(0);
+}
+  1c:	b240      	sxtb	r0, r0
+  1e:	bd10      	pop	{r4, pc}
+Disassembly of section .text.ioman_directSectorWrite:
+
+00000000 <ioman_directSectorWrite>:
+ioman_directSectorWrite():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:548
+	return(0);
+}
+/*****************************************************************************/
+
+esint8 ioman_directSectorWrite(IOManager *ioman,euint32 address, euint8* buf)
+{
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   4:	4605      	mov	r5, r0
+   6:	4688      	mov	r8, r1
+   8:	4616      	mov	r6, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:552
+	euint8* ibuf;
+	esint16 bp;
+	
+	if((bp=ioman_findSectorInCache(ioman,address))!=-1){
+   a:	f7ff fffe 	bl	0 <ioman_directSectorWrite>
+   e:	b280      	uxth	r0, r0
+  10:	b203      	sxth	r3, r0
+  12:	f1b3 3fff 	cmp.w	r3, #4294967295	; 0xffffffff
+  16:	d00e      	beq.n	36 <ioman_directSectorWrite+0x36>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:553
+		ibuf=ioman_getPtr(ioman,bp);
+  18:	b284      	uxth	r4, r0
+  1a:	4621      	mov	r1, r4
+  1c:	4628      	mov	r0, r5
+  1e:	f7ff fffe 	bl	0 <ioman_directSectorWrite>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:554
+		memCpy(buf,ibuf,512);
+  22:	f44f 7200 	mov.w	r2, #512	; 0x200
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:553
+{
+	euint8* ibuf;
+	esint16 bp;
+	
+	if((bp=ioman_findSectorInCache(ioman,address))!=-1){
+		ibuf=ioman_getPtr(ioman,bp);
+  26:	4601      	mov	r1, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:554
+		memCpy(buf,ibuf,512);
+  28:	4630      	mov	r0, r6
+  2a:	f7ff fffe 	bl	0 <memCpy>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:555
+		ioman_setWritable(bp);
+  2e:	4628      	mov	r0, r5
+  30:	4621      	mov	r1, r4
+  32:	2202      	movs	r2, #2
+  34:	e022      	b.n	7c <ioman_directSectorWrite+0x7c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:559
+		return(0);
+	}
+	
+	if((bp=ioman_findFreeSpot(ioman))!=-1){
+  36:	4628      	mov	r0, r5
+  38:	f7ff fffe 	bl	0 <ioman_directSectorWrite>
+  3c:	b280      	uxth	r0, r0
+  3e:	b207      	sxth	r7, r0
+  40:	f1b7 3fff 	cmp.w	r7, #4294967295	; 0xffffffff
+  44:	d01f      	beq.n	86 <ioman_directSectorWrite+0x86>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:560
+		ibuf=ioman_getPtr(ioman,bp);
+  46:	b284      	uxth	r4, r0
+  48:	4621      	mov	r1, r4
+  4a:	4628      	mov	r0, r5
+  4c:	f7ff fffe 	bl	0 <ioman_directSectorWrite>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:561
+		memCpy(buf,ibuf,512);
+  50:	f44f 7200 	mov.w	r2, #512	; 0x200
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:560
+		ioman_setWritable(bp);
+		return(0);
+	}
+	
+	if((bp=ioman_findFreeSpot(ioman))!=-1){
+		ibuf=ioman_getPtr(ioman,bp);
+  54:	4601      	mov	r1, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:561
+		memCpy(buf,ibuf,512);
+  56:	4630      	mov	r0, r6
+  58:	f7ff fffe 	bl	0 <memCpy>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:562
+		ioman_resetCacheItem(ioman,bp);
+  5c:	4628      	mov	r0, r5
+  5e:	4621      	mov	r1, r4
+  60:	f7ff fffe 	bl	0 <ioman_directSectorWrite>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:563
+		ioman->sector[bp]=address;
+  64:	1dbb      	adds	r3, r7, #6
+  66:	f845 8023 	str.w	r8, [r5, r3, lsl #2]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:564
+		ioman_setWritable(bp);
+  6a:	4628      	mov	r0, r5
+  6c:	4621      	mov	r1, r4
+  6e:	2202      	movs	r2, #2
+  70:	2301      	movs	r3, #1
+  72:	f7ff fffe 	bl	0 <ioman_directSectorWrite>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:565
+		ioman_setValid(bp);
+  76:	4628      	mov	r0, r5
+  78:	4621      	mov	r1, r4
+  7a:	2200      	movs	r2, #0
+  7c:	2301      	movs	r3, #1
+  7e:	f7ff fffe 	bl	0 <ioman_directSectorWrite>
+  82:	2000      	movs	r0, #0
+  84:	e009      	b.n	9a <ioman_directSectorWrite+0x9a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:569
+		return(0);
+	}
+
+	if(ioman_writeSector(ioman,address,buf)){
+  86:	4628      	mov	r0, r5
+  88:	4641      	mov	r1, r8
+  8a:	4632      	mov	r2, r6
+  8c:	f7ff fffe 	bl	0 <ioman_directSectorWrite>
+  90:	b2c0      	uxtb	r0, r0
+  92:	2800      	cmp	r0, #0
+  94:	bf14      	ite	ne
+  96:	20ff      	movne	r0, #255
+  98:	2000      	moveq	r0, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:574
+		return(-1);
+	}
+
+	return(0);
+}
+  9a:	b240      	sxtb	r0, r0
+  9c:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+Disassembly of section .text.ioman_flushSector:
+
+00000000 <ioman_flushSector>:
+ioman_flushSector():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:390
+}
+/*****************	if(bufplace>=ioman->numbuf)return;
+************************************************************/
+
+esint8 ioman_flushSector(IOManager *ioman, euint16 bufplace)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4604      	mov	r4, r0
+   4:	460d      	mov	r5, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:393
+	euint8* buf;
+	
+	if((buf = ioman_getPtr(ioman,bufplace))==0){
+   6:	f7ff fffe 	bl	0 <ioman_flushSector>
+   a:	4606      	mov	r6, r0
+   c:	b908      	cbnz	r0, 12 <ioman_flushSector+0x12>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:394
+		ioman_setError(ioman,IOMAN_ERR_CACHEPTROUTOFRANGE);
+   e:	2308      	movs	r3, #8
+  10:	e006      	b.n	20 <ioman_flushSector+0x20>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:397
+		return(-1);
+	}
+	if(!ioman_isWritable(bufplace)){
+  12:	4620      	mov	r0, r4
+  14:	4629      	mov	r1, r5
+  16:	2202      	movs	r2, #2
+  18:	f7ff fffe 	bl	0 <ioman_flushSector>
+  1c:	b918      	cbnz	r0, 26 <ioman_flushSector+0x26>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:398
+		ioman_setError(ioman,IOMAN_ERR_WRITEREADONLYSECTOR);
+  1e:	2309      	movs	r3, #9
+  20:	7323      	strb	r3, [r4, #12]
+  22:	30ff      	adds	r0, #255
+  24:	e00e      	b.n	44 <ioman_flushSector+0x44>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:401
+		return(-1);
+	}
+	if(!(ioman_writeSector(ioman,ioman->sector[bufplace],buf))){
+  26:	1dab      	adds	r3, r5, #6
+  28:	4620      	mov	r0, r4
+  2a:	f854 1023 	ldr.w	r1, [r4, r3, lsl #2]
+  2e:	4632      	mov	r2, r6
+  30:	f7ff fffe 	bl	0 <ioman_flushSector>
+  34:	f010 0fff 	tst.w	r0, #255	; 0xff
+  38:	d001      	beq.n	3e <ioman_flushSector+0x3e>
+  3a:	2000      	movs	r0, #0
+  3c:	e002      	b.n	44 <ioman_flushSector+0x44>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:402
+		ioman_setError(ioman,IOMAN_ERR_WRITEFAIL);	
+  3e:	2304      	movs	r3, #4
+  40:	7323      	strb	r3, [r4, #12]
+  42:	20ff      	movs	r0, #255
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:407
+		return(-1);
+	}
+	if(ioman->usage==0)ioman_setNotWritable(bufplace);
+	return(0);
+}
+  44:	b240      	sxtb	r0, r0
+  46:	bd70      	pop	{r4, r5, r6, pc}
+Disassembly of section .text.ioman_flushAll:
+
+00000000 <ioman_flushAll>:
+ioman_flushAll():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:431
+	return(0);
+}
+/*****************************************************************************/
+
+esint8 ioman_flushAll(IOManager *ioman)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4605      	mov	r5, r0
+   4:	2400      	movs	r4, #0
+   6:	e018      	b.n	3a <ioman_flushAll+0x3a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:435
+	euint16 c;
+	
+	for(c=0;c<ioman->numbuf;c++){
+		if(ioman_isWritable(c)){
+   8:	4628      	mov	r0, r5
+   a:	4621      	mov	r1, r4
+   c:	2202      	movs	r2, #2
+   e:	f7ff fffe 	bl	0 <ioman_flushAll>
+  12:	b180      	cbz	r0, 36 <ioman_flushAll+0x36>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:436
+			if(ioman_flushSector(ioman,c)){
+  14:	4628      	mov	r0, r5
+  16:	4621      	mov	r1, r4
+  18:	f7ff fffe 	bl	0 <ioman_flushAll>
+  1c:	f010 0fff 	tst.w	r0, #255	; 0xff
+  20:	d001      	beq.n	26 <ioman_flushAll+0x26>
+  22:	20ff      	movs	r0, #255
+  24:	e00d      	b.n	42 <ioman_flushAll+0x42>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:439
+				return(-1);
+			}
+			if(ioman->usage[c]==0)ioman_setNotWritable(c);
+  26:	192b      	adds	r3, r5, r4
+  28:	7f5b      	ldrb	r3, [r3, #29]
+  2a:	b923      	cbnz	r3, 36 <ioman_flushAll+0x36>
+  2c:	4628      	mov	r0, r5
+  2e:	4621      	mov	r1, r4
+  30:	2202      	movs	r2, #2
+  32:	f7ff fffe 	bl	0 <ioman_flushAll>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:434
+
+esint8 ioman_flushAll(IOManager *ioman)
+{
+	euint16 c;
+	
+	for(c=0;c<ioman->numbuf;c++){
+  36:	1c63      	adds	r3, r4, #1
+  38:	b29c      	uxth	r4, r3
+  3a:	892b      	ldrh	r3, [r5, #8]
+  3c:	42a3      	cmp	r3, r4
+  3e:	d8e3      	bhi.n	8 <ioman_flushAll+0x8>
+  40:	2000      	movs	r0, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:443
+			}
+			if(ioman->usage[c]==0)ioman_setNotWritable(c);
+		}
+	}
+	return(0);
+}
+  42:	b240      	sxtb	r0, r0
+  44:	bd70      	pop	{r4, r5, r6, pc}
+  46:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.ioman_flushRange:
+
+00000000 <ioman_flushRange>:
+ioman_flushRange():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:414
+
+esint8 ioman_flushRange(IOManager *ioman,euint32 address_low, euint32 address_high)
+{
+	euint32 c;
+	
+	if(address_low>address_high){
+   0:	4291      	cmp	r1, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:411
+	return(0);
+}
+/*****************************************************************************/
+
+esint8 ioman_flushRange(IOManager *ioman,euint32 address_low, euint32 address_high)
+{
+   2:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
+   6:	4606      	mov	r6, r0
+   8:	4688      	mov	r8, r1
+   a:	4617      	mov	r7, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:414
+	euint32 c;
+	
+	if(address_low>address_high){
+   c:	d901      	bls.n	12 <ioman_flushRange+0x12>
+   e:	460f      	mov	r7, r1
+  10:	4690      	mov	r8, r2
+  12:	46b1      	mov	r9, r6
+  14:	2500      	movs	r5, #0
+  16:	e020      	b.n	5a <ioman_flushRange+0x5a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:419
+		c=address_low; address_low=address_high;address_high=c;
+	}
+	
+	for(c=0;c<ioman->numbuf;c++){
+		if((ioman->sector[c]>=address_low) && (ioman->sector[c]<=address_high) && (ioman_isWritable(c))){
+  18:	f8d9 3018 	ldr.w	r3, [r9, #24]
+  1c:	4543      	cmp	r3, r8
+  1e:	d319      	bcc.n	54 <ioman_flushRange+0x54>
+  20:	42bb      	cmp	r3, r7
+  22:	d817      	bhi.n	54 <ioman_flushRange+0x54>
+  24:	b2ac      	uxth	r4, r5
+  26:	4630      	mov	r0, r6
+  28:	4621      	mov	r1, r4
+  2a:	2202      	movs	r2, #2
+  2c:	f7ff fffe 	bl	0 <ioman_flushRange>
+  30:	b180      	cbz	r0, 54 <ioman_flushRange+0x54>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:420
+			if(ioman_flushSector(ioman,c)){
+  32:	4630      	mov	r0, r6
+  34:	4621      	mov	r1, r4
+  36:	f7ff fffe 	bl	0 <ioman_flushRange>
+  3a:	f010 0fff 	tst.w	r0, #255	; 0xff
+  3e:	d001      	beq.n	44 <ioman_flushRange+0x44>
+  40:	20ff      	movs	r0, #255
+  42:	e00e      	b.n	62 <ioman_flushRange+0x62>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:423
+				return(-1);
+			}
+			if(ioman->usage[c]==0)ioman_setNotWritable(c);
+  44:	1973      	adds	r3, r6, r5
+  46:	7f5b      	ldrb	r3, [r3, #29]
+  48:	b923      	cbnz	r3, 54 <ioman_flushRange+0x54>
+  4a:	4630      	mov	r0, r6
+  4c:	4621      	mov	r1, r4
+  4e:	2202      	movs	r2, #2
+  50:	f7ff fffe 	bl	0 <ioman_flushRange>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:418
+	
+	if(address_low>address_high){
+		c=address_low; address_low=address_high;address_high=c;
+	}
+	
+	for(c=0;c<ioman->numbuf;c++){
+  54:	3501      	adds	r5, #1
+  56:	f109 0904 	add.w	r9, r9, #4	; 0x4
+  5a:	8933      	ldrh	r3, [r6, #8]
+  5c:	429d      	cmp	r5, r3
+  5e:	d3db      	bcc.n	18 <ioman_flushRange+0x18>
+  60:	2000      	movs	r0, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:427
+			}
+			if(ioman->usage[c]==0)ioman_setNotWritable(c);
+		}
+	}
+	return(0);
+}
+  62:	b240      	sxtb	r0, r0
+  64:	e8bd 87f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, pc}
+Disassembly of section .text.ioman_readSector:
+
+00000000 <ioman_readSector>:
+ioman_readSector():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:249
+	return((buf-(ioman->bufptr))/512);
+}
+/*****************************************************************************/
+
+esint8 ioman_readSector(IOManager *ioman,euint32 address,euint8* buf)
+{
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:252
+	esint8 r;
+
+	if(buf==0){
+   4:	b132      	cbz	r2, 14 <ioman_readSector+0x14>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:256
+		return(-1);
+	}
+	
+	r=if_readBuf(ioman->iface,address,buf);
+   6:	6800      	ldr	r0, [r0, #0]
+   8:	f7ff fffe 	bl	0 <if_readBuf>
+   c:	b2c0      	uxtb	r0, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:258
+	
+	if(r!=0){
+   e:	b110      	cbz	r0, 16 <if_readBuf+0x16>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:259
+		ioman_setError(ioman,IOMAN_ERR_READFAIL);
+  10:	2303      	movs	r3, #3
+  12:	7323      	strb	r3, [r4, #12]
+  14:	20ff      	movs	r0, #255
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:263
+		return(-1);
+	}
+	return(0);
+}
+  16:	b240      	sxtb	r0, r0
+  18:	bd10      	pop	{r4, pc}
+  1a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.ioman_putSectorInCache:
+
+00000000 <ioman_putSectorInCache>:
+ioman_putSectorInCache():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:371
+	return(r);
+}
+/*****************************************************************************/
+
+esint8 ioman_putSectorInCache(IOManager *ioman, euint32 address, euint16 bufplace)
+{
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   4:	460f      	mov	r7, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:374
+	euint8* buf;
+	
+	if((buf = ioman_getPtr(ioman,bufplace))==0){
+   6:	4611      	mov	r1, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:371
+	return(r);
+}
+/*****************************************************************************/
+
+esint8 ioman_putSectorInCache(IOManager *ioman, euint32 address, euint16 bufplace)
+{
+   8:	4616      	mov	r6, r2
+   a:	4605      	mov	r5, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:374
+	euint8* buf;
+	
+	if((buf = ioman_getPtr(ioman,bufplace))==0){
+   c:	f7ff fffe 	bl	0 <ioman_putSectorInCache>
+  10:	4602      	mov	r2, r0
+  12:	b908      	cbnz	r0, 18 <ioman_putSectorInCache+0x18>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:375
+		ioman_setError(ioman,IOMAN_ERR_CACHEPTROUTOFRANGE);
+  14:	2308      	movs	r3, #8
+  16:	e006      	b.n	26 <ioman_putSectorInCache+0x26>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:378
+		return(-1);
+	}
+	if((ioman_readSector(ioman,address,buf))){
+  18:	4628      	mov	r0, r5
+  1a:	4639      	mov	r1, r7
+  1c:	f7ff fffe 	bl	0 <ioman_putSectorInCache>
+  20:	b2c4      	uxtb	r4, r0
+  22:	b11c      	cbz	r4, 2c <ioman_putSectorInCache+0x2c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:379
+		ioman_setError(ioman,IOMAN_ERR_READFAIL);
+  24:	2303      	movs	r3, #3
+  26:	732b      	strb	r3, [r5, #12]
+  28:	22ff      	movs	r2, #255
+  2a:	e009      	b.n	40 <ioman_putSectorInCache+0x40>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:382
+		return(-1);
+	}
+	ioman_setValid(bufplace);
+  2c:	4622      	mov	r2, r4
+  2e:	2301      	movs	r3, #1
+  30:	4628      	mov	r0, r5
+  32:	4631      	mov	r1, r6
+  34:	f7ff fffe 	bl	0 <ioman_putSectorInCache>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:383
+	ioman->sector[bufplace]=address;
+  38:	1db3      	adds	r3, r6, #6
+  3a:	f845 7023 	str.w	r7, [r5, r3, lsl #2]
+  3e:	4622      	mov	r2, r4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:385
+	return(0);
+}
+  40:	b250      	sxtb	r0, r2
+  42:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+  46:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.ioman_releaseSector:
+
+00000000 <ioman_releaseSector>:
+ioman_releaseSector():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:502
+	return(0);
+}
+/*****************************************************************************/
+
+esint8 ioman_releaseSector(IOManager *ioman,euint8* buf)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4605      	mov	r5, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:505
+	euint16 bp;
+	
+	bp=ioman_getBp(ioman,buf);
+   4:	f7ff fffe 	bl	0 <ioman_releaseSector>
+   8:	b284      	uxth	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:506
+	ioman_decUseCnt(ioman,bp);
+   a:	4621      	mov	r1, r4
+   c:	4628      	mov	r0, r5
+   e:	f7ff fffe 	bl	0 <ioman_releaseSector>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:508
+	
+	if(ioman_getUseCnt(ioman,bp)==0 && ioman->itptr[bp]!=0){
+  12:	4628      	mov	r0, r5
+  14:	4621      	mov	r1, r4
+  16:	f7ff fffe 	bl	0 <ioman_releaseSector>
+  1a:	b9b8      	cbnz	r0, 4c <ioman_releaseSector+0x4c>
+  1c:	192b      	adds	r3, r5, r4
+  1e:	7fdb      	ldrb	r3, [r3, #31]
+  20:	b1a3      	cbz	r3, 4c <ioman_releaseSector+0x4c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:509
+		if(ioman_isWritable(bp)){
+  22:	4628      	mov	r0, r5
+  24:	4621      	mov	r1, r4
+  26:	2202      	movs	r2, #2
+  28:	f7ff fffe 	bl	0 <ioman_releaseSector>
+  2c:	b118      	cbz	r0, 36 <ioman_releaseSector+0x36>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:510
+			ioman_flushSector(ioman,bp);
+  2e:	4628      	mov	r0, r5
+  30:	4621      	mov	r1, r4
+  32:	f7ff fffe 	bl	0 <ioman_releaseSector>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:512
+		}
+		ioman_pop(ioman,bp);
+  36:	4621      	mov	r1, r4
+  38:	4628      	mov	r0, r5
+  3a:	f7ff fffe 	bl	0 <ioman_releaseSector>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:513
+		ioman_putSectorInCache(ioman,ioman->sector[bp],bp);
+  3e:	1da3      	adds	r3, r4, #6
+  40:	4628      	mov	r0, r5
+  42:	f855 1023 	ldr.w	r1, [r5, r3, lsl #2]
+  46:	4622      	mov	r2, r4
+  48:	f7ff fffe 	bl	0 <ioman_releaseSector>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:516
+	}
+	return(0);
+}
+  4c:	2000      	movs	r0, #0
+  4e:	bd70      	pop	{r4, r5, r6, pc}
+Disassembly of section .text.ioman_getSector:
+
+00000000 <ioman_getSector>:
+ioman_getSector():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:447
+	return(0);
+}
+/*****************************************************************************/
+
+euint8* ioman_getSector(IOManager *ioman,euint32 address, euint8 mode)
+{
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   4:	4604      	mov	r4, r0
+   6:	4688      	mov	r8, r1
+   8:	4617      	mov	r7, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:450
+	esint32 bp;
+	
+	if((bp=ioman_findSectorInCache(ioman,address))!=-1){
+   a:	f7ff fffe 	bl	0 <ioman_getSector>
+   e:	f1b0 3fff 	cmp.w	r0, #4294967295	; 0xffffffff
+  12:	4605      	mov	r5, r0
+  14:	d00a      	beq.n	2c <ioman_getSector+0x2c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:451
+		if(ioman_isReqRw(mode)){
+  16:	f017 0f02 	tst.w	r7, #2	; 0x2
+  1a:	d005      	beq.n	28 <ioman_getSector+0x28>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:452
+			ioman_setWritable(bp);
+  1c:	4620      	mov	r0, r4
+  1e:	b2a9      	uxth	r1, r5
+  20:	2202      	movs	r2, #2
+  22:	2301      	movs	r3, #1
+  24:	f7ff fffe 	bl	0 <ioman_getSector>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:454
+		}
+		ioman_incUseCnt(ioman,bp);
+  28:	b2ad      	uxth	r5, r5
+  2a:	e052      	b.n	d2 <ioman_getSector+0xd2>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:459
+		if(!ioman_isReqExp(mode))ioman_incRefCnt(ioman,bp);
+		return(ioman_getPtr(ioman,bp));
+	}
+	
+	if((bp=ioman_findFreeSpot(ioman))==-1){
+  2c:	4620      	mov	r0, r4
+  2e:	f7ff fffe 	bl	0 <ioman_getSector>
+  32:	f1b0 3fff 	cmp.w	r0, #4294967295	; 0xffffffff
+  36:	4605      	mov	r5, r0
+  38:	d111      	bne.n	5e <ioman_getSector+0x5e>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:460
+		if(((bp=ioman_findUnusedSpot(ioman))!=-1)&&(ioman_isWritable(bp))){
+  3a:	4620      	mov	r0, r4
+  3c:	f7ff fffe 	bl	0 <ioman_getSector>
+  40:	f1b0 3fff 	cmp.w	r0, #4294967295	; 0xffffffff
+  44:	4605      	mov	r5, r0
+  46:	d059      	beq.n	fc <ioman_getSector+0xfc>
+  48:	b286      	uxth	r6, r0
+  4a:	4631      	mov	r1, r6
+  4c:	4620      	mov	r0, r4
+  4e:	2202      	movs	r2, #2
+  50:	f7ff fffe 	bl	0 <ioman_getSector>
+  54:	b118      	cbz	r0, 5e <ioman_getSector+0x5e>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:461
+			ioman_flushSector(ioman,bp);
+  56:	4620      	mov	r0, r4
+  58:	4631      	mov	r1, r6
+  5a:	f7ff fffe 	bl	0 <ioman_getSector>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:466
+		}
+	}
+	
+	if(bp!=-1){
+		ioman_resetCacheItem(ioman,bp);
+  5e:	b2ad      	uxth	r5, r5
+  60:	4620      	mov	r0, r4
+  62:	4629      	mov	r1, r5
+  64:	f7ff fffe 	bl	0 <ioman_getSector>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:467
+		if((ioman_putSectorInCache(ioman,address,bp))){
+  68:	4620      	mov	r0, r4
+  6a:	4641      	mov	r1, r8
+  6c:	462a      	mov	r2, r5
+  6e:	f7ff fffe 	bl	0 <ioman_getSector>
+  72:	f010 0fff 	tst.w	r0, #255	; 0xff
+  76:	d13e      	bne.n	f6 <ioman_getSector+0xf6>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:470
+			return(0);
+		}
+		if(mode==IOM_MODE_READWRITE){
+  78:	2f02      	cmp	r7, #2
+  7a:	d12a      	bne.n	d2 <ioman_getSector+0xd2>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:471
+			ioman_setWritable(bp);
+  7c:	4620      	mov	r0, r4
+  7e:	4629      	mov	r1, r5
+  80:	463a      	mov	r2, r7
+  82:	e023      	b.n	cc <ioman_getSector+0xcc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:479
+		if(!ioman_isReqExp(mode))ioman_incRefCnt(ioman,bp);
+		return(ioman_getPtr(ioman,bp));
+	}
+	
+	if((bp=ioman_findOverallocableSpot(ioman))!=-1){
+		if(ioman_isWritable(bp)){
+  84:	b285      	uxth	r5, r0
+  86:	4629      	mov	r1, r5
+  88:	4620      	mov	r0, r4
+  8a:	2202      	movs	r2, #2
+  8c:	f7ff fffe 	bl	0 <ioman_getSector>
+  90:	b118      	cbz	r0, 9a <ioman_getSector+0x9a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:480
+			ioman_flushSector(ioman,bp);
+  92:	4620      	mov	r0, r4
+  94:	4629      	mov	r1, r5
+  96:	f7ff fffe 	bl	0 <ioman_getSector>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:482
+		}
+		if(ioman_push(ioman,bp)){
+  9a:	4620      	mov	r0, r4
+  9c:	4629      	mov	r1, r5
+  9e:	f7ff fffe 	bl	0 <ioman_getSector>
+  a2:	f010 0fff 	tst.w	r0, #255	; 0xff
+  a6:	d126      	bne.n	f6 <ioman_getSector+0xf6>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:485
+			return(0);
+		}
+		ioman_resetCacheItem(ioman,bp);
+  a8:	4620      	mov	r0, r4
+  aa:	4629      	mov	r1, r5
+  ac:	f7ff fffe 	bl	0 <ioman_getSector>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:486
+		if((ioman_putSectorInCache(ioman,address,bp))){
+  b0:	4620      	mov	r0, r4
+  b2:	4641      	mov	r1, r8
+  b4:	462a      	mov	r2, r5
+  b6:	f7ff fffe 	bl	0 <ioman_getSector>
+  ba:	f010 0fff 	tst.w	r0, #255	; 0xff
+  be:	d11a      	bne.n	f6 <ioman_getSector+0xf6>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:489
+			return(0);
+		}
+		if(ioman_isReqRw(mode)){
+  c0:	f017 0f02 	tst.w	r7, #2	; 0x2
+  c4:	d005      	beq.n	d2 <ioman_getSector+0xd2>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:490
+			ioman_setWritable(bp);
+  c6:	4620      	mov	r0, r4
+  c8:	4629      	mov	r1, r5
+  ca:	2202      	movs	r2, #2
+  cc:	2301      	movs	r3, #1
+  ce:	f7ff fffe 	bl	0 <ioman_getSector>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:492
+		}
+		ioman_incUseCnt(ioman,bp);
+  d2:	4620      	mov	r0, r4
+  d4:	4629      	mov	r1, r5
+  d6:	f7ff fffe 	bl	0 <ioman_getSector>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:493
+		if(!ioman_isReqExp(mode))ioman_incRefCnt(ioman,bp);
+  da:	f017 0f04 	tst.w	r7, #4	; 0x4
+  de:	d103      	bne.n	e8 <ioman_getSector+0xe8>
+  e0:	4620      	mov	r0, r4
+  e2:	4629      	mov	r1, r5
+  e4:	f7ff fffe 	bl	0 <ioman_getSector>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:494
+		return(ioman_getPtr(ioman,bp));
+  e8:	4620      	mov	r0, r4
+  ea:	4629      	mov	r1, r5
+  ec:	f7ff fffe 	bl	0 <ioman_getSector>
+  f0:	e002      	b.n	f8 <ioman_getSector+0xf8>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:496
+	}
+	ioman_setError(ioman,IOMAN_ERR_NOMEMORY);
+  f2:	230a      	movs	r3, #10
+  f4:	7323      	strb	r3, [r4, #12]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:497
+	return(0);
+  f6:	2000      	movs	r0, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:498
+}
+  f8:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:478
+		ioman_incUseCnt(ioman,bp);
+		if(!ioman_isReqExp(mode))ioman_incRefCnt(ioman,bp);
+		return(ioman_getPtr(ioman,bp));
+	}
+	
+	if((bp=ioman_findOverallocableSpot(ioman))!=-1){
+  fc:	4620      	mov	r0, r4
+  fe:	f7ff fffe 	bl	0 <ioman_getSector>
+ 102:	f1b0 3fff 	cmp.w	r0, #4294967295	; 0xffffffff
+ 106:	d1bd      	bne.n	84 <ioman_getSector+0x84>
+ 108:	e7f3      	b.n	f2 <ioman_getSector+0xf2>
+ 10a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.ioman_directSectorRead:
+
+00000000 <ioman_directSectorRead>:
+ioman_directSectorRead():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:520
+	return(0);
+}
+/*****************************************************************************/
+
+esint8 ioman_directSectorRead(IOManager *ioman,euint32 address, euint8* buf)
+{
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   4:	460e      	mov	r6, r1
+   6:	4604      	mov	r4, r0
+   8:	4617      	mov	r7, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:524
+	euint8* ibuf;
+	esint16 bp;
+	
+	if((bp=ioman_findSectorInCache(ioman,address))!=-1){
+   a:	f7ff fffe 	bl	0 <ioman_directSectorRead>
+   e:	b281      	uxth	r1, r0
+  10:	b20b      	sxth	r3, r1
+  12:	f1b3 3fff 	cmp.w	r3, #4294967295	; 0xffffffff
+  16:	d009      	beq.n	2c <ioman_directSectorRead+0x2c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:525
+		ibuf=ioman_getPtr(ioman,bp);
+  18:	4620      	mov	r0, r4
+  1a:	f7ff fffe 	bl	0 <ioman_directSectorRead>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:526
+		memCpy(ibuf,buf,512);
+  1e:	4639      	mov	r1, r7
+  20:	f44f 7200 	mov.w	r2, #512	; 0x200
+  24:	f7ff fffe 	bl	0 <memCpy>
+  28:	2000      	movs	r0, #0
+  2a:	e022      	b.n	72 <ioman_directSectorRead+0x72>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:530
+		return(0);
+	}
+	
+	if((bp=ioman_findFreeSpot(ioman))!=-1){
+  2c:	4620      	mov	r0, r4
+  2e:	f7ff fffe 	bl	0 <ioman_directSectorRead>
+  32:	b280      	uxth	r0, r0
+  34:	b203      	sxth	r3, r0
+  36:	f1b3 3fff 	cmp.w	r3, #4294967295	; 0xffffffff
+  3a:	d012      	beq.n	62 <ioman_directSectorRead+0x62>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:531
+		if((ioman_putSectorInCache(ioman,address,bp))){
+  3c:	b285      	uxth	r5, r0
+  3e:	4631      	mov	r1, r6
+  40:	4620      	mov	r0, r4
+  42:	462a      	mov	r2, r5
+  44:	f7ff fffe 	bl	0 <ioman_directSectorRead>
+  48:	b2c6      	uxtb	r6, r0
+  4a:	b98e      	cbnz	r6, 70 <ioman_directSectorRead+0x70>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:534
+			return(-1);
+		}
+		ibuf=ioman_getPtr(ioman,bp);
+  4c:	4629      	mov	r1, r5
+  4e:	4620      	mov	r0, r4
+  50:	f7ff fffe 	bl	0 <ioman_directSectorRead>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:535
+		memCpy(ibuf,buf,512);
+  54:	4639      	mov	r1, r7
+  56:	f44f 7200 	mov.w	r2, #512	; 0x200
+  5a:	f7ff fffe 	bl	0 <memCpy>
+  5e:	4630      	mov	r0, r6
+  60:	e007      	b.n	72 <ioman_directSectorRead+0x72>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:539
+		return(0);
+	}
+
+	if(ioman_readSector(ioman,address,buf)){
+  62:	4620      	mov	r0, r4
+  64:	4631      	mov	r1, r6
+  66:	463a      	mov	r2, r7
+  68:	f7ff fffe 	bl	0 <ioman_directSectorRead>
+  6c:	b2c0      	uxtb	r0, r0
+  6e:	b100      	cbz	r0, 72 <ioman_directSectorRead+0x72>
+  70:	20ff      	movs	r0, #255
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:544
+		return(-1);
+	}
+
+	return(0);
+}
+  72:	b240      	sxtb	r0, r0
+  74:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+Disassembly of section .text.ioman_reset:
+
+00000000 <ioman_reset>:
+ioman_reset():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:55
+	return(0);
+}
+/*****************************************************************************/
+
+void ioman_reset(IOManager *ioman)
+{
+   0:	8901      	ldrh	r1, [r0, #8]
+   2:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:58
+	euint16 nb,ni;
+	
+	memClr(ioman->sector,sizeof(euint32)*ioman->numbuf);
+   4:	0089      	lsls	r1, r1, #2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:55
+	return(0);
+}
+/*****************************************************************************/
+
+void ioman_reset(IOManager *ioman)
+{
+   6:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:58
+	euint16 nb,ni;
+	
+	memClr(ioman->sector,sizeof(euint32)*ioman->numbuf);
+   8:	f100 0018 	add.w	r0, r0, #24	; 0x18
+   c:	f7ff fffe 	bl	0 <memClr>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:59
+	memClr(ioman->status,sizeof(euint8) *ioman->numbuf);
+  10:	f104 001c 	add.w	r0, r4, #28	; 0x1c
+  14:	8921      	ldrh	r1, [r4, #8]
+  16:	f7ff fffe 	bl	0 <memClr>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:60
+	memClr(ioman->usage ,sizeof(euint8) *ioman->numbuf);
+  1a:	f104 001d 	add.w	r0, r4, #29	; 0x1d
+  1e:	8921      	ldrh	r1, [r4, #8]
+  20:	f7ff fffe 	bl	0 <memClr>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:61
+	memClr(ioman->itptr ,sizeof(euint8) *ioman->numbuf);
+  24:	f104 001f 	add.w	r0, r4, #31	; 0x1f
+  28:	8921      	ldrh	r1, [r4, #8]
+  2a:	f7ff fffe 	bl	0 <memClr>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:62
+	ioman_setError(ioman,IOMAN_NOERROR);
+  2e:	2300      	movs	r3, #0
+  30:	7323      	strb	r3, [r4, #12]
+  32:	4618      	mov	r0, r3
+  34:	e00f      	b.n	56 <memClr+0x56>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:66
+		
+	for(nb=0;nb<ioman->numbuf;nb++){
+		for(ni=0;ni<ioman->numit;ni++){
+			ioman->stack[nb][ni].sector=0;
+  36:	180b      	adds	r3, r1, r0
+  38:	2200      	movs	r2, #0
+  3a:	3302      	adds	r3, #2
+  3c:	f844 2033 	str.w	r2, [r4, r3, lsl #3]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:67
+			ioman->stack[nb][ni].status=0;
+  40:	eb04 03c3 	add.w	r3, r4, r3, lsl #3
+  44:	711a      	strb	r2, [r3, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:68
+			ioman->stack[nb][ni].usage =0;
+  46:	715a      	strb	r2, [r3, #5]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:65
+	memClr(ioman->usage ,sizeof(euint8) *ioman->numbuf);
+	memClr(ioman->itptr ,sizeof(euint8) *ioman->numbuf);
+	ioman_setError(ioman,IOMAN_NOERROR);
+		
+	for(nb=0;nb<ioman->numbuf;nb++){
+		for(ni=0;ni<ioman->numit;ni++){
+  48:	1c4b      	adds	r3, r1, #1
+  4a:	b299      	uxth	r1, r3
+  4c:	8963      	ldrh	r3, [r4, #10]
+  4e:	428b      	cmp	r3, r1
+  50:	d8f1      	bhi.n	36 <memClr+0x36>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:64
+	memClr(ioman->status,sizeof(euint8) *ioman->numbuf);
+	memClr(ioman->usage ,sizeof(euint8) *ioman->numbuf);
+	memClr(ioman->itptr ,sizeof(euint8) *ioman->numbuf);
+	ioman_setError(ioman,IOMAN_NOERROR);
+		
+	for(nb=0;nb<ioman->numbuf;nb++){
+  52:	1c43      	adds	r3, r0, #1
+  54:	b298      	uxth	r0, r3
+  56:	8923      	ldrh	r3, [r4, #8]
+  58:	4283      	cmp	r3, r0
+  5a:	d901      	bls.n	60 <memClr+0x60>
+  5c:	2100      	movs	r1, #0
+  5e:	e7f5      	b.n	4c <memClr+0x4c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:71
+			ioman->stack[nb][ni].sector=0;
+			ioman->stack[nb][ni].status=0;
+			ioman->stack[nb][ni].usage =0;
+		}
+	}
+}
+  60:	bd10      	pop	{r4, pc}
+  62:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.ioman_init:
+
+00000000 <ioman_init>:
+ioman_init():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:42
+/*****************************************************************************/
+#include "ioman.h"
+/*****************************************************************************/
+
+esint8 ioman_init(IOManager *ioman, hwInterface *iface, euint8* bufferarea)
+{
+   0:	4602      	mov	r2, r0
+   2:	f842 1b20 	str.w	r1, [r2], #32
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:45
+	ioman->iface=iface;
+	
+	ioman->bufptr = ioman_getBuffer(ioman,bufferarea);
+   6:	6042      	str	r2, [r0, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:46
+	ioman->numbuf = IOMAN_NUMBUFFER;
+   8:	2201      	movs	r2, #1
+   a:	8102      	strh	r2, [r0, #8]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:47
+	ioman->numit  = IOMAN_NUMITERATIONS;
+   c:	8142      	strh	r2, [r0, #10]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:42
+/*****************************************************************************/
+#include "ioman.h"
+/*****************************************************************************/
+
+esint8 ioman_init(IOManager *ioman, hwInterface *iface, euint8* bufferarea)
+{
+   e:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:49
+	
+	ioman->bufptr = ioman_getBuffer(ioman,bufferarea);
+	ioman->numbuf = IOMAN_NUMBUFFER;
+	ioman->numit  = IOMAN_NUMITERATIONS;
+	
+	ioman_reset(ioman);
+  10:	f7ff fffe 	bl	0 <ioman_init>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ioman.c:51
+	return(0);
+}
+  14:	2000      	movs	r0, #0
+  16:	bd10      	pop	{r4, pc}

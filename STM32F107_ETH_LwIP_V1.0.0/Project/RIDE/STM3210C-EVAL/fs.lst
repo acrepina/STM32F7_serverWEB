@@ -1,0 +1,1700 @@
+
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\fs.o:     file format elf32-littlearm
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\fs.o
+
+Disassembly of section .text.fs_verifySanity:
+
+00000000 <fs_verifySanity>:
+fs_verifySanity():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:114
+ * esint16 fs_verifySanity(FileSystem *fs)
+ * Description: Does some sanity calculations.
+ * Return value: 1 on success, 0 when discrepancies were found.
+*/
+esint16 fs_verifySanity(FileSystem *fs)
+{
+   0:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:119
+	esint16 sane=1; /* Sane until proven otherwise */
+	/* First check, BPS, we only support 512 */
+	if(fs->volumeId.BytesPerSector!=512)sane=0;
+	/* Check is SPC is valid (multiple of 2, and clustersize >=32KB */
+	if(!((fs->volumeId.SectorsPerCluster == 1 ) |
+   2:	7983      	ldrb	r3, [r0, #6]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:114
+ * esint16 fs_verifySanity(FileSystem *fs)
+ * Description: Does some sanity calculations.
+ * Return value: 1 on success, 0 when discrepancies were found.
+*/
+esint16 fs_verifySanity(FileSystem *fs)
+{
+   4:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:119
+	esint16 sane=1; /* Sane until proven otherwise */
+	/* First check, BPS, we only support 512 */
+	if(fs->volumeId.BytesPerSector!=512)sane=0;
+	/* Check is SPC is valid (multiple of 2, and clustersize >=32KB */
+	if(!((fs->volumeId.SectorsPerCluster == 1 ) |
+   6:	2b08      	cmp	r3, #8
+   8:	bf14      	ite	ne
+   a:	2200      	movne	r2, #0
+   c:	2201      	moveq	r2, #1
+   e:	2b10      	cmp	r3, #16
+  10:	bf08      	it	eq
+  12:	f042 0201 	orreq.w	r2, r2, #1	; 0x1
+  16:	2b20      	cmp	r3, #32
+  18:	bf08      	it	eq
+  1a:	f042 0201 	orreq.w	r2, r2, #1	; 0x1
+  1e:	1e59      	subs	r1, r3, #1
+  20:	2b40      	cmp	r3, #64
+  22:	bf08      	it	eq
+  24:	f042 0201 	orreq.w	r2, r2, #1	; 0x1
+  28:	b2c9      	uxtb	r1, r1
+  2a:	2b04      	cmp	r3, #4
+  2c:	bf14      	ite	ne
+  2e:	2300      	movne	r3, #0
+  30:	2301      	moveq	r3, #1
+  32:	2901      	cmp	r1, #1
+  34:	bf98      	it	ls
+  36:	f043 0301 	orrls.w	r3, r3, #1	; 0x1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:117
+*/
+esint16 fs_verifySanity(FileSystem *fs)
+{
+	esint16 sane=1; /* Sane until proven otherwise */
+	/* First check, BPS, we only support 512 */
+	if(fs->volumeId.BytesPerSector!=512)sane=0;
+  3a:	f8b0 c004 	ldrh.w	ip, [r0, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:119
+	/* Check is SPC is valid (multiple of 2, and clustersize >=32KB */
+	if(!((fs->volumeId.SectorsPerCluster == 1 ) |
+  3e:	ea52 0003 	orrs.w	r0, r2, r3
+  42:	d004      	beq.n	4e <fs_verifySanity+0x4e>
+  44:	f5bc 7f00 	cmp.w	ip, #512	; 0x200
+  48:	bf14      	ite	ne
+  4a:	2000      	movne	r0, #0
+  4c:	2001      	moveq	r0, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:128
+	     (fs->volumeId.SectorsPerCluster == 16) |
+	     (fs->volumeId.SectorsPerCluster == 32) |
+	     (fs->volumeId.SectorsPerCluster == 64) ))sane=0;
+	/* Any number of FAT's should be supported... (untested) */
+	/* There should be at least 1 reserved sector */
+	if(fs->volumeId.ReservedSectorCount==0)sane=0;
+  4e:	8923      	ldrh	r3, [r4, #8]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:129
+	if(fs->volumeId.FatSectorCount16 != 0){
+  50:	8a21      	ldrh	r1, [r4, #16]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:128
+	     (fs->volumeId.SectorsPerCluster == 16) |
+	     (fs->volumeId.SectorsPerCluster == 32) |
+	     (fs->volumeId.SectorsPerCluster == 64) ))sane=0;
+	/* Any number of FAT's should be supported... (untested) */
+	/* There should be at least 1 reserved sector */
+	if(fs->volumeId.ReservedSectorCount==0)sane=0;
+  52:	2b00      	cmp	r3, #0
+  54:	bf08      	it	eq
+  56:	2000      	moveq	r0, #0
+  58:	6822      	ldr	r2, [r4, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:129
+	if(fs->volumeId.FatSectorCount16 != 0){
+  5a:	b139      	cbz	r1, 6c <fs_verifySanity+0x6c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:130
+		if(fs->volumeId.FatSectorCount16 > fs->part->disc->partitions[fs->part->activePartition].numSectors)sane=0;
+  5c:	6813      	ldr	r3, [r2, #0]
+  5e:	f992 2004 	ldrsb.w	r2, [r2, #4]
+  62:	eb03 1302 	add.w	r3, r3, r2, lsl #4
+  66:	695b      	ldr	r3, [r3, #20]
+  68:	4299      	cmp	r1, r3
+  6a:	e007      	b.n	7c <fs_verifySanity+0x7c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:132
+	}else{
+		if(fs->volumeId.FatSectorCount32 > fs->part->disc->partitions[fs->part->activePartition].numSectors)sane=0;
+  6c:	6813      	ldr	r3, [r2, #0]
+  6e:	f992 2004 	ldrsb.w	r2, [r2, #4]
+  72:	eb03 1302 	add.w	r3, r3, r2, lsl #4
+  76:	695b      	ldr	r3, [r3, #20]
+  78:	69a2      	ldr	r2, [r4, #24]
+  7a:	429a      	cmp	r2, r3
+  7c:	bf88      	it	hi
+  7e:	2000      	movhi	r0, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:135
+	} 
+	return(sane);
+}
+  80:	b200      	sxth	r0, r0
+  82:	bd10      	pop	{r4, pc}
+Disassembly of section .text.fs_countDataSectors:
+
+00000000 <fs_countDataSectors>:
+fs_countDataSectors():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:151
+
+  rootDirSectors=((fs->volumeId.RootEntryCount*32) +
+                 (fs->volumeId.BytesPerSector - 1)) /
+                 fs->volumeId.BytesPerSector;
+
+  if(fs->volumeId.FatSectorCount16 != 0)
+   0:	8a02      	ldrh	r2, [r0, #16]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:144
+ * void fs_countDataSectors(FileSystem *fs)
+ * Description: This functions calculates the sectorcounts, fatsectorcounts and
+ * dataclustercounts. It fills in the general fields.
+*/
+void fs_countDataSectors(FileSystem *fs)
+{
+   2:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:147
+  euint32 rootDirSectors,dataSectorCount;
+
+  rootDirSectors=((fs->volumeId.RootEntryCount*32) +
+   4:	f8b0 c004 	ldrh.w	ip, [r0, #4]
+   8:	8984      	ldrh	r4, [r0, #12]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:151
+                 (fs->volumeId.BytesPerSector - 1)) /
+                 fs->volumeId.BytesPerSector;
+
+  if(fs->volumeId.FatSectorCount16 != 0)
+   a:	b11a      	cbz	r2, 14 <fs_countDataSectors+0x14>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:154
+  {
+    fs->FatSectorCount=fs->volumeId.FatSectorCount16;
+    fs->volumeId.FatSectorCount32=0;
+   c:	2300      	movs	r3, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:153
+                 (fs->volumeId.BytesPerSector - 1)) /
+                 fs->volumeId.BytesPerSector;
+
+  if(fs->volumeId.FatSectorCount16 != 0)
+  {
+    fs->FatSectorCount=fs->volumeId.FatSectorCount16;
+   e:	6242      	str	r2, [r0, #36]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:154
+    fs->volumeId.FatSectorCount32=0;
+  10:	6183      	str	r3, [r0, #24]
+  12:	e002      	b.n	1a <fs_countDataSectors+0x1a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:158
+  }
+  else
+  {
+    fs->FatSectorCount=fs->volumeId.FatSectorCount32;
+  14:	6983      	ldr	r3, [r0, #24]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:159
+    fs->volumeId.FatSectorCount16=0;
+  16:	8202      	strh	r2, [r0, #16]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:158
+    fs->FatSectorCount=fs->volumeId.FatSectorCount16;
+    fs->volumeId.FatSectorCount32=0;
+  }
+  else
+  {
+    fs->FatSectorCount=fs->volumeId.FatSectorCount32;
+  18:	6243      	str	r3, [r0, #36]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:162
+    fs->volumeId.FatSectorCount16=0;
+  }
+
+  if(fs->volumeId.SectorCount16!=0)
+  1a:	89c2      	ldrh	r2, [r0, #14]
+  1c:	b11a      	cbz	r2, 26 <fs_countDataSectors+0x26>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:165
+  {
+    fs->SectorCount=fs->volumeId.SectorCount16;
+    fs->volumeId.SectorCount32=0;
+  1e:	2300      	movs	r3, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:164
+    fs->volumeId.FatSectorCount16=0;
+  }
+
+  if(fs->volumeId.SectorCount16!=0)
+  {
+    fs->SectorCount=fs->volumeId.SectorCount16;
+  20:	6282      	str	r2, [r0, #40]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:165
+    fs->volumeId.SectorCount32=0;
+  22:	6143      	str	r3, [r0, #20]
+  24:	e002      	b.n	2c <fs_countDataSectors+0x2c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:169
+  }
+  else
+  {
+    fs->SectorCount=fs->volumeId.SectorCount32;
+  26:	6943      	ldr	r3, [r0, #20]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:170
+    fs->volumeId.SectorCount16=0;
+  28:	81c2      	strh	r2, [r0, #14]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:169
+    fs->SectorCount=fs->volumeId.SectorCount16;
+    fs->volumeId.SectorCount32=0;
+  }
+  else
+  {
+    fs->SectorCount=fs->volumeId.SectorCount32;
+  2a:	6283      	str	r3, [r0, #40]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:178
+  dataSectorCount=fs->SectorCount - (
+                  fs->volumeId.ReservedSectorCount +
+                  (fs->volumeId.NumberOfFats * fs->FatSectorCount) +
+                  rootDirSectors);
+
+  fs->DataClusterCount=dataSectorCount/fs->volumeId.SectorsPerCluster;
+  2c:	8902      	ldrh	r2, [r0, #8]
+  2e:	6a83      	ldr	r3, [r0, #40]
+  30:	6a41      	ldr	r1, [r0, #36]
+  32:	1a9b      	subs	r3, r3, r2
+  34:	7a82      	ldrb	r2, [r0, #10]
+  36:	fb01 3212 	mls	r2, r1, r2, r3
+  3a:	f10c 33ff 	add.w	r3, ip, #4294967295	; 0xffffffff
+  3e:	eb03 1344 	add.w	r3, r3, r4, lsl #5
+  42:	fb93 f3fc 	sdiv	r3, r3, ip
+  46:	1ad2      	subs	r2, r2, r3
+  48:	7983      	ldrb	r3, [r0, #6]
+  4a:	fbb2 f2f3 	udiv	r2, r2, r3
+  4e:	6202      	str	r2, [r0, #32]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:179
+}
+  50:	bd10      	pop	{r4, pc}
+  52:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.fs_determineFatType:
+
+00000000 <fs_determineFatType>:
+fs_determineFatType():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:189
+ * Description: This function looks af the Dataclustercount and determines the
+ * FAT type. It fills in fs->type.
+*/
+void fs_determineFatType(FileSystem *fs)
+{
+	if(fs->DataClusterCount < 4085)
+   0:	6a02      	ldr	r2, [r0, #32]
+   2:	f640 73f4 	movw	r3, #4084	; 0xff4
+   6:	429a      	cmp	r2, r3
+   8:	d804      	bhi.n	14 <fs_determineFatType+0x14>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:191
+	{
+		fs->type=FAT12;
+   a:	2301      	movs	r3, #1
+   c:	f880 303c 	strb.w	r3, [r0, #60]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:192
+		fs->volumeId.RootCluster=0;
+  10:	3b01      	subs	r3, #1
+  12:	e007      	b.n	24 <fs_determineFatType+0x24>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:194
+	}
+	else if(fs->DataClusterCount < 65525)
+  14:	f64f 73f4 	movw	r3, #65524	; 0xfff4
+  18:	429a      	cmp	r2, r3
+  1a:	d805      	bhi.n	28 <fs_determineFatType+0x28>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:196
+	{
+		fs->type=FAT16;
+  1c:	2302      	movs	r3, #2
+  1e:	f880 303c 	strb.w	r3, [r0, #60]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:197
+		fs->volumeId.RootCluster=0;
+  22:	2300      	movs	r3, #0
+  24:	61c3      	str	r3, [r0, #28]
+  26:	e002      	b.n	2e <fs_determineFatType+0x2e>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:201
+	}
+	else
+	{
+		fs->type=FAT32;
+  28:	2303      	movs	r3, #3
+  2a:	f880 303c 	strb.w	r3, [r0, #60]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:203
+	}
+}
+  2e:	4770      	bx	lr
+Disassembly of section .text.fs_findFirstSectorRootDir:
+
+00000000 <fs_findFirstSectorRootDir>:
+fs_findFirstSectorRootDir():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:213
+ * Description: This functions fills in the fs->FirstSectorRootDir field, even
+ * for FAT32, although that is not necessary (because you have FirstClusterRootDir).
+*/
+void fs_findFirstSectorRootDir(FileSystem *fs)
+{
+	if(fs->type==FAT32)
+   0:	f890 303c 	ldrb.w	r3, [r0, #60]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:212
+ * void fs_findFirstSectorRootDir(FileSystem *fs)
+ * Description: This functions fills in the fs->FirstSectorRootDir field, even
+ * for FAT32, although that is not necessary (because you have FirstClusterRootDir).
+*/
+void fs_findFirstSectorRootDir(FileSystem *fs)
+{
+   4:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:213
+	if(fs->type==FAT32)
+   6:	2b03      	cmp	r3, #3
+   8:	f890 c00a 	ldrb.w	ip, [r0, #10]
+   c:	8904      	ldrh	r4, [r0, #8]
+   e:	d10a      	bne.n	26 <fs_findFirstSectorRootDir+0x26>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:214
+		fs->FirstSectorRootDir = fs->volumeId.ReservedSectorCount + 
+  10:	6983      	ldr	r3, [r0, #24]
+  12:	69c2      	ldr	r2, [r0, #28]
+  14:	fb03 f30c 	mul.w	r3, r3, ip
+  18:	7981      	ldrb	r1, [r0, #6]
+  1a:	3a02      	subs	r2, #2
+  1c:	fb02 3101 	mla	r1, r2, r1, r3
+  20:	1909      	adds	r1, r1, r4
+  22:	62c1      	str	r1, [r0, #44]
+  24:	e003      	b.n	2e <fs_findFirstSectorRootDir+0x2e>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:218
+		                         (fs->volumeId.NumberOfFats*fs->volumeId.FatSectorCount32) +
+								 (fs->volumeId.RootCluster-2)*fs->volumeId.SectorsPerCluster;
+	else
+		fs->FirstSectorRootDir = fs->volumeId.ReservedSectorCount + 
+  26:	8a03      	ldrh	r3, [r0, #16]
+  28:	fb0c 4303 	mla	r3, ip, r3, r4
+  2c:	62c3      	str	r3, [r0, #44]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:220
+		                         (fs->volumeId.NumberOfFats*fs->volumeId.FatSectorCount16);
+}
+  2e:	bd10      	pop	{r4, pc}
+Disassembly of section .text.fs_clusterToSector:
+
+00000000 <fs_clusterToSector>:
+fs_clusterToSector():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:236
+ * Description: This function converts a clusternumber in the effective sector
+ * number where this cluster starts. Boundary check is not implemented
+ * Return value: A long is returned representing the sectornumber.
+*/
+euint32 fs_clusterToSector(FileSystem *fs,euint32 cluster)
+{
+   0:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:239
+	eint32 base;
+	
+	if(fs->type==FAT32)
+   2:	f890 303c 	ldrb.w	r3, [r0, #60]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:236
+ * Description: This function converts a clusternumber in the effective sector
+ * number where this cluster starts. Boundary check is not implemented
+ * Return value: A long is returned representing the sectornumber.
+*/
+euint32 fs_clusterToSector(FileSystem *fs,euint32 cluster)
+{
+   6:	460c      	mov	r4, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:239
+	eint32 base;
+	
+	if(fs->type==FAT32)
+   8:	2b03      	cmp	r3, #3
+   a:	7a81      	ldrb	r1, [r0, #10]
+   c:	6a42      	ldr	r2, [r0, #36]
+   e:	f8b0 c008 	ldrh.w	ip, [r0, #8]
+  12:	d102      	bne.n	1a <fs_clusterToSector+0x1a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:241
+	{
+		base=
+  14:	fb02 c201 	mla	r2, r2, r1, ip
+  18:	e005      	b.n	26 <fs_clusterToSector+0x26>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:247
+			fs->volumeId.ReservedSectorCount+
+			fs->FatSectorCount*fs->volumeId.NumberOfFats;
+	}
+	else
+	{
+		base=
+  1a:	8983      	ldrh	r3, [r0, #12]
+  1c:	091b      	lsrs	r3, r3, #4
+  1e:	fb02 3301 	mla	r3, r2, r1, r3
+  22:	eb03 020c 	add.w	r2, r3, ip
+  26:	7980      	ldrb	r0, [r0, #6]
+  28:	1ea3      	subs	r3, r4, #2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:253
+			fs->volumeId.ReservedSectorCount+
+			fs->FatSectorCount*fs->volumeId.NumberOfFats+
+			fs->volumeId.RootEntryCount/16;
+	}
+	return( base + (cluster-2)*fs->volumeId.SectorsPerCluster );
+}
+  2a:	fb00 2003 	mla	r0, r0, r3, r2
+  2e:	bd10      	pop	{r4, pc}
+Disassembly of section .text.fs_sectorToCluster:
+
+00000000 <fs_sectorToCluster>:
+fs_sectorToCluster():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:258
+/*****************************************************************************/ 
+
+/* Function is unused, but may be usefull */
+euint32 fs_sectorToCluster(FileSystem *fs,euint32 sector)
+{
+   0:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:261
+	eint32 base;
+	
+	if(fs->type==FAT32)
+   2:	f890 303c 	ldrb.w	r3, [r0, #60]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:258
+}
+/*****************************************************************************/ 
+
+/* Function is unused, but may be usefull */
+euint32 fs_sectorToCluster(FileSystem *fs,euint32 sector)
+{
+   6:	4602      	mov	r2, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:261
+	eint32 base;
+	
+	if(fs->type==FAT32)
+   8:	2b03      	cmp	r3, #3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:258
+}
+/*****************************************************************************/ 
+
+/* Function is unused, but may be usefull */
+euint32 fs_sectorToCluster(FileSystem *fs,euint32 sector)
+{
+   a:	460c      	mov	r4, r1
+   c:	7a80      	ldrb	r0, [r0, #10]
+   e:	6a51      	ldr	r1, [r2, #36]
+  10:	f8b2 c008 	ldrh.w	ip, [r2, #8]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:261
+	eint32 base;
+	
+	if(fs->type==FAT32)
+  14:	d102      	bne.n	1c <fs_sectorToCluster+0x1c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:263
+	{
+		base=
+  16:	fb01 c000 	mla	r0, r1, r0, ip
+  1a:	e005      	b.n	28 <fs_sectorToCluster+0x28>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:269
+			fs->volumeId.ReservedSectorCount+
+			fs->FatSectorCount*fs->volumeId.NumberOfFats;
+	}
+	else
+	{
+		base=
+  1c:	8993      	ldrh	r3, [r2, #12]
+  1e:	091b      	lsrs	r3, r3, #4
+  20:	fb01 3300 	mla	r3, r1, r0, r3
+  24:	eb03 000c 	add.w	r0, r3, ip
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:274
+			fs->volumeId.ReservedSectorCount+
+			fs->FatSectorCount*fs->volumeId.NumberOfFats+
+			fs->volumeId.RootEntryCount/16;
+	}
+	return(((sector-base)-((sector-base)%fs->volumeId.SectorsPerCluster))/fs->volumeId.SectorsPerCluster+2 );
+  28:	7992      	ldrb	r2, [r2, #6]
+  2a:	1a20      	subs	r0, r4, r0
+  2c:	fbb0 f3f2 	udiv	r3, r0, r2
+  30:	fb02 0313 	mls	r3, r2, r3, r0
+  34:	1ac0      	subs	r0, r0, r3
+  36:	fbb0 f0f2 	udiv	r0, r0, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:275
+}
+  3a:	3002      	adds	r0, #2
+  3c:	bd10      	pop	{r4, pc}
+  3e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.fs_giveFreeClusterHint:
+
+00000000 <fs_giveFreeClusterHint>:
+fs_giveFreeClusterHint():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:314
+ * Return value: Returns it's best guess.
+*/
+euint32 fs_giveFreeClusterHint(FileSystem *fs)
+{
+	return(2); /* Now THIS is a hint ;) */
+}
+   0:	2002      	movs	r0, #2
+   2:	4770      	bx	lr
+Disassembly of section .text.fs_getFirstClusterRootDir:
+
+00000000 <fs_getFirstClusterRootDir>:
+fs_getFirstClusterRootDir():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:435
+}
+/*****************************************************************************/
+
+euint32 fs_getFirstClusterRootDir(FileSystem *fs)
+{
+	switch(fs->type){
+   0:	f890 303c 	ldrb.w	r3, [r0, #60]
+   4:	2b03      	cmp	r3, #3
+   6:	d001      	beq.n	c <fs_getFirstClusterRootDir+0xc>
+   8:	2001      	movs	r0, #1
+   a:	e000      	b.n	e <fs_getFirstClusterRootDir+0xe>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:437
+		case FAT32:
+			return(fs->volumeId.RootCluster);
+   c:	69c0      	ldr	r0, [r0, #28]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:443
+			//break;
+		default:
+				return(1);
+				//break;
+	}
+}
+   e:	4770      	bx	lr
+Disassembly of section .text.fs_initCurrentDir:
+
+00000000 <fs_initCurrentDir>:
+fs_initCurrentDir():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:224
+		                         (fs->volumeId.NumberOfFats*fs->volumeId.FatSectorCount16);
+}
+/*****************************************************************************/ 
+
+void fs_initCurrentDir(FileSystem *fs)
+{
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:225
+	fs->FirstClusterCurrentDir = fs_getFirstClusterRootDir(fs);
+   4:	f7ff fffe 	bl	0 <fs_initCurrentDir>
+   8:	6320      	str	r0, [r4, #48]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:226
+}
+   a:	bd10      	pop	{r4, pc}
+Disassembly of section .text.fs_initClusterChain:
+
+00000000 <fs_initClusterChain>:
+fs_initClusterChain():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:450
+
+void fs_initClusterChain(FileSystem *fs,ClusterChain *cache,euint32 cluster_addr)
+{
+	cache->FirstCluster=cluster_addr;
+	cache->DiscCluster=cluster_addr;
+	cache->LogicCluster=0;
+   0:	2300      	movs	r3, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:448
+}
+/*****************************************************************************/
+
+void fs_initClusterChain(FileSystem *fs,ClusterChain *cache,euint32 cluster_addr)
+{
+	cache->FirstCluster=cluster_addr;
+   2:	60ca      	str	r2, [r1, #12]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:449
+	cache->DiscCluster=cluster_addr;
+   4:	608a      	str	r2, [r1, #8]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:450
+	cache->LogicCluster=0;
+   6:	604b      	str	r3, [r1, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:451
+	cache->LastCluster=0; /* Warning flag here */
+   8:	610b      	str	r3, [r1, #16]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:452
+	cache->Linear=0;
+   a:	700b      	strb	r3, [r1, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:453
+	cache->ClusterCount=0; /* 0 means NOT known */
+   c:	614b      	str	r3, [r1, #20]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:454
+}
+   e:	4770      	bx	lr
+Disassembly of section .text.fs_setFirstClusterInDirEntry:
+
+00000000 <fs_setFirstClusterInDirEntry>:
+fs_setFirstClusterInDirEntry():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:459
+/*****************************************************************************/
+
+void fs_setFirstClusterInDirEntry(FileRecord *rec,euint32 cluster_addr)
+{
+	rec->FirstClusterHigh=cluster_addr>>16;
+   0:	0c0b      	lsrs	r3, r1, #16
+   2:	8283      	strh	r3, [r0, #20]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:460
+	rec->FirstClusterLow=cluster_addr&0xFFFF;
+   4:	8341      	strh	r1, [r0, #26]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:461
+}
+   6:	4770      	bx	lr
+Disassembly of section .text.fs_setFsInfo:
+
+00000000 <fs_setFsInfo>:
+fs_setFsInfo():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:509
+	}
+	return(0);
+}
+
+esint8 fs_setFsInfo(FileSystem *fs)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:513
+	euint8* buf;
+
+	if(!fs->type==FAT32)return(0);
+	buf = part_getSect(fs->part,FS_INFO_SECTOR,IOM_MODE_READWRITE);
+   2:	2101      	movs	r1, #1
+   4:	2202      	movs	r2, #2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:509
+	}
+	return(0);
+}
+
+esint8 fs_setFsInfo(FileSystem *fs)
+{
+   6:	4605      	mov	r5, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:513
+	euint8* buf;
+
+	if(!fs->type==FAT32)return(0);
+	buf = part_getSect(fs->part,FS_INFO_SECTOR,IOM_MODE_READWRITE);
+   8:	6800      	ldr	r0, [r0, #0]
+   a:	f7ff fffe 	bl	0 <part_getSect>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:514
+	if(ex_getb32(buf,0)!=FSINFO_MAGIC_BEGIN || ex_getb32(buf,508)!=FSINFO_MAGIC_END){
+   e:	2100      	movs	r1, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:513
+esint8 fs_setFsInfo(FileSystem *fs)
+{
+	euint8* buf;
+
+	if(!fs->type==FAT32)return(0);
+	buf = part_getSect(fs->part,FS_INFO_SECTOR,IOM_MODE_READWRITE);
+  10:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:514
+	if(ex_getb32(buf,0)!=FSINFO_MAGIC_BEGIN || ex_getb32(buf,508)!=FSINFO_MAGIC_END){
+  12:	f7ff fffe 	bl	0 <ex_getb32>
+  16:	4b12      	ldr	r3, [pc, #72]	(60 <fs_setFsInfo+0x60>)
+  18:	4298      	cmp	r0, r3
+  1a:	d107      	bne.n	2c <fs_setFsInfo+0x2c>
+  1c:	4620      	mov	r0, r4
+  1e:	f44f 71fe 	mov.w	r1, #508	; 0x1fc
+  22:	f7ff fffe 	bl	0 <ex_getb32>
+  26:	4b0f      	ldr	r3, [pc, #60]	(64 <fs_setFsInfo+0x64>)
+  28:	4298      	cmp	r0, r3
+  2a:	d005      	beq.n	38 <fs_setFsInfo+0x38>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:515
+		part_relSect(fs->part,buf);
+  2c:	6828      	ldr	r0, [r5, #0]
+  2e:	4621      	mov	r1, r4
+  30:	f7ff fffe 	bl	0 <part_relSect>
+  34:	20ff      	movs	r0, #255
+  36:	e010      	b.n	5a <fs_setFsInfo+0x5a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:518
+		return(-1);
+	}
+	ex_setb32(buf,488,fs->FreeClusterCount);
+  38:	4620      	mov	r0, r4
+  3a:	f44f 71f4 	mov.w	r1, #488	; 0x1e8
+  3e:	6b6a      	ldr	r2, [r5, #52]
+  40:	f7ff fffe 	bl	0 <ex_setb32>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:519
+	ex_setb32(buf,492,fs->NextFreeCluster);
+  44:	4620      	mov	r0, r4
+  46:	f44f 71f6 	mov.w	r1, #492	; 0x1ec
+  4a:	6baa      	ldr	r2, [r5, #56]
+  4c:	f7ff fffe 	bl	0 <ex_setb32>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:520
+	part_relSect(fs->part,buf);
+  50:	6828      	ldr	r0, [r5, #0]
+  52:	4621      	mov	r1, r4
+  54:	f7ff fffe 	bl	0 <part_relSect>
+  58:	2000      	movs	r0, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:522
+	return(0);
+}
+  5a:	b240      	sxtb	r0, r0
+  5c:	bd70      	pop	{r4, r5, r6, pc}
+  5e:	46c0      	nop			(mov r8, r8)
+  60:	41615252 	.word	0x41615252
+  64:	aa550000 	.word	0xaa550000
+Disassembly of section .text.fs_getFsInfo:
+
+00000000 <fs_getFsInfo>:
+fs_getFsInfo():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:490
+	}
+	return(0);
+}
+
+esint8 fs_getFsInfo(FileSystem *fs,euint8 force_update)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	460e      	mov	r6, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:494
+	euint8 *buf;
+		
+ 	if(!fs->type==FAT32)return(0);
+	buf = part_getSect(fs->part,FS_INFO_SECTOR,IOM_MODE_READONLY);
+   4:	2101      	movs	r1, #1
+   6:	460a      	mov	r2, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:490
+	}
+	return(0);
+}
+
+esint8 fs_getFsInfo(FileSystem *fs,euint8 force_update)
+{
+   8:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:494
+	euint8 *buf;
+		
+ 	if(!fs->type==FAT32)return(0);
+	buf = part_getSect(fs->part,FS_INFO_SECTOR,IOM_MODE_READONLY);
+   a:	6800      	ldr	r0, [r0, #0]
+   c:	f7ff fffe 	bl	0 <part_getSect>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:495
+	if(ex_getb32(buf,0)!=FSINFO_MAGIC_BEGIN || ex_getb32(buf,508)!=FSINFO_MAGIC_END){
+  10:	2100      	movs	r1, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:494
+esint8 fs_getFsInfo(FileSystem *fs,euint8 force_update)
+{
+	euint8 *buf;
+		
+ 	if(!fs->type==FAT32)return(0);
+	buf = part_getSect(fs->part,FS_INFO_SECTOR,IOM_MODE_READONLY);
+  12:	4605      	mov	r5, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:495
+	if(ex_getb32(buf,0)!=FSINFO_MAGIC_BEGIN || ex_getb32(buf,508)!=FSINFO_MAGIC_END){
+  14:	f7ff fffe 	bl	0 <ex_getb32>
+  18:	4b15      	ldr	r3, [pc, #84]	(70 <fs_getFsInfo+0x70>)
+  1a:	4298      	cmp	r0, r3
+  1c:	d107      	bne.n	2e <fs_getFsInfo+0x2e>
+  1e:	4628      	mov	r0, r5
+  20:	f44f 71fe 	mov.w	r1, #508	; 0x1fc
+  24:	f7ff fffe 	bl	0 <ex_getb32>
+  28:	4b12      	ldr	r3, [pc, #72]	(74 <fs_getFsInfo+0x74>)
+  2a:	4298      	cmp	r0, r3
+  2c:	d005      	beq.n	3a <fs_getFsInfo+0x3a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:496
+		part_relSect(fs->part,buf);
+  2e:	4629      	mov	r1, r5
+  30:	6820      	ldr	r0, [r4, #0]
+  32:	f7ff fffe 	bl	0 <part_relSect>
+  36:	21ff      	movs	r1, #255
+  38:	e017      	b.n	6a <fs_getFsInfo+0x6a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:499
+		return(-1);
+	}
+	fs->FreeClusterCount = ex_getb32(buf,488);
+  3a:	f44f 71f4 	mov.w	r1, #488	; 0x1e8
+  3e:	4628      	mov	r0, r5
+  40:	f7ff fffe 	bl	0 <ex_getb32>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:500
+	fs->NextFreeCluster  = ex_getb32(buf,492);
+  44:	f44f 71f6 	mov.w	r1, #492	; 0x1ec
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:499
+	buf = part_getSect(fs->part,FS_INFO_SECTOR,IOM_MODE_READONLY);
+	if(ex_getb32(buf,0)!=FSINFO_MAGIC_BEGIN || ex_getb32(buf,508)!=FSINFO_MAGIC_END){
+		part_relSect(fs->part,buf);
+		return(-1);
+	}
+	fs->FreeClusterCount = ex_getb32(buf,488);
+  48:	6360      	str	r0, [r4, #52]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:500
+	fs->NextFreeCluster  = ex_getb32(buf,492);
+  4a:	4628      	mov	r0, r5
+  4c:	f7ff fffe 	bl	0 <ex_getb32>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:501
+	part_relSect(fs->part,buf);
+  50:	4629      	mov	r1, r5
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:500
+	if(ex_getb32(buf,0)!=FSINFO_MAGIC_BEGIN || ex_getb32(buf,508)!=FSINFO_MAGIC_END){
+		part_relSect(fs->part,buf);
+		return(-1);
+	}
+	fs->FreeClusterCount = ex_getb32(buf,488);
+	fs->NextFreeCluster  = ex_getb32(buf,492);
+  52:	63a0      	str	r0, [r4, #56]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:501
+	part_relSect(fs->part,buf);
+  54:	6820      	ldr	r0, [r4, #0]
+  56:	f7ff fffe 	bl	0 <part_relSect>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:502
+	if(force_update){
+  5a:	b90e      	cbnz	r6, 60 <fs_getFsInfo+0x60>
+  5c:	4631      	mov	r1, r6
+  5e:	e004      	b.n	6a <fs_getFsInfo+0x6a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:503
+		fs->FreeClusterCount=fat_countFreeClusters(fs);
+  60:	4620      	mov	r0, r4
+  62:	f7ff fffe 	bl	0 <fat_countFreeClusters>
+  66:	2100      	movs	r1, #0
+  68:	6360      	str	r0, [r4, #52]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:506
+	}
+	return(0);
+}
+  6a:	b248      	sxtb	r0, r1
+  6c:	bd70      	pop	{r4, r5, r6, pc}
+  6e:	46c0      	nop			(mov r8, r8)
+  70:	41615252 	.word	0x41615252
+  74:	aa550000 	.word	0xaa550000
+Disassembly of section .text.fs_clearCluster:
+
+00000000 <fs_clearCluster>:
+fs_clearCluster():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:477
+	return(fs_flushFs(fs));
+}
+/*****************************************************************************/
+
+esint8 fs_clearCluster(FileSystem *fs,euint32 cluster)
+{
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   4:	4606      	mov	r6, r0
+   6:	460f      	mov	r7, r1
+   8:	2500      	movs	r5, #0
+   a:	e013      	b.n	34 <fs_clearCluster+0x34>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:482
+	euint16 c;
+	euint8* buf;
+	
+	for(c=0;c<(fs->volumeId.SectorsPerCluster);c++){
+		buf = part_getSect(fs->part,fs_clusterToSector(fs,cluster)+c,IOM_MODE_READWRITE);
+   c:	4639      	mov	r1, r7
+   e:	4630      	mov	r0, r6
+  10:	f7ff fffe 	bl	0 <fs_clearCluster>
+  14:	2202      	movs	r2, #2
+  16:	1829      	adds	r1, r5, r0
+  18:	6830      	ldr	r0, [r6, #0]
+  1a:	f7ff fffe 	bl	0 <part_getSect>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:483
+		memClr(buf,512);
+  1e:	f44f 7100 	mov.w	r1, #512	; 0x200
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:482
+{
+	euint16 c;
+	euint8* buf;
+	
+	for(c=0;c<(fs->volumeId.SectorsPerCluster);c++){
+		buf = part_getSect(fs->part,fs_clusterToSector(fs,cluster)+c,IOM_MODE_READWRITE);
+  22:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:483
+		memClr(buf,512);
+  24:	f7ff fffe 	bl	0 <memClr>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:484
+		part_relSect(fs->part,buf);
+  28:	6830      	ldr	r0, [r6, #0]
+  2a:	4621      	mov	r1, r4
+  2c:	f7ff fffe 	bl	0 <part_relSect>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:481
+esint8 fs_clearCluster(FileSystem *fs,euint32 cluster)
+{
+	euint16 c;
+	euint8* buf;
+	
+	for(c=0;c<(fs->volumeId.SectorsPerCluster);c++){
+  30:	1c6b      	adds	r3, r5, #1
+  32:	b29d      	uxth	r5, r3
+  34:	79b3      	ldrb	r3, [r6, #6]
+  36:	42ab      	cmp	r3, r5
+  38:	d8e8      	bhi.n	c <part_relSect+0xc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:487
+		buf = part_getSect(fs->part,fs_clusterToSector(fs,cluster)+c,IOM_MODE_READWRITE);
+		memClr(buf,512);
+		part_relSect(fs->part,buf);
+	}
+	return(0);
+}
+  3a:	2000      	movs	r0, #0
+  3c:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+Disassembly of section .text.fs_flushFs:
+
+00000000 <fs_flushFs>:
+fs_flushFs():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:465
+	rec->FirstClusterLow=cluster_addr&0xFFFF;
+}
+/*****************************************************************************/
+
+esint8 fs_flushFs(FileSystem *fs)
+{
+   0:	4603      	mov	r3, r0
+   2:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:466
+	return(part_flushPart(fs->part,0,fs->SectorCount));
+   4:	2100      	movs	r1, #0
+   6:	6a9a      	ldr	r2, [r3, #40]
+   8:	6800      	ldr	r0, [r0, #0]
+   a:	f7ff fffe 	bl	0 <part_flushPart>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:467
+}
+   e:	b240      	sxtb	r0, r0
+  10:	bd10      	pop	{r4, pc}
+  12:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.fs_umount:
+
+00000000 <fs_umount>:
+fs_umount():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:471
+/*****************************************************************************/
+
+esint8 fs_umount(FileSystem *fs)
+{
+   0:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:472
+	return(fs_flushFs(fs));
+   2:	f7ff fffe 	bl	0 <fs_umount>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:473
+}
+   6:	b240      	sxtb	r0, r0
+   8:	bd10      	pop	{r4, pc}
+   a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.fs_getLastCluster:
+
+00000000 <fs_getLastCluster>:
+fs_getLastCluster():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:415
+ * Description: This function searches the last cluster of a chain.
+ * Return value: The LastCluster (also stored in cache);
+*/
+euint32 fs_getLastCluster(FileSystem *fs,ClusterChain *Cache)
+{
+	if(Cache->DiscCluster==0){
+   0:	688a      	ldr	r2, [r1, #8]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:414
+ * euint32 fs_getLastCluster(FileSystem *fs,ClusterChain *Cache)
+ * Description: This function searches the last cluster of a chain.
+ * Return value: The LastCluster (also stored in cache);
+*/
+euint32 fs_getLastCluster(FileSystem *fs,ClusterChain *Cache)
+{
+   2:	b570      	push	{r4, r5, r6, lr}
+   4:	4605      	mov	r5, r0
+   6:	460c      	mov	r4, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:415
+	if(Cache->DiscCluster==0){
+   8:	b912      	cbnz	r2, 10 <fs_getLastCluster+0x10>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:416
+		Cache->DiscCluster=Cache->FirstCluster;
+   a:	68cb      	ldr	r3, [r1, #12]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:417
+		Cache->LogicCluster=0;
+   c:	604a      	str	r2, [r1, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:416
+ * Return value: The LastCluster (also stored in cache);
+*/
+euint32 fs_getLastCluster(FileSystem *fs,ClusterChain *Cache)
+{
+	if(Cache->DiscCluster==0){
+		Cache->DiscCluster=Cache->FirstCluster;
+   e:	608b      	str	r3, [r1, #8]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:420
+		Cache->LogicCluster=0;
+	}
+	
+	if(Cache->LastCluster==0)
+  10:	6923      	ldr	r3, [r4, #16]
+  12:	b143      	cbz	r3, 26 <fs_getLastCluster+0x26>
+  14:	e00e      	b.n	34 <fs_getLastCluster+0x34>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:424
+	{
+		while(fat_getNextClusterChain(fs, Cache)==0)
+		{
+			Cache->LogicCluster+=Cache->Linear;
+  16:	7823      	ldrb	r3, [r4, #0]
+  18:	6862      	ldr	r2, [r4, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:426
+			Cache->DiscCluster+=Cache->Linear;
+			Cache->Linear=0;
+  1a:	7020      	strb	r0, [r4, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:424
+	
+	if(Cache->LastCluster==0)
+	{
+		while(fat_getNextClusterChain(fs, Cache)==0)
+		{
+			Cache->LogicCluster+=Cache->Linear;
+  1c:	18d2      	adds	r2, r2, r3
+  1e:	6062      	str	r2, [r4, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:425
+			Cache->DiscCluster+=Cache->Linear;
+  20:	68a2      	ldr	r2, [r4, #8]
+  22:	18d2      	adds	r2, r2, r3
+  24:	60a2      	str	r2, [r4, #8]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:422
+		Cache->LogicCluster=0;
+	}
+	
+	if(Cache->LastCluster==0)
+	{
+		while(fat_getNextClusterChain(fs, Cache)==0)
+  26:	4628      	mov	r0, r5
+  28:	4621      	mov	r1, r4
+  2a:	f7ff fffe 	bl	0 <fat_getNextClusterChain>
+  2e:	b280      	uxth	r0, r0
+  30:	2800      	cmp	r0, #0
+  32:	d0f0      	beq.n	16 <fat_getNextClusterChain+0x16>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:430
+			Cache->DiscCluster+=Cache->Linear;
+			Cache->Linear=0;
+		}
+	}
+	return(Cache->LastCluster);
+}
+  34:	6920      	ldr	r0, [r4, #16]
+  36:	bd70      	pop	{r4, r5, r6, pc}
+Disassembly of section .text.fs_findFile:
+
+00000000 <fs_findFile>:
+fs_findFile():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:334
+ * Return value: Returns 0 when nothing was found, 1 when the thing found
+ * was a file and 2 if the thing found was a directory.
+*/
+
+esint8 fs_findFile(FileSystem *fs,eint8* filename,FileLocation *loc,euint32 *lastDir)
+{
+   0:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+   4:	b089      	sub	sp, #36
+   6:	9003      	str	r0, [sp, #12]
+   8:	9202      	str	r2, [sp, #8]
+   a:	461d      	mov	r5, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:338
+	euint32 fccd,tmpclus;
+	eint8 ffname[11],*next,it=0,filefound=0;
+	
+	if(*filename=='/'){
+   c:	f991 3000 	ldrsb.w	r3, [r1]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:334
+ * Return value: Returns 0 when nothing was found, 1 when the thing found
+ * was a file and 2 if the thing found was a directory.
+*/
+
+esint8 fs_findFile(FileSystem *fs,eint8* filename,FileLocation *loc,euint32 *lastDir)
+{
+  10:	460c      	mov	r4, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:338
+	euint32 fccd,tmpclus;
+	eint8 ffname[11],*next,it=0,filefound=0;
+	
+	if(*filename=='/'){
+  12:	2b2f      	cmp	r3, #47
+  14:	d109      	bne.n	2a <fs_findFile+0x2a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:339
+		fccd = fs_getFirstClusterRootDir(fs);
+  16:	f7ff fffe 	bl	0 <fs_findFile>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:340
+		filename++;
+  1a:	3401      	adds	r4, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:339
+{
+	euint32 fccd,tmpclus;
+	eint8 ffname[11],*next,it=0,filefound=0;
+	
+	if(*filename=='/'){
+		fccd = fs_getFirstClusterRootDir(fs);
+  1c:	4606      	mov	r6, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:341
+		filename++;
+		if(lastDir)*lastDir=fccd;
+  1e:	b105      	cbz	r5, 22 <fs_findFile+0x22>
+  20:	6028      	str	r0, [r5, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:342
+		if(!*filename){
+  22:	f994 3000 	ldrsb.w	r3, [r4]
+  26:	b923      	cbnz	r3, 32 <fs_findFile+0x32>
+  28:	e050      	b.n	cc <fs_findFile+0xcc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:346
+			return(2);
+		}
+	}else{
+		fccd = fs->FirstClusterCurrentDir;
+  2a:	9a03      	ldr	r2, [sp, #12]
+  2c:	6b16      	ldr	r6, [r2, #48]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:347
+		if(lastDir)*lastDir=fccd;
+  2e:	b105      	cbz	r5, 32 <fs_findFile+0x32>
+  30:	602e      	str	r6, [r5, #0]
+  32:	f04f 0800 	mov.w	r8, #0	; 0x0
+  36:	46c3      	mov	fp, r8
+  38:	e032      	b.n	a0 <fs_findFile+0xa0>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:352
+	}
+	
+	
+	while((next=file_normalToFatName(filename,ffname))!=0){
+		if((tmpclus=dir_findinDir(fs,ffname,fccd,loc,DIRFIND_FILE))==0){
+  3a:	2300      	movs	r3, #0
+  3c:	9300      	str	r3, [sp, #0]
+  3e:	9803      	ldr	r0, [sp, #12]
+  40:	4651      	mov	r1, sl
+  42:	4632      	mov	r2, r6
+  44:	9b02      	ldr	r3, [sp, #8]
+  46:	f7ff fffe 	bl	0 <dir_findinDir>
+  4a:	4604      	mov	r4, r0
+  4c:	b950      	cbnz	r0, 64 <fs_findFile+0x64>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:357
+			/* We didn't find what we wanted */
+			/* We should check, to see if there is more after it, so that
+			 * we can invalidate lastDir
+			 */
+			if((file_normalToFatName(next,ffname))!=0){
+  4e:	4648      	mov	r0, r9
+  50:	4651      	mov	r1, sl
+  52:	f7ff fffe 	bl	0 <file_normalToFatName>
+  56:	2800      	cmp	r0, #0
+  58:	d03a      	beq.n	d0 <fs_findFile+0xd0>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:358
+				if(lastDir)*lastDir=0;
+  5a:	2d00      	cmp	r5, #0
+  5c:	d038      	beq.n	d0 <fs_findFile+0xd0>
+  5e:	602c      	str	r4, [r5, #0]
+  60:	4620      	mov	r0, r4
+  62:	e036      	b.n	d2 <fs_findFile+0xd2>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:363
+			}			 
+			return(0);
+		}
+		it++;
+		if(loc->attrib&ATTR_DIRECTORY){
+  64:	9a02      	ldr	r2, [sp, #8]
+  66:	7953      	ldrb	r3, [r2, #5]
+  68:	f013 0710 	ands.w	r7, r3, #16	; 0x10
+  6c:	d008      	beq.n	80 <fs_findFile+0x80>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:366
+			fccd = tmpclus;
+			filename = next;
+			if(lastDir)*lastDir=fccd;
+  6e:	b105      	cbz	r5, 72 <fs_findFile+0x72>
+  70:	6028      	str	r0, [r5, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:367
+			if(filefound)*lastDir=0;
+  72:	f1bb 0f00 	cmp.w	fp, #0	; 0x0
+  76:	d001      	beq.n	7c <fs_findFile+0x7c>
+  78:	2300      	movs	r3, #0
+  7a:	602b      	str	r3, [r5, #0]
+  7c:	4626      	mov	r6, r4
+  7e:	e00a      	b.n	96 <fs_findFile+0x96>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:370
+		}else{
+			filefound=1;
+			if((file_normalToFatName(next,ffname))!=0){
+  80:	4648      	mov	r0, r9
+  82:	4651      	mov	r1, sl
+  84:	f7ff fffe 	bl	0 <file_normalToFatName>
+  88:	b118      	cbz	r0, 92 <fs_findFile+0x92>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:371
+				if(lastDir)*lastDir=0;
+  8a:	b30d      	cbz	r5, d0 <fs_findFile+0xd0>
+  8c:	602f      	str	r7, [r5, #0]
+  8e:	4638      	mov	r0, r7
+  90:	e01f      	b.n	d2 <fs_findFile+0xd2>
+  92:	f04f 0b01 	mov.w	fp, #1	; 0x1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:362
+			if((file_normalToFatName(next,ffname))!=0){
+				if(lastDir)*lastDir=0;
+			}			 
+			return(0);
+		}
+		it++;
+  96:	f108 0301 	add.w	r3, r8, #1	; 0x1
+  9a:	fa5f f883 	uxtb.w	r8, r3
+  9e:	464c      	mov	r4, r9
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:351
+		fccd = fs->FirstClusterCurrentDir;
+		if(lastDir)*lastDir=fccd;
+	}
+	
+	
+	while((next=file_normalToFatName(filename,ffname))!=0){
+  a0:	f10d 0a15 	add.w	sl, sp, #21	; 0x15
+  a4:	4620      	mov	r0, r4
+  a6:	4651      	mov	r1, sl
+  a8:	f7ff fffe 	bl	0 <file_normalToFatName>
+  ac:	4681      	mov	r9, r0
+  ae:	2800      	cmp	r0, #0
+  b0:	d1c3      	bne.n	3a <file_normalToFatName+0x3a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:379
+				filename=next;	
+			}
+		}
+	}
+	
+	if(it==0)return(0);
+  b2:	f1b8 0f00 	cmp.w	r8, #0	; 0x0
+  b6:	d00b      	beq.n	d0 <file_normalToFatName+0xd0>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:380
+	if(loc->attrib&ATTR_DIRECTORY || !filefound)return(2);
+  b8:	9a02      	ldr	r2, [sp, #8]
+  ba:	7953      	ldrb	r3, [r2, #5]
+  bc:	f013 0f10 	tst.w	r3, #16	; 0x10
+  c0:	d104      	bne.n	cc <file_normalToFatName+0xcc>
+  c2:	f1bb 0f00 	cmp.w	fp, #0	; 0x0
+  c6:	d001      	beq.n	cc <file_normalToFatName+0xcc>
+  c8:	3001      	adds	r0, #1
+  ca:	e002      	b.n	d2 <file_normalToFatName+0xd2>
+  cc:	2002      	movs	r0, #2
+  ce:	e000      	b.n	d2 <file_normalToFatName+0xd2>
+  d0:	2000      	movs	r0, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:382
+	return(1);
+}
+  d2:	b240      	sxtb	r0, r0
+  d4:	b009      	add	sp, #36
+  d6:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
+  da:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.fs_findFreeFile:
+
+00000000 <fs_findFreeFile>:
+fs_findFreeFile():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:386
+/*****************************************************************************/
+
+esint16 fs_findFreeFile(FileSystem *fs,eint8* filename,FileLocation *loc,euint8 mode)
+{
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   4:	b086      	sub	sp, #24
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:387
+	euint32 targetdir=0;
+   6:	ab06      	add	r3, sp, #24
+   8:	2400      	movs	r4, #0
+   a:	f843 4d04 	str.w	r4, [r3, #-4]!
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:386
+	return(1);
+}
+/*****************************************************************************/
+
+esint16 fs_findFreeFile(FileSystem *fs,eint8* filename,FileLocation *loc,euint8 mode)
+{
+   e:	4605      	mov	r5, r0
+  10:	460e      	mov	r6, r1
+  12:	4690      	mov	r8, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:390
+	euint32 targetdir=0;
+	eint8 ffname[11];
+	
+	if(fs_findFile(fs,filename,loc,&targetdir))return(0);
+  14:	f7ff fffe 	bl	0 <fs_findFreeFile>
+  18:	f010 0fff 	tst.w	r0, #255	; 0xff
+  1c:	d125      	bne.n	6a <fs_findFreeFile+0x6a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:391
+	if(!dir_getFatFileName(filename,ffname))return(0);
+  1e:	f10d 0709 	add.w	r7, sp, #9	; 0x9
+  22:	4630      	mov	r0, r6
+  24:	4639      	mov	r1, r7
+  26:	f7ff fffe 	bl	0 <dir_getFatFileName>
+  2a:	f010 0fff 	tst.w	r0, #255	; 0xff
+  2e:	d01c      	beq.n	6a <fs_findFreeFile+0x6a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:392
+	if(dir_findinDir(fs,ffname,targetdir,loc,DIRFIND_FREE)){
+  30:	3401      	adds	r4, #1
+  32:	4628      	mov	r0, r5
+  34:	4639      	mov	r1, r7
+  36:	9a05      	ldr	r2, [sp, #20]
+  38:	4643      	mov	r3, r8
+  3a:	9400      	str	r4, [sp, #0]
+  3c:	f7ff fffe 	bl	0 <dir_findinDir>
+  40:	b108      	cbz	r0, 46 <fs_findFreeFile+0x46>
+  42:	4620      	mov	r0, r4
+  44:	e012      	b.n	6c <fs_findFreeFile+0x6c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:395
+		return(1);
+	}else{
+		if(dir_addCluster(fs,targetdir)){
+  46:	4628      	mov	r0, r5
+  48:	9905      	ldr	r1, [sp, #20]
+  4a:	f7ff fffe 	bl	0 <dir_addCluster>
+  4e:	f010 0fff 	tst.w	r0, #255	; 0xff
+  52:	d10a      	bne.n	6a <fs_findFreeFile+0x6a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:398
+			return(0);
+		}else{
+			if(dir_findinDir(fs,ffname,targetdir,loc,DIRFIND_FREE)){
+  54:	4628      	mov	r0, r5
+  56:	4639      	mov	r1, r7
+  58:	9a05      	ldr	r2, [sp, #20]
+  5a:	4643      	mov	r3, r8
+  5c:	9400      	str	r4, [sp, #0]
+  5e:	f7ff fffe 	bl	0 <dir_findinDir>
+  62:	3800      	subs	r0, #0
+  64:	bf18      	it	ne
+  66:	2001      	movne	r0, #1
+  68:	e000      	b.n	6c <dir_findinDir+0x6c>
+  6a:	2000      	movs	r0, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:405
+			}
+		}
+	}
+		
+	return(0);
+}
+  6c:	b006      	add	sp, #24
+  6e:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+  72:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.fs_getNextFreeCluster:
+
+00000000 <fs_getNextFreeCluster>:
+fs_getNextFreeCluster():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:287
+ * fragmentation. Implementing rollover search is still to be done.
+ * Return value: If a free cluster is found it's number is returned. If none is 
+ * found 0 is returned.
+*/
+euint32 fs_getNextFreeCluster(FileSystem *fs,euint32 startingcluster)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4605      	mov	r5, r0
+   4:	460c      	mov	r4, r1
+   6:	e006      	b.n	16 <fs_getNextFreeCluster+0x16>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:291
+	euint32 r;
+	
+	while(startingcluster<fs->DataClusterCount){
+		r=fat_getNextClusterAddress(fs,startingcluster,0);
+   8:	4628      	mov	r0, r5
+   a:	4621      	mov	r1, r4
+   c:	2200      	movs	r2, #0
+   e:	f7ff fffe 	bl	0 <fat_getNextClusterAddress>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:292
+		if(r==0){
+  12:	b120      	cbz	r0, 1e <fat_getNextClusterAddress+0x1e>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:295
+			return(startingcluster);
+		}
+		startingcluster++;
+  14:	3401      	adds	r4, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:290
+*/
+euint32 fs_getNextFreeCluster(FileSystem *fs,euint32 startingcluster)
+{
+	euint32 r;
+	
+	while(startingcluster<fs->DataClusterCount){
+  16:	6a2b      	ldr	r3, [r5, #32]
+  18:	429c      	cmp	r4, r3
+  1a:	d3f5      	bcc.n	8 <fat_getNextClusterAddress+0x8>
+  1c:	2400      	movs	r4, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:298
+			return(startingcluster);
+		}
+		startingcluster++;
+	}
+	return(0);
+}
+  1e:	4620      	mov	r0, r4
+  20:	bd70      	pop	{r4, r5, r6, pc}
+  22:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.fs_loadVolumeId:
+
+00000000 <fs_loadVolumeId>:
+fs_loadVolumeId():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:87
+/* ****************************************************************************  
+ * void fs_loadVolumeId(FileSystem *fs, Partition *part)
+ * Description: This function loads all relevant fields from the volumeid.
+*/
+void fs_loadVolumeId(FileSystem *fs, Partition *part)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:90
+	euint8 *buf;
+	
+	buf=part_getSect(part,0,IOM_MODE_READONLY|IOM_MODE_EXP_REQ);
+   2:	2205      	movs	r2, #5
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:87
+/* ****************************************************************************  
+ * void fs_loadVolumeId(FileSystem *fs, Partition *part)
+ * Description: This function loads all relevant fields from the volumeid.
+*/
+void fs_loadVolumeId(FileSystem *fs, Partition *part)
+{
+   4:	4605      	mov	r5, r0
+   6:	460e      	mov	r6, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:90
+	euint8 *buf;
+	
+	buf=part_getSect(part,0,IOM_MODE_READONLY|IOM_MODE_EXP_REQ);
+   8:	4608      	mov	r0, r1
+   a:	2100      	movs	r1, #0
+   c:	f7ff fffe 	bl	0 <part_getSect>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:92
+	
+	fs->volumeId.BytesPerSector=ex_getb16(buf,0x0B);
+  10:	210b      	movs	r1, #11
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:90
+*/
+void fs_loadVolumeId(FileSystem *fs, Partition *part)
+{
+	euint8 *buf;
+	
+	buf=part_getSect(part,0,IOM_MODE_READONLY|IOM_MODE_EXP_REQ);
+  12:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:92
+	
+	fs->volumeId.BytesPerSector=ex_getb16(buf,0x0B);
+  14:	f7ff fffe 	bl	0 <ex_getb16>
+  18:	80a8      	strh	r0, [r5, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:93
+	fs->volumeId.SectorsPerCluster=*((eint8*)(buf+0x0D));
+  1a:	7b63      	ldrb	r3, [r4, #13]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:94
+	fs->volumeId.ReservedSectorCount=ex_getb16(buf,0x0E);
+  1c:	210e      	movs	r1, #14
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:93
+	euint8 *buf;
+	
+	buf=part_getSect(part,0,IOM_MODE_READONLY|IOM_MODE_EXP_REQ);
+	
+	fs->volumeId.BytesPerSector=ex_getb16(buf,0x0B);
+	fs->volumeId.SectorsPerCluster=*((eint8*)(buf+0x0D));
+  1e:	71ab      	strb	r3, [r5, #6]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:94
+	fs->volumeId.ReservedSectorCount=ex_getb16(buf,0x0E);
+  20:	4620      	mov	r0, r4
+  22:	f7ff fffe 	bl	0 <ex_getb16>
+  26:	8128      	strh	r0, [r5, #8]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:95
+	fs->volumeId.NumberOfFats=*((eint8*)(buf+0x10));
+  28:	7c23      	ldrb	r3, [r4, #16]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:96
+	fs->volumeId.RootEntryCount=ex_getb16(buf,0x11);
+  2a:	2111      	movs	r1, #17
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:95
+	buf=part_getSect(part,0,IOM_MODE_READONLY|IOM_MODE_EXP_REQ);
+	
+	fs->volumeId.BytesPerSector=ex_getb16(buf,0x0B);
+	fs->volumeId.SectorsPerCluster=*((eint8*)(buf+0x0D));
+	fs->volumeId.ReservedSectorCount=ex_getb16(buf,0x0E);
+	fs->volumeId.NumberOfFats=*((eint8*)(buf+0x10));
+  2c:	72ab      	strb	r3, [r5, #10]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:96
+	fs->volumeId.RootEntryCount=ex_getb16(buf,0x11);
+  2e:	4620      	mov	r0, r4
+  30:	f7ff fffe 	bl	0 <ex_getb16>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:97
+	fs->volumeId.SectorCount16=ex_getb16(buf,0x13);
+  34:	2113      	movs	r1, #19
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:96
+	
+	fs->volumeId.BytesPerSector=ex_getb16(buf,0x0B);
+	fs->volumeId.SectorsPerCluster=*((eint8*)(buf+0x0D));
+	fs->volumeId.ReservedSectorCount=ex_getb16(buf,0x0E);
+	fs->volumeId.NumberOfFats=*((eint8*)(buf+0x10));
+	fs->volumeId.RootEntryCount=ex_getb16(buf,0x11);
+  36:	81a8      	strh	r0, [r5, #12]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:97
+	fs->volumeId.SectorCount16=ex_getb16(buf,0x13);
+  38:	4620      	mov	r0, r4
+  3a:	f7ff fffe 	bl	0 <ex_getb16>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:98
+	fs->volumeId.FatSectorCount16=ex_getb16(buf,0x16);
+  3e:	2116      	movs	r1, #22
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:97
+	fs->volumeId.BytesPerSector=ex_getb16(buf,0x0B);
+	fs->volumeId.SectorsPerCluster=*((eint8*)(buf+0x0D));
+	fs->volumeId.ReservedSectorCount=ex_getb16(buf,0x0E);
+	fs->volumeId.NumberOfFats=*((eint8*)(buf+0x10));
+	fs->volumeId.RootEntryCount=ex_getb16(buf,0x11);
+	fs->volumeId.SectorCount16=ex_getb16(buf,0x13);
+  40:	81e8      	strh	r0, [r5, #14]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:98
+	fs->volumeId.FatSectorCount16=ex_getb16(buf,0x16);
+  42:	4620      	mov	r0, r4
+  44:	f7ff fffe 	bl	0 <ex_getb16>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:99
+	fs->volumeId.SectorCount32=ex_getb32(buf,0x20);
+  48:	2120      	movs	r1, #32
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:98
+	fs->volumeId.SectorsPerCluster=*((eint8*)(buf+0x0D));
+	fs->volumeId.ReservedSectorCount=ex_getb16(buf,0x0E);
+	fs->volumeId.NumberOfFats=*((eint8*)(buf+0x10));
+	fs->volumeId.RootEntryCount=ex_getb16(buf,0x11);
+	fs->volumeId.SectorCount16=ex_getb16(buf,0x13);
+	fs->volumeId.FatSectorCount16=ex_getb16(buf,0x16);
+  4a:	8228      	strh	r0, [r5, #16]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:99
+	fs->volumeId.SectorCount32=ex_getb32(buf,0x20);
+  4c:	4620      	mov	r0, r4
+  4e:	f7ff fffe 	bl	0 <ex_getb32>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:100
+	fs->volumeId.FatSectorCount32=ex_getb32(buf,0x24);
+  52:	2124      	movs	r1, #36
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:99
+	fs->volumeId.ReservedSectorCount=ex_getb16(buf,0x0E);
+	fs->volumeId.NumberOfFats=*((eint8*)(buf+0x10));
+	fs->volumeId.RootEntryCount=ex_getb16(buf,0x11);
+	fs->volumeId.SectorCount16=ex_getb16(buf,0x13);
+	fs->volumeId.FatSectorCount16=ex_getb16(buf,0x16);
+	fs->volumeId.SectorCount32=ex_getb32(buf,0x20);
+  54:	6168      	str	r0, [r5, #20]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:100
+	fs->volumeId.FatSectorCount32=ex_getb32(buf,0x24);
+  56:	4620      	mov	r0, r4
+  58:	f7ff fffe 	bl	0 <ex_getb32>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:101
+	fs->volumeId.RootCluster=ex_getb32(buf,0x2C);
+  5c:	212c      	movs	r1, #44
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:100
+	fs->volumeId.NumberOfFats=*((eint8*)(buf+0x10));
+	fs->volumeId.RootEntryCount=ex_getb16(buf,0x11);
+	fs->volumeId.SectorCount16=ex_getb16(buf,0x13);
+	fs->volumeId.FatSectorCount16=ex_getb16(buf,0x16);
+	fs->volumeId.SectorCount32=ex_getb32(buf,0x20);
+	fs->volumeId.FatSectorCount32=ex_getb32(buf,0x24);
+  5e:	61a8      	str	r0, [r5, #24]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:101
+	fs->volumeId.RootCluster=ex_getb32(buf,0x2C);
+  60:	4620      	mov	r0, r4
+  62:	f7ff fffe 	bl	0 <ex_getb32>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:103
+	
+	part_relSect(part,buf);
+  66:	4621      	mov	r1, r4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:101
+	fs->volumeId.RootEntryCount=ex_getb16(buf,0x11);
+	fs->volumeId.SectorCount16=ex_getb16(buf,0x13);
+	fs->volumeId.FatSectorCount16=ex_getb16(buf,0x16);
+	fs->volumeId.SectorCount32=ex_getb32(buf,0x20);
+	fs->volumeId.FatSectorCount32=ex_getb32(buf,0x24);
+	fs->volumeId.RootCluster=ex_getb32(buf,0x2C);
+  68:	61e8      	str	r0, [r5, #28]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:103
+	
+	part_relSect(part,buf);
+  6a:	4630      	mov	r0, r6
+  6c:	f7ff fffe 	bl	0 <part_relSect>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:105
+	
+}
+  70:	bd70      	pop	{r4, r5, r6, pc}
+  72:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.fs_isValidFat:
+
+00000000 <fs_isValidFat>:
+fs_isValidFat():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:70
+ * Description: This functions loads the volumeID and checks if the magic
+ * value is present.
+ * Return value: returns 0 when magic code is missing, 1 if it is there.
+*/
+eint16 fs_isValidFat(Partition *part)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:73
+	euint8 *buf;
+	
+	buf=part_getSect(part,0,IOM_MODE_READONLY|IOM_MODE_EXP_REQ); /* Load Volume label */
+   2:	2100      	movs	r1, #0
+   4:	2205      	movs	r2, #5
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:70
+ * Description: This functions loads the volumeID and checks if the magic
+ * value is present.
+ * Return value: returns 0 when magic code is missing, 1 if it is there.
+*/
+eint16 fs_isValidFat(Partition *part)
+{
+   6:	4605      	mov	r5, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:73
+	euint8 *buf;
+	
+	buf=part_getSect(part,0,IOM_MODE_READONLY|IOM_MODE_EXP_REQ); /* Load Volume label */
+   8:	f7ff fffe 	bl	0 <part_getSect>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:74
+	if( ex_getb16(buf,0x1FE) != 0xAA55 ){
+   c:	f44f 71ff 	mov.w	r1, #510	; 0x1fe
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:73
+*/
+eint16 fs_isValidFat(Partition *part)
+{
+	euint8 *buf;
+	
+	buf=part_getSect(part,0,IOM_MODE_READONLY|IOM_MODE_EXP_REQ); /* Load Volume label */
+  10:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:74
+	if( ex_getb16(buf,0x1FE) != 0xAA55 ){
+  12:	f7ff fffe 	bl	0 <ex_getb16>
+  16:	f64a 2355 	movw	r3, #43605	; 0xaa55
+  1a:	4298      	cmp	r0, r3
+  1c:	d001      	beq.n	22 <fs_isValidFat+0x22>
+  1e:	2000      	movs	r0, #0
+  20:	e004      	b.n	2c <fs_isValidFat+0x2c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:77
+		return (0);
+	}
+	part_relSect(part,buf);
+  22:	4628      	mov	r0, r5
+  24:	4621      	mov	r1, r4
+  26:	f7ff fffe 	bl	0 <part_relSect>
+  2a:	2001      	movs	r0, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:79
+	return(1);
+}
+  2c:	bd70      	pop	{r4, r5, r6, pc}
+  2e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.fs_initFs:
+
+00000000 <fs_initFs>:
+fs_initFs():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:48
+ * Description: This functions glues the initialisation of the filesystem together.
+ * It loads the volumeID, computes the FS type and searches for the rootsector.
+ * Return value: Returns 0 on succes and -1 on error (if magic code is wrong)
+*/
+eint16 fs_initFs(FileSystem *fs,Partition *part)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:49
+	if(!fs_isValidFat(part)){
+   4:	4608      	mov	r0, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:48
+ * Description: This functions glues the initialisation of the filesystem together.
+ * It loads the volumeID, computes the FS type and searches for the rootsector.
+ * Return value: Returns 0 on succes and -1 on error (if magic code is wrong)
+*/
+eint16 fs_initFs(FileSystem *fs,Partition *part)
+{
+   6:	460d      	mov	r5, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:49
+	if(!fs_isValidFat(part)){
+   8:	f7ff fffe 	bl	0 <fs_initFs>
+   c:	b280      	uxth	r0, r0
+   e:	b910      	cbnz	r0, 16 <fs_initFs+0x16>
+  10:	f64f 70ff 	movw	r0, #65535	; 0xffff
+  14:	e019      	b.n	4a <fs_initFs+0x4a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:53
+		return(-1);
+	}
+	fs->part=part;
+	fs_loadVolumeId(fs,part);
+  16:	4620      	mov	r0, r4
+  18:	4629      	mov	r1, r5
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:52
+eint16 fs_initFs(FileSystem *fs,Partition *part)
+{
+	if(!fs_isValidFat(part)){
+		return(-1);
+	}
+	fs->part=part;
+  1a:	6025      	str	r5, [r4, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:53
+	fs_loadVolumeId(fs,part);
+  1c:	f7ff fffe 	bl	0 <fs_initFs>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:54
+	if(!fs_verifySanity(fs))return(-2);
+  20:	4620      	mov	r0, r4
+  22:	f7ff fffe 	bl	0 <fs_initFs>
+  26:	b280      	uxth	r0, r0
+  28:	b910      	cbnz	r0, 30 <fs_initFs+0x30>
+  2a:	f64f 70fe 	movw	r0, #65534	; 0xfffe
+  2e:	e00c      	b.n	4a <fs_initFs+0x4a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:55
+  	fs_countDataSectors(fs);
+  30:	4620      	mov	r0, r4
+  32:	f7ff fffe 	bl	0 <fs_initFs>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:56
+	fs_determineFatType(fs);
+  36:	4620      	mov	r0, r4
+  38:	f7ff fffe 	bl	0 <fs_initFs>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:57
+	fs_findFirstSectorRootDir(fs);
+  3c:	4620      	mov	r0, r4
+  3e:	f7ff fffe 	bl	0 <fs_initFs>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:58
+	fs_initCurrentDir(fs); 
+  42:	4620      	mov	r0, r4
+  44:	f7ff fffe 	bl	0 <fs_initFs>
+  48:	2000      	movs	r0, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/fs.c:60
+	return(0);
+}
+  4a:	b200      	sxth	r0, r0
+  4c:	bd70      	pop	{r4, r5, r6, pc}
+  4e:	46c0      	nop			(mov r8, r8)

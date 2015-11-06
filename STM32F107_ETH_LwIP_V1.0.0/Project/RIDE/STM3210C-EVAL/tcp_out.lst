@@ -1,0 +1,2576 @@
+
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\tcp_out.o:     file format elf32-littlearm
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\tcp_out.o
+
+Disassembly of section .text.tcp_output_set_header:
+
+00000000 <tcp_output_set_header>:
+tcp_output_set_header():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:65
+static void tcp_output_segment(struct tcp_seg *seg, struct tcp_pcb *pcb);
+
+static struct tcp_hdr *
+tcp_output_set_header(struct tcp_pcb *pcb, struct pbuf *p, int optlen,
+                      u32_t seqno_be /* already in network byte order */)
+{
+   0:	e92d 4370 	stmdb	sp!, {r4, r5, r6, r8, r9, lr}
+   4:	4606      	mov	r6, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:67
+  struct tcp_hdr *tcphdr = p->payload;
+  tcphdr->src = htons(pcb->local_port);
+   6:	8b00      	ldrh	r0, [r0, #24]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:66
+
+static struct tcp_hdr *
+tcp_output_set_header(struct tcp_pcb *pcb, struct pbuf *p, int optlen,
+                      u32_t seqno_be /* already in network byte order */)
+{
+  struct tcp_hdr *tcphdr = p->payload;
+   8:	684c      	ldr	r4, [r1, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:65
+static void tcp_output_segment(struct tcp_seg *seg, struct tcp_pcb *pcb);
+
+static struct tcp_hdr *
+tcp_output_set_header(struct tcp_pcb *pcb, struct pbuf *p, int optlen,
+                      u32_t seqno_be /* already in network byte order */)
+{
+   a:	4690      	mov	r8, r2
+   c:	461d      	mov	r5, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:67
+  struct tcp_hdr *tcphdr = p->payload;
+  tcphdr->src = htons(pcb->local_port);
+   e:	f7ff fffe 	bl	0 <htons>
+  12:	7020      	strb	r0, [r4, #0]
+  14:	f3c0 200f 	ubfx	r0, r0, #8, #16
+  18:	7060      	strb	r0, [r4, #1]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:68
+  tcphdr->dest = htons(pcb->remote_port);
+  1a:	8c30      	ldrh	r0, [r6, #32]
+  1c:	f7ff fffe 	bl	0 <htons>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:69
+  tcphdr->seqno = seqno_be;
+  20:	f3c5 2307 	ubfx	r3, r5, #8, #8
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:68
+tcp_output_set_header(struct tcp_pcb *pcb, struct pbuf *p, int optlen,
+                      u32_t seqno_be /* already in network byte order */)
+{
+  struct tcp_hdr *tcphdr = p->payload;
+  tcphdr->src = htons(pcb->local_port);
+  tcphdr->dest = htons(pcb->remote_port);
+  24:	70a0      	strb	r0, [r4, #2]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:69
+  tcphdr->seqno = seqno_be;
+  26:	7125      	strb	r5, [r4, #4]
+  28:	7163      	strb	r3, [r4, #5]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:68
+tcp_output_set_header(struct tcp_pcb *pcb, struct pbuf *p, int optlen,
+                      u32_t seqno_be /* already in network byte order */)
+{
+  struct tcp_hdr *tcphdr = p->payload;
+  tcphdr->src = htons(pcb->local_port);
+  tcphdr->dest = htons(pcb->remote_port);
+  2a:	f3c0 200f 	ubfx	r0, r0, #8, #16
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:69
+  tcphdr->seqno = seqno_be;
+  2e:	f3c5 4307 	ubfx	r3, r5, #16, #8
+  32:	0e2d      	lsrs	r5, r5, #24
+  34:	71a3      	strb	r3, [r4, #6]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:68
+tcp_output_set_header(struct tcp_pcb *pcb, struct pbuf *p, int optlen,
+                      u32_t seqno_be /* already in network byte order */)
+{
+  struct tcp_hdr *tcphdr = p->payload;
+  tcphdr->src = htons(pcb->local_port);
+  tcphdr->dest = htons(pcb->remote_port);
+  36:	70e0      	strb	r0, [r4, #3]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:69
+  tcphdr->seqno = seqno_be;
+  38:	71e5      	strb	r5, [r4, #7]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:70
+  tcphdr->ackno = htonl(pcb->rcv_nxt);
+  3a:	6a70      	ldr	r0, [r6, #36]
+  3c:	f7ff fffe 	bl	0 <htonl>
+  40:	f3c0 2307 	ubfx	r3, r0, #8, #8
+  44:	7220      	strb	r0, [r4, #8]
+  46:	7263      	strb	r3, [r4, #9]
+  48:	f3c0 4307 	ubfx	r3, r0, #16, #8
+  4c:	0e00      	lsrs	r0, r0, #24
+  4e:	72a3      	strb	r3, [r4, #10]
+  50:	72e0      	strb	r0, [r4, #11]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:71
+  TCPH_FLAGS_SET(tcphdr, TCP_ACK);
+  52:	7b23      	ldrb	r3, [r4, #12]
+  54:	7b60      	ldrb	r0, [r4, #13]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:67
+static struct tcp_hdr *
+tcp_output_set_header(struct tcp_pcb *pcb, struct pbuf *p, int optlen,
+                      u32_t seqno_be /* already in network byte order */)
+{
+  struct tcp_hdr *tcphdr = p->payload;
+  tcphdr->src = htons(pcb->local_port);
+  56:	f04f 0900 	mov.w	r9, #0	; 0x0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:71
+  tcphdr->dest = htons(pcb->remote_port);
+  tcphdr->seqno = seqno_be;
+  tcphdr->ackno = htonl(pcb->rcv_nxt);
+  TCPH_FLAGS_SET(tcphdr, TCP_ACK);
+  5a:	ea43 2000 	orr.w	r0, r3, r0, lsl #8
+  5e:	f7ff fffe 	bl	0 <ntohs>
+  62:	f020 003f 	bic.w	r0, r0, #63	; 0x3f
+  66:	f040 0010 	orr.w	r0, r0, #16	; 0x10
+  6a:	b280      	uxth	r0, r0
+  6c:	f7ff fffe 	bl	0 <htons>
+  70:	7320      	strb	r0, [r4, #12]
+  72:	f3c0 200f 	ubfx	r0, r0, #8, #16
+  76:	7360      	strb	r0, [r4, #13]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:72
+  tcphdr->wnd = htons(pcb->rcv_ann_wnd);
+  78:	8d70      	ldrh	r0, [r6, #42]
+  7a:	f7ff fffe 	bl	0 <htons>
+  7e:	73a0      	strb	r0, [r4, #14]
+  80:	f3c0 200f 	ubfx	r0, r0, #8, #16
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:74
+  tcphdr->urgp = 0;
+  TCPH_HDRLEN_SET(tcphdr, (5 + optlen / 4));
+  84:	7b23      	ldrb	r3, [r4, #12]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:72
+  tcphdr->src = htons(pcb->local_port);
+  tcphdr->dest = htons(pcb->remote_port);
+  tcphdr->seqno = seqno_be;
+  tcphdr->ackno = htonl(pcb->rcv_nxt);
+  TCPH_FLAGS_SET(tcphdr, TCP_ACK);
+  tcphdr->wnd = htons(pcb->rcv_ann_wnd);
+  86:	73e0      	strb	r0, [r4, #15]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:74
+  tcphdr->urgp = 0;
+  TCPH_HDRLEN_SET(tcphdr, (5 + optlen / 4));
+  88:	7b60      	ldrb	r0, [r4, #13]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:73
+  tcphdr->dest = htons(pcb->remote_port);
+  tcphdr->seqno = seqno_be;
+  tcphdr->ackno = htonl(pcb->rcv_nxt);
+  TCPH_FLAGS_SET(tcphdr, TCP_ACK);
+  tcphdr->wnd = htons(pcb->rcv_ann_wnd);
+  tcphdr->urgp = 0;
+  8a:	f884 9012 	strb.w	r9, [r4, #18]
+  8e:	f884 9013 	strb.w	r9, [r4, #19]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:74
+  TCPH_HDRLEN_SET(tcphdr, (5 + optlen / 4));
+  92:	ea43 2000 	orr.w	r0, r3, r0, lsl #8
+  96:	f7ff fffe 	bl	0 <ntohs>
+  9a:	2304      	movs	r3, #4
+  9c:	fb98 f8f3 	sdiv	r8, r8, r3
+  a0:	f108 0805 	add.w	r8, r8, #5	; 0x5
+  a4:	f000 003f 	and.w	r0, r0, #63	; 0x3f
+  a8:	ea40 3008 	orr.w	r0, r0, r8, lsl #12
+  ac:	b280      	uxth	r0, r0
+  ae:	f7ff fffe 	bl	0 <htons>
+  b2:	7320      	strb	r0, [r4, #12]
+  b4:	f3c0 200f 	ubfx	r0, r0, #8, #16
+  b8:	7360      	strb	r0, [r4, #13]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:75
+  tcphdr->chksum = 0;
+  ba:	f884 9010 	strb.w	r9, [r4, #16]
+  be:	f884 9011 	strb.w	r9, [r4, #17]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:78
+
+  /* If we're sending a packet, update the announced right window edge */
+  pcb->rcv_ann_right_edge = pcb->rcv_nxt + pcb->rcv_ann_wnd;
+  c2:	8d73      	ldrh	r3, [r6, #42]
+  c4:	6a72      	ldr	r2, [r6, #36]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:81
+
+  return tcphdr;
+}
+  c6:	4620      	mov	r0, r4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:78
+  tcphdr->urgp = 0;
+  TCPH_HDRLEN_SET(tcphdr, (5 + optlen / 4));
+  tcphdr->chksum = 0;
+
+  /* If we're sending a packet, update the announced right window edge */
+  pcb->rcv_ann_right_edge = pcb->rcv_nxt + pcb->rcv_ann_wnd;
+  c8:	189b      	adds	r3, r3, r2
+  ca:	62f3      	str	r3, [r6, #44]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:81
+
+  return tcphdr;
+}
+  cc:	e8bd 8370 	ldmia.w	sp!, {r4, r5, r6, r8, r9, pc}
+Disassembly of section .text.tcp_zero_window_probe:
+
+00000000 <tcp_zero_window_probe>:
+tcp_zero_window_probe():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:923
+ *
+ * @param pcb the tcp_pcb for which to send a zero-window probe packet
+ */
+void
+tcp_zero_window_probe(struct tcp_pcb *pcb)
+{
+   0:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:939
+  LWIP_DEBUGF(TCP_DEBUG, 
+              ("tcp_zero_window_probe: tcp_ticks %"U32_F
+               "   pcb->tmr %"U32_F" pcb->keep_cnt_sent %"U16_F"\n", 
+               tcp_ticks, pcb->tmr, pcb->keep_cnt_sent));
+
+  seg = pcb->unacked;
+   2:	6f85      	ldr	r5, [r0, #120]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:923
+ *
+ * @param pcb the tcp_pcb for which to send a zero-window probe packet
+ */
+void
+tcp_zero_window_probe(struct tcp_pcb *pcb)
+{
+   4:	4606      	mov	r6, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:941
+               "   pcb->tmr %"U32_F" pcb->keep_cnt_sent %"U16_F"\n", 
+               tcp_ticks, pcb->tmr, pcb->keep_cnt_sent));
+
+  seg = pcb->unacked;
+
+  if(seg == NULL)
+   6:	b90d      	cbnz	r5, c <tcp_zero_window_probe+0xc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:942
+    seg = pcb->unsent;
+   8:	6f45      	ldr	r5, [r0, #116]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:944
+
+  if(seg == NULL)
+   a:	b33d      	cbz	r5, 5c <tcp_zero_window_probe+0x5c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:947
+    return;
+
+  p = pbuf_alloc(PBUF_IP, TCP_HLEN + 1, PBUF_RAM);
+   c:	2001      	movs	r0, #1
+   e:	2115      	movs	r1, #21
+  10:	2200      	movs	r2, #0
+  12:	f7ff fffe 	bl	0 <pbuf_alloc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:949
+   
+  if(p == NULL) {
+  16:	4607      	mov	r7, r0
+  18:	b300      	cbz	r0, 5c <tcp_zero_window_probe+0x5c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:956
+    return;
+  }
+  LWIP_ASSERT("check that first pbuf can hold struct tcp_hdr",
+              (p->len >= sizeof(struct tcp_hdr)));
+
+  tcphdr = tcp_output_set_header(pcb, p, 0, seg->tcphdr->seqno);
+  1a:	6929      	ldr	r1, [r5, #16]
+  1c:	4630      	mov	r0, r6
+  1e:	794a      	ldrb	r2, [r1, #5]
+  20:	790b      	ldrb	r3, [r1, #4]
+  22:	79cc      	ldrb	r4, [r1, #7]
+  24:	ea43 2302 	orr.w	r3, r3, r2, lsl #8
+  28:	798a      	ldrb	r2, [r1, #6]
+  2a:	4639      	mov	r1, r7
+  2c:	ea43 4302 	orr.w	r3, r3, r2, lsl #16
+  30:	ea43 6304 	orr.w	r3, r3, r4, lsl #24
+  34:	2200      	movs	r2, #0
+  36:	f7ff fffe 	bl	0 <tcp_zero_window_probe>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:959
+
+  /* Copy in one byte from the head of the unacked queue */
+  *((char *)p->payload + sizeof(struct tcp_hdr)) = *(char *)seg->dataptr;
+  3a:	68ab      	ldr	r3, [r5, #8]
+  3c:	687a      	ldr	r2, [r7, #4]
+  3e:	781b      	ldrb	r3, [r3, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:972
+  /* Send output to IP */
+#if LWIP_NETIF_HWADDRHINT
+  ip_output_hinted(p, &pcb->local_ip, &pcb->remote_ip, pcb->ttl, 0, IP_PROTO_TCP,
+    &(pcb->addr_hint));
+#else /* LWIP_NETIF_HWADDRHINT*/
+  ip_output(p, &pcb->local_ip, &pcb->remote_ip, pcb->ttl, 0, IP_PROTO_TCP);
+  40:	4638      	mov	r0, r7
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:959
+              (p->len >= sizeof(struct tcp_hdr)));
+
+  tcphdr = tcp_output_set_header(pcb, p, 0, seg->tcphdr->seqno);
+
+  /* Copy in one byte from the head of the unacked queue */
+  *((char *)p->payload + sizeof(struct tcp_hdr)) = *(char *)seg->dataptr;
+  42:	7513      	strb	r3, [r2, #20]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:972
+  /* Send output to IP */
+#if LWIP_NETIF_HWADDRHINT
+  ip_output_hinted(p, &pcb->local_ip, &pcb->remote_ip, pcb->ttl, 0, IP_PROTO_TCP,
+    &(pcb->addr_hint));
+#else /* LWIP_NETIF_HWADDRHINT*/
+  ip_output(p, &pcb->local_ip, &pcb->remote_ip, pcb->ttl, 0, IP_PROTO_TCP);
+  44:	2200      	movs	r2, #0
+  46:	9200      	str	r2, [sp, #0]
+  48:	3206      	adds	r2, #6
+  4a:	9201      	str	r2, [sp, #4]
+  4c:	7af3      	ldrb	r3, [r6, #11]
+  4e:	4631      	mov	r1, r6
+  50:	1d32      	adds	r2, r6, #4
+  52:	f7ff fffe 	bl	0 <ip_output>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:975
+#endif /* LWIP_NETIF_HWADDRHINT*/
+
+  pbuf_free(p);
+  56:	4638      	mov	r0, r7
+  58:	f7ff fffe 	bl	0 <pbuf_free>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:980
+
+  LWIP_DEBUGF(TCP_DEBUG, ("tcp_zero_window_probe: seqno %"U32_F
+                          " ackno %"U32_F".\n",
+                          pcb->snd_nxt - 1, pcb->rcv_nxt));
+}
+  5c:	bdfe      	pop	{r1, r2, r3, r4, r5, r6, r7, pc}
+  5e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.tcp_keepalive:
+
+00000000 <tcp_keepalive>:
+tcp_keepalive():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:869
+ *
+ * @param pcb the tcp_pcb for which to send a keepalive packet
+ */
+void
+tcp_keepalive(struct tcp_pcb *pcb)
+{
+   0:	b537      	push	{r0, r1, r2, r4, r5, lr}
+   2:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:880
+                          ip4_addr3(&pcb->remote_ip), ip4_addr4(&pcb->remote_ip)));
+
+  LWIP_DEBUGF(TCP_DEBUG, ("tcp_keepalive: tcp_ticks %"U32_F"   pcb->tmr %"U32_F" pcb->keep_cnt_sent %"U16_F"\n", 
+                          tcp_ticks, pcb->tmr, pcb->keep_cnt_sent));
+   
+  p = pbuf_alloc(PBUF_IP, TCP_HLEN, PBUF_RAM);
+   4:	2114      	movs	r1, #20
+   6:	2001      	movs	r0, #1
+   8:	2200      	movs	r2, #0
+   a:	f7ff fffe 	bl	0 <pbuf_alloc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:882
+   
+  if(p == NULL) {
+   e:	4605      	mov	r5, r0
+  10:	b1b0      	cbz	r0, 40 <tcp_keepalive+0x40>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:890
+    return;
+  }
+  LWIP_ASSERT("check that first pbuf can hold struct tcp_hdr",
+              (p->len >= sizeof(struct tcp_hdr)));
+
+  tcphdr = tcp_output_set_header(pcb, p, 0, htonl(pcb->snd_nxt - 1));
+  12:	6da0      	ldr	r0, [r4, #88]
+  14:	3801      	subs	r0, #1
+  16:	f7ff fffe 	bl	0 <htonl>
+  1a:	4629      	mov	r1, r5
+  1c:	4603      	mov	r3, r0
+  1e:	2200      	movs	r2, #0
+  20:	4620      	mov	r0, r4
+  22:	f7ff fffe 	bl	0 <tcp_keepalive>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:903
+  /* Send output to IP */
+#if LWIP_NETIF_HWADDRHINT
+  ip_output_hinted(p, &pcb->local_ip, &pcb->remote_ip, pcb->ttl, 0, IP_PROTO_TCP,
+    &(pcb->addr_hint));
+#else /* LWIP_NETIF_HWADDRHINT*/
+  ip_output(p, &pcb->local_ip, &pcb->remote_ip, pcb->ttl, 0, IP_PROTO_TCP);
+  26:	2200      	movs	r2, #0
+  28:	9200      	str	r2, [sp, #0]
+  2a:	3206      	adds	r2, #6
+  2c:	9201      	str	r2, [sp, #4]
+  2e:	7ae3      	ldrb	r3, [r4, #11]
+  30:	4628      	mov	r0, r5
+  32:	4621      	mov	r1, r4
+  34:	1d22      	adds	r2, r4, #4
+  36:	f7ff fffe 	bl	0 <ip_output>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:906
+#endif /* LWIP_NETIF_HWADDRHINT*/
+
+  pbuf_free(p);
+  3a:	4628      	mov	r0, r5
+  3c:	f7ff fffe 	bl	0 <pbuf_free>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:910
+
+  LWIP_DEBUGF(TCP_DEBUG, ("tcp_keepalive: seqno %"U32_F" ackno %"U32_F".\n",
+                          pcb->snd_nxt - 1, pcb->rcv_nxt));
+}
+  40:	bd3e      	pop	{r1, r2, r3, r4, r5, pc}
+  42:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.tcp_rst:
+
+00000000 <tcp_rst>:
+tcp_rst():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:750
+ */
+void
+tcp_rst(u32_t seqno, u32_t ackno,
+  struct ip_addr *local_ip, struct ip_addr *remote_ip,
+  u16_t local_port, u16_t remote_port)
+{
+   0:	e92d 4ff7 	stmdb	sp!, {r0, r1, r2, r4, r5, r6, r7, r8, r9, sl, fp, lr}
+   4:	4680      	mov	r8, r0
+   6:	4689      	mov	r9, r1
+   8:	4692      	mov	sl, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:753
+  struct pbuf *p;
+  struct tcp_hdr *tcphdr;
+  p = pbuf_alloc(PBUF_IP, TCP_HLEN, PBUF_RAM);
+   a:	2001      	movs	r0, #1
+   c:	2114      	movs	r1, #20
+   e:	2200      	movs	r2, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:750
+ */
+void
+tcp_rst(u32_t seqno, u32_t ackno,
+  struct ip_addr *local_ip, struct ip_addr *remote_ip,
+  u16_t local_port, u16_t remote_port)
+{
+  10:	469b      	mov	fp, r3
+  12:	f8bd 5030 	ldrh.w	r5, [sp, #48]
+  16:	f8bd 6034 	ldrh.w	r6, [sp, #52]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:753
+  struct pbuf *p;
+  struct tcp_hdr *tcphdr;
+  p = pbuf_alloc(PBUF_IP, TCP_HLEN, PBUF_RAM);
+  1a:	f7ff fffe 	bl	0 <pbuf_alloc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:754
+  if (p == NULL) {
+  1e:	4607      	mov	r7, r0
+  20:	2800      	cmp	r0, #0
+  22:	d060      	beq.n	e6 <tcp_rst+0xe6>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:761
+      return;
+  }
+  LWIP_ASSERT("check that first pbuf can hold struct tcp_hdr",
+              (p->len >= sizeof(struct tcp_hdr)));
+
+  tcphdr = p->payload;
+  24:	6844      	ldr	r4, [r0, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:762
+  tcphdr->src = htons(local_port);
+  26:	4628      	mov	r0, r5
+  28:	f7ff fffe 	bl	0 <htons>
+  2c:	7020      	strb	r0, [r4, #0]
+  2e:	f3c0 200f 	ubfx	r0, r0, #8, #16
+  32:	7060      	strb	r0, [r4, #1]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:763
+  tcphdr->dest = htons(remote_port);
+  34:	4630      	mov	r0, r6
+  36:	f7ff fffe 	bl	0 <htons>
+  3a:	70a0      	strb	r0, [r4, #2]
+  3c:	f3c0 200f 	ubfx	r0, r0, #8, #16
+  40:	70e0      	strb	r0, [r4, #3]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:764
+  tcphdr->seqno = htonl(seqno);
+  42:	4640      	mov	r0, r8
+  44:	f7ff fffe 	bl	0 <htonl>
+  48:	f3c0 2307 	ubfx	r3, r0, #8, #8
+  4c:	7120      	strb	r0, [r4, #4]
+  4e:	7163      	strb	r3, [r4, #5]
+  50:	f3c0 4307 	ubfx	r3, r0, #16, #8
+  54:	0e00      	lsrs	r0, r0, #24
+  56:	71a3      	strb	r3, [r4, #6]
+  58:	71e0      	strb	r0, [r4, #7]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:765
+  tcphdr->ackno = htonl(ackno);
+  5a:	4648      	mov	r0, r9
+  5c:	f7ff fffe 	bl	0 <htonl>
+  60:	f3c0 2307 	ubfx	r3, r0, #8, #8
+  64:	7220      	strb	r0, [r4, #8]
+  66:	7263      	strb	r3, [r4, #9]
+  68:	f3c0 4307 	ubfx	r3, r0, #16, #8
+  6c:	0e00      	lsrs	r0, r0, #24
+  6e:	72a3      	strb	r3, [r4, #10]
+  70:	72e0      	strb	r0, [r4, #11]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:766
+  TCPH_FLAGS_SET(tcphdr, TCP_RST | TCP_ACK);
+  72:	7b23      	ldrb	r3, [r4, #12]
+  74:	7b60      	ldrb	r0, [r4, #13]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:762
+  }
+  LWIP_ASSERT("check that first pbuf can hold struct tcp_hdr",
+              (p->len >= sizeof(struct tcp_hdr)));
+
+  tcphdr = p->payload;
+  tcphdr->src = htons(local_port);
+  76:	2500      	movs	r5, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:766
+  tcphdr->dest = htons(remote_port);
+  tcphdr->seqno = htonl(seqno);
+  tcphdr->ackno = htonl(ackno);
+  TCPH_FLAGS_SET(tcphdr, TCP_RST | TCP_ACK);
+  78:	ea43 2000 	orr.w	r0, r3, r0, lsl #8
+  7c:	f7ff fffe 	bl	0 <ntohs>
+  80:	f020 003f 	bic.w	r0, r0, #63	; 0x3f
+  84:	f040 0014 	orr.w	r0, r0, #20	; 0x14
+  88:	b280      	uxth	r0, r0
+  8a:	f7ff fffe 	bl	0 <htons>
+  8e:	7320      	strb	r0, [r4, #12]
+  90:	f3c0 200f 	ubfx	r0, r0, #8, #16
+  94:	7360      	strb	r0, [r4, #13]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:767
+  tcphdr->wnd = htons(TCP_WND);
+  96:	f640 3068 	movw	r0, #2920	; 0xb68
+  9a:	f7ff fffe 	bl	0 <htons>
+  9e:	73a0      	strb	r0, [r4, #14]
+  a0:	f3c0 200f 	ubfx	r0, r0, #8, #16
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:769
+  tcphdr->urgp = 0;
+  TCPH_HDRLEN_SET(tcphdr, 5);
+  a4:	7b23      	ldrb	r3, [r4, #12]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:767
+  tcphdr->src = htons(local_port);
+  tcphdr->dest = htons(remote_port);
+  tcphdr->seqno = htonl(seqno);
+  tcphdr->ackno = htonl(ackno);
+  TCPH_FLAGS_SET(tcphdr, TCP_RST | TCP_ACK);
+  tcphdr->wnd = htons(TCP_WND);
+  a6:	73e0      	strb	r0, [r4, #15]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:769
+  tcphdr->urgp = 0;
+  TCPH_HDRLEN_SET(tcphdr, 5);
+  a8:	7b60      	ldrb	r0, [r4, #13]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:768
+  tcphdr->dest = htons(remote_port);
+  tcphdr->seqno = htonl(seqno);
+  tcphdr->ackno = htonl(ackno);
+  TCPH_FLAGS_SET(tcphdr, TCP_RST | TCP_ACK);
+  tcphdr->wnd = htons(TCP_WND);
+  tcphdr->urgp = 0;
+  aa:	74a5      	strb	r5, [r4, #18]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:769
+  TCPH_HDRLEN_SET(tcphdr, 5);
+  ac:	ea43 2000 	orr.w	r0, r3, r0, lsl #8
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:768
+  tcphdr->dest = htons(remote_port);
+  tcphdr->seqno = htonl(seqno);
+  tcphdr->ackno = htonl(ackno);
+  TCPH_FLAGS_SET(tcphdr, TCP_RST | TCP_ACK);
+  tcphdr->wnd = htons(TCP_WND);
+  tcphdr->urgp = 0;
+  b0:	74e5      	strb	r5, [r4, #19]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:769
+  TCPH_HDRLEN_SET(tcphdr, 5);
+  b2:	f7ff fffe 	bl	0 <ntohs>
+  b6:	f000 003f 	and.w	r0, r0, #63	; 0x3f
+  ba:	f440 40a0 	orr.w	r0, r0, #20480	; 0x5000
+  be:	f7ff fffe 	bl	0 <htons>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:779
+              IP_PROTO_TCP, p->tot_len);
+#endif
+  TCP_STATS_INC(tcp.xmit);
+  snmp_inc_tcpoutrsts();
+   /* Send output with hardcoded TTL since we have no access to the pcb */
+  ip_output(p, local_ip, remote_ip, TCP_TTL, 0, IP_PROTO_TCP);
+  c2:	2306      	movs	r3, #6
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:769
+  tcphdr->seqno = htonl(seqno);
+  tcphdr->ackno = htonl(ackno);
+  TCPH_FLAGS_SET(tcphdr, TCP_RST | TCP_ACK);
+  tcphdr->wnd = htons(TCP_WND);
+  tcphdr->urgp = 0;
+  TCPH_HDRLEN_SET(tcphdr, 5);
+  c4:	7320      	strb	r0, [r4, #12]
+  c6:	f3c0 200f 	ubfx	r0, r0, #8, #16
+  ca:	7360      	strb	r0, [r4, #13]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:771
+
+  tcphdr->chksum = 0;
+  cc:	7425      	strb	r5, [r4, #16]
+  ce:	7465      	strb	r5, [r4, #17]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:779
+              IP_PROTO_TCP, p->tot_len);
+#endif
+  TCP_STATS_INC(tcp.xmit);
+  snmp_inc_tcpoutrsts();
+   /* Send output with hardcoded TTL since we have no access to the pcb */
+  ip_output(p, local_ip, remote_ip, TCP_TTL, 0, IP_PROTO_TCP);
+  d0:	4638      	mov	r0, r7
+  d2:	9301      	str	r3, [sp, #4]
+  d4:	4651      	mov	r1, sl
+  d6:	465a      	mov	r2, fp
+  d8:	33f9      	adds	r3, #249
+  da:	9500      	str	r5, [sp, #0]
+  dc:	f7ff fffe 	bl	0 <ip_output>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:780
+  pbuf_free(p);
+  e0:	4638      	mov	r0, r7
+  e2:	f7ff fffe 	bl	0 <pbuf_free>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:782
+  LWIP_DEBUGF(TCP_RST_DEBUG, ("tcp_rst: seqno %"U32_F" ackno %"U32_F".\n", seqno, ackno));
+}
+  e6:	e8bd 8ffe 	ldmia.w	sp!, {r1, r2, r3, r4, r5, r6, r7, r8, r9, sl, fp, pc}
+  ea:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.tcp_output:
+
+00000000 <tcp_output>:
+tcp_output():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:470
+
+  /* First, check if we are invoked by the TCP input processing
+     code. If so, we do not output anything. Instead, we rely on the
+     input processing code to call us when input processing is done
+     with. */
+  if (tcp_input_pcb == pcb) {
+   0:	4b9d      	ldr	r3, [pc, #628]	(278 <tcp_output+0x278>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:456
+ * @return ERR_OK if data has been sent or nothing to send
+ *         another err_t on error
+ */
+err_t
+tcp_output(struct tcp_pcb *pcb)
+{
+   2:	e92d 4ff7 	stmdb	sp!, {r0, r1, r2, r4, r5, r6, r7, r8, r9, sl, fp, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:470
+
+  /* First, check if we are invoked by the TCP input processing
+     code. If so, we do not output anything. Instead, we rely on the
+     input processing code to call us when input processing is done
+     with. */
+  if (tcp_input_pcb == pcb) {
+   6:	681b      	ldr	r3, [r3, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:456
+ * @return ERR_OK if data has been sent or nothing to send
+ *         another err_t on error
+ */
+err_t
+tcp_output(struct tcp_pcb *pcb)
+{
+   8:	4605      	mov	r5, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:470
+
+  /* First, check if we are invoked by the TCP input processing
+     code. If so, we do not output anything. Instead, we rely on the
+     input processing code to call us when input processing is done
+     with. */
+  if (tcp_input_pcb == pcb) {
+   a:	4283      	cmp	r3, r0
+   c:	f000 81c1 	beq.w	392 <tcp_output+0x392>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:474
+    return ERR_OK;
+  }
+
+  wnd = LWIP_MIN(pcb->snd_wnd, pcb->cwnd);
+  10:	f8b0 205c 	ldrh.w	r2, [r0, #92]
+  14:	f8b0 3052 	ldrh.w	r3, [r0, #82]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:479
+
+  seg = pcb->unsent;
+
+  /* useg should point to last segment on unacked queue */
+  useg = pcb->unacked;
+  18:	f8d0 8078 	ldr.w	r8, [r0, #120]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:474
+     with. */
+  if (tcp_input_pcb == pcb) {
+    return ERR_OK;
+  }
+
+  wnd = LWIP_MIN(pcb->snd_wnd, pcb->cwnd);
+  1c:	429a      	cmp	r2, r3
+  1e:	bf34      	ite	cc
+  20:	4692      	movcc	sl, r2
+  22:	469a      	movcs	sl, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:476
+
+  seg = pcb->unsent;
+  24:	6f46      	ldr	r6, [r0, #116]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:480
+
+  /* useg should point to last segment on unacked queue */
+  useg = pcb->unacked;
+  if (useg != NULL) {
+  26:	f1b8 0f00 	cmp.w	r8, #0	; 0x0
+  2a:	d004      	beq.n	36 <tcp_output+0x36>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:481
+    for (; useg->next != NULL; useg = useg->next);
+  2c:	f8d8 3000 	ldr.w	r3, [r8]
+  30:	b10b      	cbz	r3, 36 <tcp_output+0x36>
+  32:	4698      	mov	r8, r3
+  34:	e7fa      	b.n	2c <tcp_output+0x2c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:490
+   * because the ->unsent queue is empty or because the window does
+   * not allow it), construct an empty ACK segment and send it.
+   *
+   * If data is to be sent, we will just piggyback the ACK (see below).
+   */
+  if (pcb->flags & TF_ACK_NOW &&
+  36:	f895 3022 	ldrb.w	r3, [r5, #34]
+  3a:	f013 0f02 	tst.w	r3, #2	; 0x2
+  3e:	d104      	bne.n	4a <tcp_output+0x4a>
+tcp_output_segment():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:680
+#endif
+
+  /* If we don't have a local IP address, we get one by
+     calling ip_route(). */
+  if (ip_addr_isany(&(pcb->local_ip))) {
+    netif = ip_route(&(pcb->remote_ip));
+  40:	f105 0904 	add.w	r9, r5, #4	; 0x4
+tcp_output():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:605
+        /* In the case of fast retransmit, the packet should not go to the tail
+         * of the unacked queue, but rather somewhere before it. We need to check for
+         * this case. -STJ Jul 27, 2004 */
+        if (TCP_SEQ_LT(ntohl(seg->tcphdr->seqno), ntohl(useg->tcphdr->seqno))){
+          /* add segment to before tail of unacked list, keeping the list sorted */
+          struct tcp_seg **cur_seg = &(pcb->unacked);
+  44:	f105 0b78 	add.w	fp, r5, #120	; 0x78
+  48:	e16a      	b.n	320 <tcp_output+0x320>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:490
+   * because the ->unsent queue is empty or because the window does
+   * not allow it), construct an empty ACK segment and send it.
+   *
+   * If data is to be sent, we will just piggyback the ACK (see below).
+   */
+  if (pcb->flags & TF_ACK_NOW &&
+  4a:	b196      	cbz	r6, 72 <tcp_output+0x72>
+  4c:	6932      	ldr	r2, [r6, #16]
+  4e:	7953      	ldrb	r3, [r2, #5]
+  50:	7910      	ldrb	r0, [r2, #4]
+  52:	ea40 2003 	orr.w	r0, r0, r3, lsl #8
+  56:	7993      	ldrb	r3, [r2, #6]
+  58:	ea40 4003 	orr.w	r0, r0, r3, lsl #16
+  5c:	79d3      	ldrb	r3, [r2, #7]
+  5e:	ea40 6003 	orr.w	r0, r0, r3, lsl #24
+  62:	f7ff fffe 	bl	0 <ntohl>
+  66:	89b3      	ldrh	r3, [r6, #12]
+  68:	6cea      	ldr	r2, [r5, #76]
+  6a:	1a9b      	subs	r3, r3, r2
+  6c:	181b      	adds	r3, r3, r0
+  6e:	4553      	cmp	r3, sl
+  70:	d9e6      	bls.n	40 <tcp_output+0x40>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:497
+      ntohl(seg->tcphdr->seqno) - pcb->lastack + seg->len > wnd)) {
+#if LWIP_TCP_TIMESTAMPS
+    if (pcb->flags & TF_TIMESTAMP)
+      optlen = LWIP_TCP_OPT_LENGTH(TF_SEG_OPTS_TS);
+#endif
+    p = pbuf_alloc(PBUF_IP, TCP_HLEN + optlen, PBUF_RAM);
+  72:	2001      	movs	r0, #1
+  74:	2114      	movs	r1, #20
+  76:	2200      	movs	r2, #0
+  78:	f7ff fffe 	bl	0 <pbuf_alloc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:498
+    if (p == NULL) {
+  7c:	4604      	mov	r4, r0
+  7e:	b908      	cbnz	r0, 84 <tcp_output+0x84>
+  80:	30fe      	adds	r0, #254
+  82:	e187      	b.n	394 <tcp_output+0x394>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:505
+      return ERR_BUF;
+    }
+    LWIP_DEBUGF(TCP_OUTPUT_DEBUG, 
+                ("tcp_output: sending ACK for %"U32_F"\n", pcb->rcv_nxt));
+    /* remove ACK flags from the PCB, as we send an empty ACK now */
+    pcb->flags &= ~(TF_ACK_DELAY | TF_ACK_NOW);
+  84:	f895 3022 	ldrb.w	r3, [r5, #34]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:507
+
+    tcphdr = tcp_output_set_header(pcb, p, optlen, htonl(pcb->snd_nxt));
+  88:	6da8      	ldr	r0, [r5, #88]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:505
+      return ERR_BUF;
+    }
+    LWIP_DEBUGF(TCP_OUTPUT_DEBUG, 
+                ("tcp_output: sending ACK for %"U32_F"\n", pcb->rcv_nxt));
+    /* remove ACK flags from the PCB, as we send an empty ACK now */
+    pcb->flags &= ~(TF_ACK_DELAY | TF_ACK_NOW);
+  8a:	f023 0303 	bic.w	r3, r3, #3	; 0x3
+  8e:	f885 3022 	strb.w	r3, [r5, #34]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:507
+
+    tcphdr = tcp_output_set_header(pcb, p, optlen, htonl(pcb->snd_nxt));
+  92:	f7ff fffe 	bl	0 <htonl>
+  96:	4621      	mov	r1, r4
+  98:	4603      	mov	r3, r0
+  9a:	2200      	movs	r2, #0
+  9c:	4628      	mov	r0, r5
+  9e:	f7ff fffe 	bl	0 <tcp_output>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:525
+#endif
+#if LWIP_NETIF_HWADDRHINT
+    ip_output_hinted(p, &(pcb->local_ip), &(pcb->remote_ip), pcb->ttl, pcb->tos,
+        IP_PROTO_TCP, &(pcb->addr_hint));
+#else /* LWIP_NETIF_HWADDRHINT*/
+    ip_output(p, &(pcb->local_ip), &(pcb->remote_ip), pcb->ttl, pcb->tos,
+  a2:	7aaa      	ldrb	r2, [r5, #10]
+  a4:	7aeb      	ldrb	r3, [r5, #11]
+  a6:	9200      	str	r2, [sp, #0]
+  a8:	2206      	movs	r2, #6
+  aa:	9201      	str	r2, [sp, #4]
+  ac:	4620      	mov	r0, r4
+  ae:	4629      	mov	r1, r5
+  b0:	1d2a      	adds	r2, r5, #4
+  b2:	f7ff fffe 	bl	0 <ip_output>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:528
+        IP_PROTO_TCP);
+#endif /* LWIP_NETIF_HWADDRHINT*/
+    pbuf_free(p);
+  b6:	4620      	mov	r0, r4
+  b8:	f7ff fffe 	bl	0 <pbuf_free>
+  bc:	e169      	b.n	392 <tcp_output+0x392>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:557
+  }
+#endif /* TCP_CWND_DEBUG */
+  /* data available and window allows it to be sent? */
+  while (seg != NULL &&
+         ntohl(seg->tcphdr->seqno) - pcb->lastack + seg->len <= wnd) {
+    LWIP_ASSERT("RST not expected here!", 
+  be:	6933      	ldr	r3, [r6, #16]
+  c0:	7b1a      	ldrb	r2, [r3, #12]
+  c2:	7b58      	ldrb	r0, [r3, #13]
+  c4:	ea42 2000 	orr.w	r0, r2, r0, lsl #8
+  c8:	f7ff fffe 	bl	0 <ntohs>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:566
+     * - if tcp_enqueue had a memory error before (prevent delayed ACK timeout) or
+     * - if FIN was already enqueued for this PCB (SYN is always alone in a segment -
+     *   either seg->next != NULL or pcb->unacked == NULL;
+     *   RST is no sent using tcp_enqueue/tcp_output.
+     */
+    if((tcp_do_output_nagle(pcb) == 0) &&
+  cc:	6fab      	ldr	r3, [r5, #120]
+  ce:	b17b      	cbz	r3, f0 <tcp_output+0xf0>
+  d0:	f895 1022 	ldrb.w	r1, [r5, #34]
+  d4:	f011 0f40 	tst.w	r1, #64	; 0x40
+  d8:	d10a      	bne.n	f0 <tcp_output+0xf0>
+  da:	6f6a      	ldr	r2, [r5, #116]
+  dc:	2a00      	cmp	r2, #0
+  de:	f000 815c 	beq.w	39a <tcp_output+0x39a>
+  e2:	6813      	ldr	r3, [r2, #0]
+  e4:	b923      	cbnz	r3, f0 <tcp_output+0xf0>
+  e6:	8992      	ldrh	r2, [r2, #12]
+  e8:	8f2b      	ldrh	r3, [r5, #56]
+  ea:	429a      	cmp	r2, r3
+  ec:	f0c0 8155 	bcc.w	39a <tcp_output+0x39a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:579
+                            pcb->lastack,
+                            ntohl(seg->tcphdr->seqno), pcb->lastack, i));
+    ++i;
+#endif /* TCP_CWND_DEBUG */
+
+    pcb->unsent = seg->next;
+  f0:	6833      	ldr	r3, [r6, #0]
+  f2:	676b      	str	r3, [r5, #116]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:581
+
+    if (pcb->state != SYN_SENT) {
+  f4:	7c2b      	ldrb	r3, [r5, #16]
+  f6:	2b02      	cmp	r3, #2
+  f8:	d015      	beq.n	126 <tcp_output+0x126>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:582
+      TCPH_SET_FLAG(seg->tcphdr, TCP_ACK);
+  fa:	6934      	ldr	r4, [r6, #16]
+  fc:	7b23      	ldrb	r3, [r4, #12]
+  fe:	7b60      	ldrb	r0, [r4, #13]
+ 100:	ea43 2000 	orr.w	r0, r3, r0, lsl #8
+ 104:	f7ff fffe 	bl	0 <ntohs>
+ 108:	f040 0010 	orr.w	r0, r0, #16	; 0x10
+ 10c:	b280      	uxth	r0, r0
+ 10e:	f7ff fffe 	bl	0 <htons>
+ 112:	7320      	strb	r0, [r4, #12]
+ 114:	f3c0 200f 	ubfx	r0, r0, #8, #16
+ 118:	7360      	strb	r0, [r4, #13]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:583
+      pcb->flags &= ~(TF_ACK_DELAY | TF_ACK_NOW);
+ 11a:	f895 3022 	ldrb.w	r3, [r5, #34]
+ 11e:	f023 0303 	bic.w	r3, r3, #3	; 0x3
+ 122:	f885 3022 	strb.w	r3, [r5, #34]
+tcp_output_segment():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:654
+  /** @bug Exclude retransmitted segments from this count. */
+  snmp_inc_tcpoutsegs();
+
+  /* The TCP header has already been constructed, but the ackno and
+   wnd fields remain. */
+  seg->tcphdr->ackno = htonl(pcb->rcv_nxt);
+ 126:	6a68      	ldr	r0, [r5, #36]
+ 128:	6934      	ldr	r4, [r6, #16]
+ 12a:	f7ff fffe 	bl	0 <htonl>
+ 12e:	f3c0 2307 	ubfx	r3, r0, #8, #8
+ 132:	7220      	strb	r0, [r4, #8]
+ 134:	7263      	strb	r3, [r4, #9]
+ 136:	f3c0 4307 	ubfx	r3, r0, #16, #8
+ 13a:	0e00      	lsrs	r0, r0, #24
+ 13c:	72a3      	strb	r3, [r4, #10]
+ 13e:	72e0      	strb	r0, [r4, #11]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:657
+
+  /* advertise our receive window size in this TCP segment */
+  seg->tcphdr->wnd = htons(pcb->rcv_ann_wnd);
+ 140:	8d68      	ldrh	r0, [r5, #42]
+ 142:	6934      	ldr	r4, [r6, #16]
+ 144:	f7ff fffe 	bl	0 <htons>
+ 148:	73a0      	strb	r0, [r4, #14]
+ 14a:	f3c0 200f 	ubfx	r0, r0, #8, #16
+ 14e:	73e0      	strb	r0, [r4, #15]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:659
+
+  pcb->rcv_ann_right_edge = pcb->rcv_nxt + pcb->rcv_ann_wnd;
+ 150:	8d6b      	ldrh	r3, [r5, #42]
+ 152:	6a6a      	ldr	r2, [r5, #36]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:663
+
+  /* Add any requested options.  NB MSS option is only set on SYN
+     packets, so ignore it here */
+  opts = (u32_t *)(seg->tcphdr + 1);
+ 154:	6934      	ldr	r4, [r6, #16]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:659
+  seg->tcphdr->ackno = htonl(pcb->rcv_nxt);
+
+  /* advertise our receive window size in this TCP segment */
+  seg->tcphdr->wnd = htons(pcb->rcv_ann_wnd);
+
+  pcb->rcv_ann_right_edge = pcb->rcv_nxt + pcb->rcv_ann_wnd;
+ 156:	189b      	adds	r3, r3, r2
+ 158:	62eb      	str	r3, [r5, #44]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:664
+
+  /* Add any requested options.  NB MSS option is only set on SYN
+     packets, so ignore it here */
+  opts = (u32_t *)(seg->tcphdr + 1);
+  if (seg->flags & TF_SEG_OPTS_MSS) {
+ 15a:	7bb3      	ldrb	r3, [r6, #14]
+ 15c:	f013 0f01 	tst.w	r3, #1	; 0x1
+ 160:	d003      	beq.n	16a <tcp_output+0x16a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:665
+    TCP_BUILD_MSS_OPTION(*opts);
+ 162:	4846      	ldr	r0, [pc, #280]	(27c <tcp_output+0x27c>)
+ 164:	f7ff fffe 	bl	0 <htonl>
+ 168:	6160      	str	r0, [r4, #20]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:679
+  }
+#endif
+
+  /* If we don't have a local IP address, we get one by
+     calling ip_route(). */
+  if (ip_addr_isany(&(pcb->local_ip))) {
+ 16a:	682b      	ldr	r3, [r5, #0]
+ 16c:	b933      	cbnz	r3, 17c <tcp_output+0x17c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:680
+    netif = ip_route(&(pcb->remote_ip));
+ 16e:	4648      	mov	r0, r9
+ 170:	f7ff fffe 	bl	0 <ip_route>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:681
+    if (netif == NULL) {
+ 174:	2800      	cmp	r0, #0
+ 176:	d034      	beq.n	1e2 <tcp_output+0x1e2>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:684
+      return;
+    }
+    ip_addr_set(&(pcb->local_ip), &(netif->ip_addr));
+ 178:	6843      	ldr	r3, [r0, #4]
+ 17a:	602b      	str	r3, [r5, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:688
+  }
+
+  /* Set retransmission timer running if it is not currently enabled */
+  if(pcb->rtime == -1)
+ 17c:	f9b5 3036 	ldrsh.w	r3, [r5, #54]
+ 180:	f1b3 3fff 	cmp.w	r3, #4294967295	; 0xffffffff
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:689
+    pcb->rtime = 0;
+ 184:	bf04      	itt	eq
+ 186:	2300      	moveq	r3, #0
+ 188:	86eb      	strheq	r3, [r5, #54]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:691
+
+  if (pcb->rttest == 0) {
+ 18a:	6beb      	ldr	r3, [r5, #60]
+ 18c:	b983      	cbnz	r3, 1b0 <tcp_output+0x1b0>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:692
+    pcb->rttest = tcp_ticks;
+ 18e:	4b3c      	ldr	r3, [pc, #240]	(280 <tcp_output+0x280>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:693
+    pcb->rtseq = ntohl(seg->tcphdr->seqno);
+ 190:	6932      	ldr	r2, [r6, #16]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:692
+  /* Set retransmission timer running if it is not currently enabled */
+  if(pcb->rtime == -1)
+    pcb->rtime = 0;
+
+  if (pcb->rttest == 0) {
+    pcb->rttest = tcp_ticks;
+ 192:	681b      	ldr	r3, [r3, #0]
+ 194:	63eb      	str	r3, [r5, #60]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:693
+    pcb->rtseq = ntohl(seg->tcphdr->seqno);
+ 196:	7953      	ldrb	r3, [r2, #5]
+ 198:	7910      	ldrb	r0, [r2, #4]
+ 19a:	ea40 2003 	orr.w	r0, r0, r3, lsl #8
+ 19e:	7993      	ldrb	r3, [r2, #6]
+ 1a0:	ea40 4003 	orr.w	r0, r0, r3, lsl #16
+ 1a4:	79d3      	ldrb	r3, [r2, #7]
+ 1a6:	ea40 6003 	orr.w	r0, r0, r3, lsl #24
+ 1aa:	f7ff fffe 	bl	0 <ntohl>
+ 1ae:	6428      	str	r0, [r5, #64]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:701
+  }
+  LWIP_DEBUGF(TCP_OUTPUT_DEBUG, ("tcp_output_segment: %"U32_F":%"U32_F"\n",
+          htonl(seg->tcphdr->seqno), htonl(seg->tcphdr->seqno) +
+          seg->len));
+
+  len = (u16_t)((u8_t *)seg->tcphdr - (u8_t *)seg->p->payload);
+ 1b0:	6871      	ldr	r1, [r6, #4]
+ 1b2:	6930      	ldr	r0, [r6, #16]
+ 1b4:	684a      	ldr	r2, [r1, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:703
+
+  seg->p->len -= len;
+ 1b6:	894b      	ldrh	r3, [r1, #10]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:701
+  }
+  LWIP_DEBUGF(TCP_OUTPUT_DEBUG, ("tcp_output_segment: %"U32_F":%"U32_F"\n",
+          htonl(seg->tcphdr->seqno), htonl(seg->tcphdr->seqno) +
+          seg->len));
+
+  len = (u16_t)((u8_t *)seg->tcphdr - (u8_t *)seg->p->payload);
+ 1b8:	1a82      	subs	r2, r0, r2
+ 1ba:	b292      	uxth	r2, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:703
+
+  seg->p->len -= len;
+ 1bc:	1a9b      	subs	r3, r3, r2
+ 1be:	814b      	strh	r3, [r1, #10]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:704
+  seg->p->tot_len -= len;
+ 1c0:	890b      	ldrh	r3, [r1, #8]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:706
+
+  seg->p->payload = seg->tcphdr;
+ 1c2:	6048      	str	r0, [r1, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:704
+          seg->len));
+
+  len = (u16_t)((u8_t *)seg->tcphdr - (u8_t *)seg->p->payload);
+
+  seg->p->len -= len;
+  seg->p->tot_len -= len;
+ 1c4:	1a9b      	subs	r3, r3, r2
+ 1c6:	810b      	strh	r3, [r1, #8]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:708
+
+  seg->p->payload = seg->tcphdr;
+
+  seg->tcphdr->chksum = 0;
+ 1c8:	2300      	movs	r3, #0
+ 1ca:	7403      	strb	r3, [r0, #16]
+ 1cc:	7443      	strb	r3, [r0, #17]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:721
+
+#if LWIP_NETIF_HWADDRHINT
+  ip_output_hinted(seg->p, &(pcb->local_ip), &(pcb->remote_ip), pcb->ttl, pcb->tos,
+      IP_PROTO_TCP, &(pcb->addr_hint));
+#else /* LWIP_NETIF_HWADDRHINT*/
+  ip_output(seg->p, &(pcb->local_ip), &(pcb->remote_ip), pcb->ttl, pcb->tos,
+ 1ce:	7aaa      	ldrb	r2, [r5, #10]
+ 1d0:	7aeb      	ldrb	r3, [r5, #11]
+ 1d2:	9200      	str	r2, [sp, #0]
+ 1d4:	2206      	movs	r2, #6
+ 1d6:	9201      	str	r2, [sp, #4]
+ 1d8:	6870      	ldr	r0, [r6, #4]
+ 1da:	4629      	mov	r1, r5
+ 1dc:	464a      	mov	r2, r9
+ 1de:	f7ff fffe 	bl	0 <ip_output>
+tcp_output():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:587
+      TCPH_SET_FLAG(seg->tcphdr, TCP_ACK);
+      pcb->flags &= ~(TF_ACK_DELAY | TF_ACK_NOW);
+    }
+
+    tcp_output_segment(seg, pcb);
+    snd_nxt = ntohl(seg->tcphdr->seqno) + TCP_TCPLEN(seg);
+ 1e2:	6932      	ldr	r2, [r6, #16]
+ 1e4:	7953      	ldrb	r3, [r2, #5]
+ 1e6:	7910      	ldrb	r0, [r2, #4]
+ 1e8:	ea40 2003 	orr.w	r0, r0, r3, lsl #8
+ 1ec:	7993      	ldrb	r3, [r2, #6]
+ 1ee:	ea40 4003 	orr.w	r0, r0, r3, lsl #16
+ 1f2:	79d3      	ldrb	r3, [r2, #7]
+ 1f4:	ea40 6003 	orr.w	r0, r0, r3, lsl #24
+ 1f8:	f7ff fffe 	bl	0 <ntohl>
+ 1fc:	6933      	ldr	r3, [r6, #16]
+ 1fe:	4607      	mov	r7, r0
+ 200:	7b1a      	ldrb	r2, [r3, #12]
+ 202:	7b58      	ldrb	r0, [r3, #13]
+ 204:	89b4      	ldrh	r4, [r6, #12]
+ 206:	ea42 2000 	orr.w	r0, r2, r0, lsl #8
+ 20a:	f7ff fffe 	bl	0 <ntohs>
+ 20e:	f010 0f01 	tst.w	r0, #1	; 0x1
+ 212:	d109      	bne.n	228 <tcp_output+0x228>
+ 214:	6933      	ldr	r3, [r6, #16]
+ 216:	7b1a      	ldrb	r2, [r3, #12]
+ 218:	7b58      	ldrb	r0, [r3, #13]
+ 21a:	ea42 2000 	orr.w	r0, r2, r0, lsl #8
+ 21e:	f7ff fffe 	bl	0 <ntohs>
+ 222:	f010 0002 	ands.w	r0, r0, #2	; 0x2
+ 226:	d000      	beq.n	22a <tcp_output+0x22a>
+ 228:	2001      	movs	r0, #1
+ 22a:	1903      	adds	r3, r0, r4
+ 22c:	19d8      	adds	r0, r3, r7
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:588
+    if (TCP_SEQ_LT(pcb->snd_nxt, snd_nxt)) {
+ 22e:	6dab      	ldr	r3, [r5, #88]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:592
+      pcb->snd_nxt = snd_nxt;
+    }
+    /* put segment on unacknowledged list if length > 0 */
+    if (TCP_TCPLEN(seg) > 0) {
+ 230:	89b4      	ldrh	r4, [r6, #12]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:588
+      pcb->flags &= ~(TF_ACK_DELAY | TF_ACK_NOW);
+    }
+
+    tcp_output_segment(seg, pcb);
+    snd_nxt = ntohl(seg->tcphdr->seqno) + TCP_TCPLEN(seg);
+    if (TCP_SEQ_LT(pcb->snd_nxt, snd_nxt)) {
+ 232:	1a1b      	subs	r3, r3, r0
+ 234:	2b00      	cmp	r3, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:592
+      pcb->snd_nxt = snd_nxt;
+    }
+    /* put segment on unacknowledged list if length > 0 */
+    if (TCP_TCPLEN(seg) > 0) {
+ 236:	6933      	ldr	r3, [r6, #16]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:589
+    }
+
+    tcp_output_segment(seg, pcb);
+    snd_nxt = ntohl(seg->tcphdr->seqno) + TCP_TCPLEN(seg);
+    if (TCP_SEQ_LT(pcb->snd_nxt, snd_nxt)) {
+      pcb->snd_nxt = snd_nxt;
+ 238:	bfb8      	it	lt
+ 23a:	65a8      	strlt	r0, [r5, #88]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:592
+    }
+    /* put segment on unacknowledged list if length > 0 */
+    if (TCP_TCPLEN(seg) > 0) {
+ 23c:	7b1a      	ldrb	r2, [r3, #12]
+ 23e:	7b58      	ldrb	r0, [r3, #13]
+ 240:	ea42 2000 	orr.w	r0, r2, r0, lsl #8
+ 244:	f7ff fffe 	bl	0 <ntohs>
+ 248:	f010 0f01 	tst.w	r0, #1	; 0x1
+ 24c:	d109      	bne.n	262 <tcp_output+0x262>
+ 24e:	6933      	ldr	r3, [r6, #16]
+ 250:	7b1a      	ldrb	r2, [r3, #12]
+ 252:	7b58      	ldrb	r0, [r3, #13]
+ 254:	ea42 2000 	orr.w	r0, r2, r0, lsl #8
+ 258:	f7ff fffe 	bl	0 <ntohs>
+ 25c:	f010 0002 	ands.w	r0, r0, #2	; 0x2
+ 260:	d000      	beq.n	264 <tcp_output+0x264>
+ 262:	2001      	movs	r0, #1
+ 264:	1903      	adds	r3, r0, r4
+ 266:	2b00      	cmp	r3, #0
+ 268:	d056      	beq.n	318 <tcp_output+0x318>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:593
+      seg->next = NULL;
+ 26a:	2300      	movs	r3, #0
+ 26c:	6033      	str	r3, [r6, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:595
+      /* unacked list is empty? */
+      if (pcb->unacked == NULL) {
+ 26e:	6fab      	ldr	r3, [r5, #120]
+ 270:	b943      	cbnz	r3, 284 <tcp_output+0x284>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:596
+        pcb->unacked = seg;
+ 272:	67ae      	str	r6, [r5, #120]
+ 274:	e04e      	b.n	314 <tcp_output+0x314>
+ 276:	46c0      	nop			(mov r8, r8)
+ 278:	00000000 	.word	0x00000000
+ 27c:	020405b4 	.word	0x020405b4
+ 280:	00000000 	.word	0x00000000
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:603
+      /* unacked list is not empty? */
+      } else {
+        /* In the case of fast retransmit, the packet should not go to the tail
+         * of the unacked queue, but rather somewhere before it. We need to check for
+         * this case. -STJ Jul 27, 2004 */
+        if (TCP_SEQ_LT(ntohl(seg->tcphdr->seqno), ntohl(useg->tcphdr->seqno))){
+ 284:	6932      	ldr	r2, [r6, #16]
+ 286:	7953      	ldrb	r3, [r2, #5]
+ 288:	7910      	ldrb	r0, [r2, #4]
+ 28a:	ea40 2003 	orr.w	r0, r0, r3, lsl #8
+ 28e:	7993      	ldrb	r3, [r2, #6]
+ 290:	ea40 4003 	orr.w	r0, r0, r3, lsl #16
+ 294:	79d3      	ldrb	r3, [r2, #7]
+ 296:	ea40 6003 	orr.w	r0, r0, r3, lsl #24
+ 29a:	f7ff fffe 	bl	0 <ntohl>
+ 29e:	f8d8 2010 	ldr.w	r2, [r8, #16]
+ 2a2:	4604      	mov	r4, r0
+ 2a4:	7953      	ldrb	r3, [r2, #5]
+ 2a6:	7910      	ldrb	r0, [r2, #4]
+ 2a8:	ea40 2003 	orr.w	r0, r0, r3, lsl #8
+ 2ac:	7993      	ldrb	r3, [r2, #6]
+ 2ae:	ea40 4003 	orr.w	r0, r0, r3, lsl #16
+ 2b2:	79d3      	ldrb	r3, [r2, #7]
+ 2b4:	ea40 6003 	orr.w	r0, r0, r3, lsl #24
+ 2b8:	f7ff fffe 	bl	0 <ntohl>
+ 2bc:	1a24      	subs	r4, r4, r0
+ 2be:	2c00      	cmp	r4, #0
+ 2c0:	da26      	bge.n	310 <tcp_output+0x310>
+ 2c2:	465f      	mov	r7, fp
+ 2c4:	e000      	b.n	2c8 <tcp_output+0x2c8>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:608
+          /* add segment to before tail of unacked list, keeping the list sorted */
+          struct tcp_seg **cur_seg = &(pcb->unacked);
+          while (*cur_seg &&
+            TCP_SEQ_LT(ntohl((*cur_seg)->tcphdr->seqno), ntohl(seg->tcphdr->seqno))) {
+              cur_seg = &((*cur_seg)->next );
+ 2c6:	683f      	ldr	r7, [r7, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:606
+         * of the unacked queue, but rather somewhere before it. We need to check for
+         * this case. -STJ Jul 27, 2004 */
+        if (TCP_SEQ_LT(ntohl(seg->tcphdr->seqno), ntohl(useg->tcphdr->seqno))){
+          /* add segment to before tail of unacked list, keeping the list sorted */
+          struct tcp_seg **cur_seg = &(pcb->unacked);
+          while (*cur_seg &&
+ 2c8:	683b      	ldr	r3, [r7, #0]
+ 2ca:	b1eb      	cbz	r3, 308 <tcp_output+0x308>
+ 2cc:	691a      	ldr	r2, [r3, #16]
+ 2ce:	7953      	ldrb	r3, [r2, #5]
+ 2d0:	7910      	ldrb	r0, [r2, #4]
+ 2d2:	ea40 2003 	orr.w	r0, r0, r3, lsl #8
+ 2d6:	7993      	ldrb	r3, [r2, #6]
+ 2d8:	ea40 4003 	orr.w	r0, r0, r3, lsl #16
+ 2dc:	79d3      	ldrb	r3, [r2, #7]
+ 2de:	ea40 6003 	orr.w	r0, r0, r3, lsl #24
+ 2e2:	f7ff fffe 	bl	0 <ntohl>
+ 2e6:	6932      	ldr	r2, [r6, #16]
+ 2e8:	4604      	mov	r4, r0
+ 2ea:	7953      	ldrb	r3, [r2, #5]
+ 2ec:	7910      	ldrb	r0, [r2, #4]
+ 2ee:	ea40 2003 	orr.w	r0, r0, r3, lsl #8
+ 2f2:	7993      	ldrb	r3, [r2, #6]
+ 2f4:	ea40 4003 	orr.w	r0, r0, r3, lsl #16
+ 2f8:	79d3      	ldrb	r3, [r2, #7]
+ 2fa:	ea40 6003 	orr.w	r0, r0, r3, lsl #24
+ 2fe:	f7ff fffe 	bl	0 <ntohl>
+ 302:	1a24      	subs	r4, r4, r0
+ 304:	2c00      	cmp	r4, #0
+ 306:	dbde      	blt.n	2c6 <tcp_output+0x2c6>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:610
+            TCP_SEQ_LT(ntohl((*cur_seg)->tcphdr->seqno), ntohl(seg->tcphdr->seqno))) {
+              cur_seg = &((*cur_seg)->next );
+          }
+          seg->next = (*cur_seg);
+ 308:	683b      	ldr	r3, [r7, #0]
+ 30a:	6033      	str	r3, [r6, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:611
+          (*cur_seg) = seg;
+ 30c:	603e      	str	r6, [r7, #0]
+ 30e:	e006      	b.n	31e <tcp_output+0x31e>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:614
+        } else {
+          /* add segment to tail of unacked list */
+          useg->next = seg;
+ 310:	f8c8 6000 	str.w	r6, [r8]
+ 314:	46b0      	mov	r8, r6
+ 316:	e002      	b.n	31e <tcp_output+0x31e>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:620
+          useg = useg->next;
+        }
+      }
+    /* do not queue empty segments on the unacked list */
+    } else {
+      tcp_seg_free(seg);
+ 318:	4630      	mov	r0, r6
+ 31a:	f7ff fffe 	bl	0 <tcp_seg_free>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:622
+    }
+    seg = pcb->unsent;
+ 31e:	6f6e      	ldr	r6, [r5, #116]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:555
+                 ntohl(seg->tcphdr->seqno) - pcb->lastack + seg->len,
+                 ntohl(seg->tcphdr->seqno), pcb->lastack));
+  }
+#endif /* TCP_CWND_DEBUG */
+  /* data available and window allows it to be sent? */
+  while (seg != NULL &&
+ 320:	2e00      	cmp	r6, #0
+ 322:	d030      	beq.n	386 <tcp_output+0x386>
+ 324:	6932      	ldr	r2, [r6, #16]
+ 326:	7953      	ldrb	r3, [r2, #5]
+ 328:	7910      	ldrb	r0, [r2, #4]
+ 32a:	ea40 2003 	orr.w	r0, r0, r3, lsl #8
+ 32e:	7993      	ldrb	r3, [r2, #6]
+ 330:	ea40 4003 	orr.w	r0, r0, r3, lsl #16
+ 334:	79d3      	ldrb	r3, [r2, #7]
+ 336:	ea40 6003 	orr.w	r0, r0, r3, lsl #24
+ 33a:	f7ff fffe 	bl	0 <ntohl>
+ 33e:	89b3      	ldrh	r3, [r6, #12]
+ 340:	6cea      	ldr	r2, [r5, #76]
+ 342:	1a9b      	subs	r3, r3, r2
+ 344:	181b      	adds	r3, r3, r0
+ 346:	4553      	cmp	r3, sl
+ 348:	f67f aeb9 	bls.w	be <tcp_output+0xbe>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:625
+      tcp_seg_free(seg);
+    }
+    seg = pcb->unsent;
+  }
+
+  if (seg != NULL && pcb->persist_backoff == 0 && 
+ 34c:	f895 409c 	ldrb.w	r4, [r5, #156]
+ 350:	b9cc      	cbnz	r4, 386 <tcp_output+0x386>
+ 352:	6932      	ldr	r2, [r6, #16]
+ 354:	7953      	ldrb	r3, [r2, #5]
+ 356:	7910      	ldrb	r0, [r2, #4]
+ 358:	ea40 2003 	orr.w	r0, r0, r3, lsl #8
+ 35c:	7993      	ldrb	r3, [r2, #6]
+ 35e:	ea40 4003 	orr.w	r0, r0, r3, lsl #16
+ 362:	79d3      	ldrb	r3, [r2, #7]
+ 364:	ea40 6003 	orr.w	r0, r0, r3, lsl #24
+ 368:	f7ff fffe 	bl	0 <ntohl>
+ 36c:	6cea      	ldr	r2, [r5, #76]
+ 36e:	89b3      	ldrh	r3, [r6, #12]
+ 370:	1a9b      	subs	r3, r3, r2
+ 372:	f8b5 205c 	ldrh.w	r2, [r5, #92]
+ 376:	181b      	adds	r3, r3, r0
+ 378:	4293      	cmp	r3, r2
+ 37a:	d904      	bls.n	386 <ntohl+0x386>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:629
+      ntohl(seg->tcphdr->seqno) - pcb->lastack + seg->len > pcb->snd_wnd) {
+    /* prepare for persist timer */
+    pcb->persist_cnt = 0;
+    pcb->persist_backoff = 1;
+ 37c:	2301      	movs	r3, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:628
+  }
+
+  if (seg != NULL && pcb->persist_backoff == 0 && 
+      ntohl(seg->tcphdr->seqno) - pcb->lastack + seg->len > pcb->snd_wnd) {
+    /* prepare for persist timer */
+    pcb->persist_cnt = 0;
+ 37e:	f8c5 4098 	str.w	r4, [r5, #152]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:629
+    pcb->persist_backoff = 1;
+ 382:	f885 309c 	strb.w	r3, [r5, #156]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:632
+  }
+
+  pcb->flags &= ~TF_NAGLEMEMERR;
+ 386:	f895 3022 	ldrb.w	r3, [r5, #34]
+ 38a:	f003 037f 	and.w	r3, r3, #127	; 0x7f
+ 38e:	f885 3022 	strb.w	r3, [r5, #34]
+ 392:	2000      	movs	r0, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:634
+  return ERR_OK;
+}
+ 394:	b240      	sxtb	r0, r0
+ 396:	e8bd 8ffe 	ldmia.w	sp!, {r1, r2, r3, r4, r5, r6, r7, r8, r9, sl, fp, pc}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:566
+     * - if tcp_enqueue had a memory error before (prevent delayed ACK timeout) or
+     * - if FIN was already enqueued for this PCB (SYN is always alone in a segment -
+     *   either seg->next != NULL or pcb->unacked == NULL;
+     *   RST is no sent using tcp_enqueue/tcp_output.
+     */
+    if((tcp_do_output_nagle(pcb) == 0) &&
+ 39a:	f011 0fa0 	tst.w	r1, #160	; 0xa0
+ 39e:	f47f aea7 	bne.w	f0 <ntohl+0xf0>
+ 3a2:	e7d3      	b.n	34c <ntohl+0x34c>
+Disassembly of section .text.tcp_rexmit:
+
+00000000 <tcp_rexmit>:
+tcp_rexmit():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:828
+ *
+ * @param pcb the tcp_pcb for which to retransmit the first unacked segment
+ */
+void
+tcp_rexmit(struct tcp_pcb *pcb)
+{
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:832
+  struct tcp_seg *seg;
+  struct tcp_seg **cur_seg;
+
+  if (pcb->unacked == NULL) {
+   4:	6f87      	ldr	r7, [r0, #120]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:828
+ *
+ * @param pcb the tcp_pcb for which to retransmit the first unacked segment
+ */
+void
+tcp_rexmit(struct tcp_pcb *pcb)
+{
+   6:	4605      	mov	r5, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:832
+  struct tcp_seg *seg;
+  struct tcp_seg **cur_seg;
+
+  if (pcb->unacked == NULL) {
+   8:	2f00      	cmp	r7, #0
+   a:	d032      	beq.n	72 <tcp_rexmit+0x72>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:839
+  }
+
+  /* Move the first unacked segment to the unsent queue */
+  /* Keep the unsent queue sorted. */
+  seg = pcb->unacked;
+  pcb->unacked = seg->next;
+   c:	683b      	ldr	r3, [r7, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:841
+
+  cur_seg = &(pcb->unsent);
+   e:	f100 0674 	add.w	r6, r0, #116	; 0x74
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:839
+  }
+
+  /* Move the first unacked segment to the unsent queue */
+  /* Keep the unsent queue sorted. */
+  seg = pcb->unacked;
+  pcb->unacked = seg->next;
+  12:	6783      	str	r3, [r0, #120]
+  14:	e000      	b.n	18 <tcp_rexmit+0x18>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:844
+
+  cur_seg = &(pcb->unsent);
+  while (*cur_seg &&
+    TCP_SEQ_LT(ntohl((*cur_seg)->tcphdr->seqno), ntohl(seg->tcphdr->seqno))) {
+      cur_seg = &((*cur_seg)->next );
+  16:	6836      	ldr	r6, [r6, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:842
+  /* Keep the unsent queue sorted. */
+  seg = pcb->unacked;
+  pcb->unacked = seg->next;
+
+  cur_seg = &(pcb->unsent);
+  while (*cur_seg &&
+  18:	6833      	ldr	r3, [r6, #0]
+  1a:	b1eb      	cbz	r3, 58 <tcp_rexmit+0x58>
+  1c:	691a      	ldr	r2, [r3, #16]
+  1e:	7953      	ldrb	r3, [r2, #5]
+  20:	7910      	ldrb	r0, [r2, #4]
+  22:	ea40 2003 	orr.w	r0, r0, r3, lsl #8
+  26:	7993      	ldrb	r3, [r2, #6]
+  28:	ea40 4003 	orr.w	r0, r0, r3, lsl #16
+  2c:	79d3      	ldrb	r3, [r2, #7]
+  2e:	ea40 6003 	orr.w	r0, r0, r3, lsl #24
+  32:	f7ff fffe 	bl	0 <ntohl>
+  36:	693a      	ldr	r2, [r7, #16]
+  38:	4604      	mov	r4, r0
+  3a:	7953      	ldrb	r3, [r2, #5]
+  3c:	7910      	ldrb	r0, [r2, #4]
+  3e:	ea40 2003 	orr.w	r0, r0, r3, lsl #8
+  42:	7993      	ldrb	r3, [r2, #6]
+  44:	ea40 4003 	orr.w	r0, r0, r3, lsl #16
+  48:	79d3      	ldrb	r3, [r2, #7]
+  4a:	ea40 6003 	orr.w	r0, r0, r3, lsl #24
+  4e:	f7ff fffe 	bl	0 <ntohl>
+  52:	1a24      	subs	r4, r4, r0
+  54:	2c00      	cmp	r4, #0
+  56:	dbde      	blt.n	16 <tcp_rexmit+0x16>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:846
+    TCP_SEQ_LT(ntohl((*cur_seg)->tcphdr->seqno), ntohl(seg->tcphdr->seqno))) {
+      cur_seg = &((*cur_seg)->next );
+  }
+  seg->next = *cur_seg;
+  58:	6833      	ldr	r3, [r6, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:856
+  /* Don't take any rtt measurements after retransmitting. */
+  pcb->rttest = 0;
+
+  /* Do the actual retransmission. */
+  snmp_inc_tcpretranssegs();
+  tcp_output(pcb);
+  5a:	4628      	mov	r0, r5
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:846
+  cur_seg = &(pcb->unsent);
+  while (*cur_seg &&
+    TCP_SEQ_LT(ntohl((*cur_seg)->tcphdr->seqno), ntohl(seg->tcphdr->seqno))) {
+      cur_seg = &((*cur_seg)->next );
+  }
+  seg->next = *cur_seg;
+  5c:	603b      	str	r3, [r7, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:847
+  *cur_seg = seg;
+  5e:	6037      	str	r7, [r6, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:849
+
+  ++pcb->nrtx;
+  60:	f895 304a 	ldrb.w	r3, [r5, #74]
+  64:	3301      	adds	r3, #1
+  66:	f885 304a 	strb.w	r3, [r5, #74]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:852
+
+  /* Don't take any rtt measurements after retransmitting. */
+  pcb->rttest = 0;
+  6a:	2300      	movs	r3, #0
+  6c:	63eb      	str	r3, [r5, #60]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:856
+
+  /* Do the actual retransmission. */
+  snmp_inc_tcpretranssegs();
+  tcp_output(pcb);
+  6e:	f7ff fffe 	bl	0 <tcp_rexmit>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:857
+}
+  72:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+  76:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.tcp_rexmit_rto:
+
+00000000 <tcp_rexmit_rto>:
+tcp_rexmit_rto():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:796
+void
+tcp_rexmit_rto(struct tcp_pcb *pcb)
+{
+  struct tcp_seg *seg;
+
+  if (pcb->unacked == NULL) {
+   0:	6f82      	ldr	r2, [r0, #120]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:793
+ *
+ * @param pcb the tcp_pcb for which to re-enqueue all unacked segments
+ */
+void
+tcp_rexmit_rto(struct tcp_pcb *pcb)
+{
+   2:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:796
+  struct tcp_seg *seg;
+
+  if (pcb->unacked == NULL) {
+   4:	b182      	cbz	r2, 28 <tcp_rexmit_rto+0x28>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:801
+    return;
+  }
+
+  /* Move all unacked segments to the head of the unsent queue */
+  for (seg = pcb->unacked; seg->next != NULL; seg = seg->next);
+   6:	4611      	mov	r1, r2
+   8:	6812      	ldr	r2, [r2, #0]
+   a:	2a00      	cmp	r2, #0
+   c:	d1fb      	bne.n	6 <tcp_rexmit_rto+0x6>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:803
+  /* concatenate unsent queue after unacked queue */
+  seg->next = pcb->unsent;
+   e:	6f43      	ldr	r3, [r0, #116]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:813
+
+  /* increment number of retransmissions */
+  ++pcb->nrtx;
+
+  /* Don't take any RTT measurements after retransmitting. */
+  pcb->rttest = 0;
+  10:	63c2      	str	r2, [r0, #60]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:803
+  }
+
+  /* Move all unacked segments to the head of the unsent queue */
+  for (seg = pcb->unacked; seg->next != NULL; seg = seg->next);
+  /* concatenate unsent queue after unacked queue */
+  seg->next = pcb->unsent;
+  12:	600b      	str	r3, [r1, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:805
+  /* unsent queue is the concatenated queue (of unacked, unsent) */
+  pcb->unsent = pcb->unacked;
+  14:	6f83      	ldr	r3, [r0, #120]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:807
+  /* unacked queue is now empty */
+  pcb->unacked = NULL;
+  16:	6782      	str	r2, [r0, #120]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:805
+  /* Move all unacked segments to the head of the unsent queue */
+  for (seg = pcb->unacked; seg->next != NULL; seg = seg->next);
+  /* concatenate unsent queue after unacked queue */
+  seg->next = pcb->unsent;
+  /* unsent queue is the concatenated queue (of unacked, unsent) */
+  pcb->unsent = pcb->unacked;
+  18:	6743      	str	r3, [r0, #116]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:810
+  /* unacked queue is now empty */
+  pcb->unacked = NULL;
+
+  /* increment number of retransmissions */
+  ++pcb->nrtx;
+  1a:	f890 304a 	ldrb.w	r3, [r0, #74]
+  1e:	3301      	adds	r3, #1
+  20:	f880 304a 	strb.w	r3, [r0, #74]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:816
+
+  /* Don't take any RTT measurements after retransmitting. */
+  pcb->rttest = 0;
+
+  /* Do the actual retransmission */
+  tcp_output(pcb);
+  24:	f7ff fffe 	bl	0 <tcp_rexmit_rto>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:817
+}
+  28:	bd10      	pop	{r4, pc}
+  2a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.tcp_enqueue:
+
+00000000 <tcp_enqueue>:
+tcp_enqueue():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:157
+ * @param optflags options to include in segment later on (see definition of struct tcp_seg)
+ */
+err_t
+tcp_enqueue(struct tcp_pcb *pcb, void *arg, u16_t len,
+            u8_t flags, u8_t apiflags, u8_t optflags)
+{
+   0:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+   4:	b08b      	sub	sp, #44
+   6:	9302      	str	r3, [sp, #8]
+   8:	f89d 3050 	ldrb.w	r3, [sp, #80]
+   c:	4606      	mov	r6, r0
+   e:	9104      	str	r1, [sp, #16]
+  10:	9301      	str	r3, [sp, #4]
+  12:	f89d b054 	ldrb.w	fp, [sp, #84]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:169
+  u8_t optlen;
+
+  LWIP_DEBUGF(TCP_OUTPUT_DEBUG, 
+              ("tcp_enqueue(pcb=%p, arg=%p, len=%"U16_F", flags=%"X16_F", apiflags=%"U16_F")\n",
+               (void *)pcb, arg, len, (u16_t)flags, (u16_t)apiflags));
+  LWIP_ERROR("tcp_enqueue: packet needs payload, options, or SYN/FIN (programmer violates API)",
+  16:	9203      	str	r2, [sp, #12]
+  18:	b95a      	cbnz	r2, 32 <tcp_enqueue+0x32>
+  1a:	f1bb 0f00 	cmp.w	fp, #0	; 0x0
+  1e:	d104      	bne.n	2a <tcp_enqueue+0x2a>
+  20:	9a02      	ldr	r2, [sp, #8]
+  22:	f012 0f03 	tst.w	r2, #3	; 0x3
+  26:	f000 81a9 	beq.w	37c <tcp_enqueue+0x37c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:172
+             ((len != 0) || (optflags != 0) || ((flags & (TCP_SYN | TCP_FIN)) != 0)),
+             return ERR_ARG;);
+  LWIP_ERROR("tcp_enqueue: len != 0 || arg == NULL (programmer violates API)", 
+  2a:	9b04      	ldr	r3, [sp, #16]
+  2c:	2b00      	cmp	r3, #0
+  2e:	f040 81a5 	bne.w	37c <tcp_enqueue+0x37c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:176
+             ((len != 0) || (arg == NULL)), return ERR_ARG;);
+
+  /* fail on too much data */
+  if (len > pcb->snd_buf) {
+  32:	f8b6 306e 	ldrh.w	r3, [r6, #110]
+  36:	9a03      	ldr	r2, [sp, #12]
+  38:	4293      	cmp	r3, r2
+  3a:	d310      	bcc.n	5e <tcp_enqueue+0x5e>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:184
+    return ERR_MEM;
+  }
+  left = len;
+  ptr = arg;
+
+  optlen = LWIP_TCP_OPT_LENGTH(optflags);
+  3c:	f01b 0201 	ands.w	r2, fp, #1	; 0x1
+  40:	bf18      	it	ne
+  42:	2204      	movne	r2, #4
+  44:	f01b 0302 	ands.w	r3, fp, #2	; 0x2
+  48:	bf18      	it	ne
+  4a:	230c      	movne	r3, #12
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:194
+
+  LWIP_DEBUGF(TCP_QLEN_DEBUG, ("tcp_enqueue: queuelen: %"U16_F"\n", (u16_t)pcb->snd_queuelen));
+
+  /* If total number of pbufs on the unsent/unacked queues exceeds the
+   * configured maximum, return an error */
+  queuelen = pcb->snd_queuelen;
+  4c:	f8b6 9070 	ldrh.w	r9, [r6, #112]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:184
+    return ERR_MEM;
+  }
+  left = len;
+  ptr = arg;
+
+  optlen = LWIP_TCP_OPT_LENGTH(optflags);
+  50:	189a      	adds	r2, r3, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:188
+
+  /* seqno will be the sequence number of the first segment enqueued
+   * by the call to this function. */
+  seqno = pcb->snd_lbb;
+  52:	6eb3      	ldr	r3, [r6, #104]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:196
+
+  /* If total number of pbufs on the unsent/unacked queues exceeds the
+   * configured maximum, return an error */
+  queuelen = pcb->snd_queuelen;
+  /* check for configured max queuelen and possible overflow */
+  if ((queuelen >= TCP_SND_QUEUELEN) || (queuelen > TCP_SNDQUEUELEN_OVERFLOW)) {
+  54:	f1b9 0f0b 	cmp.w	r9, #11	; 0xb
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:184
+    return ERR_MEM;
+  }
+  left = len;
+  ptr = arg;
+
+  optlen = LWIP_TCP_OPT_LENGTH(optflags);
+  58:	9209      	str	r2, [sp, #36]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:188
+
+  /* seqno will be the sequence number of the first segment enqueued
+   * by the call to this function. */
+  seqno = pcb->snd_lbb;
+  5a:	9306      	str	r3, [sp, #24]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:196
+
+  /* If total number of pbufs on the unsent/unacked queues exceeds the
+   * configured maximum, return an error */
+  queuelen = pcb->snd_queuelen;
+  /* check for configured max queuelen and possible overflow */
+  if ((queuelen >= TCP_SND_QUEUELEN) || (queuelen > TCP_SNDQUEUELEN_OVERFLOW)) {
+  5c:	d908      	bls.n	70 <tcp_enqueue+0x70>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:199
+    LWIP_DEBUGF(TCP_OUTPUT_DEBUG | 3, ("tcp_enqueue: too long queue %"U16_F" (max %"U16_F")\n", queuelen, TCP_SND_QUEUELEN));
+    TCP_STATS_INC(tcp.memerr);
+    pcb->flags |= TF_NAGLEMEMERR;
+  5e:	f896 3022 	ldrb.w	r3, [r6, #34]
+  62:	ea6f 6343 	mvn.w	r3, r3, lsl #25
+  66:	ea6f 6353 	mvn.w	r3, r3, lsr #25
+  6a:	f886 3022 	strb.w	r3, [r6, #34]
+  6e:	e183      	b.n	378 <tcp_enqueue+0x378>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:319
+    /* don't fill in tcphdr->ackno and tcphdr->wnd until later */
+
+    seg->flags = optflags;
+
+    /* Set the length of the header */
+    TCPH_HDRLEN_SET(seg->tcphdr, (5 + optlen / 4));
+  70:	9a09      	ldr	r2, [sp, #36]
+  72:	2400      	movs	r4, #0
+  74:	0893      	lsrs	r3, r2, #2
+  76:	3305      	adds	r3, #5
+  78:	031b      	lsls	r3, r3, #12
+  7a:	9305      	str	r3, [sp, #20]
+  7c:	9a03      	ldr	r2, [sp, #12]
+  7e:	9b04      	ldr	r3, [sp, #16]
+  80:	9207      	str	r2, [sp, #28]
+  82:	9308      	str	r3, [sp, #32]
+  84:	4627      	mov	r7, r4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:219
+  while (queue == NULL || left > 0) {
+    /* The segment length (including options) should be at most the MSS */
+    seglen = left > (pcb->mss - optlen) ? (pcb->mss - optlen) : left;
+
+    /* Allocate memory for tcp_seg, and fill in fields. */
+    seg = memp_malloc(MEMP_TCP_SEG);
+  86:	2004      	movs	r0, #4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:216
+   * the local "queue" variable. */
+  useg = queue = seg = NULL;
+  seglen = 0;
+  while (queue == NULL || left > 0) {
+    /* The segment length (including options) should be at most the MSS */
+    seglen = left > (pcb->mss - optlen) ? (pcb->mss - optlen) : left;
+  88:	f8b6 8038 	ldrh.w	r8, [r6, #56]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:219
+
+    /* Allocate memory for tcp_seg, and fill in fields. */
+    seg = memp_malloc(MEMP_TCP_SEG);
+  8c:	f7ff fffe 	bl	0 <memp_malloc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:220
+    if (seg == NULL) {
+  90:	4605      	mov	r5, r0
+  92:	2800      	cmp	r0, #0
+  94:	f000 8164 	beq.w	360 <tcp_enqueue+0x360>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:225
+      LWIP_DEBUGF(TCP_OUTPUT_DEBUG | 2, 
+                  ("tcp_enqueue: could not allocate memory for tcp_seg\n"));
+      goto memerr;
+    }
+    seg->next = NULL;
+  98:	2300      	movs	r3, #0
+  9a:	6003      	str	r3, [r0, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:226
+    seg->p = NULL;
+  9c:	6043      	str	r3, [r0, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:229
+
+    /* first segment of to-be-queued data? */
+    if (queue == NULL) {
+  9e:	b90f      	cbnz	r7, a4 <tcp_enqueue+0xa4>
+  a0:	4607      	mov	r7, r0
+  a2:	e000      	b.n	a6 <tcp_enqueue+0xa6>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:236
+    }
+    /* subsequent segments of to-be-queued data */
+    else {
+      /* Attach the segment to the end of the queued segments */
+      LWIP_ASSERT("useg != NULL", useg != NULL);
+      useg->next = seg;
+  a4:	6020      	str	r0, [r4, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:216
+   * the local "queue" variable. */
+  useg = queue = seg = NULL;
+  seglen = 0;
+  while (queue == NULL || left > 0) {
+    /* The segment length (including options) should be at most the MSS */
+    seglen = left > (pcb->mss - optlen) ? (pcb->mss - optlen) : left;
+  a6:	9a09      	ldr	r2, [sp, #36]
+  a8:	ebc2 0308 	rsb	r3, r2, r8
+  ac:	9a07      	ldr	r2, [sp, #28]
+  ae:	429a      	cmp	r2, r3
+  b0:	bfb8      	it	lt
+  b2:	4613      	movlt	r3, r2
+  b4:	fa1f f883 	uxth.w	r8, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:244
+    useg = seg;
+
+    /* If copy is set, memory should be allocated
+     * and data copied into pbuf, otherwise data comes from
+     * ROM or other static memory, and need not be copied.  */
+    if (apiflags & TCP_WRITE_FLAG_COPY) {
+  b8:	9b01      	ldr	r3, [sp, #4]
+  ba:	f013 0001 	ands.w	r0, r3, #1	; 0x1
+  be:	d020      	beq.n	102 <tcp_enqueue+0x102>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:245
+      if ((seg->p = pbuf_alloc(PBUF_TRANSPORT, seglen + optlen, PBUF_RAM)) == NULL) {
+  c0:	9a09      	ldr	r2, [sp, #36]
+  c2:	2000      	movs	r0, #0
+  c4:	eb08 0102 	add.w	r1, r8, r2
+  c8:	b289      	uxth	r1, r1
+  ca:	4602      	mov	r2, r0
+  cc:	f7ff fffe 	bl	0 <pbuf_alloc>
+  d0:	6068      	str	r0, [r5, #4]
+  d2:	2800      	cmp	r0, #0
+  d4:	f000 8144 	beq.w	360 <tcp_enqueue+0x360>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:252
+                    ("tcp_enqueue : could not allocate memory for pbuf copy size %"U16_F"\n", seglen));
+        goto memerr;
+      }
+      LWIP_ASSERT("check that first pbuf can hold the complete seglen",
+                  (seg->p->len >= seglen + optlen));
+      queuelen += pbuf_clen(seg->p);
+  d8:	f7ff fffe 	bl	0 <pbuf_clen>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:253
+      if (arg != NULL) {
+  dc:	9b04      	ldr	r3, [sp, #16]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:252
+                    ("tcp_enqueue : could not allocate memory for pbuf copy size %"U16_F"\n", seglen));
+        goto memerr;
+      }
+      LWIP_ASSERT("check that first pbuf can hold the complete seglen",
+                  (seg->p->len >= seglen + optlen));
+      queuelen += pbuf_clen(seg->p);
+  de:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:253
+      if (arg != NULL) {
+  e0:	b13b      	cbz	r3, f2 <tcp_enqueue+0xf2>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:254
+        MEMCPY((char *)seg->p->payload + optlen, ptr, seglen);
+  e2:	686b      	ldr	r3, [r5, #4]
+  e4:	9a09      	ldr	r2, [sp, #36]
+  e6:	6858      	ldr	r0, [r3, #4]
+  e8:	9908      	ldr	r1, [sp, #32]
+  ea:	1880      	adds	r0, r0, r2
+  ec:	4642      	mov	r2, r8
+  ee:	f7ff fffe 	bl	0 <memcpy>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:252
+                    ("tcp_enqueue : could not allocate memory for pbuf copy size %"U16_F"\n", seglen));
+        goto memerr;
+      }
+      LWIP_ASSERT("check that first pbuf can hold the complete seglen",
+                  (seg->p->len >= seglen + optlen));
+      queuelen += pbuf_clen(seg->p);
+  f2:	eb09 0304 	add.w	r3, r9, r4
+  f6:	fa1f f983 	uxth.w	r9, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:256
+      if (arg != NULL) {
+        MEMCPY((char *)seg->p->payload + optlen, ptr, seglen);
+      }
+      seg->dataptr = seg->p->payload;
+  fa:	686b      	ldr	r3, [r5, #4]
+  fc:	685b      	ldr	r3, [r3, #4]
+  fe:	60ab      	str	r3, [r5, #8]
+ 100:	e025      	b.n	14e <tcp_enqueue+0x14e>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:261
+    }
+    /* do not copy data */
+    else {
+      /* First, allocate a pbuf for the headers. */
+      if ((seg->p = pbuf_alloc(PBUF_TRANSPORT, optlen, PBUF_RAM)) == NULL) {
+ 102:	9909      	ldr	r1, [sp, #36]
+ 104:	4602      	mov	r2, r0
+ 106:	f7ff fffe 	bl	0 <pbuf_alloc>
+ 10a:	6068      	str	r0, [r5, #4]
+ 10c:	2800      	cmp	r0, #0
+ 10e:	f000 8127 	beq.w	360 <tcp_enqueue+0x360>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:266
+        LWIP_DEBUGF(TCP_OUTPUT_DEBUG | 2, 
+                    ("tcp_enqueue: could not allocate memory for header pbuf\n"));
+        goto memerr;
+      }
+      queuelen += pbuf_clen(seg->p);
+ 112:	f7ff fffe 	bl	0 <pbuf_clen>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:273
+      /* Second, allocate a pbuf for holding the data.
+       * since the referenced data is available at least until it is sent out on the
+       * link (as it has to be ACKed by the remote party) we can safely use PBUF_ROM
+       * instead of PBUF_REF here.
+       */
+      if (left > 0) {
+ 116:	9b07      	ldr	r3, [sp, #28]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:266
+      if ((seg->p = pbuf_alloc(PBUF_TRANSPORT, optlen, PBUF_RAM)) == NULL) {
+        LWIP_DEBUGF(TCP_OUTPUT_DEBUG | 2, 
+                    ("tcp_enqueue: could not allocate memory for header pbuf\n"));
+        goto memerr;
+      }
+      queuelen += pbuf_clen(seg->p);
+ 118:	4448      	add	r0, r9
+ 11a:	fa1f f980 	uxth.w	r9, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:273
+      /* Second, allocate a pbuf for holding the data.
+       * since the referenced data is available at least until it is sent out on the
+       * link (as it has to be ACKed by the remote party) we can safely use PBUF_ROM
+       * instead of PBUF_REF here.
+       */
+      if (left > 0) {
+ 11e:	b1b3      	cbz	r3, 14e <tcp_enqueue+0x14e>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:274
+        if ((p = pbuf_alloc(PBUF_RAW, seglen, PBUF_ROM)) == NULL) {
+ 120:	2003      	movs	r0, #3
+ 122:	4641      	mov	r1, r8
+ 124:	2201      	movs	r2, #1
+ 126:	f7ff fffe 	bl	0 <pbuf_alloc>
+ 12a:	4604      	mov	r4, r0
+ 12c:	b920      	cbnz	r0, 138 <tcp_enqueue+0x138>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:276
+          /* If allocation fails, we have to deallocate the header pbuf as well. */
+          pbuf_free(seg->p);
+ 12e:	6868      	ldr	r0, [r5, #4]
+ 130:	f7ff fffe 	bl	0 <pbuf_free>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:277
+          seg->p = NULL;
+ 134:	606c      	str	r4, [r5, #4]
+ 136:	e113      	b.n	360 <tcp_enqueue+0x360>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:284
+                      ("tcp_enqueue: could not allocate memory for zero-copy pbuf\n"));
+          goto memerr;
+        }
+        ++queuelen;
+        /* reference the non-volatile payload data */
+        p->payload = ptr;
+ 138:	9a08      	ldr	r2, [sp, #32]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:282
+          seg->p = NULL;
+          LWIP_DEBUGF(TCP_OUTPUT_DEBUG | 2, 
+                      ("tcp_enqueue: could not allocate memory for zero-copy pbuf\n"));
+          goto memerr;
+        }
+        ++queuelen;
+ 13a:	f109 0301 	add.w	r3, r9, #1	; 0x1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:284
+        /* reference the non-volatile payload data */
+        p->payload = ptr;
+ 13e:	6042      	str	r2, [r0, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:288
+        seg->dataptr = ptr;
+
+        /* Concatenate the headers and data pbufs together. */
+        pbuf_cat(seg->p/*header*/, p/*data*/);
+ 140:	4621      	mov	r1, r4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:285
+          goto memerr;
+        }
+        ++queuelen;
+        /* reference the non-volatile payload data */
+        p->payload = ptr;
+        seg->dataptr = ptr;
+ 142:	60aa      	str	r2, [r5, #8]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:288
+
+        /* Concatenate the headers and data pbufs together. */
+        pbuf_cat(seg->p/*header*/, p/*data*/);
+ 144:	6868      	ldr	r0, [r5, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:282
+          seg->p = NULL;
+          LWIP_DEBUGF(TCP_OUTPUT_DEBUG | 2, 
+                      ("tcp_enqueue: could not allocate memory for zero-copy pbuf\n"));
+          goto memerr;
+        }
+        ++queuelen;
+ 146:	fa1f f983 	uxth.w	r9, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:288
+        /* reference the non-volatile payload data */
+        p->payload = ptr;
+        seg->dataptr = ptr;
+
+        /* Concatenate the headers and data pbufs together. */
+        pbuf_cat(seg->p/*header*/, p/*data*/);
+ 14a:	f7ff fffe 	bl	0 <pbuf_cat>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:295
+      }
+    }
+
+    /* Now that there are more segments queued, we check again if the
+    length of the queue exceeds the configured maximum or overflows. */
+    if ((queuelen > TCP_SND_QUEUELEN) || (queuelen > TCP_SNDQUEUELEN_OVERFLOW)) {
+ 14e:	f1b9 0f0c 	cmp.w	r9, #12	; 0xc
+ 152:	f200 8105 	bhi.w	360 <tcp_enqueue+0x360>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:300
+      LWIP_DEBUGF(TCP_OUTPUT_DEBUG | 2, ("tcp_enqueue: queue too long %"U16_F" (%"U16_F")\n", queuelen, TCP_SND_QUEUELEN));
+      goto memerr;
+    }
+
+    seg->len = seglen;
+ 156:	f8a5 800c 	strh.w	r8, [r5, #12]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:303
+
+    /* build TCP header */
+    if (pbuf_header(seg->p, TCP_HLEN)) {
+ 15a:	6868      	ldr	r0, [r5, #4]
+ 15c:	2114      	movs	r1, #20
+ 15e:	f7ff fffe 	bl	0 <pbuf_header>
+ 162:	4682      	mov	sl, r0
+ 164:	2800      	cmp	r0, #0
+ 166:	f040 80fb 	bne.w	360 <tcp_enqueue+0x360>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:308
+      LWIP_DEBUGF(TCP_OUTPUT_DEBUG | 2, ("tcp_enqueue: no room for TCP header in pbuf.\n"));
+      TCP_STATS_INC(tcp.err);
+      goto memerr;
+    }
+    seg->tcphdr = seg->p->payload;
+ 16a:	686b      	ldr	r3, [r5, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:309
+    seg->tcphdr->src = htons(pcb->local_port);
+ 16c:	8b30      	ldrh	r0, [r6, #24]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:308
+    if (pbuf_header(seg->p, TCP_HLEN)) {
+      LWIP_DEBUGF(TCP_OUTPUT_DEBUG | 2, ("tcp_enqueue: no room for TCP header in pbuf.\n"));
+      TCP_STATS_INC(tcp.err);
+      goto memerr;
+    }
+    seg->tcphdr = seg->p->payload;
+ 16e:	685c      	ldr	r4, [r3, #4]
+ 170:	612c      	str	r4, [r5, #16]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:309
+    seg->tcphdr->src = htons(pcb->local_port);
+ 172:	f7ff fffe 	bl	0 <htons>
+ 176:	7020      	strb	r0, [r4, #0]
+ 178:	f3c0 200f 	ubfx	r0, r0, #8, #16
+ 17c:	7060      	strb	r0, [r4, #1]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:310
+    seg->tcphdr->dest = htons(pcb->remote_port);
+ 17e:	8c30      	ldrh	r0, [r6, #32]
+ 180:	692c      	ldr	r4, [r5, #16]
+ 182:	f7ff fffe 	bl	0 <htons>
+ 186:	70a0      	strb	r0, [r4, #2]
+ 188:	f3c0 200f 	ubfx	r0, r0, #8, #16
+ 18c:	70e0      	strb	r0, [r4, #3]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:311
+    seg->tcphdr->seqno = htonl(seqno);
+ 18e:	9806      	ldr	r0, [sp, #24]
+ 190:	692c      	ldr	r4, [r5, #16]
+ 192:	f7ff fffe 	bl	0 <htonl>
+ 196:	f3c0 2307 	ubfx	r3, r0, #8, #8
+ 19a:	7120      	strb	r0, [r4, #4]
+ 19c:	7163      	strb	r3, [r4, #5]
+ 19e:	f3c0 4307 	ubfx	r3, r0, #16, #8
+ 1a2:	0e00      	lsrs	r0, r0, #24
+ 1a4:	71e0      	strb	r0, [r4, #7]
+ 1a6:	71a3      	strb	r3, [r4, #6]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:312
+    seg->tcphdr->urgp = 0;
+ 1a8:	692b      	ldr	r3, [r5, #16]
+ 1aa:	f883 a012 	strb.w	sl, [r3, #18]
+ 1ae:	f883 a013 	strb.w	sl, [r3, #19]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:313
+    TCPH_FLAGS_SET(seg->tcphdr, flags);
+ 1b2:	692c      	ldr	r4, [r5, #16]
+ 1b4:	7b23      	ldrb	r3, [r4, #12]
+ 1b6:	7b60      	ldrb	r0, [r4, #13]
+ 1b8:	ea43 2000 	orr.w	r0, r3, r0, lsl #8
+ 1bc:	f7ff fffe 	bl	0 <ntohs>
+ 1c0:	9b02      	ldr	r3, [sp, #8]
+ 1c2:	f020 003f 	bic.w	r0, r0, #63	; 0x3f
+ 1c6:	4318      	orrs	r0, r3
+ 1c8:	b280      	uxth	r0, r0
+ 1ca:	f7ff fffe 	bl	0 <htons>
+ 1ce:	7320      	strb	r0, [r4, #12]
+ 1d0:	f3c0 200f 	ubfx	r0, r0, #8, #16
+ 1d4:	7360      	strb	r0, [r4, #13]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:319
+    /* don't fill in tcphdr->ackno and tcphdr->wnd until later */
+
+    seg->flags = optflags;
+
+    /* Set the length of the header */
+    TCPH_HDRLEN_SET(seg->tcphdr, (5 + optlen / 4));
+ 1d6:	692c      	ldr	r4, [r5, #16]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:316
+    seg->tcphdr->seqno = htonl(seqno);
+    seg->tcphdr->urgp = 0;
+    TCPH_FLAGS_SET(seg->tcphdr, flags);
+    /* don't fill in tcphdr->ackno and tcphdr->wnd until later */
+
+    seg->flags = optflags;
+ 1d8:	f885 b00e 	strb.w	fp, [r5, #14]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:319
+
+    /* Set the length of the header */
+    TCPH_HDRLEN_SET(seg->tcphdr, (5 + optlen / 4));
+ 1dc:	7b23      	ldrb	r3, [r4, #12]
+ 1de:	7b60      	ldrb	r0, [r4, #13]
+ 1e0:	ea43 2000 	orr.w	r0, r3, r0, lsl #8
+ 1e4:	f7ff fffe 	bl	0 <ntohs>
+ 1e8:	9a05      	ldr	r2, [sp, #20]
+ 1ea:	f000 003f 	and.w	r0, r0, #63	; 0x3f
+ 1ee:	ea42 0000 	orr.w	r0, r2, r0
+ 1f2:	f7ff fffe 	bl	0 <htons>
+ 1f6:	7320      	strb	r0, [r4, #12]
+ 1f8:	f3c0 200f 	ubfx	r0, r0, #8, #16
+ 1fc:	7360      	strb	r0, [r4, #13]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:325
+    LWIP_DEBUGF(TCP_OUTPUT_DEBUG | LWIP_DBG_TRACE, ("tcp_enqueue: queueing %"U32_F":%"U32_F" (0x%"X16_F")\n",
+      ntohl(seg->tcphdr->seqno),
+      ntohl(seg->tcphdr->seqno) + TCP_TCPLEN(seg),
+      (u16_t)flags));
+
+    left -= seglen;
+ 1fe:	9a07      	ldr	r2, [sp, #28]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:327
+    seqno += seglen;
+    ptr = (void *)((u8_t *)ptr + seglen);
+ 200:	462c      	mov	r4, r5
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:325
+    LWIP_DEBUGF(TCP_OUTPUT_DEBUG | LWIP_DBG_TRACE, ("tcp_enqueue: queueing %"U32_F":%"U32_F" (0x%"X16_F")\n",
+      ntohl(seg->tcphdr->seqno),
+      ntohl(seg->tcphdr->seqno) + TCP_TCPLEN(seg),
+      (u16_t)flags));
+
+    left -= seglen;
+ 202:	ebc8 0302 	rsb	r3, r8, r2
+ 206:	b29b      	uxth	r3, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:327
+    seqno += seglen;
+    ptr = (void *)((u8_t *)ptr + seglen);
+ 208:	9a08      	ldr	r2, [sp, #32]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:325
+    LWIP_DEBUGF(TCP_OUTPUT_DEBUG | LWIP_DBG_TRACE, ("tcp_enqueue: queueing %"U32_F":%"U32_F" (0x%"X16_F")\n",
+      ntohl(seg->tcphdr->seqno),
+      ntohl(seg->tcphdr->seqno) + TCP_TCPLEN(seg),
+      (u16_t)flags));
+
+    left -= seglen;
+ 20a:	9307      	str	r3, [sp, #28]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:326
+    seqno += seglen;
+ 20c:	9b06      	ldr	r3, [sp, #24]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:327
+    ptr = (void *)((u8_t *)ptr + seglen);
+ 20e:	4442      	add	r2, r8
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:326
+      ntohl(seg->tcphdr->seqno),
+      ntohl(seg->tcphdr->seqno) + TCP_TCPLEN(seg),
+      (u16_t)flags));
+
+    left -= seglen;
+    seqno += seglen;
+ 210:	4443      	add	r3, r8
+ 212:	9306      	str	r3, [sp, #24]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:327
+    ptr = (void *)((u8_t *)ptr + seglen);
+ 214:	9208      	str	r2, [sp, #32]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:214
+
+  /* First, break up the data into segments and tuck them together in
+   * the local "queue" variable. */
+  useg = queue = seg = NULL;
+  seglen = 0;
+  while (queue == NULL || left > 0) {
+ 216:	2f00      	cmp	r7, #0
+ 218:	f43f af35 	beq.w	86 <tcp_enqueue+0x86>
+ 21c:	9b07      	ldr	r3, [sp, #28]
+ 21e:	2b00      	cmp	r3, #0
+ 220:	f47f af31 	bne.w	86 <tcp_enqueue+0x86>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:333
+  }
+
+  /* Now that the data to be enqueued has been broken up into TCP
+  segments in the queue variable, we add them to the end of the
+  pcb->unsent queue. */
+  if (pcb->unsent == NULL) {
+ 224:	6f74      	ldr	r4, [r6, #116]
+ 226:	2c00      	cmp	r4, #0
+ 228:	d05f      	beq.n	2ea <tcp_enqueue+0x2ea>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:337
+    useg = NULL;
+  }
+  else {
+    for (useg = pcb->unsent; useg->next != NULL; useg = useg->next);
+ 22a:	6823      	ldr	r3, [r4, #0]
+ 22c:	b10b      	cbz	r3, 232 <tcp_enqueue+0x232>
+ 22e:	461c      	mov	r4, r3
+ 230:	e7fb      	b.n	22a <tcp_enqueue+0x22a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:343
+  }
+  /* { useg is last segment on the unsent queue, NULL if list is empty } */
+
+  /* If there is room in the last pbuf on the unsent queue,
+  chain the first pbuf on the queue together with that. */
+  if (useg != NULL &&
+ 232:	6923      	ldr	r3, [r4, #16]
+ 234:	f8b4 a00c 	ldrh.w	sl, [r4, #12]
+ 238:	7b1a      	ldrb	r2, [r3, #12]
+ 23a:	7b58      	ldrb	r0, [r3, #13]
+ 23c:	ea42 2000 	orr.w	r0, r2, r0, lsl #8
+ 240:	f7ff fffe 	bl	0 <ntohs>
+ 244:	f010 0f01 	tst.w	r0, #1	; 0x1
+ 248:	d109      	bne.n	25e <tcp_enqueue+0x25e>
+ 24a:	6923      	ldr	r3, [r4, #16]
+ 24c:	7b1a      	ldrb	r2, [r3, #12]
+ 24e:	7b58      	ldrb	r0, [r3, #13]
+ 250:	ea42 2000 	orr.w	r0, r2, r0, lsl #8
+ 254:	f7ff fffe 	bl	0 <ntohs>
+ 258:	f010 0002 	ands.w	r0, r0, #2	; 0x2
+ 25c:	d000      	beq.n	260 <tcp_enqueue+0x260>
+ 25e:	2001      	movs	r0, #1
+ 260:	eb00 030a 	add.w	r3, r0, sl
+ 264:	2b00      	cmp	r3, #0
+ 266:	f000 8090 	beq.w	38a <tcp_enqueue+0x38a>
+ 26a:	6923      	ldr	r3, [r4, #16]
+ 26c:	7b1a      	ldrb	r2, [r3, #12]
+ 26e:	7b58      	ldrb	r0, [r3, #13]
+ 270:	ea42 2000 	orr.w	r0, r2, r0, lsl #8
+ 274:	f7ff fffe 	bl	0 <ntohs>
+ 278:	9a02      	ldr	r2, [sp, #8]
+ 27a:	4310      	orrs	r0, r2
+ 27c:	f010 0f03 	tst.w	r0, #3	; 0x3
+ 280:	f040 8083 	bne.w	38a <tcp_enqueue+0x38a>
+ 284:	89a2      	ldrh	r2, [r4, #12]
+ 286:	89bb      	ldrh	r3, [r7, #12]
+ 288:	189b      	adds	r3, r3, r2
+ 28a:	8f32      	ldrh	r2, [r6, #56]
+ 28c:	4293      	cmp	r3, r2
+ 28e:	dc7c      	bgt.n	38a <tcp_enqueue+0x38a>
+ 290:	7ba2      	ldrb	r2, [r4, #14]
+ 292:	7bbb      	ldrb	r3, [r7, #14]
+ 294:	429a      	cmp	r2, r3
+ 296:	d178      	bne.n	38a <tcp_enqueue+0x38a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:352
+    /* fit within max seg size */
+    (useg->len + queue->len <= pcb->mss) &&
+    /* only concatenate segments with the same options */
+    (useg->flags == queue->flags)) {
+    /* Remove TCP header from first segment of our to-be-queued list */
+    if(pbuf_header(queue->p, -(TCP_HLEN + optlen))) {
+ 298:	9b09      	ldr	r3, [sp, #36]
+ 29a:	f06f 0113 	mvn.w	r1, #19	; 0x13
+ 29e:	6878      	ldr	r0, [r7, #4]
+ 2a0:	1ac9      	subs	r1, r1, r3
+ 2a2:	f7ff fffe 	bl	0 <pbuf_header>
+ 2a6:	2800      	cmp	r0, #0
+ 2a8:	d15a      	bne.n	360 <tcp_enqueue+0x360>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:358
+      /* Can we cope with this failing?  Just assert for now */
+      LWIP_ASSERT("pbuf_header failed\n", 0);
+      TCP_STATS_INC(tcp.err);
+      goto memerr;
+    }
+    if (queue->p->len == 0) {
+ 2aa:	6878      	ldr	r0, [r7, #4]
+ 2ac:	8942      	ldrh	r2, [r0, #10]
+ 2ae:	b942      	cbnz	r2, 2c2 <tcp_enqueue+0x2c2>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:361
+      /* free the first (header-only) pbuf if it is now empty (contained only headers) */
+      struct pbuf *old_q = queue->p;
+      queue->p = queue->p->next;
+ 2b0:	6803      	ldr	r3, [r0, #0]
+ 2b2:	607b      	str	r3, [r7, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:363
+      old_q->next = NULL;
+      queuelen--;
+ 2b4:	f109 33ff 	add.w	r3, r9, #4294967295	; 0xffffffff
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:362
+    }
+    if (queue->p->len == 0) {
+      /* free the first (header-only) pbuf if it is now empty (contained only headers) */
+      struct pbuf *old_q = queue->p;
+      queue->p = queue->p->next;
+      old_q->next = NULL;
+ 2b8:	6002      	str	r2, [r0, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:363
+      queuelen--;
+ 2ba:	fa1f f983 	uxth.w	r9, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:364
+      pbuf_free(old_q);
+ 2be:	f7ff fffe 	bl	0 <pbuf_free>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:367
+    }
+    LWIP_ASSERT("zero-length pbuf", (queue->p != NULL) && (queue->p->len > 0));
+    pbuf_cat(useg->p, queue->p);
+ 2c2:	6860      	ldr	r0, [r4, #4]
+ 2c4:	6879      	ldr	r1, [r7, #4]
+ 2c6:	f7ff fffe 	bl	0 <pbuf_cat>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:368
+    useg->len += queue->len;
+ 2ca:	89bb      	ldrh	r3, [r7, #12]
+ 2cc:	89a2      	ldrh	r2, [r4, #12]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:376
+    LWIP_DEBUGF(TCP_OUTPUT_DEBUG | LWIP_DBG_TRACE | LWIP_DBG_STATE, ("tcp_enqueue: chaining segments, new len %"U16_F"\n", useg->len));
+    if (seg == queue) {
+      seg = useg;
+      seglen = useg->len;
+    }
+    memp_free(MEMP_TCP_SEG, queue);
+ 2ce:	4639      	mov	r1, r7
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:368
+      queuelen--;
+      pbuf_free(old_q);
+    }
+    LWIP_ASSERT("zero-length pbuf", (queue->p != NULL) && (queue->p->len > 0));
+    pbuf_cat(useg->p, queue->p);
+    useg->len += queue->len;
+ 2d0:	189b      	adds	r3, r3, r2
+ 2d2:	81a3      	strh	r3, [r4, #12]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:369
+    useg->next = queue->next;
+ 2d4:	683b      	ldr	r3, [r7, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:372
+
+    LWIP_DEBUGF(TCP_OUTPUT_DEBUG | LWIP_DBG_TRACE | LWIP_DBG_STATE, ("tcp_enqueue: chaining segments, new len %"U16_F"\n", useg->len));
+    if (seg == queue) {
+ 2d6:	42bd      	cmp	r5, r7
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:374
+      seg = useg;
+      seglen = useg->len;
+ 2d8:	bf04      	itt	eq
+ 2da:	f8b4 800c 	ldrheq.w	r8, [r4, #12]
+ 2de:	4625      	moveq	r5, r4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:369
+      pbuf_free(old_q);
+    }
+    LWIP_ASSERT("zero-length pbuf", (queue->p != NULL) && (queue->p->len > 0));
+    pbuf_cat(useg->p, queue->p);
+    useg->len += queue->len;
+    useg->next = queue->next;
+ 2e0:	6023      	str	r3, [r4, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:376
+    LWIP_DEBUGF(TCP_OUTPUT_DEBUG | LWIP_DBG_TRACE | LWIP_DBG_STATE, ("tcp_enqueue: chaining segments, new len %"U16_F"\n", useg->len));
+    if (seg == queue) {
+      seg = useg;
+      seglen = useg->len;
+    }
+    memp_free(MEMP_TCP_SEG, queue);
+ 2e2:	2004      	movs	r0, #4
+ 2e4:	f7ff fffe 	bl	0 <memp_free>
+ 2e8:	e000      	b.n	2ec <tcp_enqueue+0x2ec>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:382
+  }
+  else {
+    /* empty list */
+    if (useg == NULL) {
+      /* initialize list with this segment */
+      pcb->unsent = queue;
+ 2ea:	6777      	str	r7, [r6, #116]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:389
+    /* enqueue segment */
+    else {
+      useg->next = queue;
+    }
+  }
+  if ((flags & TCP_SYN) || (flags & TCP_FIN)) {
+ 2ec:	9a02      	ldr	r2, [sp, #8]
+ 2ee:	f012 0f02 	tst.w	r2, #2	; 0x2
+ 2f2:	d102      	bne.n	2fa <tcp_enqueue+0x2fa>
+ 2f4:	f012 0f01 	tst.w	r2, #1	; 0x1
+ 2f8:	d003      	beq.n	302 <tcp_enqueue+0x302>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:390
+    ++len;
+ 2fa:	9a03      	ldr	r2, [sp, #12]
+ 2fc:	1c53      	adds	r3, r2, #1
+ 2fe:	b29b      	uxth	r3, r3
+ 300:	9303      	str	r3, [sp, #12]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:392
+  }
+  if (flags & TCP_FIN) {
+ 302:	9b02      	ldr	r3, [sp, #8]
+ 304:	f013 0f01 	tst.w	r3, #1	; 0x1
+ 308:	d005      	beq.n	316 <tcp_enqueue+0x316>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:393
+    pcb->flags |= TF_FIN;
+ 30a:	f896 3022 	ldrb.w	r3, [r6, #34]
+ 30e:	f043 0320 	orr.w	r3, r3, #32	; 0x20
+ 312:	f886 3022 	strb.w	r3, [r6, #34]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:395
+  }
+  pcb->snd_lbb += len;
+ 316:	6eb3      	ldr	r3, [r6, #104]
+ 318:	9a03      	ldr	r2, [sp, #12]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:400
+
+  pcb->snd_buf -= len;
+
+  /* update number of segments on the queues */
+  pcb->snd_queuelen = queuelen;
+ 31a:	f8a6 9070 	strh.w	r9, [r6, #112]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:395
+    ++len;
+  }
+  if (flags & TCP_FIN) {
+    pcb->flags |= TF_FIN;
+  }
+  pcb->snd_lbb += len;
+ 31e:	189b      	adds	r3, r3, r2
+ 320:	66b3      	str	r3, [r6, #104]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:397
+
+  pcb->snd_buf -= len;
+ 322:	f8b6 306e 	ldrh.w	r3, [r6, #110]
+ 326:	1a9b      	subs	r3, r3, r2
+ 328:	f8a6 306e 	strh.w	r3, [r6, #110]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:409
+      pcb->unacked != NULL || pcb->unsent != NULL);
+  }
+
+  /* Set the PSH flag in the last segment that we enqueued, but only
+  if the segment has data (indicated by seglen > 0). */
+  if (seg != NULL && seglen > 0 && seg->tcphdr != NULL && ((apiflags & TCP_WRITE_FLAG_MORE)==0)) {
+ 32c:	f1b8 0f00 	cmp.w	r8, #0	; 0x0
+ 330:	d026      	beq.n	380 <tcp_enqueue+0x380>
+ 332:	692c      	ldr	r4, [r5, #16]
+ 334:	b324      	cbz	r4, 380 <tcp_enqueue+0x380>
+ 336:	9b01      	ldr	r3, [sp, #4]
+ 338:	f013 0502 	ands.w	r5, r3, #2	; 0x2
+ 33c:	d120      	bne.n	380 <tcp_enqueue+0x380>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:410
+    TCPH_SET_FLAG(seg->tcphdr, TCP_PSH);
+ 33e:	7b23      	ldrb	r3, [r4, #12]
+ 340:	7b60      	ldrb	r0, [r4, #13]
+ 342:	ea43 2000 	orr.w	r0, r3, r0, lsl #8
+ 346:	f7ff fffe 	bl	0 <ntohs>
+ 34a:	f040 0008 	orr.w	r0, r0, #8	; 0x8
+ 34e:	b280      	uxth	r0, r0
+ 350:	f7ff fffe 	bl	0 <htons>
+ 354:	7320      	strb	r0, [r4, #12]
+ 356:	f3c0 200f 	ubfx	r0, r0, #8, #16
+ 35a:	7360      	strb	r0, [r4, #13]
+ 35c:	4628      	mov	r0, r5
+ 35e:	e010      	b.n	382 <tcp_enqueue+0x382>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:415
+  }
+
+  return ERR_OK;
+memerr:
+  pcb->flags |= TF_NAGLEMEMERR;
+ 360:	f896 3022 	ldrb.w	r3, [r6, #34]
+ 364:	ea6f 6343 	mvn.w	r3, r3, lsl #25
+ 368:	ea6f 6353 	mvn.w	r3, r3, lsr #25
+ 36c:	f886 3022 	strb.w	r3, [r6, #34]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:418
+  TCP_STATS_INC(tcp.memerr);
+
+  if (queue != NULL) {
+ 370:	b117      	cbz	r7, 378 <tcp_enqueue+0x378>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:419
+    tcp_segs_free(queue);
+ 372:	4638      	mov	r0, r7
+ 374:	f7ff fffe 	bl	0 <tcp_segs_free>
+ 378:	20ff      	movs	r0, #255
+ 37a:	e002      	b.n	382 <tcp_segs_free+0x382>
+ 37c:	20f6      	movs	r0, #246
+ 37e:	e000      	b.n	382 <tcp_segs_free+0x382>
+ 380:	2000      	movs	r0, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:427
+    LWIP_ASSERT("tcp_enqueue: valid queue length", pcb->unacked != NULL ||
+      pcb->unsent != NULL);
+  }
+  LWIP_DEBUGF(TCP_QLEN_DEBUG | LWIP_DBG_STATE, ("tcp_enqueue: %"S16_F" (with mem err)\n", pcb->snd_queuelen));
+  return ERR_MEM;
+}
+ 382:	b240      	sxtb	r0, r0
+ 384:	b00b      	add	sp, #44
+ 386:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:386
+      /* initialize list with this segment */
+      pcb->unsent = queue;
+    }
+    /* enqueue segment */
+    else {
+      useg->next = queue;
+ 38a:	6027      	str	r7, [r4, #0]
+ 38c:	e7ae      	b.n	2ec <tcp_segs_free+0x2ec>
+ 38e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.tcp_write:
+
+00000000 <tcp_write>:
+tcp_write():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:121
+tcp_write(struct tcp_pcb *pcb, const void *data, u16_t len, u8_t apiflags)
+{
+  LWIP_DEBUGF(TCP_OUTPUT_DEBUG, ("tcp_write(pcb=%p, data=%p, len=%"U16_F", apiflags=%"U16_F")\n", (void *)pcb,
+    data, len, (u16_t)apiflags));
+  /* connection is in valid state for data transmission? */
+  if (pcb->state == ESTABLISHED ||
+   0:	f890 c010 	ldrb.w	ip, [r0, #16]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:117
+ * 
+ * @see tcp_write()
+ */
+err_t
+tcp_write(struct tcp_pcb *pcb, const void *data, u16_t len, u8_t apiflags)
+{
+   4:	b507      	push	{r0, r1, r2, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:121
+  LWIP_DEBUGF(TCP_OUTPUT_DEBUG, ("tcp_write(pcb=%p, data=%p, len=%"U16_F", apiflags=%"U16_F")\n", (void *)pcb,
+    data, len, (u16_t)apiflags));
+  /* connection is in valid state for data transmission? */
+  if (pcb->state == ESTABLISHED ||
+   6:	f1bc 0f04 	cmp.w	ip, #4	; 0x4
+   a:	d00a      	beq.n	22 <tcp_write+0x22>
+   c:	f1bc 0f07 	cmp.w	ip, #7	; 0x7
+  10:	d007      	beq.n	22 <tcp_write+0x22>
+  12:	f1bc 0f02 	cmp.w	ip, #2	; 0x2
+  16:	d004      	beq.n	22 <tcp_write+0x22>
+  18:	f1bc 0f03 	cmp.w	ip, #3	; 0x3
+  1c:	d001      	beq.n	22 <tcp_write+0x22>
+  1e:	22f8      	movs	r2, #248
+  20:	e006      	b.n	30 <tcp_write+0x30>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:125
+     pcb->state == CLOSE_WAIT ||
+     pcb->state == SYN_SENT ||
+     pcb->state == SYN_RCVD) {
+    if (len > 0) {
+  22:	b12a      	cbz	r2, 30 <tcp_write+0x30>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:130
+#if LWIP_TCP_TIMESTAMPS
+      return tcp_enqueue(pcb, (void *)data, len, 0, apiflags, 
+                         pcb->flags & TF_TIMESTAMP ? TF_SEG_OPTS_TS : 0);
+#else
+      return tcp_enqueue(pcb, (void *)data, len, 0, apiflags, 0);
+  24:	9300      	str	r3, [sp, #0]
+  26:	2300      	movs	r3, #0
+  28:	9301      	str	r3, [sp, #4]
+  2a:	f7ff fffe 	bl	0 <tcp_write>
+  2e:	b2c2      	uxtb	r2, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:138
+    return ERR_OK;
+  } else {
+    LWIP_DEBUGF(TCP_OUTPUT_DEBUG | LWIP_DBG_STATE | 3, ("tcp_write() called in invalid state\n"));
+    return ERR_CONN;
+  }
+}
+  30:	b250      	sxtb	r0, r2
+  32:	bd0e      	pop	{r1, r2, r3, pc}
+Disassembly of section .text.tcp_send_ctrl:
+
+00000000 <tcp_send_ctrl>:
+tcp_send_ctrl():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:92
+ * @param flags the flags to set in the segment header
+ * @return ERR_OK if sent, another err_t otherwise
+ */
+err_t
+tcp_send_ctrl(struct tcp_pcb *pcb, u8_t flags)
+{
+   0:	b507      	push	{r0, r1, r2, lr}
+   2:	460b      	mov	r3, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:94
+  /* no data, no length, flags, copy=1, no optdata */
+  return tcp_enqueue(pcb, NULL, 0, flags, TCP_WRITE_FLAG_COPY, 0);
+   4:	2201      	movs	r2, #1
+   6:	2100      	movs	r1, #0
+   8:	9200      	str	r2, [sp, #0]
+   a:	460a      	mov	r2, r1
+   c:	9101      	str	r1, [sp, #4]
+   e:	f7ff fffe 	bl	0 <tcp_send_ctrl>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core/tcp_out.c:95
+}
+  12:	b240      	sxtb	r0, r0
+  14:	bd0e      	pop	{r1, r2, r3, pc}
+  16:	46c0      	nop			(mov r8, r8)

@@ -1,0 +1,2325 @@
+
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\stm3210c_eval_lcd.o:     file format elf32-littlearm
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\stm3210c_eval_lcd.o
+
+Disassembly of section .text.LCD_SetTextColor:
+
+00000000 <LCD_SetTextColor>:
+LCD_SetTextColor():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:193
+  * @brief  Sets the Text color.
+  * @param  Color: specifies the Text color code RGB(5-6-5).
+  * @retval None
+  */
+void LCD_SetTextColor(__IO uint16_t Color)
+{
+   0:	b082      	sub	sp, #8
+   2:	f8ad 0006 	strh.w	r0, [sp, #6]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:194
+  TextColor = Color;
+   6:	f8bd 3006 	ldrh.w	r3, [sp, #6]
+   a:	4a02      	ldr	r2, [pc, #8]	(14 <LCD_SetTextColor+0x14>)
+   c:	b29b      	uxth	r3, r3
+   e:	8013      	strh	r3, [r2, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:195
+}
+  10:	b002      	add	sp, #8
+  12:	4770      	bx	lr
+  14:	00000000 	.word	0x00000000
+Disassembly of section .text.LCD_SetBackColor:
+
+00000000 <LCD_SetBackColor>:
+LCD_SetBackColor():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:204
+  * @brief  Sets the Background color.
+  * @param  Color: specifies the Background color code RGB(5-6-5).
+  * @retval None
+  */
+void LCD_SetBackColor(__IO uint16_t Color)
+{
+   0:	b082      	sub	sp, #8
+   2:	f8ad 0006 	strh.w	r0, [sp, #6]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:205
+  BackColor = Color;
+   6:	f8bd 3006 	ldrh.w	r3, [sp, #6]
+   a:	4a02      	ldr	r2, [pc, #8]	(14 <LCD_SetBackColor+0x14>)
+   c:	b29b      	uxth	r3, r3
+   e:	8013      	strh	r3, [r2, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:206
+}
+  10:	b002      	add	sp, #8
+  12:	4770      	bx	lr
+  14:	00000000 	.word	0x00000000
+Disassembly of section .text.delay:
+
+00000000 <delay>:
+delay():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:899
+  * @brief  Inserts a delay time.
+  * @param  nCount: specifies the delay time length.
+  * @retval None
+  */
+static void delay(__IO uint32_t nCount)
+{
+   0:	b084      	sub	sp, #16
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:900
+  __IO uint32_t index = 0; 
+   2:	2300      	movs	r3, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:899
+  * @brief  Inserts a delay time.
+  * @param  nCount: specifies the delay time length.
+  * @retval None
+  */
+static void delay(__IO uint32_t nCount)
+{
+   4:	9001      	str	r0, [sp, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:900
+  __IO uint32_t index = 0; 
+   6:	9303      	str	r3, [sp, #12]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:901
+  for(index = (100000 * nCount); index != 0; index--)
+   8:	9a01      	ldr	r2, [sp, #4]
+   a:	4b05      	ldr	r3, [pc, #20]	(20 <delay+0x20>)
+   c:	4353      	muls	r3, r2
+   e:	e001      	b.n	14 <delay+0x14>
+  10:	9b03      	ldr	r3, [sp, #12]
+  12:	3b01      	subs	r3, #1
+  14:	9303      	str	r3, [sp, #12]
+  16:	9b03      	ldr	r3, [sp, #12]
+  18:	2b00      	cmp	r3, #0
+  1a:	d1f9      	bne.n	10 <delay+0x10>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:904
+  {
+  }
+}
+  1c:	b004      	add	sp, #16
+  1e:	4770      	bx	lr
+  20:	000186a0 	.word	0x000186a0
+Disassembly of section .text.LCD_CtrlLinesConfig:
+
+00000000 <LCD_CtrlLinesConfig>:
+LCD_CtrlLinesConfig():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:821
+  * @brief  Configures LCD control lines in Output Push-Pull mode.
+  * @param  None
+  * @retval None
+  */
+void LCD_CtrlLinesConfig(void)
+{
+   0:	b507      	push	{r0, r1, r2, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:825
+  GPIO_InitTypeDef GPIO_InitStructure;
+
+  /* Enable GPIO clock */
+  RCC_APB2PeriphClockCmd(LCD_NCS_GPIO_CLK, ENABLE);
+   2:	2008      	movs	r0, #8
+   4:	2101      	movs	r1, #1
+   6:	f7ff fffe 	bl	0 <RCC_APB2PeriphClockCmd>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:828
+
+  /* Configure NCS in Output Push-Pull mode */
+  GPIO_InitStructure.GPIO_Pin = LCD_NCS_PIN;
+   a:	f04f 0304 	mov.w	r3, #4	; 0x4
+   e:	f8ad 3004 	strh.w	r3, [sp, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:829
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  12:	2303      	movs	r3, #3
+  14:	f88d 3006 	strb.w	r3, [sp, #6]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:831
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_Init(LCD_NCS_GPIO_PORT, &GPIO_InitStructure);  
+  18:	4803      	ldr	r0, [pc, #12]	(28 <LCD_CtrlLinesConfig+0x28>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:830
+  RCC_APB2PeriphClockCmd(LCD_NCS_GPIO_CLK, ENABLE);
+
+  /* Configure NCS in Output Push-Pull mode */
+  GPIO_InitStructure.GPIO_Pin = LCD_NCS_PIN;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  1a:	330d      	adds	r3, #13
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:831
+  GPIO_Init(LCD_NCS_GPIO_PORT, &GPIO_InitStructure);  
+  1c:	a901      	add	r1, sp, #4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:830
+  RCC_APB2PeriphClockCmd(LCD_NCS_GPIO_CLK, ENABLE);
+
+  /* Configure NCS in Output Push-Pull mode */
+  GPIO_InitStructure.GPIO_Pin = LCD_NCS_PIN;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  1e:	f88d 3007 	strb.w	r3, [sp, #7]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:831
+  GPIO_Init(LCD_NCS_GPIO_PORT, &GPIO_InitStructure);  
+  22:	f7ff fffe 	bl	0 <GPIO_Init>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:832
+}
+  26:	bd0e      	pop	{r1, r2, r3, pc}
+  28:	40010c00 	.word	0x40010c00
+Disassembly of section .text.LCD_SPIConfig:
+
+00000000 <LCD_SPIConfig>:
+LCD_SPIConfig():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:858
+  * @brief  Configures the LCD_SPI interface.
+  * @param  None
+  * @retval None
+  */
+void LCD_SPIConfig(void)
+{
+   0:	b530      	push	{r4, r5, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:863
+  SPI_InitTypeDef    SPI_InitStructure;
+  GPIO_InitTypeDef   GPIO_InitStructure;
+
+  /* Enable GPIO clock */
+  RCC_APB2PeriphClockCmd(LCD_SPI_GPIO_CLK | RCC_APB2Periph_AFIO, ENABLE);
+   2:	2011      	movs	r0, #17
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:858
+  * @brief  Configures the LCD_SPI interface.
+  * @param  None
+  * @retval None
+  */
+void LCD_SPIConfig(void)
+{
+   4:	b087      	sub	sp, #28
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:863
+  SPI_InitTypeDef    SPI_InitStructure;
+  GPIO_InitTypeDef   GPIO_InitStructure;
+
+  /* Enable GPIO clock */
+  RCC_APB2PeriphClockCmd(LCD_SPI_GPIO_CLK | RCC_APB2Periph_AFIO, ENABLE);
+   6:	2101      	movs	r1, #1
+   8:	f7ff fffe 	bl	0 <RCC_APB2PeriphClockCmd>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:864
+  GPIO_PinRemapConfig(GPIO_Remap_SPI3, ENABLE);
+   c:	2101      	movs	r1, #1
+   e:	481e      	ldr	r0, [pc, #120]	(88 <LCD_SPIConfig+0x88>)
+  10:	f7ff fffe 	bl	0 <GPIO_PinRemapConfig>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:867
+
+  /* Enable SPI clock  */
+  RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI3, ENABLE);
+  14:	2101      	movs	r1, #1
+  16:	f44f 4000 	mov.w	r0, #32768	; 0x8000
+  1a:	f7ff fffe 	bl	0 <RCC_APB1PeriphClockCmd>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:875
+  GPIO_InitStructure.GPIO_Pin = LCD_SPI_SCK_PIN | LCD_SPI_MISO_PIN | LCD_SPI_MOSI_PIN;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  GPIO_Init(LCD_SPI_GPIO_PORT, &GPIO_InitStructure);
+  
+  SPI_I2S_DeInit(LCD_SPI);
+  1e:	4c1b      	ldr	r4, [pc, #108]	(8c <LCD_SPIConfig+0x8c>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:871
+  /* Enable SPI clock  */
+  RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI3, ENABLE);
+  
+  /* Configure SPI pins: SCK, MISO and MOSI */
+  GPIO_InitStructure.GPIO_Pin = LCD_SPI_SCK_PIN | LCD_SPI_MISO_PIN | LCD_SPI_MOSI_PIN;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  20:	2303      	movs	r3, #3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:870
+
+  /* Enable SPI clock  */
+  RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI3, ENABLE);
+  
+  /* Configure SPI pins: SCK, MISO and MOSI */
+  GPIO_InitStructure.GPIO_Pin = LCD_SPI_SCK_PIN | LCD_SPI_MISO_PIN | LCD_SPI_MOSI_PIN;
+  22:	f44f 52e0 	mov.w	r2, #7168	; 0x1c00
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:873
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  GPIO_Init(LCD_SPI_GPIO_PORT, &GPIO_InitStructure);
+  26:	a905      	add	r1, sp, #20
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:871
+  /* Enable SPI clock  */
+  RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI3, ENABLE);
+  
+  /* Configure SPI pins: SCK, MISO and MOSI */
+  GPIO_InitStructure.GPIO_Pin = LCD_SPI_SCK_PIN | LCD_SPI_MISO_PIN | LCD_SPI_MOSI_PIN;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  28:	f88d 3016 	strb.w	r3, [sp, #22]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:873
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  GPIO_Init(LCD_SPI_GPIO_PORT, &GPIO_InitStructure);
+  2c:	4818      	ldr	r0, [pc, #96]	(90 <LCD_SPIConfig+0x90>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:872
+  RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI3, ENABLE);
+  
+  /* Configure SPI pins: SCK, MISO and MOSI */
+  GPIO_InitStructure.GPIO_Pin = LCD_SPI_SCK_PIN | LCD_SPI_MISO_PIN | LCD_SPI_MOSI_PIN;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  2e:	3315      	adds	r3, #21
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:870
+
+  /* Enable SPI clock  */
+  RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI3, ENABLE);
+  
+  /* Configure SPI pins: SCK, MISO and MOSI */
+  GPIO_InitStructure.GPIO_Pin = LCD_SPI_SCK_PIN | LCD_SPI_MISO_PIN | LCD_SPI_MOSI_PIN;
+  30:	f8ad 2014 	strh.w	r2, [sp, #20]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:872
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  34:	f88d 3017 	strb.w	r3, [sp, #23]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:873
+  GPIO_Init(LCD_SPI_GPIO_PORT, &GPIO_InitStructure);
+  38:	f7ff fffe 	bl	0 <GPIO_Init>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:875
+  
+  SPI_I2S_DeInit(LCD_SPI);
+  3c:	4620      	mov	r0, r4
+  3e:	f7ff fffe 	bl	0 <SPI_I2S_DeInit>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:879
+  
+  /* SPI Config */
+  SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
+  SPI_InitStructure.SPI_Mode = SPI_Mode_Master;
+  42:	f44f 7282 	mov.w	r2, #260	; 0x104
+  46:	f8ad 2004 	strh.w	r2, [sp, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:881
+  SPI_InitStructure.SPI_DataSize = SPI_DataSize_8b;
+  SPI_InitStructure.SPI_CPOL = SPI_CPOL_High;
+  4a:	f04f 0202 	mov.w	r2, #2	; 0x2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:878
+  GPIO_Init(LCD_SPI_GPIO_PORT, &GPIO_InitStructure);
+  
+  SPI_I2S_DeInit(LCD_SPI);
+  
+  /* SPI Config */
+  SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
+  4e:	2300      	movs	r3, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:881
+  SPI_InitStructure.SPI_Mode = SPI_Mode_Master;
+  SPI_InitStructure.SPI_DataSize = SPI_DataSize_8b;
+  SPI_InitStructure.SPI_CPOL = SPI_CPOL_High;
+  50:	f8ad 2008 	strh.w	r2, [sp, #8]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:882
+  SPI_InitStructure.SPI_CPHA = SPI_CPHA_2Edge;
+  54:	2501      	movs	r5, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:883
+  SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;
+  56:	f44f 7200 	mov.w	r2, #512	; 0x200
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:886
+  SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_2;
+  SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;
+  SPI_Init(LCD_SPI, &SPI_InitStructure);
+  5a:	4620      	mov	r0, r4
+  5c:	f10d 0102 	add.w	r1, sp, #2	; 0x2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:878
+  GPIO_Init(LCD_SPI_GPIO_PORT, &GPIO_InitStructure);
+  
+  SPI_I2S_DeInit(LCD_SPI);
+  
+  /* SPI Config */
+  SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
+  60:	f8ad 3002 	strh.w	r3, [sp, #2]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:880
+  SPI_InitStructure.SPI_Mode = SPI_Mode_Master;
+  SPI_InitStructure.SPI_DataSize = SPI_DataSize_8b;
+  64:	f8ad 3006 	strh.w	r3, [sp, #6]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:882
+  SPI_InitStructure.SPI_CPOL = SPI_CPOL_High;
+  SPI_InitStructure.SPI_CPHA = SPI_CPHA_2Edge;
+  68:	f8ad 500a 	strh.w	r5, [sp, #10]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:883
+  SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;
+  6c:	f8ad 200c 	strh.w	r2, [sp, #12]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:884
+  SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_2;
+  70:	f8ad 300e 	strh.w	r3, [sp, #14]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:885
+  SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;
+  74:	f8ad 3010 	strh.w	r3, [sp, #16]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:886
+  SPI_Init(LCD_SPI, &SPI_InitStructure);
+  78:	f7ff fffe 	bl	0 <SPI_Init>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:889
+
+  /* SPI enable */
+  SPI_Cmd(LCD_SPI, ENABLE);
+  7c:	4620      	mov	r0, r4
+  7e:	4629      	mov	r1, r5
+  80:	f7ff fffe 	bl	0 <SPI_Cmd>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:890
+}
+  84:	b007      	add	sp, #28
+  86:	bd30      	pop	{r4, r5, pc}
+  88:	00201000 	.word	0x00201000
+  8c:	40003c00 	.word	0x40003c00
+  90:	40011000 	.word	0x40011000
+Disassembly of section .text.LCD_CtrlLinesWrite:
+
+00000000 <LCD_CtrlLinesWrite>:
+LCD_CtrlLinesWrite():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:846
+  *     @arg Bit_RESET: to clear the port pin
+  *     @arg Bit_SET: to set the port pin
+  * @retval None
+  */
+void LCD_CtrlLinesWrite(GPIO_TypeDef* GPIOx, uint16_t CtrlPins, BitAction BitVal)
+{
+   0:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:848
+  /* Set or Reset the control line */
+  GPIO_WriteBit(GPIOx, CtrlPins, BitVal);
+   2:	f7ff fffe 	bl	0 <GPIO_WriteBit>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:849
+}
+   6:	bd10      	pop	{r4, pc}
+Disassembly of section .text.LCD_WriteRAM:
+
+00000000 <LCD_WriteRAM>:
+LCD_WriteRAM():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:756
+  * @brief  Writes to the LCD RAM.
+  * @param  RGB_Code: the pixel color in RGB mode (5-6-5).
+  * @retval None
+  */
+void LCD_WriteRAM(uint16_t RGB_Code)
+{
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:757
+  SPI_I2S_SendData(LCD_SPI, RGB_Code >> 8);
+   4:	0a21      	lsrs	r1, r4, #8
+   6:	480a      	ldr	r0, [pc, #40]	(30 <LCD_WriteRAM+0x30>)
+   8:	f7ff fffe 	bl	0 <SPI_I2S_SendData>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:758
+  while(SPI_I2S_GetFlagStatus(LCD_SPI, SPI_I2S_FLAG_BSY) != RESET)
+   c:	4808      	ldr	r0, [pc, #32]	(30 <LCD_WriteRAM+0x30>)
+   e:	2180      	movs	r1, #128
+  10:	f7ff fffe 	bl	0 <SPI_I2S_GetFlagStatus>
+  14:	2800      	cmp	r0, #0
+  16:	d1f9      	bne.n	c <LCD_WriteRAM+0xc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:761
+  {
+  }
+  SPI_I2S_SendData(LCD_SPI, RGB_Code & 0xFF);
+  18:	4805      	ldr	r0, [pc, #20]	(30 <LCD_WriteRAM+0x30>)
+  1a:	b2e1      	uxtb	r1, r4
+  1c:	f7ff fffe 	bl	0 <SPI_I2S_SendData>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:762
+  while(SPI_I2S_GetFlagStatus(LCD_SPI, SPI_I2S_FLAG_BSY) != RESET)
+  20:	4803      	ldr	r0, [pc, #12]	(30 <LCD_WriteRAM+0x30>)
+  22:	2180      	movs	r1, #128
+  24:	f7ff fffe 	bl	0 <SPI_I2S_GetFlagStatus>
+  28:	2800      	cmp	r0, #0
+  2a:	d1f9      	bne.n	20 <SPI_I2S_GetFlagStatus+0x20>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:765
+  {
+  }
+}
+  2c:	bd10      	pop	{r4, pc}
+  2e:	46c0      	nop			(mov r8, r8)
+  30:	40003c00 	.word	0x40003c00
+Disassembly of section .text.LCD_nCS_StartByte:
+
+00000000 <LCD_nCS_StartByte>:
+LCD_nCS_StartByte():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:610
+  * @brief  Reset LCD control line(/CS) and Send Start-Byte
+  * @param  Start_Byte: the Start-Byte to be sent
+  * @retval None
+  */
+void LCD_nCS_StartByte(uint8_t Start_Byte)
+{
+   0:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:611
+  LCD_CtrlLinesWrite(LCD_NCS_GPIO_PORT, LCD_NCS_PIN, Bit_RESET);
+   2:	2104      	movs	r1, #4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:610
+  * @brief  Reset LCD control line(/CS) and Send Start-Byte
+  * @param  Start_Byte: the Start-Byte to be sent
+  * @retval None
+  */
+void LCD_nCS_StartByte(uint8_t Start_Byte)
+{
+   4:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:611
+  LCD_CtrlLinesWrite(LCD_NCS_GPIO_PORT, LCD_NCS_PIN, Bit_RESET);
+   6:	2200      	movs	r2, #0
+   8:	4806      	ldr	r0, [pc, #24]	(24 <LCD_nCS_StartByte+0x24>)
+   a:	f7ff fffe 	bl	0 <LCD_nCS_StartByte>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:612
+  SPI_I2S_SendData(LCD_SPI, Start_Byte);
+   e:	4806      	ldr	r0, [pc, #24]	(28 <LCD_nCS_StartByte+0x28>)
+  10:	4621      	mov	r1, r4
+  12:	f7ff fffe 	bl	0 <SPI_I2S_SendData>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:613
+  while(SPI_I2S_GetFlagStatus(LCD_SPI, SPI_I2S_FLAG_BSY) != RESET)
+  16:	4804      	ldr	r0, [pc, #16]	(28 <LCD_nCS_StartByte+0x28>)
+  18:	2180      	movs	r1, #128
+  1a:	f7ff fffe 	bl	0 <SPI_I2S_GetFlagStatus>
+  1e:	2800      	cmp	r0, #0
+  20:	d1f9      	bne.n	16 <SPI_I2S_GetFlagStatus+0x16>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:616
+  {
+  }
+}
+  22:	bd10      	pop	{r4, pc}
+  24:	40010c00 	.word	0x40010c00
+  28:	40003c00 	.word	0x40003c00
+Disassembly of section .text.LCD_WriteRegIndex:
+
+00000000 <LCD_WriteRegIndex>:
+LCD_WriteRegIndex():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:624
+  * @brief  Writes index to select the LCD register.
+  * @param  LCD_Reg: address of the selected register.
+  * @retval None
+  */
+void LCD_WriteRegIndex(uint8_t LCD_Reg)
+{
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:626
+  /* Reset LCD control line(/CS) and Send Start-Byte */
+  LCD_nCS_StartByte(START_BYTE | SET_INDEX);
+   4:	2070      	movs	r0, #112
+   6:	f7ff fffe 	bl	0 <LCD_WriteRegIndex>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:628
+  /* Write 16-bit Reg Index (High Byte is 0) */
+  SPI_I2S_SendData(LCD_SPI, 0x00);
+   a:	480d      	ldr	r0, [pc, #52]	(40 <LCD_WriteRegIndex+0x40>)
+   c:	2100      	movs	r1, #0
+   e:	f7ff fffe 	bl	0 <SPI_I2S_SendData>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:629
+  while(SPI_I2S_GetFlagStatus(LCD_SPI, SPI_I2S_FLAG_BSY) != RESET)
+  12:	480b      	ldr	r0, [pc, #44]	(40 <LCD_WriteRegIndex+0x40>)
+  14:	2180      	movs	r1, #128
+  16:	f7ff fffe 	bl	0 <SPI_I2S_GetFlagStatus>
+  1a:	2800      	cmp	r0, #0
+  1c:	d1f9      	bne.n	12 <LCD_WriteRegIndex+0x12>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:632
+  {
+  }
+  SPI_I2S_SendData(LCD_SPI, LCD_Reg);
+  1e:	4808      	ldr	r0, [pc, #32]	(40 <LCD_WriteRegIndex+0x40>)
+  20:	4621      	mov	r1, r4
+  22:	f7ff fffe 	bl	0 <SPI_I2S_SendData>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:633
+  while(SPI_I2S_GetFlagStatus(LCD_SPI, SPI_I2S_FLAG_BSY) != RESET)
+  26:	4806      	ldr	r0, [pc, #24]	(40 <LCD_WriteRegIndex+0x40>)
+  28:	2180      	movs	r1, #128
+  2a:	f7ff fffe 	bl	0 <SPI_I2S_GetFlagStatus>
+  2e:	2800      	cmp	r0, #0
+  30:	d1f9      	bne.n	26 <LCD_WriteRegIndex+0x26>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:636
+  {
+  }
+  LCD_CtrlLinesWrite(LCD_NCS_GPIO_PORT, LCD_NCS_PIN, Bit_SET);
+  32:	4804      	ldr	r0, [pc, #16]	(44 <LCD_WriteRegIndex+0x44>)
+  34:	2104      	movs	r1, #4
+  36:	2201      	movs	r2, #1
+  38:	f7ff fffe 	bl	0 <LCD_WriteRegIndex>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:637
+}
+  3c:	bd10      	pop	{r4, pc}
+  3e:	46c0      	nop			(mov r8, r8)
+  40:	40003c00 	.word	0x40003c00
+  44:	40010c00 	.word	0x40010c00
+Disassembly of section .text.LCD_WriteRAM_Prepare:
+
+00000000 <LCD_WriteRAM_Prepare>:
+LCD_WriteRAM_Prepare():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:706
+  * @param  None
+  * @retval None
+  */
+void LCD_WriteRAM_Prepare(void)
+{
+  LCD_WriteRegIndex(R34); /* Select GRAM Reg */
+   0:	2022      	movs	r0, #34
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:705
+  * @brief  Prepare to write to the LCD RAM.
+  * @param  None
+  * @retval None
+  */
+void LCD_WriteRAM_Prepare(void)
+{
+   2:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:706
+  LCD_WriteRegIndex(R34); /* Select GRAM Reg */
+   4:	f7ff fffe 	bl	0 <LCD_WriteRAM_Prepare>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:708
+  /* Reset LCD control line(/CS) and Send Start-Byte */
+  LCD_nCS_StartByte(START_BYTE | LCD_WRITE_REG);
+   8:	2072      	movs	r0, #114
+   a:	f7ff fffe 	bl	0 <LCD_WriteRAM_Prepare>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:709
+}
+   e:	bd10      	pop	{r4, pc}
+Disassembly of section .text.LCD_WriteRAMWord:
+
+00000000 <LCD_WriteRAMWord>:
+LCD_WriteRAMWord():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:718
+  * @brief  Writes 1 word to the LCD RAM.
+  * @param  RGB_Code: the pixel color in RGB mode (5-6-5).
+  * @retval None
+  */
+void LCD_WriteRAMWord(uint16_t RGB_Code)
+{
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:719
+  LCD_WriteRAM_Prepare();
+   4:	f7ff fffe 	bl	0 <LCD_WriteRAMWord>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:720
+  LCD_WriteRAM(RGB_Code);
+   8:	4620      	mov	r0, r4
+   a:	f7ff fffe 	bl	0 <LCD_WriteRAMWord>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:721
+  LCD_CtrlLinesWrite(LCD_NCS_GPIO_PORT, LCD_NCS_PIN, Bit_SET);
+   e:	4803      	ldr	r0, [pc, #12]	(1c <LCD_WriteRAMWord+0x1c>)
+  10:	2104      	movs	r1, #4
+  12:	2201      	movs	r2, #1
+  14:	f7ff fffe 	bl	0 <LCD_WriteRAMWord>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:722
+}
+  18:	bd10      	pop	{r4, pc}
+  1a:	46c0      	nop			(mov r8, r8)
+  1c:	40010c00 	.word	0x40010c00
+Disassembly of section .text.LCD_WriteReg:
+
+00000000 <LCD_WriteReg>:
+LCD_WriteReg():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:732
+  * @param  LCD_Reg: address of the selected register.
+  * @param  LCD_RegValue: value to write to the selected register.
+  * @retval None
+  */
+void LCD_WriteReg(uint8_t LCD_Reg, uint16_t LCD_RegValue)
+{
+   0:	b510      	push	{r4, lr}
+   2:	460c      	mov	r4, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:734
+  /* Write 16-bit Index (then Write Reg) */
+  LCD_WriteRegIndex(LCD_Reg);
+   4:	f7ff fffe 	bl	0 <LCD_WriteReg>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:737
+  /* Write 16-bit Reg */
+  /* Reset LCD control line(/CS) and Send Start-Byte */
+  LCD_nCS_StartByte(START_BYTE | LCD_WRITE_REG);
+   8:	2072      	movs	r0, #114
+   a:	f7ff fffe 	bl	0 <LCD_WriteReg>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:738
+  SPI_I2S_SendData(LCD_SPI, LCD_RegValue>>8);
+   e:	480d      	ldr	r0, [pc, #52]	(44 <LCD_WriteReg+0x44>)
+  10:	0a21      	lsrs	r1, r4, #8
+  12:	f7ff fffe 	bl	0 <SPI_I2S_SendData>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:739
+  while(SPI_I2S_GetFlagStatus(LCD_SPI, SPI_I2S_FLAG_BSY) != RESET)
+  16:	480b      	ldr	r0, [pc, #44]	(44 <LCD_WriteReg+0x44>)
+  18:	2180      	movs	r1, #128
+  1a:	f7ff fffe 	bl	0 <SPI_I2S_GetFlagStatus>
+  1e:	2800      	cmp	r0, #0
+  20:	d1f9      	bne.n	16 <LCD_WriteReg+0x16>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:742
+  {
+  }
+  SPI_I2S_SendData(LCD_SPI, (LCD_RegValue & 0xFF));
+  22:	4808      	ldr	r0, [pc, #32]	(44 <LCD_WriteReg+0x44>)
+  24:	b2e1      	uxtb	r1, r4
+  26:	f7ff fffe 	bl	0 <SPI_I2S_SendData>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:743
+  while(SPI_I2S_GetFlagStatus(LCD_SPI, SPI_I2S_FLAG_BSY) != RESET)
+  2a:	4806      	ldr	r0, [pc, #24]	(44 <LCD_WriteReg+0x44>)
+  2c:	2180      	movs	r1, #128
+  2e:	f7ff fffe 	bl	0 <SPI_I2S_GetFlagStatus>
+  32:	2800      	cmp	r0, #0
+  34:	d1f9      	bne.n	2a <LCD_WriteReg+0x2a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:746
+  {
+  }
+  LCD_CtrlLinesWrite(LCD_NCS_GPIO_PORT, LCD_NCS_PIN, Bit_SET);
+  36:	4804      	ldr	r0, [pc, #16]	(48 <LCD_WriteReg+0x48>)
+  38:	2104      	movs	r1, #4
+  3a:	2201      	movs	r2, #1
+  3c:	f7ff fffe 	bl	0 <LCD_WriteReg>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:747
+}
+  40:	bd10      	pop	{r4, pc}
+  42:	46c0      	nop			(mov r8, r8)
+  44:	40003c00 	.word	0x40003c00
+  48:	40010c00 	.word	0x40010c00
+Disassembly of section .text.LCD_DisplayOff:
+
+00000000 <LCD_DisplayOff>:
+LCD_DisplayOff():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:810
+  * @brief  Disables the Display.
+  * @param  None
+  * @retval None
+  */
+void LCD_DisplayOff(void)
+{
+   0:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:812
+  /* Display Off */
+  LCD_WriteReg(R7, 0x0);
+   2:	2007      	movs	r0, #7
+   4:	2100      	movs	r1, #0
+   6:	f7ff fffe 	bl	0 <LCD_DisplayOff>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:813
+}
+   a:	bd10      	pop	{r4, pc}
+Disassembly of section .text.LCD_DisplayOn:
+
+00000000 <LCD_DisplayOn>:
+LCD_DisplayOn():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:798
+  * @brief  Enables the Display.
+  * @param  None
+  * @retval None
+  */
+void LCD_DisplayOn(void)
+{
+   0:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:800
+  /* Display On */
+  LCD_WriteReg(R7, 0x0173); /* 262K color and display ON */
+   2:	2007      	movs	r0, #7
+   4:	f240 1173 	movw	r1, #371	; 0x173
+   8:	f7ff fffe 	bl	0 <LCD_DisplayOn>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:802
+ 
+}
+   c:	bd10      	pop	{r4, pc}
+   e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.LCD_PowerOn:
+
+00000000 <LCD_PowerOn>:
+LCD_PowerOn():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:774
+  * @brief  Power on the LCD.
+  * @param  None
+  * @retval None
+  */
+void LCD_PowerOn(void)
+{ 
+   0:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:776
+  /* Power On sequence ---------------------------------------------------------*/
+  LCD_WriteReg(R16, 0x0000); /* SAP, BT[3:0], AP, DSTB, SLP, STB */
+   2:	2010      	movs	r0, #16
+   4:	2100      	movs	r1, #0
+   6:	f7ff fffe 	bl	0 <LCD_PowerOn>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:777
+  LCD_WriteReg(R17, 0x0000); /* DC1[2:0], DC0[2:0], VC[2:0] */
+   a:	2011      	movs	r0, #17
+   c:	2100      	movs	r1, #0
+   e:	f7ff fffe 	bl	0 <LCD_PowerOn>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:778
+  LCD_WriteReg(R18, 0x0000); /* VREG1OUT voltage */
+  12:	2012      	movs	r0, #18
+  14:	2100      	movs	r1, #0
+  16:	f7ff fffe 	bl	0 <LCD_PowerOn>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:779
+  LCD_WriteReg(R19, 0x0000); /* VDV[4:0] for VCOM amplitude */
+  1a:	2100      	movs	r1, #0
+  1c:	2013      	movs	r0, #19
+  1e:	f7ff fffe 	bl	0 <LCD_PowerOn>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:780
+  _delay_(20);                 /* Dis-charge capacitor power voltage (200ms) */
+  22:	2014      	movs	r0, #20
+  24:	f7ff fffe 	bl	0 <LCD_PowerOn>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:781
+  LCD_WriteReg(R16, 0x17B0); /* SAP, BT[3:0], AP, DSTB, SLP, STB */
+  28:	2010      	movs	r0, #16
+  2a:	f241 71b0 	movw	r1, #6064	; 0x17b0
+  2e:	f7ff fffe 	bl	0 <LCD_PowerOn>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:782
+  LCD_WriteReg(R17, 0x0137); /* DC1[2:0], DC0[2:0], VC[2:0] */
+  32:	2011      	movs	r0, #17
+  34:	f240 1137 	movw	r1, #311	; 0x137
+  38:	f7ff fffe 	bl	0 <LCD_PowerOn>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:783
+  _delay_(5);                  /* Delay 50 ms */
+  3c:	2005      	movs	r0, #5
+  3e:	f7ff fffe 	bl	0 <LCD_PowerOn>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:784
+  LCD_WriteReg(R18, 0x0139); /* VREG1OUT voltage */
+  42:	2012      	movs	r0, #18
+  44:	f240 1139 	movw	r1, #313	; 0x139
+  48:	f7ff fffe 	bl	0 <LCD_PowerOn>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:785
+  _delay_(5);                  /* delay 50 ms */
+  4c:	2005      	movs	r0, #5
+  4e:	f7ff fffe 	bl	0 <LCD_PowerOn>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:786
+  LCD_WriteReg(R19, 0x1d00); /* VDV[4:0] for VCOM amplitude */
+  52:	2013      	movs	r0, #19
+  54:	f44f 51e8 	mov.w	r1, #7424	; 0x1d00
+  58:	f7ff fffe 	bl	0 <LCD_PowerOn>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:787
+  LCD_WriteReg(R41, 0x0013); /* VCM[4:0] for VCOMH */
+  5c:	2113      	movs	r1, #19
+  5e:	2029      	movs	r0, #41
+  60:	f7ff fffe 	bl	0 <LCD_PowerOn>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:788
+  _delay_(5);                  /* delay 50 ms */
+  64:	2005      	movs	r0, #5
+  66:	f7ff fffe 	bl	0 <LCD_PowerOn>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:789
+  LCD_WriteReg(R7, 0x0173);  /* 262K color and display ON */
+  6a:	2007      	movs	r0, #7
+  6c:	f240 1173 	movw	r1, #371	; 0x173
+  70:	f7ff fffe 	bl	0 <LCD_PowerOn>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:790
+}
+  74:	bd10      	pop	{r4, pc}
+  76:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.LCD_SetCursor:
+
+00000000 <LCD_SetCursor>:
+LCD_SetCursor():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:249
+  * @param  Xpos: specifies the X position.
+  * @param  Ypos: specifies the Y position. 
+  * @retval None
+  */
+void LCD_SetCursor(uint8_t Xpos, uint16_t Ypos)
+{
+   0:	b510      	push	{r4, lr}
+   2:	460c      	mov	r4, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:250
+ LCD_WriteReg(R32, Xpos);
+   4:	4601      	mov	r1, r0
+   6:	2020      	movs	r0, #32
+   8:	f7ff fffe 	bl	0 <LCD_SetCursor>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:251
+ LCD_WriteReg(R33, Ypos);
+   c:	2021      	movs	r0, #33
+   e:	4621      	mov	r1, r4
+  10:	f7ff fffe 	bl	0 <LCD_SetCursor>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:252
+}
+  14:	bd10      	pop	{r4, pc}
+  16:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.LCD_DrawCircle:
+
+00000000 <LCD_DrawCircle>:
+LCD_DrawCircle():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:444
+  * @param  Ypos: specifies the Y position.
+  * @param  Radius
+  * @retval None
+  */
+void LCD_DrawCircle(uint8_t Xpos, uint16_t Ypos, uint16_t Radius)
+{
+   0:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:449
+  int32_t  D;/* Decision Variable */ 
+  uint32_t  CurX;/* Current X Value */
+  uint32_t  CurY;/* Current Y Value */ 
+  
+  D = 3 - (Radius << 1);
+   4:	0053      	lsls	r3, r2, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:444
+  * @param  Ypos: specifies the Y position.
+  * @param  Radius
+  * @retval None
+  */
+void LCD_DrawCircle(uint8_t Xpos, uint16_t Ypos, uint16_t Radius)
+{
+   6:	b085      	sub	sp, #20
+   8:	9001      	str	r0, [sp, #4]
+   a:	9100      	str	r1, [sp, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:449
+  int32_t  D;/* Decision Variable */ 
+  uint32_t  CurX;/* Current X Value */
+  uint32_t  CurY;/* Current Y Value */ 
+  
+  D = 3 - (Radius << 1);
+   c:	f1c3 0903 	rsb	r9, r3, #3	; 0x3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:451
+  CurX = 0;
+  CurY = Radius;
+  10:	4617      	mov	r7, r2
+  12:	9002      	str	r0, [sp, #8]
+  14:	9003      	str	r0, [sp, #12]
+  16:	468b      	mov	fp, r1
+  18:	468a      	mov	sl, r1
+  1a:	f04f 0800 	mov.w	r8, #0	; 0x0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:455
+  
+  while (CurX <= CurY)
+  {
+    LCD_SetCursor(Xpos + CurX, Ypos + CurY);
+  1e:	9a00      	ldr	r2, [sp, #0]
+  20:	b2bc      	uxth	r4, r7
+  22:	18a5      	adds	r5, r4, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:456
+    LCD_WriteRAMWord(TextColor);
+  24:	4e38      	ldr	r6, [pc, #224]	(108 <LCD_DrawCircle+0x108>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:455
+  CurX = 0;
+  CurY = Radius;
+  
+  while (CurX <= CurY)
+  {
+    LCD_SetCursor(Xpos + CurX, Ypos + CurY);
+  26:	b2ad      	uxth	r5, r5
+  28:	4629      	mov	r1, r5
+  2a:	9802      	ldr	r0, [sp, #8]
+  2c:	f7ff fffe 	bl	0 <LCD_DrawCircle>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:456
+    LCD_WriteRAMWord(TextColor);
+  30:	8830      	ldrh	r0, [r6, #0]
+  32:	b280      	uxth	r0, r0
+  34:	f7ff fffe 	bl	0 <LCD_DrawCircle>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:457
+    LCD_SetCursor(Xpos + CurX, Ypos - CurY);
+  38:	9b00      	ldr	r3, [sp, #0]
+  3a:	9802      	ldr	r0, [sp, #8]
+  3c:	1b1c      	subs	r4, r3, r4
+  3e:	b2a4      	uxth	r4, r4
+  40:	4621      	mov	r1, r4
+  42:	f7ff fffe 	bl	0 <LCD_DrawCircle>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:458
+    LCD_WriteRAMWord(TextColor);
+  46:	8830      	ldrh	r0, [r6, #0]
+  48:	b280      	uxth	r0, r0
+  4a:	f7ff fffe 	bl	0 <LCD_DrawCircle>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:459
+    LCD_SetCursor(Xpos - CurX, Ypos + CurY);
+  4e:	4629      	mov	r1, r5
+  50:	9803      	ldr	r0, [sp, #12]
+  52:	f7ff fffe 	bl	0 <LCD_DrawCircle>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:460
+    LCD_WriteRAMWord(TextColor);
+  56:	8830      	ldrh	r0, [r6, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:463
+    LCD_SetCursor(Xpos - CurX, Ypos - CurY);
+    LCD_WriteRAMWord(TextColor);
+    LCD_SetCursor(Xpos + CurY, Ypos + CurX);
+  58:	b2fd      	uxtb	r5, r7
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:460
+    LCD_SetCursor(Xpos + CurX, Ypos + CurY);
+    LCD_WriteRAMWord(TextColor);
+    LCD_SetCursor(Xpos + CurX, Ypos - CurY);
+    LCD_WriteRAMWord(TextColor);
+    LCD_SetCursor(Xpos - CurX, Ypos + CurY);
+    LCD_WriteRAMWord(TextColor);
+  5a:	b280      	uxth	r0, r0
+  5c:	f7ff fffe 	bl	0 <LCD_DrawCircle>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:461
+    LCD_SetCursor(Xpos - CurX, Ypos - CurY);
+  60:	4621      	mov	r1, r4
+  62:	9803      	ldr	r0, [sp, #12]
+  64:	f7ff fffe 	bl	0 <LCD_DrawCircle>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:462
+    LCD_WriteRAMWord(TextColor);
+  68:	8830      	ldrh	r0, [r6, #0]
+  6a:	b280      	uxth	r0, r0
+  6c:	f7ff fffe 	bl	0 <LCD_DrawCircle>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:463
+    LCD_SetCursor(Xpos + CurY, Ypos + CurX);
+  70:	9a01      	ldr	r2, [sp, #4]
+  72:	4659      	mov	r1, fp
+  74:	18ac      	adds	r4, r5, r2
+  76:	b2e4      	uxtb	r4, r4
+  78:	4620      	mov	r0, r4
+  7a:	f7ff fffe 	bl	0 <LCD_DrawCircle>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:464
+    LCD_WriteRAMWord(TextColor);
+  7e:	8830      	ldrh	r0, [r6, #0]
+  80:	b280      	uxth	r0, r0
+  82:	f7ff fffe 	bl	0 <LCD_DrawCircle>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:465
+    LCD_SetCursor(Xpos + CurY, Ypos - CurX);
+  86:	4651      	mov	r1, sl
+  88:	4620      	mov	r0, r4
+  8a:	f7ff fffe 	bl	0 <LCD_DrawCircle>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:466
+    LCD_WriteRAMWord(TextColor);
+  8e:	8830      	ldrh	r0, [r6, #0]
+  90:	b280      	uxth	r0, r0
+  92:	f7ff fffe 	bl	0 <LCD_DrawCircle>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:467
+    LCD_SetCursor(Xpos - CurY, Ypos + CurX);
+  96:	9b01      	ldr	r3, [sp, #4]
+  98:	4659      	mov	r1, fp
+  9a:	1b5d      	subs	r5, r3, r5
+  9c:	b2ed      	uxtb	r5, r5
+  9e:	4628      	mov	r0, r5
+  a0:	f7ff fffe 	bl	0 <LCD_DrawCircle>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:468
+    LCD_WriteRAMWord(TextColor);
+  a4:	8830      	ldrh	r0, [r6, #0]
+  a6:	b280      	uxth	r0, r0
+  a8:	f7ff fffe 	bl	0 <LCD_DrawCircle>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:469
+    LCD_SetCursor(Xpos - CurY, Ypos - CurX);
+  ac:	4628      	mov	r0, r5
+  ae:	4651      	mov	r1, sl
+  b0:	f7ff fffe 	bl	0 <LCD_DrawCircle>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:470
+    LCD_WriteRAMWord(TextColor);
+  b4:	8830      	ldrh	r0, [r6, #0]
+  b6:	b280      	uxth	r0, r0
+  b8:	f7ff fffe 	bl	0 <LCD_DrawCircle>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:471
+    if (D < 0)
+  bc:	f1b9 0f00 	cmp.w	r9, #0	; 0x0
+  c0:	da04      	bge.n	cc <LCD_DrawCircle+0xcc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:473
+    { 
+      D += (CurX << 2) + 6;
+  c2:	eb09 0388 	add.w	r3, r9, r8, lsl #2
+  c6:	f103 0906 	add.w	r9, r3, #6	; 0x6
+  ca:	e006      	b.n	da <LCD_DrawCircle+0xda>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:477
+    }
+    else
+    {
+      D += ((CurX - CurY) << 2) + 10;
+  cc:	ebc7 0308 	rsb	r3, r7, r8
+  d0:	f109 020a 	add.w	r2, r9, #10	; 0xa
+  d4:	eb02 0983 	add.w	r9, r2, r3, lsl #2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:478
+      CurY--;
+  d8:	3f01      	subs	r7, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:480
+    }
+    CurX++;
+  da:	9a02      	ldr	r2, [sp, #8]
+  dc:	f108 0801 	add.w	r8, r8, #1	; 0x1
+  e0:	1c53      	adds	r3, r2, #1
+  e2:	9a03      	ldr	r2, [sp, #12]
+  e4:	b2db      	uxtb	r3, r3
+  e6:	9302      	str	r3, [sp, #8]
+  e8:	1e53      	subs	r3, r2, #1
+  ea:	b2db      	uxtb	r3, r3
+  ec:	9303      	str	r3, [sp, #12]
+  ee:	f10b 0301 	add.w	r3, fp, #1	; 0x1
+  f2:	fa1f fb83 	uxth.w	fp, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:453
+  
+  D = 3 - (Radius << 1);
+  CurX = 0;
+  CurY = Radius;
+  
+  while (CurX <= CurY)
+  f6:	45b8      	cmp	r8, r7
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:480
+    else
+    {
+      D += ((CurX - CurY) << 2) + 10;
+      CurY--;
+    }
+    CurX++;
+  f8:	f10a 33ff 	add.w	r3, sl, #4294967295	; 0xffffffff
+  fc:	fa1f fa83 	uxth.w	sl, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:453
+  
+  D = 3 - (Radius << 1);
+  CurX = 0;
+  CurY = Radius;
+  
+  while (CurX <= CurY)
+ 100:	d98d      	bls.n	1e <LCD_DrawCircle+0x1e>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:482
+      D += ((CurX - CurY) << 2) + 10;
+      CurY--;
+    }
+    CurX++;
+  }
+}
+ 102:	b005      	add	sp, #20
+ 104:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 108:	00000000 	.word	0x00000000
+Disassembly of section .text.LCD_DrawMonoPict:
+
+00000000 <LCD_DrawMonoPict>:
+LCD_DrawMonoPict():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:490
+  * @brief  Displays a monocolor picture.
+  * @param  Pict: pointer to the picture array.
+  * @retval None
+  */
+void LCD_DrawMonoPict(const uint32_t *Pict)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:492
+  uint32_t index = 0, i = 0;
+  LCD_SetCursor(0, 319); 
+   2:	f240 113f 	movw	r1, #319	; 0x13f
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:490
+  * @brief  Displays a monocolor picture.
+  * @param  Pict: pointer to the picture array.
+  * @retval None
+  */
+void LCD_DrawMonoPict(const uint32_t *Pict)
+{
+   6:	4606      	mov	r6, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:492
+  uint32_t index = 0, i = 0;
+  LCD_SetCursor(0, 319); 
+   8:	2000      	movs	r0, #0
+   a:	f7ff fffe 	bl	0 <LCD_DrawMonoPict>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:493
+  LCD_WriteRAM_Prepare(); /* Prepare to write GRAM */
+   e:	2500      	movs	r5, #0
+  10:	f7ff fffe 	bl	0 <LCD_DrawMonoPict>
+  14:	e011      	b.n	3a <LCD_DrawMonoPict+0x3a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:498
+  for(index = 0; index < 2400; index++)
+  {
+    for(i = 0; i < 32; i++)
+    {
+      if((Pict[index] & (1 << i)) == 0x00)
+  16:	2301      	movs	r3, #1
+  18:	40a3      	lsls	r3, r4
+  1a:	5972      	ldr	r2, [r6, r5]
+  1c:	4213      	tst	r3, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:500
+      {
+        LCD_WriteRAM(BackColor);
+  1e:	bf0c      	ite	eq
+  20:	4b0a      	ldreq	r3, [pc, #40]	(4c <LCD_DrawMonoPict+0x4c>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:504
+      }
+      else
+      {
+        LCD_WriteRAM(TextColor);
+  22:	4b0b      	ldrne	r3, [pc, #44]	(50 <LCD_DrawMonoPict+0x50>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:496
+  uint32_t index = 0, i = 0;
+  LCD_SetCursor(0, 319); 
+  LCD_WriteRAM_Prepare(); /* Prepare to write GRAM */
+  for(index = 0; index < 2400; index++)
+  {
+    for(i = 0; i < 32; i++)
+  24:	3401      	adds	r4, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:504
+      {
+        LCD_WriteRAM(BackColor);
+      }
+      else
+      {
+        LCD_WriteRAM(TextColor);
+  26:	8818      	ldrh	r0, [r3, #0]
+  28:	b280      	uxth	r0, r0
+  2a:	f7ff fffe 	bl	0 <LCD_DrawMonoPict>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:496
+  uint32_t index = 0, i = 0;
+  LCD_SetCursor(0, 319); 
+  LCD_WriteRAM_Prepare(); /* Prepare to write GRAM */
+  for(index = 0; index < 2400; index++)
+  {
+    for(i = 0; i < 32; i++)
+  2e:	2c20      	cmp	r4, #32
+  30:	d1f1      	bne.n	16 <LCD_DrawMonoPict+0x16>
+  32:	3504      	adds	r5, #4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:494
+void LCD_DrawMonoPict(const uint32_t *Pict)
+{
+  uint32_t index = 0, i = 0;
+  LCD_SetCursor(0, 319); 
+  LCD_WriteRAM_Prepare(); /* Prepare to write GRAM */
+  for(index = 0; index < 2400; index++)
+  34:	f5b5 5f16 	cmp.w	r5, #9600	; 0x2580
+  38:	d001      	beq.n	3e <LCD_DrawMonoPict+0x3e>
+  3a:	2400      	movs	r4, #0
+  3c:	e7eb      	b.n	16 <LCD_DrawMonoPict+0x16>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:508
+      {
+        LCD_WriteRAM(TextColor);
+      }
+    }
+  }
+  LCD_CtrlLinesWrite(LCD_NCS_GPIO_PORT, LCD_NCS_PIN, Bit_SET);
+  3e:	4805      	ldr	r0, [pc, #20]	(54 <LCD_DrawMonoPict+0x54>)
+  40:	2104      	movs	r1, #4
+  42:	2201      	movs	r2, #1
+  44:	f7ff fffe 	bl	0 <LCD_DrawMonoPict>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:509
+}
+  48:	bd70      	pop	{r4, r5, r6, pc}
+  4a:	46c0      	nop			(mov r8, r8)
+	...
+  54:	40010c00 	.word	0x40010c00
+Disassembly of section .text.LCD_DrawLine:
+
+00000000 <LCD_DrawLine>:
+LCD_DrawLine():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:393
+  * @param  Direction: line direction.
+  *   This parameter can be one of the following values: Vertical or Horizontal.
+  * @retval None
+  */
+void LCD_DrawLine(uint8_t Xpos, uint16_t Ypos, uint16_t Length, uint8_t Direction)
+{
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   4:	461c      	mov	r4, r3
+   6:	4605      	mov	r5, r0
+   8:	460f      	mov	r7, r1
+   a:	4616      	mov	r6, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:396
+  uint32_t i = 0;
+  
+  LCD_SetCursor(Xpos, Ypos);
+   c:	f7ff fffe 	bl	0 <LCD_DrawLine>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:397
+  if(Direction == Horizontal)
+  10:	b10c      	cbz	r4, 16 <LCD_DrawLine+0x16>
+  12:	2400      	movs	r4, #0
+  14:	e01c      	b.n	50 <LCD_DrawLine+0x50>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:399
+  { 
+    LCD_WriteRAM_Prepare(); /* Prepare to write GRAM */
+  16:	f7ff fffe 	bl	0 <LCD_DrawLine>
+  1a:	e005      	b.n	28 <LCD_DrawLine+0x28>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:402
+    for(i = 0; i < Length; i++)
+    {
+      LCD_WriteRAM(TextColor);
+  1c:	4b0e      	ldr	r3, [pc, #56]	(58 <LCD_DrawLine+0x58>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:400
+  
+  LCD_SetCursor(Xpos, Ypos);
+  if(Direction == Horizontal)
+  { 
+    LCD_WriteRAM_Prepare(); /* Prepare to write GRAM */
+    for(i = 0; i < Length; i++)
+  1e:	3401      	adds	r4, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:402
+    {
+      LCD_WriteRAM(TextColor);
+  20:	8818      	ldrh	r0, [r3, #0]
+  22:	b280      	uxth	r0, r0
+  24:	f7ff fffe 	bl	0 <LCD_DrawLine>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:400
+  
+  LCD_SetCursor(Xpos, Ypos);
+  if(Direction == Horizontal)
+  { 
+    LCD_WriteRAM_Prepare(); /* Prepare to write GRAM */
+    for(i = 0; i < Length; i++)
+  28:	42b4      	cmp	r4, r6
+  2a:	d3f7      	bcc.n	1c <LCD_DrawLine+0x1c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:404
+    {
+      LCD_WriteRAM(TextColor);
+    }
+    LCD_CtrlLinesWrite(LCD_NCS_GPIO_PORT, LCD_NCS_PIN, Bit_SET);
+  2c:	480b      	ldr	r0, [pc, #44]	(5c <LCD_DrawLine+0x5c>)
+  2e:	2104      	movs	r1, #4
+  30:	2201      	movs	r2, #1
+  32:	f7ff fffe 	bl	0 <LCD_DrawLine>
+  36:	e00d      	b.n	54 <LCD_DrawLine+0x54>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:410
+  }
+  else
+  {
+    for(i = 0; i < Length; i++)
+    {
+      LCD_WriteRAMWord(TextColor);
+  38:	4b07      	ldr	r3, [pc, #28]	(58 <LCD_DrawLine+0x58>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:408
+    }
+    LCD_CtrlLinesWrite(LCD_NCS_GPIO_PORT, LCD_NCS_PIN, Bit_SET);
+  }
+  else
+  {
+    for(i = 0; i < Length; i++)
+  3a:	3401      	adds	r4, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:410
+    {
+      LCD_WriteRAMWord(TextColor);
+  3c:	8818      	ldrh	r0, [r3, #0]
+  3e:	b280      	uxth	r0, r0
+  40:	f7ff fffe 	bl	0 <LCD_DrawLine>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:411
+      Xpos++;
+  44:	1c6b      	adds	r3, r5, #1
+  46:	b2dd      	uxtb	r5, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:412
+      LCD_SetCursor(Xpos, Ypos);
+  48:	4628      	mov	r0, r5
+  4a:	4639      	mov	r1, r7
+  4c:	f7ff fffe 	bl	0 <LCD_DrawLine>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:408
+    }
+    LCD_CtrlLinesWrite(LCD_NCS_GPIO_PORT, LCD_NCS_PIN, Bit_SET);
+  }
+  else
+  {
+    for(i = 0; i < Length; i++)
+  50:	42b4      	cmp	r4, r6
+  52:	d3f1      	bcc.n	38 <LCD_DrawLine+0x38>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:415
+      LCD_WriteRAMWord(TextColor);
+      Xpos++;
+      LCD_SetCursor(Xpos, Ypos);
+    }
+  }
+}
+  54:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+  58:	00000000 	.word	0x00000000
+  5c:	40010c00 	.word	0x40010c00
+Disassembly of section .text.LCD_DrawRect:
+
+00000000 <LCD_DrawRect>:
+LCD_DrawRect():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:427
+  * @param  Height: display rectangle height.
+  * @param  Width: display rectangle width.
+  * @retval None
+  */
+void LCD_DrawRect(uint8_t Xpos, uint16_t Ypos, uint8_t Height, uint16_t Width)
+{
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   4:	4606      	mov	r6, r0
+   6:	4690      	mov	r8, r2
+   8:	461d      	mov	r5, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:428
+  LCD_DrawLine(Xpos, Ypos, Width, Horizontal);
+   a:	461a      	mov	r2, r3
+   c:	2300      	movs	r3, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:427
+  * @param  Height: display rectangle height.
+  * @param  Width: display rectangle width.
+  * @retval None
+  */
+void LCD_DrawRect(uint8_t Xpos, uint16_t Ypos, uint8_t Height, uint16_t Width)
+{
+   e:	460c      	mov	r4, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:428
+  LCD_DrawLine(Xpos, Ypos, Width, Horizontal);
+  10:	f7ff fffe 	bl	0 <LCD_DrawRect>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:429
+  LCD_DrawLine((Xpos + Height), Ypos, Width, Horizontal);
+  14:	eb08 0006 	add.w	r0, r8, r6
+  18:	4621      	mov	r1, r4
+  1a:	462a      	mov	r2, r5
+  1c:	2300      	movs	r3, #0
+  1e:	b2c0      	uxtb	r0, r0
+  20:	f7ff fffe 	bl	0 <LCD_DrawRect>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:431
+  
+  LCD_DrawLine(Xpos, Ypos, Height, Vertical);
+  24:	4621      	mov	r1, r4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:432
+  LCD_DrawLine(Xpos, (Ypos - Width + 1), Height, Vertical);
+  26:	3401      	adds	r4, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:431
+void LCD_DrawRect(uint8_t Xpos, uint16_t Ypos, uint8_t Height, uint16_t Width)
+{
+  LCD_DrawLine(Xpos, Ypos, Width, Horizontal);
+  LCD_DrawLine((Xpos + Height), Ypos, Width, Horizontal);
+  
+  LCD_DrawLine(Xpos, Ypos, Height, Vertical);
+  28:	4630      	mov	r0, r6
+  2a:	4642      	mov	r2, r8
+  2c:	2301      	movs	r3, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:432
+  LCD_DrawLine(Xpos, (Ypos - Width + 1), Height, Vertical);
+  2e:	1b64      	subs	r4, r4, r5
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:431
+void LCD_DrawRect(uint8_t Xpos, uint16_t Ypos, uint8_t Height, uint16_t Width)
+{
+  LCD_DrawLine(Xpos, Ypos, Width, Horizontal);
+  LCD_DrawLine((Xpos + Height), Ypos, Width, Horizontal);
+  
+  LCD_DrawLine(Xpos, Ypos, Height, Vertical);
+  30:	f7ff fffe 	bl	0 <LCD_DrawRect>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:432
+  LCD_DrawLine(Xpos, (Ypos - Width + 1), Height, Vertical);
+  34:	4630      	mov	r0, r6
+  36:	b2a1      	uxth	r1, r4
+  38:	4642      	mov	r2, r8
+  3a:	2301      	movs	r3, #1
+  3c:	f7ff fffe 	bl	0 <LCD_DrawRect>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:433
+}
+  40:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+Disassembly of section .text.LCD_DrawChar:
+
+00000000 <LCD_DrawChar>:
+LCD_DrawChar():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:263
+  * @param  Ypos: start column address.
+  * @param  c: pointer to the character data.
+  * @retval None
+  */
+void LCD_DrawChar(uint8_t Xpos, uint16_t Ypos, const uint16_t *c)
+{
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   4:	4604      	mov	r4, r0
+   6:	4688      	mov	r8, r1
+   8:	4617      	mov	r7, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:269
+  uint32_t index = 0, i = 0;
+  uint8_t Xaddress = 0;
+   
+  Xaddress = Xpos;
+  
+  LCD_SetCursor(Xaddress, Ypos);
+   a:	f7ff fffe 	bl	0 <LCD_DrawChar>
+   e:	4626      	mov	r6, r4
+  10:	2500      	movs	r5, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:273
+  
+  for(index = 0; index < 24; index++)
+  {
+    LCD_WriteRAM_Prepare(); /* Prepare to write GRAM */
+  12:	f7ff fffe 	bl	0 <LCD_DrawChar>
+  16:	2400      	movs	r4, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:276
+    for(i = 0; i < 16; i++)
+    {
+      if((c[index] & (1 << i)) == 0x00)
+  18:	5b7b      	ldrh	r3, [r7, r5]
+  1a:	4123      	asrs	r3, r4
+  1c:	f013 0f01 	tst.w	r3, #1	; 0x1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:278
+      {
+        LCD_WriteRAM(BackColor);
+  20:	bf0c      	ite	eq
+  22:	4b0c      	ldreq	r3, [pc, #48]	(54 <LCD_DrawChar+0x54>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:282
+      }
+      else
+      {
+        LCD_WriteRAM(TextColor);
+  24:	4b0c      	ldrne	r3, [pc, #48]	(58 <LCD_DrawChar+0x58>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:274
+  LCD_SetCursor(Xaddress, Ypos);
+  
+  for(index = 0; index < 24; index++)
+  {
+    LCD_WriteRAM_Prepare(); /* Prepare to write GRAM */
+    for(i = 0; i < 16; i++)
+  26:	3401      	adds	r4, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:282
+      {
+        LCD_WriteRAM(BackColor);
+      }
+      else
+      {
+        LCD_WriteRAM(TextColor);
+  28:	8818      	ldrh	r0, [r3, #0]
+  2a:	b280      	uxth	r0, r0
+  2c:	f7ff fffe 	bl	0 <LCD_DrawChar>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:274
+  LCD_SetCursor(Xaddress, Ypos);
+  
+  for(index = 0; index < 24; index++)
+  {
+    LCD_WriteRAM_Prepare(); /* Prepare to write GRAM */
+    for(i = 0; i < 16; i++)
+  30:	2c10      	cmp	r4, #16
+  32:	d1f1      	bne.n	18 <LCD_DrawChar+0x18>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:285
+      else
+      {
+        LCD_WriteRAM(TextColor);
+      }
+    }   
+    LCD_CtrlLinesWrite(LCD_NCS_GPIO_PORT, LCD_NCS_PIN, Bit_SET); 
+  34:	2104      	movs	r1, #4
+  36:	2201      	movs	r2, #1
+  38:	4808      	ldr	r0, [pc, #32]	(5c <LCD_DrawChar+0x5c>)
+  3a:	f7ff fffe 	bl	0 <LCD_DrawChar>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:286
+    Xaddress++;
+  3e:	1c73      	adds	r3, r6, #1
+  40:	b2de      	uxtb	r6, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:287
+    LCD_SetCursor(Xaddress, Ypos);
+  42:	4630      	mov	r0, r6
+  44:	4641      	mov	r1, r8
+  46:	3502      	adds	r5, #2
+  48:	f7ff fffe 	bl	0 <LCD_DrawChar>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:271
+   
+  Xaddress = Xpos;
+  
+  LCD_SetCursor(Xaddress, Ypos);
+  
+  for(index = 0; index < 24; index++)
+  4c:	2d30      	cmp	r5, #48
+  4e:	d1e0      	bne.n	12 <LCD_DrawChar+0x12>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:289
+    }   
+    LCD_CtrlLinesWrite(LCD_NCS_GPIO_PORT, LCD_NCS_PIN, Bit_SET); 
+    Xaddress++;
+    LCD_SetCursor(Xaddress, Ypos);
+  }
+}
+  50:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+	...
+  5c:	40010c00 	.word	0x40010c00
+Disassembly of section .text.LCD_DisplayChar:
+
+00000000 <LCD_DisplayChar>:
+LCD_DisplayChar():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:304
+  * @retval None
+  */
+void LCD_DisplayChar(uint8_t Line, uint16_t Column, uint8_t Ascii)
+{
+  Ascii -= 32;
+  LCD_DrawChar(Line, Column, &ASCII_Table[Ascii * 24]);
+   0:	3a20      	subs	r2, #32
+   2:	4b04      	ldr	r3, [pc, #16]	(14 <LCD_DisplayChar+0x14>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:302
+  * @param  Column: start column address.
+  * @param  Ascii: character ascii code, must be between 0x20 and 0x7E.
+  * @retval None
+  */
+void LCD_DisplayChar(uint8_t Line, uint16_t Column, uint8_t Ascii)
+{
+   4:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:304
+  Ascii -= 32;
+  LCD_DrawChar(Line, Column, &ASCII_Table[Ascii * 24]);
+   6:	b2d2      	uxtb	r2, r2
+   8:	2430      	movs	r4, #48
+   a:	fb04 3202 	mla	r2, r4, r2, r3
+   e:	f7ff fffe 	bl	0 <LCD_DisplayChar>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:305
+}
+  12:	bd10      	pop	{r4, pc}
+  14:	00000000 	.word	0x00000000
+Disassembly of section .text.LCD_DisplayStringLine:
+
+00000000 <LCD_DisplayStringLine>:
+LCD_DisplayStringLine():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:317
+  *     @arg Linex: where x can be 0..9
+  * @param  *ptr: pointer to string to display on LCD.
+  * @retval None
+  */
+void LCD_DisplayStringLine(uint8_t Line, uint8_t *ptr)
+{
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   4:	4607      	mov	r7, r0
+   6:	460e      	mov	r6, r1
+   8:	2400      	movs	r4, #0
+   a:	f240 153f 	movw	r5, #319	; 0x13f
+   e:	e007      	b.n	20 <LCD_DisplayStringLine+0x20>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:324
+  uint16_t refcolumn = 319;
+  /* Send the string character by character on lCD */
+  while ((*ptr != 0) & (i < 20))
+  {
+    /* Display one character on LCD */
+    LCD_DisplayChar(Line, refcolumn, *ptr);
+  10:	4629      	mov	r1, r5
+  12:	4638      	mov	r0, r7
+  14:	f7ff fffe 	bl	0 <LCD_DisplayStringLine>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:326
+    /* Decrement the column position by 16 */
+    refcolumn -= 16;
+  18:	f1a5 0310 	sub.w	r3, r5, #16	; 0x10
+  1c:	b29d      	uxth	r5, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:330
+    /* Point on the next character */
+    ptr++;
+    /* Increment the character counter */
+    i++;
+  1e:	3401      	adds	r4, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:321
+void LCD_DisplayStringLine(uint8_t Line, uint8_t *ptr)
+{
+  uint32_t i = 0;
+  uint16_t refcolumn = 319;
+  /* Send the string character by character on lCD */
+  while ((*ptr != 0) & (i < 20))
+  20:	5d32      	ldrb	r2, [r6, r4]
+  22:	b10a      	cbz	r2, 28 <LCD_DisplayStringLine+0x28>
+  24:	2c13      	cmp	r4, #19
+  26:	d9f3      	bls.n	10 <LCD_DisplayStringLine+0x10>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:332
+    /* Point on the next character */
+    ptr++;
+    /* Increment the character counter */
+    i++;
+  }
+}
+  28:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+Disassembly of section .text.LCD_ClearLine:
+
+00000000 <LCD_ClearLine>:
+LCD_ClearLine():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:217
+  *   This parameter can be one of the following values:
+  *     @arg Linex: where x can be 0..9
+  * @retval None
+  */
+void LCD_ClearLine(uint8_t Line)
+{
+   0:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:218
+  LCD_DisplayStringLine(Line, "                    ");
+   2:	4902      	ldr	r1, [pc, #8]	(c <LCD_ClearLine+0xc>)
+   4:	f7ff fffe 	bl	0 <LCD_ClearLine>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:219
+}
+   8:	bd10      	pop	{r4, pc}
+   a:	46c0      	nop			(mov r8, r8)
+   c:	00000000 	.word	0x00000000
+Disassembly of section .text.LCD_Clear:
+
+00000000 <LCD_Clear>:
+LCD_Clear():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:228
+  * @brief  Clears the hole LCD.
+  * @param  Color: the color of the background.
+  * @retval None
+  */
+void LCD_Clear(uint16_t Color)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:231
+  uint32_t index = 0;
+  
+  LCD_SetCursor(0x00, 0x013F); 
+   2:	f240 113f 	movw	r1, #319	; 0x13f
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:228
+  * @brief  Clears the hole LCD.
+  * @param  Color: the color of the background.
+  * @retval None
+  */
+void LCD_Clear(uint16_t Color)
+{
+   6:	4605      	mov	r5, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:231
+  uint32_t index = 0;
+  
+  LCD_SetCursor(0x00, 0x013F); 
+   8:	2000      	movs	r0, #0
+   a:	f7ff fffe 	bl	0 <LCD_Clear>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:232
+  LCD_WriteRAM_Prepare(); /* Prepare to write GRAM */
+   e:	f7ff fffe 	bl	0 <LCD_Clear>
+  12:	2400      	movs	r4, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:235
+  for(index = 0; index < 76800; index++)
+  {
+    LCD_WriteRAM(Color);
+  14:	4628      	mov	r0, r5
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:233
+{
+  uint32_t index = 0;
+  
+  LCD_SetCursor(0x00, 0x013F); 
+  LCD_WriteRAM_Prepare(); /* Prepare to write GRAM */
+  for(index = 0; index < 76800; index++)
+  16:	3401      	adds	r4, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:235
+  {
+    LCD_WriteRAM(Color);
+  18:	f7ff fffe 	bl	0 <LCD_Clear>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:233
+{
+  uint32_t index = 0;
+  
+  LCD_SetCursor(0x00, 0x013F); 
+  LCD_WriteRAM_Prepare(); /* Prepare to write GRAM */
+  for(index = 0; index < 76800; index++)
+  1c:	f5b4 3f96 	cmp.w	r4, #76800	; 0x12c00
+  20:	d1f8      	bne.n	14 <LCD_Clear+0x14>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:237
+  {
+    LCD_WriteRAM(Color);
+  }
+  LCD_CtrlLinesWrite(LCD_NCS_GPIO_PORT, LCD_NCS_PIN, Bit_SET); 
+  22:	4803      	ldr	r0, [pc, #12]	(30 <LCD_Clear+0x30>)
+  24:	2104      	movs	r1, #4
+  26:	2201      	movs	r2, #1
+  28:	f7ff fffe 	bl	0 <LCD_Clear>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:239
+  
+}
+  2c:	bd70      	pop	{r4, r5, r6, pc}
+  2e:	46c0      	nop			(mov r8, r8)
+  30:	40010c00 	.word	0x40010c00
+Disassembly of section .text.LCD_SetDisplayWindow:
+
+00000000 <LCD_SetDisplayWindow>:
+LCD_SetDisplayWindow():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:346
+  * @retval None
+  */
+void LCD_SetDisplayWindow(uint8_t Xpos, uint16_t Ypos, uint8_t Height, uint16_t Width)
+{ 
+  /* Horizontal GRAM Start Address */
+  if(Xpos >= Height)
+   0:	4290      	cmp	r0, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:344
+  * @param  Height: display window height.
+  * @param  Width: display window width.
+  * @retval None
+  */
+void LCD_SetDisplayWindow(uint8_t Xpos, uint16_t Ypos, uint8_t Height, uint16_t Width)
+{ 
+   2:	b570      	push	{r4, r5, r6, lr}
+   4:	4604      	mov	r4, r0
+   6:	460d      	mov	r5, r1
+   8:	461e      	mov	r6, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:346
+  /* Horizontal GRAM Start Address */
+  if(Xpos >= Height)
+   a:	d304      	bcc.n	16 <LCD_SetDisplayWindow+0x16>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:348
+  {
+    LCD_WriteReg(R80, (Xpos - Height + 1));
+   c:	1c41      	adds	r1, r0, #1
+   e:	1a89      	subs	r1, r1, r2
+  10:	2050      	movs	r0, #80
+  12:	b289      	uxth	r1, r1
+  14:	e001      	b.n	1a <LCD_SetDisplayWindow+0x1a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:352
+  }
+  else
+  {
+    LCD_WriteReg(R80, 0);
+  16:	2050      	movs	r0, #80
+  18:	2100      	movs	r1, #0
+  1a:	f7ff fffe 	bl	0 <LCD_SetDisplayWindow>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:355
+  }
+  /* Horizontal GRAM End Address */
+  LCD_WriteReg(R81, Xpos);
+  1e:	2051      	movs	r0, #81
+  20:	4621      	mov	r1, r4
+  22:	f7ff fffe 	bl	0 <LCD_SetDisplayWindow>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:357
+  /* Vertical GRAM Start Address */
+  if(Ypos >= Width)
+  26:	42b5      	cmp	r5, r6
+  28:	d304      	bcc.n	34 <LCD_SetDisplayWindow+0x34>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:359
+  {
+    LCD_WriteReg(R82, (Ypos - Width + 1));
+  2a:	1c69      	adds	r1, r5, #1
+  2c:	1b89      	subs	r1, r1, r6
+  2e:	2052      	movs	r0, #82
+  30:	b289      	uxth	r1, r1
+  32:	e001      	b.n	38 <LCD_SetDisplayWindow+0x38>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:363
+  }  
+  else
+  {
+    LCD_WriteReg(R82, 0);
+  34:	2052      	movs	r0, #82
+  36:	2100      	movs	r1, #0
+  38:	f7ff fffe 	bl	0 <LCD_SetDisplayWindow>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:366
+  }
+  /* Vertical GRAM End Address */
+  LCD_WriteReg(R83, Ypos);
+  3c:	2053      	movs	r0, #83
+  3e:	4629      	mov	r1, r5
+  40:	f7ff fffe 	bl	0 <LCD_SetDisplayWindow>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:367
+  LCD_SetCursor(Xpos, Ypos);
+  44:	4620      	mov	r0, r4
+  46:	4629      	mov	r1, r5
+  48:	f7ff fffe 	bl	0 <LCD_SetDisplayWindow>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:368
+}
+  4c:	bd70      	pop	{r4, r5, r6, pc}
+  4e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.LCD_WindowModeDisable:
+
+00000000 <LCD_WindowModeDisable>:
+LCD_WindowModeDisable():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:378
+  * @param  None
+  * @retval None
+  */
+void LCD_WindowModeDisable(void)
+{
+  LCD_SetDisplayWindow(239, 0x13F, 240, 320);
+   0:	20ef      	movs	r0, #239
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:377
+  * @brief  Disables LCD Window mode.
+  * @param  None
+  * @retval None
+  */
+void LCD_WindowModeDisable(void)
+{
+   2:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:378
+  LCD_SetDisplayWindow(239, 0x13F, 240, 320);
+   4:	f240 113f 	movw	r1, #319	; 0x13f
+   8:	22f0      	movs	r2, #240
+   a:	f44f 73a0 	mov.w	r3, #320	; 0x140
+   e:	f7ff fffe 	bl	0 <LCD_WindowModeDisable>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:379
+  LCD_WriteReg(R3, 0x1018);    
+  12:	2003      	movs	r0, #3
+  14:	f241 0118 	movw	r1, #4120	; 0x1018
+  18:	f7ff fffe 	bl	0 <LCD_WindowModeDisable>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:380
+}
+  1c:	bd10      	pop	{r4, pc}
+  1e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.LCD_Setup:
+
+00000000 <LCD_Setup>:
+LCD_Setup():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:97
+  * @brief  Setups the LCD.
+  * @param  None
+  * @retval None
+  */
+void LCD_Setup(void)
+{ 
+   0:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:99
+/* Configure the LCD Control pins --------------------------------------------*/
+  LCD_CtrlLinesConfig();
+   2:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:102
+  
+/* Configure the LCD_SPI interface ----------------------------------------------*/
+  LCD_SPIConfig();
+   6:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:103
+  _delay_(5); /* Delay 50 ms */
+   a:	2005      	movs	r0, #5
+   c:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:105
+  /* Start Initial Sequence ------------------------------------------------*/
+  LCD_WriteReg(R229, 0x8000); /* Set the internal vcore voltage */
+  10:	20e5      	movs	r0, #229
+  12:	f44f 4100 	mov.w	r1, #32768	; 0x8000
+  16:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:106
+  LCD_WriteReg(R0,  0x0001); /* Start internal OSC. */
+  1a:	2000      	movs	r0, #0
+  1c:	2101      	movs	r1, #1
+  1e:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:107
+  LCD_WriteReg(R1,  0x0100); /* set SS and SM bit */
+  22:	2001      	movs	r0, #1
+  24:	f44f 7180 	mov.w	r1, #256	; 0x100
+  28:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:108
+  LCD_WriteReg(R2,  0x0700); /* set 1 line inversion */
+  2c:	2002      	movs	r0, #2
+  2e:	f44f 61e0 	mov.w	r1, #1792	; 0x700
+  32:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:109
+  LCD_WriteReg(R3,  0x1030); /* set GRAM write direction and BGR=1. */
+  36:	2003      	movs	r0, #3
+  38:	f241 0130 	movw	r1, #4144	; 0x1030
+  3c:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:110
+  LCD_WriteReg(R4,  0x0000); /* Resize register */
+  40:	2004      	movs	r0, #4
+  42:	2100      	movs	r1, #0
+  44:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:111
+  LCD_WriteReg(R8,  0x0202); /* set the back porch and front porch */
+  48:	2008      	movs	r0, #8
+  4a:	f240 2102 	movw	r1, #514	; 0x202
+  4e:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:112
+  LCD_WriteReg(R9,  0x0000); /* set non-display area refresh cycle ISC[3:0] */
+  52:	2009      	movs	r0, #9
+  54:	2100      	movs	r1, #0
+  56:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:113
+  LCD_WriteReg(R10, 0x0000); /* FMARK function */
+  5a:	200a      	movs	r0, #10
+  5c:	2100      	movs	r1, #0
+  5e:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:114
+  LCD_WriteReg(R12, 0x0000); /* RGB interface setting */
+  62:	200c      	movs	r0, #12
+  64:	2100      	movs	r1, #0
+  66:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:115
+  LCD_WriteReg(R13, 0x0000); /* Frame marker Position */
+  6a:	200d      	movs	r0, #13
+  6c:	2100      	movs	r1, #0
+  6e:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:116
+  LCD_WriteReg(R15, 0x0000); /* RGB interface polarity */
+  72:	200f      	movs	r0, #15
+  74:	2100      	movs	r1, #0
+  76:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:118
+  /* Power On sequence -----------------------------------------------------*/
+  LCD_WriteReg(R16, 0x0000); /* SAP, BT[3:0], AP, DSTB, SLP, STB */
+  7a:	2010      	movs	r0, #16
+  7c:	2100      	movs	r1, #0
+  7e:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:119
+  LCD_WriteReg(R17, 0x0000); /* DC1[2:0], DC0[2:0], VC[2:0] */
+  82:	2011      	movs	r0, #17
+  84:	2100      	movs	r1, #0
+  86:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:120
+  LCD_WriteReg(R18, 0x0000); /* VREG1OUT voltage */
+  8a:	2012      	movs	r0, #18
+  8c:	2100      	movs	r1, #0
+  8e:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:121
+  LCD_WriteReg(R19, 0x0000); /* VDV[4:0] for VCOM amplitude */
+  92:	2100      	movs	r1, #0
+  94:	2013      	movs	r0, #19
+  96:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:122
+  _delay_(20);                 /* Dis-charge capacitor power voltage (200ms) */
+  9a:	2014      	movs	r0, #20
+  9c:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:123
+  LCD_WriteReg(R16, 0x17B0); /* SAP, BT[3:0], AP, DSTB, SLP, STB */
+  a0:	2010      	movs	r0, #16
+  a2:	f241 71b0 	movw	r1, #6064	; 0x17b0
+  a6:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:124
+  LCD_WriteReg(R17, 0x0137); /* DC1[2:0], DC0[2:0], VC[2:0] */
+  aa:	2011      	movs	r0, #17
+  ac:	f240 1137 	movw	r1, #311	; 0x137
+  b0:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:125
+  _delay_(5);                  /* Delay 50 ms */
+  b4:	2005      	movs	r0, #5
+  b6:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:126
+  LCD_WriteReg(R18, 0x0139); /* VREG1OUT voltage */
+  ba:	2012      	movs	r0, #18
+  bc:	f240 1139 	movw	r1, #313	; 0x139
+  c0:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:127
+  _delay_(5);                  /* Delay 50 ms */
+  c4:	2005      	movs	r0, #5
+  c6:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:128
+  LCD_WriteReg(R19, 0x1d00); /* VDV[4:0] for VCOM amplitude */
+  ca:	2013      	movs	r0, #19
+  cc:	f44f 51e8 	mov.w	r1, #7424	; 0x1d00
+  d0:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:129
+  LCD_WriteReg(R41, 0x0013); /* VCM[4:0] for VCOMH */
+  d4:	2113      	movs	r1, #19
+  d6:	2029      	movs	r0, #41
+  d8:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:130
+  _delay_(5);                  /* Delay 50 ms */
+  dc:	2005      	movs	r0, #5
+  de:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:131
+  LCD_WriteReg(R32, 0x0000); /* GRAM horizontal Address */
+  e2:	2020      	movs	r0, #32
+  e4:	2100      	movs	r1, #0
+  e6:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:132
+  LCD_WriteReg(R33, 0x0000); /* GRAM Vertical Address */
+  ea:	2021      	movs	r0, #33
+  ec:	2100      	movs	r1, #0
+  ee:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:134
+  /* Adjust the Gamma Curve ------------------------------------------------*/
+  LCD_WriteReg(R48, 0x0006);
+  f2:	2030      	movs	r0, #48
+  f4:	2106      	movs	r1, #6
+  f6:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:135
+  LCD_WriteReg(R49, 0x0101);
+  fa:	2031      	movs	r0, #49
+  fc:	f240 1101 	movw	r1, #257	; 0x101
+ 100:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:136
+  LCD_WriteReg(R50, 0x0003);
+ 104:	2032      	movs	r0, #50
+ 106:	2103      	movs	r1, #3
+ 108:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:137
+  LCD_WriteReg(R53, 0x0106);
+ 10c:	2035      	movs	r0, #53
+ 10e:	f44f 7183 	mov.w	r1, #262	; 0x106
+ 112:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:138
+  LCD_WriteReg(R54, 0x0b02);
+ 116:	2036      	movs	r0, #54
+ 118:	f640 3102 	movw	r1, #2818	; 0xb02
+ 11c:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:139
+  LCD_WriteReg(R55, 0x0302);
+ 120:	2037      	movs	r0, #55
+ 122:	f240 3102 	movw	r1, #770	; 0x302
+ 126:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:140
+  LCD_WriteReg(R56, 0x0707);
+ 12a:	2038      	movs	r0, #56
+ 12c:	f240 7107 	movw	r1, #1799	; 0x707
+ 130:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:141
+  LCD_WriteReg(R57, 0x0007);
+ 134:	2039      	movs	r0, #57
+ 136:	2107      	movs	r1, #7
+ 138:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:142
+  LCD_WriteReg(R60, 0x0600);
+ 13c:	203c      	movs	r0, #60
+ 13e:	f44f 61c0 	mov.w	r1, #1536	; 0x600
+ 142:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:143
+  LCD_WriteReg(R61, 0x020b);
+ 146:	203d      	movs	r0, #61
+ 148:	f240 210b 	movw	r1, #523	; 0x20b
+ 14c:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:146
+  
+  /* Set GRAM area ---------------------------------------------------------*/
+  LCD_WriteReg(R80, 0x0000); /* Horizontal GRAM Start Address */
+ 150:	2050      	movs	r0, #80
+ 152:	2100      	movs	r1, #0
+ 154:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:147
+  LCD_WriteReg(R81, 0x00EF); /* Horizontal GRAM End Address */
+ 158:	2051      	movs	r0, #81
+ 15a:	21ef      	movs	r1, #239
+ 15c:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:148
+  LCD_WriteReg(R82, 0x0000); /* Vertical GRAM Start Address */
+ 160:	2052      	movs	r0, #82
+ 162:	2100      	movs	r1, #0
+ 164:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:149
+  LCD_WriteReg(R83, 0x013F); /* Vertical GRAM End Address */
+ 168:	2053      	movs	r0, #83
+ 16a:	f240 113f 	movw	r1, #319	; 0x13f
+ 16e:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:150
+  LCD_WriteReg(R96,  0x2700); /* Gate Scan Line */
+ 172:	2060      	movs	r0, #96
+ 174:	f44f 511c 	mov.w	r1, #9984	; 0x2700
+ 178:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:151
+  LCD_WriteReg(R97,  0x0001); /* NDL,VLE, REV */
+ 17c:	2061      	movs	r0, #97
+ 17e:	2101      	movs	r1, #1
+ 180:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:152
+  LCD_WriteReg(R106, 0x0000); /* set scrolling line */
+ 184:	206a      	movs	r0, #106
+ 186:	2100      	movs	r1, #0
+ 188:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:154
+  /* Partial Display Control -----------------------------------------------*/
+  LCD_WriteReg(R128, 0x0000);
+ 18c:	2080      	movs	r0, #128
+ 18e:	2100      	movs	r1, #0
+ 190:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:155
+  LCD_WriteReg(R129, 0x0000);
+ 194:	2081      	movs	r0, #129
+ 196:	2100      	movs	r1, #0
+ 198:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:156
+  LCD_WriteReg(R130, 0x0000);
+ 19c:	2082      	movs	r0, #130
+ 19e:	2100      	movs	r1, #0
+ 1a0:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:157
+  LCD_WriteReg(R131, 0x0000);
+ 1a4:	2083      	movs	r0, #131
+ 1a6:	2100      	movs	r1, #0
+ 1a8:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:158
+  LCD_WriteReg(R132, 0x0000);
+ 1ac:	2084      	movs	r0, #132
+ 1ae:	2100      	movs	r1, #0
+ 1b0:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:159
+  LCD_WriteReg(R133, 0x0000);
+ 1b4:	2100      	movs	r1, #0
+ 1b6:	2085      	movs	r0, #133
+ 1b8:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:161
+  /* Panel Control ---------------------------------------------------------*/
+  LCD_WriteReg(R144, 0x0010);
+ 1bc:	2090      	movs	r0, #144
+ 1be:	2110      	movs	r1, #16
+ 1c0:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:162
+  LCD_WriteReg(R146, 0x0000);
+ 1c4:	2092      	movs	r0, #146
+ 1c6:	2100      	movs	r1, #0
+ 1c8:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:163
+  LCD_WriteReg(R147, 0x0003);
+ 1cc:	2093      	movs	r0, #147
+ 1ce:	2103      	movs	r1, #3
+ 1d0:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:164
+  LCD_WriteReg(R149, 0x0110);
+ 1d4:	2095      	movs	r0, #149
+ 1d6:	f44f 7188 	mov.w	r1, #272	; 0x110
+ 1da:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:165
+  LCD_WriteReg(R151, 0x0000);
+ 1de:	2097      	movs	r0, #151
+ 1e0:	2100      	movs	r1, #0
+ 1e2:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:166
+  LCD_WriteReg(R152, 0x0000);
+ 1e6:	2098      	movs	r0, #152
+ 1e8:	2100      	movs	r1, #0
+ 1ea:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:170
+  /* Set GRAM write direction and BGR = 1 */
+  /* I/D=01 (Horizontal : increment, Vertical : decrement) */
+  /* AM=1 (address is updated in vertical writing direction) */
+  LCD_WriteReg(R3, 0x1018);
+ 1ee:	2003      	movs	r0, #3
+ 1f0:	f241 0118 	movw	r1, #4120	; 0x1018
+ 1f4:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:171
+  LCD_WriteReg(R7, 0x0173); /* 262K color and display ON */
+ 1f8:	2007      	movs	r0, #7
+ 1fa:	f240 1173 	movw	r1, #371	; 0x173
+ 1fe:	f7ff fffe 	bl	0 <LCD_Setup>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:172
+}
+ 202:	bd10      	pop	{r4, pc}
+Disassembly of section .text.STM3210C_LCD_Init:
+
+00000000 <STM3210C_LCD_Init>:
+STM3210C_LCD_Init():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:181
+  * @brief  Initializes the LCD.
+  * @param  None
+  * @retval None
+  */
+void STM3210C_LCD_Init(void)
+{
+   0:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:183
+  /* Setups the LCD */
+  LCD_Setup();
+   2:	f7ff fffe 	bl	0 <STM3210C_LCD_Init>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:184
+}
+   6:	bd10      	pop	{r4, pc}
+Disassembly of section .text.LCD_ReadReg:
+
+00000000 <LCD_ReadReg>:
+LCD_ReadReg():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:646
+  * @brief  Reads the selected LCD Register.
+  * @param  None
+  * @retval LCD Register Value.
+  */
+uint16_t LCD_ReadReg(uint8_t LCD_Reg)
+{
+   0:	4b30      	ldr	r3, [pc, #192]	(c4 <LCD_ReadReg+0xc4>)
+   2:	b570      	push	{r4, r5, r6, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:651
+  uint16_t tmp = 0;
+  uint8_t i = 0;
+  
+  /* LCD_SPI prescaler: 4 */
+  LCD_SPI->CR1 &= 0xFFC7;
+   4:	881a      	ldrh	r2, [r3, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:657
+  LCD_SPI->CR1 |= 0x0008;
+  /* Write 16-bit Index (then Read Reg) */
+  LCD_WriteRegIndex(LCD_Reg);
+  /* Read 16-bit Reg */
+  /* Reset LCD control line(/CS) and Send Start-Byte */
+  LCD_nCS_StartByte(START_BYTE | LCD_READ_REG);
+   6:	2400      	movs	r4, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:651
+{
+  uint16_t tmp = 0;
+  uint8_t i = 0;
+  
+  /* LCD_SPI prescaler: 4 */
+  LCD_SPI->CR1 &= 0xFFC7;
+   8:	f022 0238 	bic.w	r2, r2, #56	; 0x38
+   c:	0412      	lsls	r2, r2, #16
+   e:	0c12      	lsrs	r2, r2, #16
+  10:	801a      	strh	r2, [r3, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:652
+  LCD_SPI->CR1 |= 0x0008;
+  12:	881a      	ldrh	r2, [r3, #0]
+  14:	b292      	uxth	r2, r2
+  16:	f042 0208 	orr.w	r2, r2, #8	; 0x8
+  1a:	801a      	strh	r2, [r3, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:654
+  /* Write 16-bit Index (then Read Reg) */
+  LCD_WriteRegIndex(LCD_Reg);
+  1c:	f7ff fffe 	bl	0 <LCD_ReadReg>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:657
+  /* Read 16-bit Reg */
+  /* Reset LCD control line(/CS) and Send Start-Byte */
+  LCD_nCS_StartByte(START_BYTE | LCD_READ_REG);
+  20:	2073      	movs	r0, #115
+  22:	f7ff fffe 	bl	0 <LCD_ReadReg>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:661
+  
+  for(i = 0; i < 5; i++)
+  {
+    SPI_I2S_SendData(LCD_SPI, 0xFF);
+  26:	4827      	ldr	r0, [pc, #156]	(c4 <LCD_ReadReg+0xc4>)
+  28:	21ff      	movs	r1, #255
+  2a:	f7ff fffe 	bl	0 <SPI_I2S_SendData>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:662
+    while(SPI_I2S_GetFlagStatus(LCD_SPI, SPI_I2S_FLAG_BSY) != RESET)
+  2e:	4825      	ldr	r0, [pc, #148]	(c4 <LCD_ReadReg+0xc4>)
+  30:	2180      	movs	r1, #128
+  32:	f7ff fffe 	bl	0 <SPI_I2S_GetFlagStatus>
+  36:	2800      	cmp	r0, #0
+  38:	d1f9      	bne.n	2e <LCD_ReadReg+0x2e>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:666
+    {
+    }
+    /* One byte of invalid dummy data read after the start byte */
+    while(SPI_I2S_GetFlagStatus(LCD_SPI, SPI_I2S_FLAG_RXNE) == RESET)
+  3a:	4822      	ldr	r0, [pc, #136]	(c4 <LCD_ReadReg+0xc4>)
+  3c:	2101      	movs	r1, #1
+  3e:	f7ff fffe 	bl	0 <SPI_I2S_GetFlagStatus>
+  42:	2800      	cmp	r0, #0
+  44:	d0f9      	beq.n	3a <LCD_ReadReg+0x3a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:669
+    {    
+    }
+    SPI_I2S_ReceiveData(LCD_SPI); 
+  46:	481f      	ldr	r0, [pc, #124]	(c4 <LCD_ReadReg+0xc4>)
+  48:	f7ff fffe 	bl	0 <SPI_I2S_ReceiveData>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:659
+  LCD_WriteRegIndex(LCD_Reg);
+  /* Read 16-bit Reg */
+  /* Reset LCD control line(/CS) and Send Start-Byte */
+  LCD_nCS_StartByte(START_BYTE | LCD_READ_REG);
+  
+  for(i = 0; i < 5; i++)
+  4c:	1c63      	adds	r3, r4, #1
+  4e:	b2dc      	uxtb	r4, r3
+  50:	2c05      	cmp	r4, #5
+  52:	d1e8      	bne.n	26 <LCD_ReadReg+0x26>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:671
+    while(SPI_I2S_GetFlagStatus(LCD_SPI, SPI_I2S_FLAG_RXNE) == RESET)
+    {    
+    }
+    SPI_I2S_ReceiveData(LCD_SPI); 
+  }
+  SPI_I2S_SendData(LCD_SPI, 0xFF);
+  54:	481b      	ldr	r0, [pc, #108]	(c4 <LCD_ReadReg+0xc4>)
+  56:	21ff      	movs	r1, #255
+  58:	f7ff fffe 	bl	0 <SPI_I2S_SendData>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:673
+  /* Read upper byte */
+  while(SPI_I2S_GetFlagStatus(LCD_SPI, SPI_I2S_FLAG_BSY) != RESET)
+  5c:	4819      	ldr	r0, [pc, #100]	(c4 <LCD_ReadReg+0xc4>)
+  5e:	2180      	movs	r1, #128
+  60:	f7ff fffe 	bl	0 <SPI_I2S_GetFlagStatus>
+  64:	2800      	cmp	r0, #0
+  66:	d1f9      	bne.n	5c <LCD_ReadReg+0x5c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:677
+  {
+  }
+  /* Read lower byte */
+  while(SPI_I2S_GetFlagStatus(LCD_SPI, SPI_I2S_FLAG_RXNE) == RESET)
+  68:	4816      	ldr	r0, [pc, #88]	(c4 <LCD_ReadReg+0xc4>)
+  6a:	2101      	movs	r1, #1
+  6c:	f7ff fffe 	bl	0 <SPI_I2S_GetFlagStatus>
+  70:	2800      	cmp	r0, #0
+  72:	d0f9      	beq.n	68 <LCD_ReadReg+0x68>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:680
+  {
+  }
+  tmp = SPI_I2S_ReceiveData(LCD_SPI);
+  74:	4813      	ldr	r0, [pc, #76]	(c4 <LCD_ReadReg+0xc4>)
+  76:	f7ff fffe 	bl	0 <SPI_I2S_ReceiveData>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:683
+  
+  
+  SPI_I2S_SendData(LCD_SPI, 0xFF);
+  7a:	21ff      	movs	r1, #255
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:680
+  }
+  /* Read lower byte */
+  while(SPI_I2S_GetFlagStatus(LCD_SPI, SPI_I2S_FLAG_RXNE) == RESET)
+  {
+  }
+  tmp = SPI_I2S_ReceiveData(LCD_SPI);
+  7c:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:683
+  
+  
+  SPI_I2S_SendData(LCD_SPI, 0xFF);
+  7e:	4811      	ldr	r0, [pc, #68]	(c4 <LCD_ReadReg+0xc4>)
+  80:	f7ff fffe 	bl	0 <SPI_I2S_SendData>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:684
+  while(SPI_I2S_GetFlagStatus(LCD_SPI, SPI_I2S_FLAG_BSY) != RESET)
+  84:	480f      	ldr	r0, [pc, #60]	(c4 <LCD_ReadReg+0xc4>)
+  86:	2180      	movs	r1, #128
+  88:	f7ff fffe 	bl	0 <SPI_I2S_GetFlagStatus>
+  8c:	2800      	cmp	r0, #0
+  8e:	d1f9      	bne.n	84 <LCD_ReadReg+0x84>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:688
+  {
+  }
+  /* Read lower byte */
+  while(SPI_I2S_GetFlagStatus(LCD_SPI, SPI_I2S_FLAG_RXNE) == RESET)
+  90:	4d0c      	ldr	r5, [pc, #48]	(c4 <LCD_ReadReg+0xc4>)
+  92:	2101      	movs	r1, #1
+  94:	4628      	mov	r0, r5
+  96:	f7ff fffe 	bl	0 <SPI_I2S_GetFlagStatus>
+  9a:	2800      	cmp	r0, #0
+  9c:	d0f8      	beq.n	90 <LCD_ReadReg+0x90>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:691
+  {
+  }
+  tmp = ((tmp & 0xFF) << 8) | SPI_I2S_ReceiveData(LCD_SPI);
+  9e:	4628      	mov	r0, r5
+  a0:	f7ff fffe 	bl	0 <SPI_I2S_ReceiveData>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:692
+  LCD_CtrlLinesWrite(LCD_NCS_GPIO_PORT, LCD_NCS_PIN, Bit_SET);
+  a4:	2104      	movs	r1, #4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:691
+  }
+  /* Read lower byte */
+  while(SPI_I2S_GetFlagStatus(LCD_SPI, SPI_I2S_FLAG_RXNE) == RESET)
+  {
+  }
+  tmp = ((tmp & 0xFF) << 8) | SPI_I2S_ReceiveData(LCD_SPI);
+  a6:	ea40 2404 	orr.w	r4, r0, r4, lsl #8
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:692
+  LCD_CtrlLinesWrite(LCD_NCS_GPIO_PORT, LCD_NCS_PIN, Bit_SET);
+  aa:	2201      	movs	r2, #1
+  ac:	4806      	ldr	r0, [pc, #24]	(c8 <LCD_ReadReg+0xc8>)
+  ae:	f7ff fffe 	bl	0 <LCD_ReadReg>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:694
+  /* LCD_SPI prescaler: 2 */
+  LCD_SPI->CR1 &= 0xFFC7;
+  b2:	882b      	ldrh	r3, [r5, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:691
+  }
+  /* Read lower byte */
+  while(SPI_I2S_GetFlagStatus(LCD_SPI, SPI_I2S_FLAG_RXNE) == RESET)
+  {
+  }
+  tmp = ((tmp & 0xFF) << 8) | SPI_I2S_ReceiveData(LCD_SPI);
+  b4:	b2a4      	uxth	r4, r4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:694
+  LCD_CtrlLinesWrite(LCD_NCS_GPIO_PORT, LCD_NCS_PIN, Bit_SET);
+  /* LCD_SPI prescaler: 2 */
+  LCD_SPI->CR1 &= 0xFFC7;
+  b6:	f023 0338 	bic.w	r3, r3, #56	; 0x38
+  ba:	041b      	lsls	r3, r3, #16
+  bc:	0c1b      	lsrs	r3, r3, #16
+  be:	802b      	strh	r3, [r5, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\STM32_EVAL\STM3210C_EVAL/stm3210c_eval_lcd.c:696
+  return tmp;
+}
+  c0:	4620      	mov	r0, r4
+  c2:	bd70      	pop	{r4, r5, r6, pc}
+  c4:	40003c00 	.word	0x40003c00
+  c8:	40010c00 	.word	0x40010c00

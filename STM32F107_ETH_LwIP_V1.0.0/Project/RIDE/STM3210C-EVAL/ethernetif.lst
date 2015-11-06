@@ -1,0 +1,794 @@
+
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\ethernetif.o:     file format elf32-littlearm
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\ethernetif.o
+
+Disassembly of section .text.ETH_RxPkt_ChainMode:
+
+00000000 <ETH_RxPkt_ChainMode>:
+ETH_RxPkt_ChainMode():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:375
+{ 
+  u32 framelength = 0;
+  FrameTypeDef frame = {0,0}; 
+
+  /* Check if the descriptor is owned by the ETHERNET DMA (when set) or CPU (when reset) */
+  if((DMARxDescToGet->Status & ETH_DMARxDesc_OWN) != (u32)RESET)
+   0:	4b15      	ldr	r3, [pc, #84]	(58 <ETH_RxPkt_ChainMode+0x58>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:370
+* Input          : None
+* Output         : None
+* Return         : frame: farme size and location
+*******************************************************************************/
+FrameTypeDef ETH_RxPkt_ChainMode(void)
+{ 
+   2:	b530      	push	{r4, r5, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:375
+  u32 framelength = 0;
+  FrameTypeDef frame = {0,0}; 
+
+  /* Check if the descriptor is owned by the ETHERNET DMA (when set) or CPU (when reset) */
+  if((DMARxDescToGet->Status & ETH_DMARxDesc_OWN) != (u32)RESET)
+   4:	681c      	ldr	r4, [r3, #0]
+   6:	6823      	ldr	r3, [r4, #0]
+   8:	2b00      	cmp	r3, #0
+   a:	da0e      	bge.n	2a <ETH_RxPkt_ChainMode+0x2a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:379
+  {	
+	frame.length = ETH_ERROR;
+
+    if ((ETH->DMASR & ETH_DMASR_RBUS) != (u32)RESET)  
+   c:	4a13      	ldr	r2, [pc, #76]	(5c <ETH_RxPkt_ChainMode+0x5c>)
+   e:	6813      	ldr	r3, [r2, #0]
+  10:	f013 0f80 	tst.w	r3, #128	; 0x80
+  14:	d004      	beq.n	20 <ETH_RxPkt_ChainMode+0x20>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:382
+    {
+      /* Clear RBUS ETHERNET DMA flag */
+      ETH->DMASR = ETH_DMASR_RBUS;
+  16:	2380      	movs	r3, #128
+  18:	6013      	str	r3, [r2, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:384
+      /* Resume DMA reception */
+      ETH->DMARPDR = 0;
+  1a:	4b11      	ldr	r3, [pc, #68]	(60 <ETH_RxPkt_ChainMode+0x60>)
+  1c:	2200      	movs	r2, #0
+  1e:	601a      	str	r2, [r3, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:388
+    }
+
+	/* Return error: OWN bit set */
+    return frame; 
+  20:	2300      	movs	r3, #0
+  22:	6083      	str	r3, [r0, #8]
+  24:	6043      	str	r3, [r0, #4]
+  26:	6003      	str	r3, [r0, #0]
+  28:	e015      	b.n	56 <ETH_RxPkt_ChainMode+0x56>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:391
+  }
+  
+  if(((DMARxDescToGet->Status & ETH_DMARxDesc_ES) == (u32)RESET) && 
+  2a:	f413 4f00 	tst.w	r3, #32768	; 0x8000
+  2e:	d10a      	bne.n	46 <ETH_RxPkt_ChainMode+0x46>
+  30:	f413 7f80 	tst.w	r3, #256	; 0x100
+  34:	d007      	beq.n	46 <ETH_RxPkt_ChainMode+0x46>
+  36:	f413 7f00 	tst.w	r3, #512	; 0x200
+  3a:	d004      	beq.n	46 <ETH_RxPkt_ChainMode+0x46>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:396
+     ((DMARxDescToGet->Status & ETH_DMARxDesc_LS) != (u32)RESET) &&  
+     ((DMARxDescToGet->Status & ETH_DMARxDesc_FS) != (u32)RESET))  
+  {      
+    /* Get the Frame Length of the received packet: substruct 4 bytes of the CRC */
+    framelength = ((DMARxDescToGet->Status & ETH_DMARxDesc_FL) >> ETH_DMARxDesc_FrameLengthShift) - 4;
+  3c:	f3c3 430d 	ubfx	r3, r3, #16, #14
+  40:	1f19      	subs	r1, r3, #4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:399
+	
+	/* Get the addrees of the actual buffer */
+	frame.buffer = DMARxDescToGet->Buffer1Addr;	
+  42:	68a5      	ldr	r5, [r4, #8]
+  44:	e001      	b.n	4a <ETH_RxPkt_ChainMode+0x4a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:391
+
+	/* Return error: OWN bit set */
+    return frame; 
+  }
+  
+  if(((DMARxDescToGet->Status & ETH_DMARxDesc_ES) == (u32)RESET) && 
+  46:	2100      	movs	r1, #0
+  48:	460d      	mov	r5, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:415
+  frame.descriptor = DMARxDescToGet;
+  
+  /* Update the ETHERNET DMA global Rx descriptor with next Rx decriptor */      
+  /* Chained Mode */    
+  /* Selects the next DMA Rx descriptor list for next buffer to read */ 
+  DMARxDescToGet = (ETH_DMADESCTypeDef*) (DMARxDescToGet->Buffer2NextDescAddr);    
+  4a:	68e2      	ldr	r2, [r4, #12]
+  4c:	4b02      	ldr	r3, [pc, #8]	(58 <ETH_RxPkt_ChainMode+0x58>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:418
+  
+  /* Return Frame */
+  return (frame);  
+  4e:	6045      	str	r5, [r0, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:415
+  frame.descriptor = DMARxDescToGet;
+  
+  /* Update the ETHERNET DMA global Rx descriptor with next Rx decriptor */      
+  /* Chained Mode */    
+  /* Selects the next DMA Rx descriptor list for next buffer to read */ 
+  DMARxDescToGet = (ETH_DMADESCTypeDef*) (DMARxDescToGet->Buffer2NextDescAddr);    
+  50:	601a      	str	r2, [r3, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:418
+  
+  /* Return Frame */
+  return (frame);  
+  52:	6001      	str	r1, [r0, #0]
+  54:	6084      	str	r4, [r0, #8]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:419
+}
+  56:	bd30      	pop	{r4, r5, pc}
+  58:	00000000 	.word	0x00000000
+  5c:	40029014 	.word	0x40029014
+  60:	40029008 	.word	0x40029008
+Disassembly of section .text.ETH_TxPkt_ChainMode:
+
+00000000 <ETH_TxPkt_ChainMode>:
+ETH_TxPkt_ChainMode():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:432
+*                  ETH_SUCCESS: for correct transmission
+*******************************************************************************/
+u32 ETH_TxPkt_ChainMode(u16 FrameLength)
+{   
+  /* Check if the descriptor is owned by the ETHERNET DMA (when set) or CPU (when reset) */
+  if((DMATxDescToSet->Status & ETH_DMATxDesc_OWN) != (u32)RESET)
+   0:	4b0d      	ldr	r3, [pc, #52]	(38 <ETH_TxPkt_ChainMode+0x38>)
+   2:	6819      	ldr	r1, [r3, #0]
+   4:	680a      	ldr	r2, [r1, #0]
+   6:	2a00      	cmp	r2, #0
+   8:	da01      	bge.n	e <ETH_TxPkt_ChainMode+0xe>
+   a:	2000      	movs	r0, #0
+   c:	e013      	b.n	36 <ETH_TxPkt_ChainMode+0x36>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:439
+	/* Return ERROR: OWN bit set */
+    return ETH_ERROR;
+  }
+        
+  /* Setting the Frame Length: bits[12:0] */
+  DMATxDescToSet->ControlBufferSize = (FrameLength & ETH_DMATxDesc_TBS1);
+   e:	04c3      	lsls	r3, r0, #19
+  10:	0cdb      	lsrs	r3, r3, #19
+  12:	604b      	str	r3, [r1, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:445
+
+  /* Setting the last segment and first segment bits (in this case a frame is transmitted in one descriptor) */    
+  DMATxDescToSet->Status |= ETH_DMATxDesc_LS | ETH_DMATxDesc_FS;
+
+  /* Set Own bit of the Tx descriptor Status: gives the buffer back to ETHERNET DMA */
+  DMATxDescToSet->Status |= ETH_DMATxDesc_OWN;
+  14:	f042 4330 	orr.w	r3, r2, #2952790016	; 0xb0000000
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:448
+
+  /* When Tx Buffer unavailable flag is set: clear it and resume transmission */
+  if ((ETH->DMASR & ETH_DMASR_TBUS) != (u32)RESET)
+  18:	4a08      	ldr	r2, [pc, #32]	(3c <ETH_TxPkt_ChainMode+0x3c>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:445
+
+  /* Setting the last segment and first segment bits (in this case a frame is transmitted in one descriptor) */    
+  DMATxDescToSet->Status |= ETH_DMATxDesc_LS | ETH_DMATxDesc_FS;
+
+  /* Set Own bit of the Tx descriptor Status: gives the buffer back to ETHERNET DMA */
+  DMATxDescToSet->Status |= ETH_DMATxDesc_OWN;
+  1a:	600b      	str	r3, [r1, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:448
+
+  /* When Tx Buffer unavailable flag is set: clear it and resume transmission */
+  if ((ETH->DMASR & ETH_DMASR_TBUS) != (u32)RESET)
+  1c:	6813      	ldr	r3, [r2, #0]
+  1e:	f013 0f04 	tst.w	r3, #4	; 0x4
+  22:	d004      	beq.n	2e <ETH_TxPkt_ChainMode+0x2e>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:451
+  {
+    /* Clear TBUS ETHERNET DMA flag */
+    ETH->DMASR = ETH_DMASR_TBUS;
+  24:	2304      	movs	r3, #4
+  26:	6013      	str	r3, [r2, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:453
+    /* Resume DMA transmission*/
+    ETH->DMATPDR = 0;
+  28:	4b05      	ldr	r3, [pc, #20]	(40 <ETH_TxPkt_ChainMode+0x40>)
+  2a:	2200      	movs	r2, #0
+  2c:	601a      	str	r2, [r3, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:459
+  }
+  
+  /* Update the ETHERNET DMA global Tx descriptor with next Tx decriptor */  
+  /* Chained Mode */
+  /* Selects the next DMA Tx descriptor list for next buffer to send */ 
+  DMATxDescToSet = (ETH_DMADESCTypeDef*) (DMATxDescToSet->Buffer2NextDescAddr);    
+  2e:	68ca      	ldr	r2, [r1, #12]
+  30:	4b01      	ldr	r3, [pc, #4]	(38 <ETH_TxPkt_ChainMode+0x38>)
+  32:	2001      	movs	r0, #1
+  34:	601a      	str	r2, [r3, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:464
+
+
+  /* Return SUCCESS */
+  return ETH_SUCCESS;   
+}
+  36:	4770      	bx	lr
+  38:	00000000 	.word	0x00000000
+  3c:	40029014 	.word	0x40029014
+  40:	40029004 	.word	0x40029004
+Disassembly of section .text.ETH_GetCurrentTxBuffer:
+
+00000000 <ETH_GetCurrentTxBuffer>:
+ETH_GetCurrentTxBuffer():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:475
+* Input          : None
+* Output         : None
+* Return         : Buffer address
+*******************************************************************************/
+u32 ETH_GetCurrentTxBuffer(void)
+{ 
+   0:	4b01      	ldr	r3, [pc, #4]	(8 <ETH_GetCurrentTxBuffer+0x8>)
+   2:	681b      	ldr	r3, [r3, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:478
+  /* Return Buffer address */
+  return (DMATxDescToSet->Buffer1Addr);   
+}
+   4:	6898      	ldr	r0, [r3, #8]
+   6:	4770      	bx	lr
+   8:	00000000 	.word	0x00000000
+Disassembly of section .text.ethernetif_init:
+
+00000000 <ethernetif_init>:
+ethernetif_init():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:320
+ *         ERR_MEM if private data couldn't be allocated
+ *         any other err_t on error
+ */
+err_t
+ethernetif_init(struct netif *netif)
+{
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:325
+  struct ethernetif *ethernetif;
+
+  LWIP_ASSERT("netif != NULL", (netif != NULL));
+
+  ethernetif = mem_malloc(sizeof(struct ethernetif));
+   4:	2008      	movs	r0, #8
+   6:	f7ff fffe 	bl	0 <mem_malloc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:326
+  if (ethernetif == NULL)
+   a:	b908      	cbnz	r0, 10 <ethernetif_init+0x10>
+   c:	30ff      	adds	r0, #255
+   e:	e050      	b.n	b2 <ethernetif_init+0xb2>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:345
+   * of bits per second.
+   */
+  NETIF_INIT_SNMP(netif, snmp_ifType_ethernet_csmacd, 100000000);
+
+  netif->state = ethernetif;
+  netif->name[0] = IFNAME0;
+  10:	2373      	movs	r3, #115
+  12:	f884 302f 	strb.w	r3, [r4, #47]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:346
+  netif->name[1] = IFNAME1;
+  16:	3301      	adds	r3, #1
+  18:	f884 3030 	strb.w	r3, [r4, #48]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:351
+  /* We directly use etharp_output() here to save a function call.
+   * You can instead declare your own function an call etharp_output()
+   * from it if you have to do some checks before sending (e.g. if link
+   * is available...) */
+  netif->output = etharp_output;
+  1c:	4b26      	ldr	r3, [pc, #152]	(b8 <ethernetif_init+0xb8>)
+low_level_init():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:144
+{
+  /* set MAC hardware address length */
+  netif->hwaddr_len = ETHARP_HWADDR_LEN;
+
+  /* set MAC hardware address */
+  netif->hwaddr[0] =  MACaddr[0];
+  1e:	4a27      	ldr	r2, [pc, #156]	(bc <ethernetif_init+0xbc>)
+ethernetif_init():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:351
+  netif->name[1] = IFNAME1;
+  /* We directly use etharp_output() here to save a function call.
+   * You can instead declare your own function an call etharp_output()
+   * from it if you have to do some checks before sending (e.g. if link
+   * is available...) */
+  netif->output = etharp_output;
+  20:	6163      	str	r3, [r4, #20]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:352
+  netif->linkoutput = low_level_output;
+  22:	4b27      	ldr	r3, [pc, #156]	(c0 <ethernetif_init+0xc0>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:344
+   * The last argument should be replaced with your link speed, in units
+   * of bits per second.
+   */
+  NETIF_INIT_SNMP(netif, snmp_ifType_ethernet_csmacd, 100000000);
+
+  netif->state = ethernetif;
+  24:	61e0      	str	r0, [r4, #28]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:352
+  /* We directly use etharp_output() here to save a function call.
+   * You can instead declare your own function an call etharp_output()
+   * from it if you have to do some checks before sending (e.g. if link
+   * is available...) */
+  netif->output = etharp_output;
+  netif->linkoutput = low_level_output;
+  26:	61a3      	str	r3, [r4, #24]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:354
+
+  ethernetif->ethaddr = (struct eth_addr *)&(netif->hwaddr[0]);
+  28:	f104 0325 	add.w	r3, r4, #37	; 0x25
+  2c:	6003      	str	r3, [r0, #0]
+low_level_init():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:141
+ */
+static void
+low_level_init(struct netif *netif)
+{
+  /* set MAC hardware address length */
+  netif->hwaddr_len = ETHARP_HWADDR_LEN;
+  2e:	2306      	movs	r3, #6
+  30:	f884 3024 	strb.w	r3, [r4, #36]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:144
+
+  /* set MAC hardware address */
+  netif->hwaddr[0] =  MACaddr[0];
+  34:	7813      	ldrb	r3, [r2, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:159
+  /* device capabilities */
+  /* don't set NETIF_FLAG_ETHARP if this device is not an ethernet one */
+  netif->flags = NETIF_FLAG_BROADCAST | NETIF_FLAG_ETHARP | NETIF_FLAG_LINK_UP;
+
+  /* Initialize Tx Descriptors list: Chain Mode */
+  ETH_DMATxDescChainInit(DMATxDscrTab, &Tx_Buff[0][0], ETH_TXBUFNB);
+  36:	4823      	ldr	r0, [pc, #140]	(c4 <ethernetif_init+0xc4>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:144
+{
+  /* set MAC hardware address length */
+  netif->hwaddr_len = ETHARP_HWADDR_LEN;
+
+  /* set MAC hardware address */
+  netif->hwaddr[0] =  MACaddr[0];
+  38:	f884 3025 	strb.w	r3, [r4, #37]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:145
+  netif->hwaddr[1] =  MACaddr[1];
+  3c:	7853      	ldrb	r3, [r2, #1]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:159
+  /* device capabilities */
+  /* don't set NETIF_FLAG_ETHARP if this device is not an ethernet one */
+  netif->flags = NETIF_FLAG_BROADCAST | NETIF_FLAG_ETHARP | NETIF_FLAG_LINK_UP;
+
+  /* Initialize Tx Descriptors list: Chain Mode */
+  ETH_DMATxDescChainInit(DMATxDscrTab, &Tx_Buff[0][0], ETH_TXBUFNB);
+  3e:	4922      	ldr	r1, [pc, #136]	(c8 <ethernetif_init+0xc8>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:145
+  /* set MAC hardware address length */
+  netif->hwaddr_len = ETHARP_HWADDR_LEN;
+
+  /* set MAC hardware address */
+  netif->hwaddr[0] =  MACaddr[0];
+  netif->hwaddr[1] =  MACaddr[1];
+  40:	f884 3026 	strb.w	r3, [r4, #38]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:146
+  netif->hwaddr[2] =  MACaddr[2];
+  44:	7893      	ldrb	r3, [r2, #2]
+  46:	f884 3027 	strb.w	r3, [r4, #39]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:147
+  netif->hwaddr[3] =  MACaddr[3];
+  4a:	78d3      	ldrb	r3, [r2, #3]
+  4c:	f884 3028 	strb.w	r3, [r4, #40]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:148
+  netif->hwaddr[4] =  MACaddr[4];
+  50:	7913      	ldrb	r3, [r2, #4]
+  52:	f884 3029 	strb.w	r3, [r4, #41]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:149
+  netif->hwaddr[5] =  MACaddr[5];
+  56:	7953      	ldrb	r3, [r2, #5]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:159
+  /* device capabilities */
+  /* don't set NETIF_FLAG_ETHARP if this device is not an ethernet one */
+  netif->flags = NETIF_FLAG_BROADCAST | NETIF_FLAG_ETHARP | NETIF_FLAG_LINK_UP;
+
+  /* Initialize Tx Descriptors list: Chain Mode */
+  ETH_DMATxDescChainInit(DMATxDscrTab, &Tx_Buff[0][0], ETH_TXBUFNB);
+  58:	2202      	movs	r2, #2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:149
+  netif->hwaddr[0] =  MACaddr[0];
+  netif->hwaddr[1] =  MACaddr[1];
+  netif->hwaddr[2] =  MACaddr[2];
+  netif->hwaddr[3] =  MACaddr[3];
+  netif->hwaddr[4] =  MACaddr[4];
+  netif->hwaddr[5] =  MACaddr[5];
+  5a:	f884 302a 	strb.w	r3, [r4, #42]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:152
+
+  /* maximum transfer unit */
+  netif->mtu = 1500;
+  5e:	f240 53dc 	movw	r3, #1500	; 0x5dc
+  62:	85a3      	strh	r3, [r4, #44]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:156
+
+  /* device capabilities */
+  /* don't set NETIF_FLAG_ETHARP if this device is not an ethernet one */
+  netif->flags = NETIF_FLAG_BROADCAST | NETIF_FLAG_ETHARP | NETIF_FLAG_LINK_UP;
+  64:	2332      	movs	r3, #50
+  66:	f884 302e 	strb.w	r3, [r4, #46]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:159
+
+  /* Initialize Tx Descriptors list: Chain Mode */
+  ETH_DMATxDescChainInit(DMATxDscrTab, &Tx_Buff[0][0], ETH_TXBUFNB);
+  6a:	f7ff fffe 	bl	0 <ETH_DMATxDescChainInit>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:161
+  /* Initialize Rx Descriptors list: Chain Mode  */
+  ETH_DMARxDescChainInit(DMARxDscrTab, &Rx_Buff[0][0], ETH_RXBUFNB);
+  6e:	2204      	movs	r2, #4
+  70:	4816      	ldr	r0, [pc, #88]	(cc <ethernetif_init+0xcc>)
+  72:	4917      	ldr	r1, [pc, #92]	(d0 <ethernetif_init+0xd0>)
+  74:	f7ff fffe 	bl	0 <ETH_DMARxDescChainInit>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:167
+
+  /* Enable Ethernet Rx interrrupt */
+  { int i;
+    for(i=0; i<ETH_RXBUFNB; i++)
+    {
+      ETH_DMARxDescReceiveITConfig(&DMARxDscrTab[i], ENABLE);
+  78:	4814      	ldr	r0, [pc, #80]	(cc <ethernetif_init+0xcc>)
+  7a:	2101      	movs	r1, #1
+  7c:	f7ff fffe 	bl	0 <ETH_DMARxDescReceiveITConfig>
+  80:	4814      	ldr	r0, [pc, #80]	(d4 <ethernetif_init+0xd4>)
+  82:	2101      	movs	r1, #1
+  84:	f7ff fffe 	bl	0 <ETH_DMARxDescReceiveITConfig>
+  88:	4813      	ldr	r0, [pc, #76]	(d8 <ethernetif_init+0xd8>)
+  8a:	2101      	movs	r1, #1
+  8c:	f7ff fffe 	bl	0 <ETH_DMARxDescReceiveITConfig>
+  90:	4812      	ldr	r0, [pc, #72]	(dc <ethernetif_init+0xdc>)
+  92:	2101      	movs	r1, #1
+  94:	f7ff fffe 	bl	0 <ETH_DMARxDescReceiveITConfig>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:176
+#ifdef CHECKSUM_BY_HARDWARE
+  /* Enable the checksum insertion for the Tx frames */
+  { int i;
+    for(i=0; i<ETH_TXBUFNB; i++)
+    {
+      ETH_DMATxDescChecksumInsertionConfig(&DMATxDscrTab[i], ETH_DMATxDesc_ChecksumTCPUDPICMPFull);
+  98:	480a      	ldr	r0, [pc, #40]	(c4 <ethernetif_init+0xc4>)
+  9a:	f44f 0140 	mov.w	r1, #12582912	; 0xc00000
+  9e:	f7ff fffe 	bl	0 <ETH_DMATxDescChecksumInsertionConfig>
+  a2:	480f      	ldr	r0, [pc, #60]	(e0 <ethernetif_init+0xe0>)
+  a4:	f44f 0140 	mov.w	r1, #12582912	; 0xc00000
+  a8:	f7ff fffe 	bl	0 <ETH_DMATxDescChecksumInsertionConfig>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:182
+    }
+  }
+#endif
+
+  /* Enable MAC and DMA transmission and reception */
+  ETH_Start();
+  ac:	f7ff fffe 	bl	0 <ETH_Start>
+  b0:	2000      	movs	r0, #0
+ethernetif_init():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:360
+
+  /* initialize the hardware */
+  low_level_init(netif);
+
+  return ERR_OK;
+}
+  b2:	b240      	sxtb	r0, r0
+  b4:	bd10      	pop	{r4, pc}
+  b6:	46c0      	nop			(mov r8, r8)
+	...
+  d4:	00000010 	.word	0x00000010
+  d8:	00000020 	.word	0x00000020
+  dc:	00000030 	.word	0x00000030
+  e0:	00000010 	.word	0x00000010
+Disassembly of section .text.low_level_output:
+
+00000000 <low_level_output>:
+low_level_output():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:207
+static err_t
+low_level_output(struct netif *netif, struct pbuf *p)
+{
+  struct pbuf *q;
+  int l = 0;
+  u8 *buffer =  (u8 *)ETH_GetCurrentTxBuffer();
+   0:	4b0a      	ldr	r3, [pc, #40]	(2c <low_level_output+0x2c>)
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:204
+ *       dropped because of memory failure (except for the TCP timers).
+ */
+
+static err_t
+low_level_output(struct netif *netif, struct pbuf *p)
+{
+   2:	b570      	push	{r4, r5, r6, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:207
+  struct pbuf *q;
+  int l = 0;
+  u8 *buffer =  (u8 *)ETH_GetCurrentTxBuffer();
+   4:	681b      	ldr	r3, [r3, #0]
+   6:	460c      	mov	r4, r1
+   8:	689e      	ldr	r6, [r3, #8]
+   a:	2500      	movs	r5, #0
+   c:	e007      	b.n	1e <low_level_output+0x1e>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:211
+  
+  for(q = p; q != NULL; q = q->next) 
+  {
+    memcpy((u8_t*)&buffer[l], q->payload, q->len);
+   e:	1970      	adds	r0, r6, r5
+  10:	6861      	ldr	r1, [r4, #4]
+  12:	8962      	ldrh	r2, [r4, #10]
+  14:	f7ff fffe 	bl	0 <memcpy>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:212
+	l = l + q->len;
+  18:	8963      	ldrh	r3, [r4, #10]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:209
+{
+  struct pbuf *q;
+  int l = 0;
+  u8 *buffer =  (u8 *)ETH_GetCurrentTxBuffer();
+  
+  for(q = p; q != NULL; q = q->next) 
+  1a:	6824      	ldr	r4, [r4, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:212
+  {
+    memcpy((u8_t*)&buffer[l], q->payload, q->len);
+	l = l + q->len;
+  1c:	18ed      	adds	r5, r5, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:209
+{
+  struct pbuf *q;
+  int l = 0;
+  u8 *buffer =  (u8 *)ETH_GetCurrentTxBuffer();
+  
+  for(q = p; q != NULL; q = q->next) 
+  1e:	2c00      	cmp	r4, #0
+  20:	d1f5      	bne.n	e <low_level_output+0xe>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:215
+  {
+    memcpy((u8_t*)&buffer[l], q->payload, q->len);
+	l = l + q->len;
+  }
+
+  ETH_TxPkt_ChainMode(l);
+  22:	b2a8      	uxth	r0, r5
+  24:	f7ff fffe 	bl	0 <low_level_output>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:218
+
+  return ERR_OK;
+}
+  28:	4620      	mov	r0, r4
+  2a:	bd70      	pop	{r4, r5, r6, pc}
+  2c:	00000000 	.word	0x00000000
+Disassembly of section .text.ethernetif_input:
+
+00000000 <ethernetif_input>:
+ethernetif_input():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:285
+ *
+ * @param netif the lwip network interface structure for this ethernetif
+ */
+err_t
+ethernetif_input(struct netif *netif)
+{
+   0:	e92d 41ff 	stmdb	sp!, {r0, r1, r2, r3, r4, r5, r6, r7, r8, lr}
+   4:	4680      	mov	r8, r0
+low_level_input():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:238
+  int l =0;
+  FrameTypeDef frame;
+  u8 *buffer;
+  
+  p = NULL;
+  frame = ETH_RxPkt_ChainMode();
+   6:	a801      	add	r0, sp, #4
+   8:	f7ff fffe 	bl	0 <ethernetif_input>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:246
+  len = frame.length;
+  
+  buffer = (u8 *)frame.buffer;
+
+  /* We allocate a pbuf chain of pbufs from the pool. */
+  p = pbuf_alloc(PBUF_RAW, len, PBUF_POOL);
+   c:	2003      	movs	r0, #3
+   e:	f8bd 1004 	ldrh.w	r1, [sp, #4]
+  12:	4602      	mov	r2, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:243
+  frame = ETH_RxPkt_ChainMode();
+  /* Obtain the size of the packet and put it into the "len"
+     variable. */
+  len = frame.length;
+  
+  buffer = (u8 *)frame.buffer;
+  14:	9f02      	ldr	r7, [sp, #8]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:246
+
+  /* We allocate a pbuf chain of pbufs from the pool. */
+  p = pbuf_alloc(PBUF_RAW, len, PBUF_POOL);
+  16:	f7ff fffe 	bl	0 <pbuf_alloc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:248
+
+  if (p != NULL)
+  1a:	4606      	mov	r6, r0
+  1c:	b158      	cbz	r0, 36 <ethernetif_input+0x36>
+  1e:	4604      	mov	r4, r0
+  20:	2500      	movs	r5, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:252
+  {
+    for (q = p; q != NULL; q = q->next)
+    {
+	  memcpy((u8_t*)q->payload, (u8_t*)&buffer[l], q->len);
+  22:	6860      	ldr	r0, [r4, #4]
+  24:	1979      	adds	r1, r7, r5
+  26:	8962      	ldrh	r2, [r4, #10]
+  28:	f7ff fffe 	bl	0 <memcpy>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:253
+      l = l + q->len;
+  2c:	8963      	ldrh	r3, [r4, #10]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:250
+  /* We allocate a pbuf chain of pbufs from the pool. */
+  p = pbuf_alloc(PBUF_RAW, len, PBUF_POOL);
+
+  if (p != NULL)
+  {
+    for (q = p; q != NULL; q = q->next)
+  2e:	6824      	ldr	r4, [r4, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:253
+    {
+	  memcpy((u8_t*)q->payload, (u8_t*)&buffer[l], q->len);
+      l = l + q->len;
+  30:	18ed      	adds	r5, r5, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:250
+  /* We allocate a pbuf chain of pbufs from the pool. */
+  p = pbuf_alloc(PBUF_RAW, len, PBUF_POOL);
+
+  if (p != NULL)
+  {
+    for (q = p; q != NULL; q = q->next)
+  32:	2c00      	cmp	r4, #0
+  34:	d1f5      	bne.n	22 <ethernetif_input+0x22>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:259
+    }    
+  }
+
+
+  /* Set Own bit of the Rx descriptor Status: gives the buffer back to ETHERNET DMA */
+  frame.descriptor->Status = ETH_DMARxDesc_OWN; 
+  36:	9a03      	ldr	r2, [sp, #12]
+  38:	f04f 4300 	mov.w	r3, #2147483648	; 0x80000000
+  3c:	6013      	str	r3, [r2, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:262
+ 
+  /* When Rx Buffer unavailable flag is set: clear it and resume reception */
+  if ((ETH->DMASR & ETH_DMASR_RBUS) != (u32)RESET)  
+  3e:	4a0d      	ldr	r2, [pc, #52]	(74 <ethernetif_input+0x74>)
+  40:	6813      	ldr	r3, [r2, #0]
+  42:	f013 0f80 	tst.w	r3, #128	; 0x80
+  46:	d004      	beq.n	52 <ethernetif_input+0x52>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:265
+  {
+    /* Clear RBUS ETHERNET DMA flag */
+    ETH->DMASR = ETH_DMASR_RBUS;
+  48:	2380      	movs	r3, #128
+  4a:	6013      	str	r3, [r2, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:267
+    /* Resume DMA reception */
+    ETH->DMARPDR = 0;
+  4c:	4b0a      	ldr	r3, [pc, #40]	(78 <ethernetif_input+0x78>)
+  4e:	2200      	movs	r2, #0
+  50:	601a      	str	r2, [r3, #0]
+ethernetif_input():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:293
+
+  /* move received packet into a new pbuf */
+  p = low_level_input(netif);
+
+  /* no packet could be read, silently ignore this */
+  if (p == NULL) return ERR_MEM;
+  52:	b90e      	cbnz	r6, 58 <ethernetif_input+0x58>
+  54:	24ff      	movs	r4, #255
+  56:	e009      	b.n	6c <ethernetif_input+0x6c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:295
+
+  err = netif->input(p, netif);
+  58:	f8d8 3010 	ldr.w	r3, [r8, #16]
+  5c:	4630      	mov	r0, r6
+  5e:	4641      	mov	r1, r8
+  60:	4798      	blx	r3
+  62:	b2c4      	uxtb	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:296
+  if (err != ERR_OK)
+  64:	b114      	cbz	r4, 6c <ethernetif_input+0x6c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:299
+  {
+    LWIP_DEBUGF(NETIF_DEBUG, ("ethernetif_input: IP input error\n"));
+    pbuf_free(p);
+  66:	4630      	mov	r0, r6
+  68:	f7ff fffe 	bl	0 <pbuf_free>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:304
+    p = NULL;
+  }
+
+  return err;
+}
+  6c:	b260      	sxtb	r0, r4
+  6e:	b004      	add	sp, #16
+  70:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+  74:	40029014 	.word	0x40029014
+  78:	40029008 	.word	0x40029008
+Disassembly of section .text.Set_MAC_Address:
+
+00000000 <Set_MAC_Address>:
+Set_MAC_Address():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:118
+ *
+ * @param netif the already initialized lwip network interface structure
+ *        for this ethernetif
+ */
+void Set_MAC_Address(uint8_t* macadd)
+{
+   0:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:119
+  MACaddr[0] = macadd[0];
+   2:	4a09      	ldr	r2, [pc, #36]	(28 <Set_MAC_Address+0x28>)
+   4:	7803      	ldrb	r3, [r0, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:118
+ *
+ * @param netif the already initialized lwip network interface structure
+ *        for this ethernetif
+ */
+void Set_MAC_Address(uint8_t* macadd)
+{
+   6:	4601      	mov	r1, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:119
+  MACaddr[0] = macadd[0];
+   8:	7013      	strb	r3, [r2, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:120
+  MACaddr[1] = macadd[1];
+   a:	7843      	ldrb	r3, [r0, #1]
+   c:	7053      	strb	r3, [r2, #1]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:121
+  MACaddr[2] = macadd[2];
+   e:	7883      	ldrb	r3, [r0, #2]
+  10:	7093      	strb	r3, [r2, #2]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:122
+  MACaddr[3] = macadd[3];
+  12:	78c3      	ldrb	r3, [r0, #3]
+  14:	70d3      	strb	r3, [r2, #3]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:123
+  MACaddr[4] = macadd[4];
+  16:	7903      	ldrb	r3, [r0, #4]
+  18:	7113      	strb	r3, [r2, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:124
+  MACaddr[5] = macadd[5];
+  1a:	7943      	ldrb	r3, [r0, #5]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:126
+  
+  ETH_MACAddressConfig(ETH_MAC_Address0, macadd);  
+  1c:	2000      	movs	r0, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:124
+  MACaddr[0] = macadd[0];
+  MACaddr[1] = macadd[1];
+  MACaddr[2] = macadd[2];
+  MACaddr[3] = macadd[3];
+  MACaddr[4] = macadd[4];
+  MACaddr[5] = macadd[5];
+  1e:	7153      	strb	r3, [r2, #5]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:126
+  
+  ETH_MACAddressConfig(ETH_MAC_Address0, macadd);  
+  20:	f7ff fffe 	bl	0 <ETH_MACAddressConfig>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\port/ethernetif.c:127
+}
+  24:	bd10      	pop	{r4, pc}
+  26:	46c0      	nop			(mov r8, r8)
+  28:	00000000 	.word	0x00000000

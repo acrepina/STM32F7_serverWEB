@@ -1,0 +1,370 @@
+
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\stm32f10x_it.o:     file format elf32-littlearm
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\stm32f10x_it.o
+
+Disassembly of section .text.NMI_Handler:
+
+00000000 <NMI_Handler>:
+NMI_Handler():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:48
+  * @brief   This function handles NMI exception.
+  * @param  None
+  * @retval None
+  */
+void NMI_Handler(void)
+{}
+   0:	4770      	bx	lr
+   2:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.HardFault_Handler:
+
+00000000 <HardFault_Handler>:
+HardFault_Handler():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:56
+  * @brief  This function handles Hard Fault exception.
+  * @param  None
+  * @retval None
+  */
+void HardFault_Handler(void)
+{
+   0:	e7fe      	b.n	0 <HardFault_Handler>
+   2:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.MemManage_Handler:
+
+00000000 <MemManage_Handler>:
+MemManage_Handler():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:68
+  * @brief  This function handles Memory Manage exception.
+  * @param  None
+  * @retval None
+  */
+void MemManage_Handler(void)
+{
+   0:	e7fe      	b.n	0 <MemManage_Handler>
+   2:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.BusFault_Handler:
+
+00000000 <BusFault_Handler>:
+BusFault_Handler():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:80
+  * @brief  This function handles Bus Fault exception.
+  * @param  None
+  * @retval None
+  */
+void BusFault_Handler(void)
+{
+   0:	e7fe      	b.n	0 <BusFault_Handler>
+   2:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.UsageFault_Handler:
+
+00000000 <UsageFault_Handler>:
+UsageFault_Handler():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:92
+  * @brief  This function handles Usage Fault exception.
+  * @param  None
+  * @retval None
+  */
+void UsageFault_Handler(void)
+{
+   0:	e7fe      	b.n	0 <UsageFault_Handler>
+   2:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.SVC_Handler:
+
+00000000 <SVC_Handler>:
+SVC_Handler():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:104
+  * @brief  This function handles SVCall exception.
+  * @param  None
+  * @retval None
+  */
+void SVC_Handler(void)
+{}
+   0:	4770      	bx	lr
+   2:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.DebugMon_Handler:
+
+00000000 <DebugMon_Handler>:
+DebugMon_Handler():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:112
+  * @brief  This function handles Debug Monitor exception.
+  * @param  None
+  * @retval None
+  */
+void DebugMon_Handler(void)
+{}
+   0:	4770      	bx	lr
+   2:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.PendSV_Handler:
+
+00000000 <PendSV_Handler>:
+PendSV_Handler():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:120
+  * @brief  This function handles PendSVC exception.
+  * @param  None
+  * @retval None
+  */
+void PendSV_Handler(void)
+{}
+   0:	4770      	bx	lr
+   2:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.EXTI15_10_IRQHandler:
+
+00000000 <EXTI15_10_IRQHandler>:
+EXTI15_10_IRQHandler():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:165
+  * @brief  This function handles External lines 15 to 10 interrupt request.
+  * @param  None
+  * @retval None
+  */
+void EXTI15_10_IRQHandler(void)
+{
+   0:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:167
+
+  if(EXTI_GetITStatus(EXTI_LINE_IOE_ITLINE) != RESET)
+   2:	f44f 4080 	mov.w	r0, #16384	; 0x4000
+   6:	f7ff fffe 	bl	0 <EXTI_GetITStatus>
+   a:	2800      	cmp	r0, #0
+   c:	d068      	beq.n	e0 <EXTI15_10_IRQHandler+0xe0>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:172
+  {   
+    static TS_STATE* TS_State;
+    
+    /* Check if the interrupt source is the Touch Screen */
+    if (IOE_GetGITStatus(IOE_1_ADDR, IOE_TS_IT) & IOE_TS_IT)
+   e:	2082      	movs	r0, #130
+  10:	2107      	movs	r1, #7
+  12:	f7ff fffe 	bl	0 <IOE_GetGITStatus>
+  16:	f010 0f07 	tst.w	r0, #7	; 0x7
+  1a:	d055      	beq.n	ae <IOE_TS_GetState+0xae>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:175
+    {
+      /* Update the structure with the current position */
+      TS_State = IOE_TS_GetState();  
+  1c:	f7ff fffe 	bl	0 <IOE_TS_GetState>
+  20:	4b30      	ldr	r3, [pc, #192]	(e4 <EXTI15_10_IRQHandler+0xe4>)
+  22:	6018      	str	r0, [r3, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:177
+      
+      if ((TS_State->TouchDetected) && (TS_State->Y < 220) && (TS_State->Y > 180))
+  24:	8803      	ldrh	r3, [r0, #0]
+  26:	2b00      	cmp	r3, #0
+  28:	d03f      	beq.n	aa <EXTI15_10_IRQHandler+0xaa>
+  2a:	8883      	ldrh	r3, [r0, #4]
+  2c:	2bdb      	cmp	r3, #219
+  2e:	d83c      	bhi.n	aa <EXTI15_10_IRQHandler+0xaa>
+  30:	2bb4      	cmp	r3, #180
+  32:	d93a      	bls.n	aa <EXTI15_10_IRQHandler+0xaa>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:179
+      {
+        if ((TS_State->X > 10) && (TS_State->X < 70))
+  34:	8840      	ldrh	r0, [r0, #2]
+  36:	f1a0 030b 	sub.w	r3, r0, #11	; 0xb
+  3a:	b29b      	uxth	r3, r3
+  3c:	2b3a      	cmp	r3, #58
+  3e:	d808      	bhi.n	52 <EXTI15_10_IRQHandler+0x52>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:181
+        {
+          LCD_DisplayStringLine(Line6, " LD4                ");          
+  40:	2090      	movs	r0, #144
+  42:	4929      	ldr	r1, [pc, #164]	(e8 <EXTI15_10_IRQHandler+0xe8>)
+  44:	f7ff fffe 	bl	0 <LCD_DisplayStringLine>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:182
+		  STM_EVAL_LEDOn(LED4);
+  48:	2003      	movs	r0, #3
+  4a:	f7ff fffe 	bl	0 <STM_EVAL_LEDOn>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:185
+		  
+		  /* Send out a TCP packet to toggle the server's led4 */
+		  tcp_led_control(LED4);
+  4e:	2003      	movs	r0, #3
+  50:	e00c      	b.n	6c <EXTI15_10_IRQHandler+0x6c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:187
+        }
+        else if ((TS_State->X > 90) && (TS_State->X < 150))
+  52:	f1a0 035b 	sub.w	r3, r0, #91	; 0x5b
+  56:	b29b      	uxth	r3, r3
+  58:	2b3a      	cmp	r3, #58
+  5a:	d80a      	bhi.n	72 <EXTI15_10_IRQHandler+0x72>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:189
+        {
+          LCD_DisplayStringLine(Line6, "      LD3           ");
+  5c:	2090      	movs	r0, #144
+  5e:	4923      	ldr	r1, [pc, #140]	(ec <EXTI15_10_IRQHandler+0xec>)
+  60:	f7ff fffe 	bl	0 <LCD_DisplayStringLine>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:190
+          STM_EVAL_LEDOn(LED3);
+  64:	2002      	movs	r0, #2
+  66:	f7ff fffe 	bl	0 <STM_EVAL_LEDOn>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:193
+		  
+		  /* Send out a TCP packet to toggle the server's led3 */
+		  tcp_led_control(LED3);
+  6a:	2002      	movs	r0, #2
+  6c:	f7ff fffe 	bl	0 <tcp_led_control>
+  70:	e027      	b.n	c2 <EXTI15_10_IRQHandler+0xc2>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:195
+        }
+        else if ((TS_State->X > 170) && (TS_State->X < 230))
+  72:	f1a0 03ab 	sub.w	r3, r0, #171	; 0xab
+  76:	b29b      	uxth	r3, r3
+  78:	2b3a      	cmp	r3, #58
+  7a:	d808      	bhi.n	8e <EXTI15_10_IRQHandler+0x8e>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:197
+        {
+          LCD_DisplayStringLine(Line6, "           LD2      ");
+  7c:	2090      	movs	r0, #144
+  7e:	491c      	ldr	r1, [pc, #112]	(f0 <EXTI15_10_IRQHandler+0xf0>)
+  80:	f7ff fffe 	bl	0 <LCD_DisplayStringLine>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:198
+          STM_EVAL_LEDOn(LED2);
+  84:	2001      	movs	r0, #1
+  86:	f7ff fffe 	bl	0 <STM_EVAL_LEDOn>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:201
+		  
+		  /* Send out a TCP packet to toggle the server's led2 */
+		  tcp_led_control(LED2);
+  8a:	2001      	movs	r0, #1
+  8c:	e7ee      	b.n	6c <EXTI15_10_IRQHandler+0x6c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:203
+        }     
+        else if ((TS_State->X > 250) && (TS_State->X < 310))
+  8e:	f1a0 03fb 	sub.w	r3, r0, #251	; 0xfb
+  92:	b29b      	uxth	r3, r3
+  94:	2b3a      	cmp	r3, #58
+  96:	d814      	bhi.n	c2 <EXTI15_10_IRQHandler+0xc2>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:205
+        {
+          LCD_DisplayStringLine(Line6, "                LD1 ");
+  98:	2090      	movs	r0, #144
+  9a:	4916      	ldr	r1, [pc, #88]	(f4 <EXTI15_10_IRQHandler+0xf4>)
+  9c:	f7ff fffe 	bl	0 <LCD_DisplayStringLine>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:206
+          STM_EVAL_LEDOn(LED1);
+  a0:	2000      	movs	r0, #0
+  a2:	f7ff fffe 	bl	0 <STM_EVAL_LEDOn>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:209
+		  
+		  /* Send out a TCP packet to toggle the server's led1 */
+		  tcp_led_control(LED1);
+  a6:	2000      	movs	r0, #0
+  a8:	e7e0      	b.n	6c <EXTI15_10_IRQHandler+0x6c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:214
+        }
+      }
+      else
+      {
+        STM_EVAL_LEDOff(LED1);
+  aa:	2000      	movs	r0, #0
+  ac:	f7ff fffe 	bl	0 <STM_EVAL_LEDOff>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:215
+        STM_EVAL_LEDOff(LED2);
+  b0:	2001      	movs	r0, #1
+  b2:	f7ff fffe 	bl	0 <STM_EVAL_LEDOff>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:216
+        STM_EVAL_LEDOff(LED3);
+  b6:	2002      	movs	r0, #2
+  b8:	f7ff fffe 	bl	0 <STM_EVAL_LEDOff>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:217
+        STM_EVAL_LEDOff(LED4);
+  bc:	2003      	movs	r0, #3
+  be:	f7ff fffe 	bl	0 <STM_EVAL_LEDOff>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:221
+      }    
+      
+      /* Clear the interrupt pending bits */    
+      IOE_ClearGITPending(IOE_1_ADDR, IOE_TS_IT);      
+  c2:	2082      	movs	r0, #130
+  c4:	2107      	movs	r1, #7
+  c6:	e005      	b.n	d4 <EXTI15_10_IRQHandler+0xd4>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:225
+    }
+    else
+    {
+      IOE_ClearGITPending(IOE_1_ADDR, ALL_IT);
+  c8:	21ff      	movs	r1, #255
+  ca:	2082      	movs	r0, #130
+  cc:	f7ff fffe 	bl	0 <IOE_ClearGITPending>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:226
+      IOE_ClearGITPending(IOE_2_ADDR, ALL_IT);
+  d0:	2088      	movs	r0, #136
+  d2:	21ff      	movs	r1, #255
+  d4:	f7ff fffe 	bl	0 <IOE_ClearGITPending>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:229
+    }
+    
+    EXTI_ClearITPendingBit(EXTI_LINE_IOE_ITLINE);
+  d8:	f44f 4080 	mov.w	r0, #16384	; 0x4000
+  dc:	f7ff fffe 	bl	0 <EXTI_ClearITPendingBit>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:231
+  }  
+}
+  e0:	bd10      	pop	{r4, pc}
+  e2:	46c0      	nop			(mov r8, r8)
+	...
+  ec:	00000015 	.word	0x00000015
+  f0:	0000002a 	.word	0x0000002a
+  f4:	0000003f 	.word	0x0000003f
+Disassembly of section .text.ETH_IRQHandler:
+
+00000000 <ETH_IRQHandler>:
+ETH_IRQHandler():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:146
+  * @brief  This function handles ETH interrupt request.
+  * @param  None
+  * @retval None
+  */
+void ETH_IRQHandler(void)
+{
+   0:	b510      	push	{r4, lr}
+   2:	e001      	b.n	8 <ETH_IRQHandler+0x8>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:150
+  /* Handles all the received frames */
+  while(ETH_GetRxPktSize() != 0) 
+  {		
+    LwIP_Pkt_Handle();
+   4:	f7ff fffe 	bl	0 <LwIP_Pkt_Handle>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:148
+  * @retval None
+  */
+void ETH_IRQHandler(void)
+{
+  /* Handles all the received frames */
+  while(ETH_GetRxPktSize() != 0) 
+   8:	f7ff fffe 	bl	0 <ETH_GetRxPktSize>
+   c:	2800      	cmp	r0, #0
+   e:	d1f9      	bne.n	4 <ETH_IRQHandler+0x4>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:154
+  {		
+    LwIP_Pkt_Handle();
+  }
+
+  /* Clear the Eth DMA Rx IT pending bits */
+  ETH_DMAClearITPendingBit(ETH_DMA_IT_R);
+  10:	3040      	adds	r0, #64
+  12:	f7ff fffe 	bl	0 <ETH_DMAClearITPendingBit>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:155
+  ETH_DMAClearITPendingBit(ETH_DMA_IT_NIS);
+  16:	f44f 3080 	mov.w	r0, #65536	; 0x10000
+  1a:	f7ff fffe 	bl	0 <ETH_DMAClearITPendingBit>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:156
+}
+  1e:	bd10      	pop	{r4, pc}
+Disassembly of section .text.SysTick_Handler:
+
+00000000 <SysTick_Handler>:
+SysTick_Handler():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:128
+  * @brief  This function handles SysTick Handler.
+  * @param  None
+  * @retval None
+  */
+void SysTick_Handler(void)
+{
+   0:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:130
+  /* Update the LocalTime by adding SYSTEMTICK_PERIOD_MS each SysTick interrupt */
+  Time_Update();
+   2:	f7ff fffe 	bl	0 <Time_Update>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\src/stm32f10x_it.c:131
+}
+   6:	bd10      	pop	{r4, pc}

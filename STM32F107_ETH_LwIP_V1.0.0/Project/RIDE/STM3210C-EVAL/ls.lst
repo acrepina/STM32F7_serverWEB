@@ -1,0 +1,464 @@
+
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\ls.o:     file format elf32-littlearm
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\ls.o
+
+Disassembly of section .text.ls_isValidFileEntry:
+
+00000000 <ls_isValidFileEntry>:
+ls_isValidFileEntry():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:124
+}
+/*****************************************************************************/
+
+esint8 ls_isValidFileEntry(ListDirEntry *entry)
+{
+	if(entry->FileName[0] == 0 || entry->FileName[0] == 0xE5 || entry->FileName[0] == '.')return(0);
+   0:	7803      	ldrb	r3, [r0, #0]
+   2:	b15b      	cbz	r3, 1c <ls_isValidFileEntry+0x1c>
+   4:	2be5      	cmp	r3, #229
+   6:	d009      	beq.n	1c <ls_isValidFileEntry+0x1c>
+   8:	2b2e      	cmp	r3, #46
+   a:	d007      	beq.n	1c <ls_isValidFileEntry+0x1c>
+   c:	7c03      	ldrb	r3, [r0, #16]
+   e:	f003 030f 	and.w	r3, r3, #15	; 0xf
+  12:	f1b3 000f 	subs.w	r0, r3, #15	; 0xf
+  16:	bf18      	it	ne
+  18:	2001      	movne	r0, #1
+  1a:	e000      	b.n	1e <ls_isValidFileEntry+0x1e>
+  1c:	2000      	movs	r0, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:127
+	if((entry->Attribute&0x0F)==0x0F)return(0);
+ 	return(1);
+}
+  1e:	4770      	bx	lr
+Disassembly of section .text.ls_fileEntryToDirListEntry:
+
+00000000 <ls_fileEntryToDirListEntry>:
+ls_fileEntryToDirListEntry():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:132
+/*****************************************************************************/
+
+void ls_fileEntryToDirListEntry(DirList *dlist, euint8* buf, euint16 offset)
+{
+	if(offset>480 || offset%32)return;
+   0:	f5b2 7ff0 	cmp.w	r2, #480	; 0x1e0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:131
+ 	return(1);
+}
+/*****************************************************************************/
+
+void ls_fileEntryToDirListEntry(DirList *dlist, euint8* buf, euint16 offset)
+{
+   4:	b570      	push	{r4, r5, r6, lr}
+   6:	4605      	mov	r5, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:132
+	if(offset>480 || offset%32)return;
+   8:	d810      	bhi.n	2c <ls_fileEntryToDirListEntry+0x2c>
+   a:	f012 0f1f 	tst.w	r2, #31	; 0x1f
+   e:	d10d      	bne.n	2c <ls_fileEntryToDirListEntry+0x2c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:134
+	
+	buf+=offset;
+  10:	188c      	adds	r4, r1, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:135
+	memCpy(buf+OFFSET_DE_FILENAME,dlist->currentEntry.FileName,LIST_MAXLENFILENAME);
+  12:	4620      	mov	r0, r4
+  14:	f105 0108 	add.w	r1, r5, #8	; 0x8
+  18:	220c      	movs	r2, #12
+  1a:	f7ff fffe 	bl	0 <memCpy>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:136
+	dlist->currentEntry.Attribute = *(buf+OFFSET_DE_ATTRIBUTE);
+  1e:	7ae3      	ldrb	r3, [r4, #11]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:137
+	dlist->currentEntry.FileSize = ex_getb32(buf,OFFSET_DE_FILESIZE);
+  20:	4620      	mov	r0, r4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:136
+{
+	if(offset>480 || offset%32)return;
+	
+	buf+=offset;
+	memCpy(buf+OFFSET_DE_FILENAME,dlist->currentEntry.FileName,LIST_MAXLENFILENAME);
+	dlist->currentEntry.Attribute = *(buf+OFFSET_DE_ATTRIBUTE);
+  22:	762b      	strb	r3, [r5, #24]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:137
+	dlist->currentEntry.FileSize = ex_getb32(buf,OFFSET_DE_FILESIZE);
+  24:	211c      	movs	r1, #28
+  26:	f7ff fffe 	bl	0 <ex_getb32>
+  2a:	6168      	str	r0, [r5, #20]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:138
+}
+  2c:	bd70      	pop	{r4, r5, r6, pc}
+  2e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.ls_getRootAreaEntry:
+
+00000000 <ls_getRootAreaEntry>:
+ls_getRootAreaEntry():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:106
+	return(0);
+}
+/*****************************************************************************/
+
+esint8 ls_getRootAreaEntry(DirList *dlist)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4605      	mov	r5, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:109
+	euint8 *buf=0;
+	
+	if((dlist->fs->type != FAT12) && (dlist->fs->type != FAT16))return(-1);
+   4:	6800      	ldr	r0, [r0, #0]
+   6:	f890 303c 	ldrb.w	r3, [r0, #60]
+   a:	3b01      	subs	r3, #1
+   c:	b2db      	uxtb	r3, r3
+   e:	2b01      	cmp	r3, #1
+  10:	d81a      	bhi.n	48 <ls_getRootAreaEntry+0x48>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:110
+	if(dlist->rEntry>=dlist->fs->volumeId.RootEntryCount)return(-1);
+  12:	88ea      	ldrh	r2, [r5, #6]
+  14:	8983      	ldrh	r3, [r0, #12]
+  16:	4293      	cmp	r3, r2
+  18:	d916      	bls.n	48 <ls_getRootAreaEntry+0x48>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:112
+	
+	buf = part_getSect(dlist->fs->part,
+  1a:	6ac1      	ldr	r1, [r0, #44]
+  1c:	6800      	ldr	r0, [r0, #0]
+  1e:	eb01 1112 	add.w	r1, r1, r2, lsr #4
+  22:	2201      	movs	r2, #1
+  24:	f7ff fffe 	bl	0 <part_getSect>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:116
+					   dlist->fs->FirstSectorRootDir+dlist->rEntry/16,
+					   IOM_MODE_READONLY);
+	/*memCpy(buf+32*(dlist->rEntry%16),&(dlist->currentEntry),32);*/
+	ls_fileEntryToDirListEntry(dlist,buf,32*(dlist->rEntry%16));
+  28:	88ea      	ldrh	r2, [r5, #6]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:112
+	euint8 *buf=0;
+	
+	if((dlist->fs->type != FAT12) && (dlist->fs->type != FAT16))return(-1);
+	if(dlist->rEntry>=dlist->fs->volumeId.RootEntryCount)return(-1);
+	
+	buf = part_getSect(dlist->fs->part,
+  2a:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:116
+					   dlist->fs->FirstSectorRootDir+dlist->rEntry/16,
+					   IOM_MODE_READONLY);
+	/*memCpy(buf+32*(dlist->rEntry%16),&(dlist->currentEntry),32);*/
+	ls_fileEntryToDirListEntry(dlist,buf,32*(dlist->rEntry%16));
+  2c:	f002 020f 	and.w	r2, r2, #15	; 0xf
+  30:	4628      	mov	r0, r5
+  32:	4621      	mov	r1, r4
+  34:	0152      	lsls	r2, r2, #5
+  36:	f7ff fffe 	bl	0 <ls_getRootAreaEntry>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:117
+	part_relSect(dlist->fs->part,buf);
+  3a:	682b      	ldr	r3, [r5, #0]
+  3c:	4621      	mov	r1, r4
+  3e:	6818      	ldr	r0, [r3, #0]
+  40:	f7ff fffe 	bl	0 <part_relSect>
+  44:	2000      	movs	r0, #0
+  46:	e000      	b.n	4a <part_relSect+0x4a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:118
+	return(0);
+  48:	20ff      	movs	r0, #255
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:119
+}
+  4a:	b240      	sxtb	r0, r0
+  4c:	bd70      	pop	{r4, r5, r6, pc}
+  4e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.ls_getRealDirEntry:
+
+00000000 <ls_getRealDirEntry>:
+ls_getRealDirEntry():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:84
+
+esint8 ls_getRealDirEntry(DirList *dlist)
+{
+	euint8* buf;
+	
+	if(dlist->Cache.FirstCluster<=1)return(-1);
+   0:	6a83      	ldr	r3, [r0, #40]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:81
+	return(0);
+}
+/*****************************************************************************/
+
+esint8 ls_getRealDirEntry(DirList *dlist)
+{
+   2:	b570      	push	{r4, r5, r6, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:84
+	euint8* buf;
+	
+	if(dlist->Cache.FirstCluster<=1)return(-1);
+   4:	2b01      	cmp	r3, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:81
+	return(0);
+}
+/*****************************************************************************/
+
+esint8 ls_getRealDirEntry(DirList *dlist)
+{
+   6:	4605      	mov	r5, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:84
+	euint8* buf;
+	
+	if(dlist->Cache.FirstCluster<=1)return(-1);
+   8:	d92d      	bls.n	66 <ls_getRealDirEntry+0x66>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:86
+	
+	if(fat_LogicToDiscCluster(dlist->fs,
+   a:	4601      	mov	r1, r0
+   c:	f851 0b1c 	ldr.w	r0, [r1], #28
+  10:	88eb      	ldrh	r3, [r5, #6]
+  12:	7982      	ldrb	r2, [r0, #6]
+  14:	0112      	lsls	r2, r2, #4
+  16:	fb93 f2f2 	sdiv	r2, r3, r2
+  1a:	f7ff fffe 	bl	0 <fat_LogicToDiscCluster>
+  1e:	b286      	uxth	r6, r0
+  20:	bb0e      	cbnz	r6, 66 <ls_getRealDirEntry+0x66>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:92
+						   &(dlist->Cache),
+						   (dlist->rEntry)/(16 * dlist->fs->volumeId.SectorsPerCluster))){
+		return(-1);
+	}
+	
+	buf = part_getSect(dlist->fs->part,
+  22:	6828      	ldr	r0, [r5, #0]
+  24:	6a69      	ldr	r1, [r5, #36]
+  26:	6804      	ldr	r4, [r0, #0]
+  28:	f7ff fffe 	bl	0 <fs_clusterToSector>
+  2c:	682b      	ldr	r3, [r5, #0]
+  2e:	88ea      	ldrh	r2, [r5, #6]
+  30:	7999      	ldrb	r1, [r3, #6]
+  32:	0912      	lsrs	r2, r2, #4
+  34:	fb92 f3f1 	sdiv	r3, r2, r1
+  38:	fb01 2313 	mls	r3, r1, r3, r2
+  3c:	2201      	movs	r2, #1
+  3e:	18c1      	adds	r1, r0, r3
+  40:	4620      	mov	r0, r4
+  42:	f7ff fffe 	bl	0 <part_getSect>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:97
+					   fs_clusterToSector(dlist->fs,dlist->Cache.DiscCluster) + (dlist->rEntry/16)%dlist->fs->volumeId.SectorsPerCluster,
+				       IOM_MODE_READONLY);
+	
+	/*memCpy(buf+(dlist->rEntry%16)*32,&(dlist->currentEntry),32);*/
+	ls_fileEntryToDirListEntry(dlist,buf,32*(dlist->rEntry%16));
+  46:	88ea      	ldrh	r2, [r5, #6]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:92
+						   &(dlist->Cache),
+						   (dlist->rEntry)/(16 * dlist->fs->volumeId.SectorsPerCluster))){
+		return(-1);
+	}
+	
+	buf = part_getSect(dlist->fs->part,
+  48:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:97
+					   fs_clusterToSector(dlist->fs,dlist->Cache.DiscCluster) + (dlist->rEntry/16)%dlist->fs->volumeId.SectorsPerCluster,
+				       IOM_MODE_READONLY);
+	
+	/*memCpy(buf+(dlist->rEntry%16)*32,&(dlist->currentEntry),32);*/
+	ls_fileEntryToDirListEntry(dlist,buf,32*(dlist->rEntry%16));
+  4a:	f002 020f 	and.w	r2, r2, #15	; 0xf
+  4e:	4628      	mov	r0, r5
+  50:	4621      	mov	r1, r4
+  52:	0152      	lsls	r2, r2, #5
+  54:	f7ff fffe 	bl	0 <ls_getRealDirEntry>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:99
+	
+	part_relSect(dlist->fs->part,buf);
+  58:	682b      	ldr	r3, [r5, #0]
+  5a:	4621      	mov	r1, r4
+  5c:	6818      	ldr	r0, [r3, #0]
+  5e:	f7ff fffe 	bl	0 <part_relSect>
+  62:	4630      	mov	r0, r6
+  64:	e000      	b.n	68 <part_relSect+0x68>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:101
+	
+	return(0);
+  66:	20ff      	movs	r0, #255
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:102
+}
+  68:	b240      	sxtb	r0, r0
+  6a:	bd70      	pop	{r4, r5, r6, pc}
+Disassembly of section .text.ls_getDirEntry:
+
+00000000 <ls_getDirEntry>:
+ls_getDirEntry():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:60
+}
+/*****************************************************************************/
+
+esint8 ls_getDirEntry(DirList *dlist)
+{
+	if(dlist->Cache.FirstCluster == 1){
+   0:	6a83      	ldr	r3, [r0, #40]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:59
+	return(0);
+}
+/*****************************************************************************/
+
+esint8 ls_getDirEntry(DirList *dlist)
+{
+   2:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:60
+	if(dlist->Cache.FirstCluster == 1){
+   4:	2b01      	cmp	r3, #1
+   6:	d102      	bne.n	e <ls_getDirEntry+0xe>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:61
+		return(ls_getRootAreaEntry(dlist));
+   8:	f7ff fffe 	bl	0 <ls_getDirEntry>
+   c:	e004      	b.n	18 <ls_getDirEntry+0x18>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:62
+	}else if(dlist->Cache.FirstCluster){
+   e:	b90b      	cbnz	r3, 14 <ls_getDirEntry+0x14>
+  10:	20ff      	movs	r0, #255
+  12:	e002      	b.n	1a <ls_getDirEntry+0x1a>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:63
+		return(ls_getRealDirEntry(dlist));
+  14:	f7ff fffe 	bl	0 <ls_getDirEntry>
+  18:	b2c0      	uxtb	r0, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:66
+	}
+	return(-1);
+}
+  1a:	b240      	sxtb	r0, r0
+  1c:	bd10      	pop	{r4, pc}
+  1e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.ls_getNext:
+
+00000000 <ls_getNext>:
+ls_getNext():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:70
+/*****************************************************************************/
+
+esint8 ls_getNext(DirList *dlist)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:74
+	do{
+		if(ls_getDirEntry(dlist))return(-1);
+		dlist->rEntry++;
+	}while(!ls_isValidFileEntry(&(dlist->currentEntry)));
+   4:	f100 0608 	add.w	r6, r0, #8	; 0x8
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:72
+/*****************************************************************************/
+
+esint8 ls_getNext(DirList *dlist)
+{
+	do{
+		if(ls_getDirEntry(dlist))return(-1);
+   8:	4620      	mov	r0, r4
+   a:	f7ff fffe 	bl	0 <ls_getNext>
+   e:	b2c5      	uxtb	r5, r0
+  10:	b10d      	cbz	r5, 16 <ls_getNext+0x16>
+  12:	20ff      	movs	r0, #255
+  14:	e00c      	b.n	30 <ls_getNext+0x30>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:73
+		dlist->rEntry++;
+  16:	88e3      	ldrh	r3, [r4, #6]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:74
+	}while(!ls_isValidFileEntry(&(dlist->currentEntry)));
+  18:	4630      	mov	r0, r6
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:73
+
+esint8 ls_getNext(DirList *dlist)
+{
+	do{
+		if(ls_getDirEntry(dlist))return(-1);
+		dlist->rEntry++;
+  1a:	3301      	adds	r3, #1
+  1c:	80e3      	strh	r3, [r4, #6]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:74
+	}while(!ls_isValidFileEntry(&(dlist->currentEntry)));
+  1e:	f7ff fffe 	bl	0 <ls_getNext>
+  22:	f010 0fff 	tst.w	r0, #255	; 0xff
+  26:	d0ef      	beq.n	8 <ls_getNext+0x8>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:75
+	dlist->cEntry++;
+  28:	88a3      	ldrh	r3, [r4, #4]
+  2a:	4628      	mov	r0, r5
+  2c:	3301      	adds	r3, #1
+  2e:	80a3      	strh	r3, [r4, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:77
+	return(0);
+}
+  30:	b240      	sxtb	r0, r0
+  32:	bd70      	pop	{r4, r5, r6, pc}
+Disassembly of section .text.ls_openDir:
+
+00000000 <ls_openDir>:
+ls_openDir():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:38
+/*****************************************************************************/
+#include "ls.h"
+/*****************************************************************************/
+
+esint8 ls_openDir(DirList *dlist,FileSystem *fs,eint8* dirname)
+{
+   0:	b530      	push	{r4, r5, lr}
+   2:	b085      	sub	sp, #20
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:42
+	FileLocation loc;
+	euint32 fc;
+	
+	dlist->fs=fs;
+   4:	6001      	str	r1, [r0, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:38
+/*****************************************************************************/
+#include "ls.h"
+/*****************************************************************************/
+
+esint8 ls_openDir(DirList *dlist,FileSystem *fs,eint8* dirname)
+{
+   6:	4605      	mov	r5, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:44
+	FileLocation loc;
+	euint32 fc;
+	
+	dlist->fs=fs;
+	
+	if(fs_findFile(dlist->fs,dirname,&loc,&fc)!=2)
+   8:	ab03      	add	r3, sp, #12
+   a:	4608      	mov	r0, r1
+   c:	4611      	mov	r1, r2
+   e:	aa01      	add	r2, sp, #4
+  10:	f7ff fffe 	bl	0 <fs_findFile>
+  14:	b240      	sxtb	r0, r0
+  16:	2802      	cmp	r0, #2
+  18:	d001      	beq.n	1e <ls_openDir+0x1e>
+  1a:	20ff      	movs	r0, #255
+  1c:	e012      	b.n	44 <ls_openDir+0x44>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:49
+	{
+		return(-1);
+	}
+	
+	fs_initClusterChain(dlist->fs,&(dlist->Cache),fc);
+  1e:	462c      	mov	r4, r5
+  20:	f854 0b08 	ldr.w	r0, [r4], #8
+  24:	f105 011c 	add.w	r1, r5, #28	; 0x1c
+  28:	9a03      	ldr	r2, [sp, #12]
+  2a:	f7ff fffe 	bl	0 <fs_initClusterChain>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:50
+	memClr(&(dlist->currentEntry),sizeof(dlist->currentEntry));
+  2e:	4620      	mov	r0, r4
+  30:	2114      	movs	r1, #20
+  32:	f7ff fffe 	bl	0 <memClr>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:51
+	dlist->rEntry=0;
+  36:	f04f 0300 	mov.w	r3, #0	; 0x0
+  3a:	80eb      	strh	r3, [r5, #6]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:52
+	dlist->cEntry=0xFFFF;
+  3c:	f04f 33ff 	mov.w	r3, #4294967295	; 0xffffffff
+  40:	80ab      	strh	r3, [r5, #4]
+  42:	2000      	movs	r0, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/ls.c:55
+	
+	return(0);
+}
+  44:	b240      	sxtb	r0, r0
+  46:	b005      	add	sp, #20
+  48:	bd30      	pop	{r4, r5, pc}
+  4a:	46c0      	nop			(mov r8, r8)

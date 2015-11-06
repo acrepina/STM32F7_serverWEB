@@ -1,0 +1,114 @@
+
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\efs.o:     file format elf32-littlearm
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\efs.o
+
+Disassembly of section .text.efs_init:
+
+00000000 <efs_init>:
+efs_init():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/efs.c:45
+ * Description: This function initialises all subelements of a filesystem.
+ * It sets the pointerchain and verifies each step.
+ * Return value: 0 on success and -1 on failure.
+*/
+esint8 efs_init(EmbeddedFileSystem * efs,eint8* opts)
+{
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   4:	4605      	mov	r5, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/efs.c:46
+	if(if_initInterface(&efs->myCard, opts)==0)
+   6:	f7ff fffe 	bl	0 <if_initInterface>
+   a:	b2c7      	uxtb	r7, r0
+   c:	b10f      	cbz	r7, 12 <efs_init+0x12>
+   e:	20ff      	movs	r0, #255
+  10:	e02c      	b.n	6c <efs_init+0x6c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/efs.c:48
+	{
+		ioman_init(&efs->myIOman,&efs->myCard,0);
+  12:	1d2c      	adds	r4, r5, #4
+  14:	463a      	mov	r2, r7
+  16:	4620      	mov	r0, r4
+  18:	4629      	mov	r1, r5
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/efs.c:49
+		disc_initDisc(&efs->myDisc, &efs->myIOman);
+  1a:	f505 7609 	add.w	r6, r5, #548	; 0x224
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/efs.c:48
+*/
+esint8 efs_init(EmbeddedFileSystem * efs,eint8* opts)
+{
+	if(if_initInterface(&efs->myCard, opts)==0)
+	{
+		ioman_init(&efs->myIOman,&efs->myCard,0);
+  1e:	f7ff fffe 	bl	0 <ioman_init>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/efs.c:49
+		disc_initDisc(&efs->myDisc, &efs->myIOman);
+  22:	4621      	mov	r1, r4
+  24:	4630      	mov	r0, r6
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/efs.c:50
+		part_initPartition(&efs->myPart, &efs->myDisc);
+  26:	f505 741b 	add.w	r4, r5, #620	; 0x26c
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/efs.c:49
+esint8 efs_init(EmbeddedFileSystem * efs,eint8* opts)
+{
+	if(if_initInterface(&efs->myCard, opts)==0)
+	{
+		ioman_init(&efs->myIOman,&efs->myCard,0);
+		disc_initDisc(&efs->myDisc, &efs->myIOman);
+  2a:	f7ff fffe 	bl	0 <disc_initDisc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/efs.c:50
+		part_initPartition(&efs->myPart, &efs->myDisc);
+  2e:	4620      	mov	r0, r4
+  30:	4631      	mov	r1, r6
+  32:	f7ff fffe 	bl	0 <part_initPartition>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/efs.c:51
+		if(efs->myPart.activePartition==-1){
+  36:	f995 3270 	ldrsb.w	r3, [r5, #624]
+  3a:	f1b3 3fff 	cmp.w	r3, #4294967295	; 0xffffffff
+  3e:	d10b      	bne.n	58 <efs_init+0x58>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/efs.c:52
+			efs->myDisc.partitions[0].type=0x0B;
+  40:	330c      	adds	r3, #12
+  42:	f885 3230 	strb.w	r3, [r5, #560]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/efs.c:54
+			efs->myDisc.partitions[0].LBA_begin=0;
+			efs->myDisc.partitions[0].numSectors=efs->myCard.sectorCount;	
+  46:	682b      	ldr	r3, [r5, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/efs.c:53
+		ioman_init(&efs->myIOman,&efs->myCard,0);
+		disc_initDisc(&efs->myDisc, &efs->myIOman);
+		part_initPartition(&efs->myPart, &efs->myDisc);
+		if(efs->myPart.activePartition==-1){
+			efs->myDisc.partitions[0].type=0x0B;
+			efs->myDisc.partitions[0].LBA_begin=0;
+  48:	f8c5 7234 	str.w	r7, [r5, #564]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/efs.c:54
+			efs->myDisc.partitions[0].numSectors=efs->myCard.sectorCount;	
+  4c:	f8c5 3238 	str.w	r3, [r5, #568]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/efs.c:57
+			/*efs->myPart.activePartition = 0;*/
+			/*efs->myPart.disc = &(efs->myDisc);*/
+			part_initPartition(&efs->myPart, &efs->myDisc);
+  50:	4620      	mov	r0, r4
+  52:	4631      	mov	r1, r6
+  54:	f7ff fffe 	bl	0 <part_initPartition>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/efs.c:60
+		}
+		/*part_initPartition(&efs->myPart, &efs->myDisc);*/
+		if(fs_initFs(&efs->myFs, &efs->myPart))
+  58:	f505 701d 	add.w	r0, r5, #628	; 0x274
+  5c:	4621      	mov	r1, r4
+  5e:	f7ff fffe 	bl	0 <fs_initFs>
+  62:	b280      	uxth	r0, r0
+  64:	2800      	cmp	r0, #0
+  66:	bf14      	ite	ne
+  68:	20fe      	movne	r0, #254
+  6a:	2000      	moveq	r0, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/efs.c:65
+			return(-2);
+		return(0);
+	}
+	return(-1);
+}
+  6c:	b240      	sxtb	r0, r0
+  6e:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+  72:	46c0      	nop			(mov r8, r8)

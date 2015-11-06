@@ -1,0 +1,482 @@
+
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\inet.o:     file format elf32-littlearm
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\inet.o
+
+Disassembly of section .text.inet_ntoa:
+
+00000000 <inet_ntoa>:
+inet_ntoa():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:184
+ * @return pointer to a global static (!) buffer that holds the ASCII
+ *         represenation of addr
+ */
+char *
+inet_ntoa(struct in_addr addr)
+{
+   0:	b537      	push	{r0, r1, r2, r4, r5, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:186
+  static char str[16];
+  u32_t s_addr = addr.s_addr;
+   2:	4c19      	ldr	r4, [pc, #100]	(68 <inet_ntoa+0x68>)
+   4:	9000      	str	r0, [sp, #0]
+   6:	f04f 0c00 	mov.w	ip, #0	; 0x0
+   a:	f81d 000c 	ldrb.w	r0, [sp, ip]
+   e:	2100      	movs	r1, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:199
+  rp = str;
+  ap = (u8_t *)&s_addr;
+  for(n = 0; n < 4; n++) {
+    i = 0;
+    do {
+      rem = *ap % (u8_t)10;
+  10:	230a      	movs	r3, #10
+  12:	fbb0 f2f3 	udiv	r2, r0, r3
+  16:	fb03 0312 	mls	r3, r3, r2, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:201
+      *ap /= (u8_t)10;
+      inv[i++] = '0' + rem;
+  1a:	ad02      	add	r5, sp, #8
+  1c:	3330      	adds	r3, #48
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:200
+  ap = (u8_t *)&s_addr;
+  for(n = 0; n < 4; n++) {
+    i = 0;
+    do {
+      rem = *ap % (u8_t)10;
+      *ap /= (u8_t)10;
+  1e:	b2d0      	uxtb	r0, r2
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:201
+      inv[i++] = '0' + rem;
+  20:	186a      	adds	r2, r5, r1
+  22:	f802 3c03 	strb.w	r3, [r2, #-3]
+  26:	1c4b      	adds	r3, r1, #1
+  28:	b2d9      	uxtb	r1, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:202
+    } while(*ap);
+  2a:	2800      	cmp	r0, #0
+  2c:	d1f0      	bne.n	10 <inet_ntoa+0x10>
+  2e:	460d      	mov	r5, r1
+  30:	f80d 000c 	strb.w	r0, [sp, ip]
+  34:	4602      	mov	r2, r0
+  36:	e007      	b.n	48 <inet_ntoa+0x48>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:203
+    while(i--)
+  38:	1e4b      	subs	r3, r1, #1
+  3a:	b2d9      	uxtb	r1, r3
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:204
+      *rp++ = inv[i];
+  3c:	a802      	add	r0, sp, #8
+  3e:	1843      	adds	r3, r0, r1
+  40:	f813 3c03 	ldrb.w	r3, [r3, #-3]
+  44:	54a3      	strb	r3, [r4, r2]
+  46:	3201      	adds	r2, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:203
+    do {
+      rem = *ap % (u8_t)10;
+      *ap /= (u8_t)10;
+      inv[i++] = '0' + rem;
+    } while(*ap);
+    while(i--)
+  48:	2900      	cmp	r1, #0
+  4a:	d1f5      	bne.n	38 <inet_ntoa+0x38>
+  4c:	1962      	adds	r2, r4, r5
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:205
+      *rp++ = inv[i];
+    *rp++ = '.';
+  4e:	232e      	movs	r3, #46
+  50:	f10c 0c01 	add.w	ip, ip, #1	; 0x1
+  54:	5563      	strb	r3, [r4, r5]
+  56:	1c54      	adds	r4, r2, #1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:196
+  u8_t n;
+  u8_t i;
+
+  rp = str;
+  ap = (u8_t *)&s_addr;
+  for(n = 0; n < 4; n++) {
+  58:	f1bc 0f04 	cmp.w	ip, #4	; 0x4
+  5c:	d1d5      	bne.n	a <inet_ntoa+0xa>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:208
+    while(i--)
+      *rp++ = inv[i];
+    *rp++ = '.';
+    ap++;
+  }
+  *--rp = 0;
+  5e:	f804 1c01 	strb.w	r1, [r4, #-1]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:210
+  return str;
+}
+  62:	4801      	ldr	r0, [pc, #4]	(68 <inet_ntoa+0x68>)
+  64:	bd3e      	pop	{r1, r2, r3, r4, r5, pc}
+  66:	46c0      	nop			(mov r8, r8)
+  68:	00000000 	.word	0x00000000
+Disassembly of section .text.htons:
+
+00000000 <htons>:
+htons():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:235
+ * @param n u16_t in host byte order
+ * @return n in network byte order
+ */
+u16_t
+htons(u16_t n)
+{
+   0:	0a03      	lsrs	r3, r0, #8
+   2:	ea43 2300 	orr.w	r3, r3, r0, lsl #8
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:237
+  return ((n & 0xff) << 8) | ((n & 0xff00) >> 8);
+}
+   6:	b298      	uxth	r0, r3
+   8:	4770      	bx	lr
+   a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.ntohs:
+
+00000000 <ntohs>:
+ntohs():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:247
+ * @param n u16_t in network byte order
+ * @return n in host byte order
+ */
+u16_t
+ntohs(u16_t n)
+{
+   0:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:248
+  return htons(n);
+   2:	f7ff fffe 	bl	0 <ntohs>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:249
+}
+   6:	bd10      	pop	{r4, pc}
+Disassembly of section .text.htonl:
+
+00000000 <htonl>:
+htonl():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:259
+ * @param n u32_t in host byte order
+ * @return n in network byte order
+ */
+u32_t
+htonl(u32_t n)
+{
+   0:	4603      	mov	r3, r0
+   2:	0600      	lsls	r0, r0, #24
+   4:	f403 427f 	and.w	r2, r3, #65280	; 0xff00
+   8:	ea40 6013 	orr.w	r0, r0, r3, lsr #24
+   c:	ea40 2002 	orr.w	r0, r0, r2, lsl #8
+  10:	f403 037f 	and.w	r3, r3, #16711680	; 0xff0000
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:264
+  return ((n & 0xff) << 24) |
+    ((n & 0xff00) << 8) |
+    ((n & 0xff0000UL) >> 8) |
+    ((n & 0xff000000UL) >> 24);
+}
+  14:	ea40 2013 	orr.w	r0, r0, r3, lsr #8
+  18:	4770      	bx	lr
+  1a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.inet_aton:
+
+00000000 <inet_aton>:
+inet_aton():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:84
+ * @param addr pointer to which to save the ip address in network order
+ * @return 1 if cp could be converted to addr, 0 on failure
+ */
+int
+inet_aton(const char *cp, struct in_addr *addr)
+{
+   0:	b5f0      	push	{r4, r5, r6, r7, lr}
+   2:	b085      	sub	sp, #20
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:91
+  u8_t base;
+  char c;
+  u32_t parts[4];
+  u32_t *pp = parts;
+
+  c = *cp;
+   4:	7802      	ldrb	r2, [r0, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:84
+ * @param addr pointer to which to save the ip address in network order
+ * @return 1 if cp could be converted to addr, 0 on failure
+ */
+int
+inet_aton(const char *cp, struct in_addr *addr)
+{
+   6:	460f      	mov	r7, r1
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:91
+  u8_t base;
+  char c;
+  u32_t parts[4];
+  u32_t *pp = parts;
+
+  c = *cp;
+   8:	466e      	mov	r6, sp
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:98
+    /*
+     * Collect number up to ``.''.
+     * Values are specified as for C:
+     * 0x=hex, 0=octal, 1-9=decimal.
+     */
+    if (!isdigit(c))
+   a:	f1a2 0330 	sub.w	r3, r2, #48	; 0x30
+   e:	b2db      	uxtb	r3, r3
+  10:	2b09      	cmp	r3, #9
+  12:	d87e      	bhi.n	112 <inet_aton+0x112>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:102
+      return (0);
+    val = 0;
+    base = 10;
+    if (c == '0') {
+  14:	2a30      	cmp	r2, #48
+  16:	d001      	beq.n	1c <inet_aton+0x1c>
+  18:	250a      	movs	r5, #10
+  1a:	e00b      	b.n	34 <inet_aton+0x34>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:103
+      c = *++cp;
+  1c:	f810 2f01 	ldrb.w	r2, [r0, #1]!
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:104
+      if (c == 'x' || c == 'X') {
+  20:	b253      	sxtb	r3, r2
+  22:	2b78      	cmp	r3, #120
+  24:	d003      	beq.n	2e <inet_aton+0x2e>
+  26:	2b58      	cmp	r3, #88
+  28:	d001      	beq.n	2e <inet_aton+0x2e>
+  2a:	2508      	movs	r5, #8
+  2c:	e002      	b.n	34 <inet_aton+0x34>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:106
+        base = 16;
+        c = *++cp;
+  2e:	f810 2f01 	ldrb.w	r2, [r0, #1]!
+  32:	2510      	movs	r5, #16
+  34:	4604      	mov	r4, r0
+  36:	2000      	movs	r0, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:111
+      } else
+        base = 8;
+    }
+    for (;;) {
+      if (isdigit(c)) {
+  38:	b2d1      	uxtb	r1, r2
+  3a:	f1a1 0330 	sub.w	r3, r1, #48	; 0x30
+  3e:	b2db      	uxtb	r3, r3
+  40:	2b09      	cmp	r3, #9
+  42:	d805      	bhi.n	50 <inet_aton+0x50>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:112
+        val = (val * base) + (int)(c - '0');
+  44:	b253      	sxtb	r3, r2
+  46:	fb05 3300 	mla	r3, r5, r0, r3
+  4a:	f1a3 0030 	sub.w	r0, r3, #48	; 0x30
+  4e:	e018      	b.n	82 <inet_aton+0x82>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:114
+        c = *++cp;
+      } else if (base == 16 && isxdigit(c)) {
+  50:	2d10      	cmp	r5, #16
+  52:	d119      	bne.n	88 <inet_aton+0x88>
+  54:	f1a1 0361 	sub.w	r3, r1, #97	; 0x61
+  58:	fa5f fc83 	uxtb.w	ip, r3
+  5c:	f1bc 0f05 	cmp.w	ip, #5	; 0x5
+  60:	d909      	bls.n	76 <inet_aton+0x76>
+  62:	f1a1 0341 	sub.w	r3, r1, #65	; 0x41
+  66:	b2db      	uxtb	r3, r3
+  68:	2b05      	cmp	r3, #5
+  6a:	d80d      	bhi.n	88 <inet_aton+0x88>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:115
+        val = (val << 4) | (int)(c + 10 - (islower(c) ? 'a' : 'A'));
+  6c:	f1bc 0f19 	cmp.w	ip, #25	; 0x19
+  70:	d901      	bls.n	76 <inet_aton+0x76>
+  72:	2141      	movs	r1, #65
+  74:	e000      	b.n	78 <inet_aton+0x78>
+  76:	2161      	movs	r1, #97
+  78:	b253      	sxtb	r3, r2
+  7a:	330a      	adds	r3, #10
+  7c:	1a5b      	subs	r3, r3, r1
+  7e:	ea43 1000 	orr.w	r0, r3, r0, lsl #4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:116
+        c = *++cp;
+  82:	7862      	ldrb	r2, [r4, #1]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:106
+    base = 10;
+    if (c == '0') {
+      c = *++cp;
+      if (c == 'x' || c == 'X') {
+        base = 16;
+        c = *++cp;
+  84:	3401      	adds	r4, #1
+  86:	e7d7      	b.n	38 <inet_aton+0x38>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:120
+        val = (val << 4) | (int)(c + 10 - (islower(c) ? 'a' : 'A'));
+        c = *++cp;
+      } else
+        break;
+    }
+    if (c == '.') {
+  88:	2a2e      	cmp	r2, #46
+  8a:	d107      	bne.n	9c <inet_aton+0x9c>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:127
+       * Internet format:
+       *  a.b.c.d
+       *  a.b.c   (with c treated as 16 bits)
+       *  a.b (with b treated as 24 bits)
+       */
+      if (pp >= parts + 3)
+  8c:	ab03      	add	r3, sp, #12
+  8e:	429e      	cmp	r6, r3
+  90:	d23f      	bcs.n	112 <inet_aton+0x112>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:129
+        return (0);
+      *pp++ = val;
+  92:	f846 0b04 	str.w	r0, [r6], #4
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:130
+      c = *++cp;
+  96:	7862      	ldrb	r2, [r4, #1]
+  98:	1c60      	adds	r0, r4, #1
+  9a:	e7b6      	b.n	a <inet_aton+0xa>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:137
+      break;
+  }
+  /*
+   * Check for trailing characters.
+   */
+  if (c != '\0' && !isspace(c))
+  9c:	b162      	cbz	r2, b8 <inet_aton+0xb8>
+  9e:	b253      	sxtb	r3, r2
+  a0:	2b20      	cmp	r3, #32
+  a2:	d009      	beq.n	b8 <inet_aton+0xb8>
+  a4:	2b0c      	cmp	r3, #12
+  a6:	d007      	beq.n	b8 <inet_aton+0xb8>
+  a8:	2b0a      	cmp	r3, #10
+  aa:	d005      	beq.n	b8 <inet_aton+0xb8>
+  ac:	2b0d      	cmp	r3, #13
+  ae:	d003      	beq.n	b8 <inet_aton+0xb8>
+  b0:	2b09      	cmp	r3, #9
+  b2:	d001      	beq.n	b8 <inet_aton+0xb8>
+  b4:	2b0b      	cmp	r3, #11
+  b6:	d12c      	bne.n	112 <inet_aton+0x112>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:143
+    return (0);
+  /*
+   * Concoct the address according to
+   * the number of parts specified.
+   */
+  switch (pp - parts + 1) {
+  b8:	466b      	mov	r3, sp
+  ba:	1af3      	subs	r3, r6, r3
+  bc:	109b      	asrs	r3, r3, #2
+  be:	3301      	adds	r3, #1
+  c0:	2b04      	cmp	r3, #4
+  c2:	d820      	bhi.n	106 <inet_aton+0x106>
+  c4:	e8df f003 	tbb	[pc, r3]
+  c8:	0a031f25 	.word	0x0a031f25
+  cc:	0013      	.short	0x0013
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:152
+
+  case 1:             /* a -- 32 bits */
+    break;
+
+  case 2:             /* a.b -- 8.24 bits */
+    if (val > 0xffffffUL)
+  ce:	f1b0 7f80 	cmp.w	r0, #16777216	; 0x1000000
+  d2:	d21e      	bcs.n	112 <inet_aton+0x112>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:154
+      return (0);
+    val |= parts[0] << 24;
+  d4:	9b00      	ldr	r3, [sp, #0]
+  d6:	ea40 6003 	orr.w	r0, r0, r3, lsl #24
+  da:	e014      	b.n	106 <inet_aton+0x106>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:158
+    break;
+
+  case 3:             /* a.b.c -- 8.8.16 bits */
+    if (val > 0xffff)
+  dc:	f5b0 3f80 	cmp.w	r0, #65536	; 0x10000
+  e0:	d217      	bcs.n	112 <inet_aton+0x112>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:160
+      return (0);
+    val |= (parts[0] << 24) | (parts[1] << 16);
+  e2:	9b00      	ldr	r3, [sp, #0]
+  e4:	9a01      	ldr	r2, [sp, #4]
+  e6:	061b      	lsls	r3, r3, #24
+  e8:	ea43 4302 	orr.w	r3, r3, r2, lsl #16
+  ec:	e009      	b.n	102 <inet_aton+0x102>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:164
+    break;
+
+  case 4:             /* a.b.c.d -- 8.8.8.8 bits */
+    if (val > 0xff)
+  ee:	28ff      	cmp	r0, #255
+  f0:	d80f      	bhi.n	112 <inet_aton+0x112>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:166
+      return (0);
+    val |= (parts[0] << 24) | (parts[1] << 16) | (parts[2] << 8);
+  f2:	9b00      	ldr	r3, [sp, #0]
+  f4:	9a01      	ldr	r2, [sp, #4]
+  f6:	061b      	lsls	r3, r3, #24
+  f8:	ea43 4302 	orr.w	r3, r3, r2, lsl #16
+  fc:	9a02      	ldr	r2, [sp, #8]
+  fe:	ea43 2302 	orr.w	r3, r3, r2, lsl #8
+ 102:	ea43 0000 	orr.w	r0, r3, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:169
+    break;
+  }
+  if (addr)
+ 106:	b117      	cbz	r7, 8 <inet_aton+0x8>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:170
+    addr->s_addr = htonl(val);
+ 108:	f7ff fffe 	bl	0 <inet_aton>
+ 10c:	6038      	str	r0, [r7, #0]
+ 10e:	2001      	movs	r0, #1
+ 110:	e000      	b.n	114 <inet_aton+0x114>
+ 112:	2000      	movs	r0, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:172
+  return (1);
+}
+ 114:	b005      	add	sp, #20
+ 116:	bdf0      	pop	{r4, r5, r6, r7, pc}
+Disassembly of section .text.inet_addr:
+
+00000000 <inet_addr>:
+inet_addr():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:62
+ * @param cp IP address in ascii represenation (e.g. "127.0.0.1")
+ * @return ip address in network order
+ */
+u32_t
+inet_addr(const char *cp)
+{
+   0:	b507      	push	{r0, r1, r2, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:65
+  struct in_addr val;
+
+  if (inet_aton(cp, &val)) {
+   2:	a901      	add	r1, sp, #4
+   4:	f7ff fffe 	bl	0 <inet_addr>
+   8:	b908      	cbnz	r0, e <inet_addr+0xe>
+   a:	3801      	subs	r0, #1
+   c:	e000      	b.n	10 <inet_addr+0x10>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:66
+    return (val.s_addr);
+   e:	9801      	ldr	r0, [sp, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:69
+  }
+  return (INADDR_NONE);
+}
+  10:	bd0e      	pop	{r1, r2, r3, pc}
+  12:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.ntohl:
+
+00000000 <ntohl>:
+ntohl():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:274
+ * @param n u32_t in network byte order
+ * @return n in host byte order
+ */
+u32_t
+ntohl(u32_t n)
+{
+   0:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:275
+  return htonl(n);
+   2:	f7ff fffe 	bl	0 <ntohl>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\lwip-1.3.1\src\core\ipv4/inet.c:276
+}
+   6:	bd10      	pop	{r4, pc}

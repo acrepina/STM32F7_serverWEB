@@ -1,0 +1,111 @@
+
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\disc.o:     file format elf32-littlearm
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Project\RIDE\STM3210C-EVAL\disc.o
+
+Disassembly of section .text.disc_loadMBR:
+
+00000000 <disc_loadMBR>:
+disc_loadMBR():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/disc.c:56
+/* ****************************************************************************  
+ * void disc_loadMBR(Disc *disc)
+ * Description: This functions copies the partitiontable to the partitions field.
+*/
+void disc_loadMBR(Disc *disc)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/disc.c:60
+	euint8 x;
+	euint8 *buf;
+	
+	buf=ioman_getSector(disc->ioman,LBA_ADDR_MBR,IOM_MODE_READONLY|IOM_MODE_EXP_REQ);
+   2:	4605      	mov	r5, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/disc.c:56
+/* ****************************************************************************  
+ * void disc_loadMBR(Disc *disc)
+ * Description: This functions copies the partitiontable to the partitions field.
+*/
+void disc_loadMBR(Disc *disc)
+{
+   4:	4604      	mov	r4, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/disc.c:60
+	euint8 x;
+	euint8 *buf;
+	
+	buf=ioman_getSector(disc->ioman,LBA_ADDR_MBR,IOM_MODE_READONLY|IOM_MODE_EXP_REQ);
+   6:	2100      	movs	r1, #0
+   8:	f855 0b08 	ldr.w	r0, [r5], #8
+   c:	2205      	movs	r2, #5
+   e:	f7ff fffe 	bl	0 <ioman_getSector>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/disc.c:62
+	for(x=0;x<4;x++){
+		ex_getPartitionField(buf,&(disc->partitions[x]),PARTITION_TABLE_OFFSET+(x*SIZE_PARTITION_FIELD));
+  12:	4629      	mov	r1, r5
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/disc.c:60
+void disc_loadMBR(Disc *disc)
+{
+	euint8 x;
+	euint8 *buf;
+	
+	buf=ioman_getSector(disc->ioman,LBA_ADDR_MBR,IOM_MODE_READONLY|IOM_MODE_EXP_REQ);
+  14:	4606      	mov	r6, r0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/disc.c:62
+	for(x=0;x<4;x++){
+		ex_getPartitionField(buf,&(disc->partitions[x]),PARTITION_TABLE_OFFSET+(x*SIZE_PARTITION_FIELD));
+  16:	f44f 72df 	mov.w	r2, #446	; 0x1be
+  1a:	f7ff fffe 	bl	0 <ex_getPartitionField>
+  1e:	4630      	mov	r0, r6
+  20:	f104 0118 	add.w	r1, r4, #24	; 0x18
+  24:	f44f 72e7 	mov.w	r2, #462	; 0x1ce
+  28:	f7ff fffe 	bl	0 <ex_getPartitionField>
+  2c:	4630      	mov	r0, r6
+  2e:	f104 0128 	add.w	r1, r4, #40	; 0x28
+  32:	f44f 72ef 	mov.w	r2, #478	; 0x1de
+  36:	f7ff fffe 	bl	0 <ex_getPartitionField>
+  3a:	4630      	mov	r0, r6
+  3c:	f104 0138 	add.w	r1, r4, #56	; 0x38
+  40:	f44f 72f7 	mov.w	r2, #494	; 0x1ee
+  44:	f7ff fffe 	bl	0 <ex_getPartitionField>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/disc.c:64
+	}
+	ioman_releaseSector(disc->ioman,buf);
+  48:	6820      	ldr	r0, [r4, #0]
+  4a:	4631      	mov	r1, r6
+  4c:	f7ff fffe 	bl	0 <ioman_releaseSector>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/disc.c:65
+}
+  50:	bd70      	pop	{r4, r5, r6, pc}
+  52:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.disc_initDisc:
+
+00000000 <disc_initDisc>:
+disc_initDisc():
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/disc.c:46
+ * pointer to the hardware object.
+*/
+void disc_initDisc(Disc *disc,IOManager* ioman)
+{
+	disc->ioman=ioman;
+	disc_setError(disc,DISC_NOERROR);
+   0:	2300      	movs	r3, #0
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/disc.c:44
+ * void disc_initDisc(Disc *disc,hcInterface* source)
+ * Description: This initialises the disc by loading the MBR and setting the
+ * pointer to the hardware object.
+*/
+void disc_initDisc(Disc *disc,IOManager* ioman)
+{
+   2:	b510      	push	{r4, lr}
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/disc.c:45
+	disc->ioman=ioman;
+   4:	6001      	str	r1, [r0, #0]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/disc.c:46
+	disc_setError(disc,DISC_NOERROR);
+   6:	7103      	strb	r3, [r0, #4]
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/disc.c:47
+	disc_loadMBR(disc);
+   8:	f7ff fffe 	bl	0 <disc_initDisc>
+D:\SAV\STM32_Documents\lwip_st_STM32\STM32F107_ETH_LwIP_V1.0.0\Utilities\efsl\source/disc.c:48
+}
+   c:	bd10      	pop	{r4, pc}
+   e:	46c0      	nop			(mov r8, r8)
