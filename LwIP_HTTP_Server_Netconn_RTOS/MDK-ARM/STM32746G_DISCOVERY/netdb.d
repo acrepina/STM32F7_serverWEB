@@ -1,0 +1,10 @@
+stm32746g_discovery\netdb.o: ..\..\..\..\..\..\Middlewares\Third_Party\LwIP\src\api\netdb.c
+stm32746g_discovery\netdb.o: ..\..\..\..\..\..\Middlewares\Third_Party\LwIP\src\include\lwip/netdb.h
+stm32746g_discovery\netdb.o: ..\..\..\..\..\..\Middlewares\Third_Party\LwIP\src\include\lwip/opt.h
+stm32746g_discovery\netdb.o: ..\Inc\lwipopts.h
+stm32746g_discovery\netdb.o: ..\..\..\..\..\..\Middlewares\Third_Party\LwIP\src\include\lwip/debug.h
+stm32746g_discovery\netdb.o: ..\..\..\..\..\..\Middlewares\Third_Party\LwIP\src\include\lwip/arch.h
+stm32746g_discovery\netdb.o: ..\..\..\..\..\..\Middlewares\Third_Party\LwIP\system\arch/cc.h
+stm32746g_discovery\netdb.o: ..\..\..\..\..\..\Middlewares\Third_Party\LwIP\system\arch/cpu.h
+stm32746g_discovery\netdb.o: ..\..\..\..\..\..\Middlewares\Third_Party\LwIP\src\include\lwip/opt.h
+stm32746g_discovery\netdb.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

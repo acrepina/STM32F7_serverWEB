@@ -1,0 +1,12 @@
+stm32746g_discovery\inet.o: ..\..\..\..\..\..\Middlewares\Third_Party\LwIP\src\core\ipv4\inet.c
+stm32746g_discovery\inet.o: ..\..\..\..\..\..\Middlewares\Third_Party\LwIP\src\include\lwip/opt.h
+stm32746g_discovery\inet.o: ..\Inc\lwipopts.h
+stm32746g_discovery\inet.o: ..\..\..\..\..\..\Middlewares\Third_Party\LwIP\src\include\lwip/debug.h
+stm32746g_discovery\inet.o: ..\..\..\..\..\..\Middlewares\Third_Party\LwIP\src\include\lwip/arch.h
+stm32746g_discovery\inet.o: ..\..\..\..\..\..\Middlewares\Third_Party\LwIP\system\arch/cc.h
+stm32746g_discovery\inet.o: ..\..\..\..\..\..\Middlewares\Third_Party\LwIP\system\arch/cpu.h
+stm32746g_discovery\inet.o: ..\..\..\..\..\..\Middlewares\Third_Party\LwIP\src\include\lwip/opt.h
+stm32746g_discovery\inet.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+stm32746g_discovery\inet.o: ..\..\..\..\..\..\Middlewares\Third_Party\LwIP\src\include\ipv4\lwip/inet.h
+stm32746g_discovery\inet.o: ..\..\..\..\..\..\Middlewares\Third_Party\LwIP\src\include\lwip/def.h
+stm32746g_discovery\inet.o: ..\..\..\..\..\..\Middlewares\Third_Party\LwIP\src\include\ipv4\lwip/ip_addr.h
