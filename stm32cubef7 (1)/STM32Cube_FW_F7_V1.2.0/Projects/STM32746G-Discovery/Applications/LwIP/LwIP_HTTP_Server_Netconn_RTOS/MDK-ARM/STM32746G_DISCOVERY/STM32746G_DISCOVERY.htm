@@ -3,7 +3,7 @@
 <title>Static Call Graph - [STM32746G_DISCOVERY\STM32746G_DISCOVERY.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image STM32746G_DISCOVERY\STM32746G_DISCOVERY.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Fri Nov 06 17:09:40 2015
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060020: Last Updated: Wed Nov 18 23:36:40 2015
 <BR><P>
 <H3>Maximum Stack Usage =        808 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -3933,8 +3933,8 @@ Local Symbols
 <BR>[Calls]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;etharp_tmr
 <LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sys_timeout
 </UL>
-<BR>[Address Reference Count : 2]<UL><LI> lwip_timers.o(i.sys_timeouts_init)
-<LI> lwip_timers.o(i.arp_timer)
+<BR>[Address Reference Count : 2]<UL><LI> lwip_timers.o(i.arp_timer)
+<LI> lwip_timers.o(i.sys_timeouts_init)
 </UL>
 <P><STRONG><a name="[74]"></a>dhcp_timer_coarse</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, lwip_timers.o(i.dhcp_timer_coarse))
 <BR><BR>[Stack]<UL><LI>Max Depth = 288<LI>Call Chain = dhcp_timer_coarse &rArr; dhcp_coarse_tmr &rArr; dhcp_renew &rArr; udp_sendto_if &rArr; pbuf_alloc &rArr; pbuf_free &rArr; mem_free &rArr; sys_arch_sem_wait &rArr; xQueueGenericReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
@@ -3942,8 +3942,8 @@ Local Symbols
 <BR>[Calls]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sys_timeout
 <LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dhcp_coarse_tmr
 </UL>
-<BR>[Address Reference Count : 2]<UL><LI> lwip_timers.o(i.sys_timeouts_init)
-<LI> lwip_timers.o(i.dhcp_timer_coarse)
+<BR>[Address Reference Count : 2]<UL><LI> lwip_timers.o(i.dhcp_timer_coarse)
+<LI> lwip_timers.o(i.sys_timeouts_init)
 </UL>
 <P><STRONG><a name="[75]"></a>dhcp_timer_fine</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, lwip_timers.o(i.dhcp_timer_fine))
 <BR><BR>[Stack]<UL><LI>Max Depth = 416<LI>Call Chain = dhcp_timer_fine &rArr; dhcp_fine_tmr &rArr; dhcp_timeout &rArr; dhcp_bind &rArr; netif_set_ipaddr &rArr; tcp_abort &rArr; tcp_abandon &rArr; tcp_pcb_remove &rArr; tcp_output &rArr; tcp_send_empty_ack &rArr; tcp_output_alloc_header &rArr; pbuf_alloc &rArr; pbuf_free &rArr; mem_free &rArr; sys_arch_sem_wait &rArr; xQueueGenericReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick

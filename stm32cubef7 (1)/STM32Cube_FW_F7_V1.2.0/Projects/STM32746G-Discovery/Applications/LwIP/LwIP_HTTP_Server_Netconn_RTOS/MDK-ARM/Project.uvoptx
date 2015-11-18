@@ -82,42 +82,42 @@
         <Book>
           <Number>0</Number>
           <Title>User Manual (STM32756G-EVAL)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.3.0\MDK\Boards\ST\STM32756G_EVAL\Documentation\DM00188617.pdf</Path>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.2.0\MDK\Boards\ST\STM32756G_EVAL\Documentation\DM00188617.pdf</Path>
         </Book>
         <Book>
           <Number>1</Number>
           <Title>Bill of Materials (STM32756G-EVAL)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.3.0\MDK\Boards\ST\STM32756G_EVAL\Documentation\stm327x6g-eval_bom.zip</Path>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.2.0\MDK\Boards\ST\STM32756G_EVAL\Documentation\stm327x6g-eval_bom.zip</Path>
         </Book>
         <Book>
           <Number>2</Number>
           <Title>Gerber Files (STM32756G-EVAL)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.3.0\MDK\Boards\ST\STM32756G_EVAL\Documentation\stm327x6g-eval_gerber.zip</Path>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.2.0\MDK\Boards\ST\STM32756G_EVAL\Documentation\stm327x6g-eval_gerber.zip</Path>
         </Book>
         <Book>
           <Number>3</Number>
           <Title>Schematics (STM32756G-EVAL)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.3.0\MDK\Boards\ST\STM32756G_EVAL\Documentation\stm327x6g-eval_sch.zip</Path>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.2.0\MDK\Boards\ST\STM32756G_EVAL\Documentation\stm327x6g-eval_sch.zip</Path>
         </Book>
         <Book>
           <Number>4</Number>
           <Title>User Manual (STM32F746G-Discovery)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.3.0\MDK\Boards\ST\STM32F746G_Discovery\Documentation\DM00190424.pdf</Path>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.2.0\MDK\Boards\ST\STM32F746G_Discovery\Documentation\DM00190424.pdf</Path>
         </Book>
         <Book>
           <Number>5</Number>
           <Title>Bill of Materials (STM32F746G-Discovery)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.3.0\MDK\Boards\ST\STM32F746G_Discovery\Documentation\stm32f746g-disco_bom.zip</Path>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.2.0\MDK\Boards\ST\STM32F746G_Discovery\Documentation\stm32f746g-disco_bom.zip</Path>
         </Book>
         <Book>
           <Number>6</Number>
           <Title>Gerber Files (STM32F746G-Discovery)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.3.0\MDK\Boards\ST\STM32F746G_Discovery\Documentation\stm32f746g-disco_gerber.zip</Path>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.2.0\MDK\Boards\ST\STM32F746G_Discovery\Documentation\stm32f746g-disco_gerber.zip</Path>
         </Book>
         <Book>
           <Number>7</Number>
           <Title>Schematics (STM32F746G-Discovery)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.3.0\MDK\Boards\ST\STM32F746G_Discovery\Documentation\stm32f746g-disco_sch.zip</Path>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.2.0\MDK\Boards\ST\STM32F746G_Discovery\Documentation\stm32f746g-disco_sch.zip</Path>
         </Book>
         <Book>
           <Number>8</Number>
@@ -217,22 +217,6 @@
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>187</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134239820</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\Src\httpserver-netconn.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\STM32746G_DISCOVERY\../Src/httpserver-netconn.c\187</Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
           <LineNumber>184</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>134239742</Address>
@@ -247,7 +231,7 @@
           <Expression>\\STM32746G_DISCOVERY\../Src/httpserver-netconn.c\184</Expression>
         </Bp>
         <Bp>
-          <Number>3</Number>
+          <Number>2</Number>
           <Type>0</Type>
           <LineNumber>119</LineNumber>
           <EnabledFlag>1</EnabledFlag>
@@ -796,7 +780,7 @@
 
   <Group>
     <GroupName>Middlewares/LwIP/Api</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -804,7 +788,7 @@
       <GroupNumber>7</GroupNumber>
       <FileNumber>35</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
@@ -942,7 +926,7 @@
       <GroupNumber>8</GroupNumber>
       <FileNumber>45</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
@@ -955,7 +939,7 @@
       <GroupNumber>8</GroupNumber>
       <FileNumber>46</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>

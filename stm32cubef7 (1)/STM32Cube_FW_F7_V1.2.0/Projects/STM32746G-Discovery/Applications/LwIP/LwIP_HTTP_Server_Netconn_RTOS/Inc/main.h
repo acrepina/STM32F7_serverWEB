@@ -45,7 +45,7 @@
 /*Static IP ADDRESS*/
 #define IP_ADDR0   169
 #define IP_ADDR1   254
-#define IP_ADDR2   133
+#define IP_ADDR2   30
 #define IP_ADDR3   10
    
 /*NETMASK*/
@@ -57,8 +57,8 @@
 /*Gateway Address*/
 #define GW_ADDR0   169
 #define GW_ADDR1   254
-#define GW_ADDR2   133
-#define GW_ADDR3   1 
+#define GW_ADDR2   30
+#define GW_ADDR3   104
 
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */  
