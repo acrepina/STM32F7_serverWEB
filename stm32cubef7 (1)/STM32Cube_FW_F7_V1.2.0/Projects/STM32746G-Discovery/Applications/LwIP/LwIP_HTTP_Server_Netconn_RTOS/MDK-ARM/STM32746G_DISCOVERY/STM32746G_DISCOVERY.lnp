@@ -32,7 +32,6 @@
 "stm32746g_discovery\autoip.o"
 "stm32746g_discovery\ip.o"
 "stm32746g_discovery\ip_addr.o"
-"stm32746g_discovery\fs.o"
 "stm32746g_discovery\tcpip.o"
 "stm32746g_discovery\netbuf.o"
 "stm32746g_discovery\api_lib.o"

@@ -52,3 +52,4 @@ stm32746g_discovery\light_control.o: ..\..\..\..\..\..\Middlewares\Third_Party\F
 stm32746g_discovery\light_control.o: ..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h
 stm32746g_discovery\light_control.o: ..\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\tm_stm32_delay.h
 stm32746g_discovery\light_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+stm32746g_discovery\light_control.o: ..\Inc\VAR.h

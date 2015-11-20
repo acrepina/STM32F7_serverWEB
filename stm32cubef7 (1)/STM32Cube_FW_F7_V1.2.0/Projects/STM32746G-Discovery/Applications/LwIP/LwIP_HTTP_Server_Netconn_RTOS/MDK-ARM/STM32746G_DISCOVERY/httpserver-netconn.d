@@ -32,7 +32,10 @@ stm32746g_discovery\httpserver-netconn.o: ..\..\..\..\..\..\Middlewares\Third_Pa
 stm32746g_discovery\httpserver-netconn.o: ..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h
 stm32746g_discovery\httpserver-netconn.o: ..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h
 stm32746g_discovery\httpserver-netconn.o: ..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h
+stm32746g_discovery\httpserver-netconn.o: ..\Src\fsdata.c
+stm32746g_discovery\httpserver-netconn.o: ..\Inc\fsdata.h
 stm32746g_discovery\httpserver-netconn.o: ..\Inc\fs.h
 stm32746g_discovery\httpserver-netconn.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 stm32746g_discovery\httpserver-netconn.o: ..\Inc\httpserver-netconn.h
 stm32746g_discovery\httpserver-netconn.o: ..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h
+stm32746g_discovery\httpserver-netconn.o: ..\Inc\VAR.h

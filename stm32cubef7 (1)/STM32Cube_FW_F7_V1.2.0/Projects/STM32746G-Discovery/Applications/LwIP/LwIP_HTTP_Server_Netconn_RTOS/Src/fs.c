@@ -44,7 +44,7 @@
 #if HTTPD_USE_CUSTUM_FSDATA
 #include "fsdata_custom.c"
 #else /* HTTPD_USE_CUSTUM_FSDATA */
-#include "fsdata.c"
+//#include "fsdata.c"
 #endif /* HTTPD_USE_CUSTUM_FSDATA */
 
 /*-----------------------------------------------------------------------------------*/
@@ -107,7 +107,7 @@ fs_open(const char *name)
     return NULL;
   }
 
-#if LWIP_HTTPD_CUSTOM_FILES
+#if LWIP_HTTPD_CUSTOM_FILES //not employed
   if(fs_open_custom(file, name)) {
     file->is_custom_file = 1;
     return file;

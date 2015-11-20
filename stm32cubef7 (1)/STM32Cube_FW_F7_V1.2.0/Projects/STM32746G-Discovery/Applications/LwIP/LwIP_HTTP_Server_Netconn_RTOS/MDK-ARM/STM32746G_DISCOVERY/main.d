@@ -84,3 +84,4 @@ stm32746g_discovery\main.o: ..\Inc\lcd_log_conf.h
 stm32746g_discovery\main.o: ..\Inc\httpserver-netconn.h
 stm32746g_discovery\main.o: ..\Inc\light_control.h
 stm32746g_discovery\main.o: ..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h
+stm32746g_discovery\main.o: ..\Inc\VAR.h

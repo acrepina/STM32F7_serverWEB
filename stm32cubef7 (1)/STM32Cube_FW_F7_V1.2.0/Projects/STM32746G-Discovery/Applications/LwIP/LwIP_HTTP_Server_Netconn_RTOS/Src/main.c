@@ -40,6 +40,9 @@
 #include "httpserver-netconn.h"
 #include "light_control.h"
 
+#define VAR_DECLS
+#include "VAR.h"
+
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
@@ -55,6 +58,9 @@
 #define MESSAGE9   "                                   |        \n"
 #define MESSAGE10   "                                   |        \n"
 
+/* GLOBAL variables ---------------------------------------------------------*/
+//int OnActive = 0;
+//int OffActive = 0;
 /* Private variables ---------------------------------------------------------*/
 struct netif gnetif; /* network interface structure */
 
@@ -118,6 +124,8 @@ int main(void)
   */
 static void StartThread(void const * argument)
 { 
+	OnActive=0;
+	OffActive=0;
   /* Initialize LCD and LEDs */
   BSP_Config();
   
@@ -144,9 +152,9 @@ static void StartThread(void const * argument)
  osThreadCreate (osThread(DHCP), &gnetif);
 #endif
 
- //osThreadDef(CONTROL, thread_control, osPriorityRealtime, 0, 0);
+ osThreadDef(CONTROL, thread_control, osPriorityRealtime, 0, 0);
  
- //osThreadCreate (osThread(CONTROL), NULL);
+ osThreadCreate (osThread(CONTROL), NULL);
 
 osDelay(10000);
 	LCD_UsrLog (MESSAGE1);

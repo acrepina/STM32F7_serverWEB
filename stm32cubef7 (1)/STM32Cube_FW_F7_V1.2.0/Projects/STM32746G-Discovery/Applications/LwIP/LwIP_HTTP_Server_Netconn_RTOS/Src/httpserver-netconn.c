@@ -29,10 +29,17 @@
 #include "lwip/opt.h"
 #include "lwip/arch.h"
 #include "lwip/api.h"
-#include "fs.h"
+//#include "fs.h"
+#include "fsdata.c"
 #include "string.h"
 #include "httpserver-netconn.h"
 #include "cmsis_os.h"
+
+/* GLOBAL variables ---------------------------------------------------------*/
+//extern int OnActive = 0;
+//extern int OffActive = 0;
+#include "VAR.h"
+
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -159,7 +166,7 @@ void http_server_serve(struct netconn *conn)
   err_t recv_err;
   char* buf;
   u16_t buflen;
-  struct fs_file * file;
+  //struct fs_file * file;
   
   /* Read the data from the port, blocking if nothing yet there. 
    We assume the request (the part we care about) is in one netbuf */
@@ -181,19 +188,28 @@ void http_server_serve(struct netconn *conn)
            /* Load dynamic page */
            DynWebPage(conn);
         }
+				
+				else if((strncmp(buf, "GET /light.html?code=1", 15) == 0)||(strncmp(buf, "GET / ", 6) == 0)) 
+        {
+          netconn_write(conn, (const unsigned char*)(file__light_html->data), (size_t)file__light_html->len, NETCONN_NOCOPY);
+					OnActive = 1;
+					OnActive = 1;
+        }
+				else if((strncmp(buf, "GET /light.html?code=0", 15) == 0)||(strncmp(buf, "GET / ", 6) == 0)) 
+        {
+          netconn_write(conn, (const unsigned char*)(file__light_html->data), (size_t)file__light_html->len, NETCONN_NOCOPY);
+					OffActive = 1;
+        }
 				 else if((strncmp(buf, "GET /light.html", 15) == 0)||(strncmp(buf, "GET / ", 6) == 0)) 
         {
-          /* Load STM32F7xx page */
-          file = fs_open("/light.html"); 
-          netconn_write(conn, (const unsigned char*)(file->data), (size_t)file->len, NETCONN_NOCOPY);
-          fs_close(file);
+          netconn_write(conn, (const unsigned char*)(file__light_html->data), (size_t)file__light_html->len, NETCONN_NOCOPY);
         }
         else 
         {
           /* Load Error page */
-          file = fs_open("/404.html"); 
-          netconn_write(conn, (const unsigned char*)(file->data), (size_t)file->len, NETCONN_NOCOPY);
-          fs_close(file);
+          //file = fs_open("/404.html"); 
+          netconn_write(conn, (const unsigned char*)(file__404_html->data), (size_t)file__404_html->len, NETCONN_NOCOPY);
+          //fs_close(file);
         }
       }      
     }
